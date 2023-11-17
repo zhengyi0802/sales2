@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatagoryController;
+use App\Http\Controllers\VendorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
      ->name('home')->middleware('auth');
 
 Route::resource('/catagories', CatagoryController::class);
+
+Route::resource('/vendors', VendorController::class);

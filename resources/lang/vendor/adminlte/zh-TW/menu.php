@@ -17,4 +17,5 @@ return [
     'warning'                       => '警告',
     'information'                   => '訊息',
     'catagories'                    => '產品類別',
+    'vendors'                       => '廠商資料',
 ];

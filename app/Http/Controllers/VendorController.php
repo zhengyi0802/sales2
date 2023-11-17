@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vendor;
 use Illuminate\Http\Request;
+use App\Enums\UserRole;
 
 class VendorController extends Controller
 {
@@ -15,6 +16,10 @@ class VendorController extends Controller
     public function index()
     {
         //
+        $user = auth()->user();
+
+        $vendors = Vendor::get();
+        return view('vendors.index', compact('vendors'));
     }
 
     /**
@@ -24,7 +29,7 @@ class VendorController extends Controller
      */
     public function create()
     {
-        //
+        return view('vendors.create');
     }
 
     /**
@@ -35,7 +40,12 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $creator = auth()->user();
+        $data['created_by'] = $creator->id;
+        Vendor::create($data);
+
+        return redirect()->route('vendors.index');
     }
 
     /**
@@ -46,7 +56,7 @@ class VendorController extends Controller
      */
     public function show(Vendor $vendor)
     {
-        //
+        return view('vendors.show', compact('vendor'));
     }
 
     /**
@@ -57,7 +67,7 @@ class VendorController extends Controller
      */
     public function edit(Vendor $vendor)
     {
-        //
+        return view('vendors.edit', compact('vendor'));
     }
 
     /**
@@ -69,7 +79,14 @@ class VendorController extends Controller
      */
     public function update(Request $request, Vendor $vendor)
     {
-        //
+        $data = $request->all();
+        $creator = auth()->user();
+        if ($creator->role <= UserRole::Manager) {
+            $data['created_by'] = $creator->id;
+            $vendor->update($data);
+        }
+
+        return redirect()->route('vendors.index');
     }
 
     /**
@@ -80,6 +97,6 @@ class VendorController extends Controller
      */
     public function destroy(Vendor $vendor)
     {
-        //
+        return redirect()->route('vendors.index');
     }
 }

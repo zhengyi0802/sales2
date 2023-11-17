@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Vendor extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'company',
+        'country',
+        'memo',
+        'created_by',
+    ];
+
+    function creator() {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
 }

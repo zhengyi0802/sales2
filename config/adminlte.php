@@ -307,6 +307,11 @@ return [
             'url'  => 'catagories',
             'can'  => 'manager',
         ],
+        [
+            'text' => 'vendors',
+            'url'  => 'vendors',
+            'can'  => 'manager',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

@@ -16,8 +16,8 @@ class CreateVendorsTable extends Migration
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
             $table->string('company')->unique();
-            $table->string('country', 30)->nullable();
-            $table->bigInteger('create_by')->unsigned();
+            $table->string('country', 100)->nullable();
+            $table->bigInteger('created_by')->unsigned();
             $table->text('memo')->nullable();
             $table->timestamps();
         });
