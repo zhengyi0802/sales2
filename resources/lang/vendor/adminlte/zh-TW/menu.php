@@ -20,4 +20,5 @@ return [
     'vendors'                       => '廠商資料',
     'projects'                      => '行銷方案',
     'sales'                         => '業務人員',
+    'customers'                     => '客戶資料',
 ];

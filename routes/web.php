@@ -5,6 +5,7 @@ use App\Http\Controllers\CatagoryController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\CustomerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,4 +49,4 @@ Route::get('/sales', [App\Http\Controllers\SalesController::class, 'index'])
 
 Route::resource('/projects', ProjectController::class);
 
-
+Route::resource('/customers', CustomerController::class);

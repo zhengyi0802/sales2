@@ -322,6 +322,11 @@ return [
             'url'  => 'sales',
             'can'  => 'manager',
         ],
+        [
+            'text' => 'customers',
+            'url'  => 'customers',
+            'can'  => ['manager', 'sales', 'operator' ],
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
