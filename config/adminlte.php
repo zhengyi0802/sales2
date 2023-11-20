@@ -312,6 +312,16 @@ return [
             'url'  => 'vendors',
             'can'  => 'manager',
         ],
+        [
+            'text' => 'projects',
+            'url'  => 'projects',
+            'can'  => 'manager',
+        ],
+        [
+            'text' => 'sales',
+            'url'  => 'sales',
+            'can'  => 'manager',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

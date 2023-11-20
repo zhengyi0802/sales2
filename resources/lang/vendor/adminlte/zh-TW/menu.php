@@ -18,4 +18,6 @@ return [
     'information'                   => '訊息',
     'catagories'                    => '產品類別',
     'vendors'                       => '廠商資料',
+    'projects'                      => '行銷方案',
+    'sales'                         => '業務人員',
 ];

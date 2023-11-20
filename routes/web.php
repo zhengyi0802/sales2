@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatagoryController;
 use App\Http\Controllers\VendorController;
-
+use App\Http\Controllers\SalesController;
+use App\Http\Controllers\ProjectController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +27,25 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 Route::resource('/catagories', CatagoryController::class);
 
 Route::resource('/vendors', VendorController::class);
+
+Route::get('/sales/show/{sales}', [App\Http\Controllers\SalesController::class, 'show'])
+     ->name('sales.show');
+
+Route::get('/sales/edit/{sales}', [App\Http\Controllers\SalesController::class, 'edit'])
+     ->name('sales.edit');
+
+Route::get('/sales/create', [App\Http\Controllers\SalesController::class, 'create'])
+     ->name('sales.create');
+
+Route::get('/sales/update/{sales}', [App\Http\Controllers\SalesController::class, 'updare'])
+     ->name('sales.update');
+
+Route::get('/sales/destroy/{sales}', [App\Http\Controllers\SalesController::class, 'destroy'])
+     ->name('sales.destroy');
+
+Route::get('/sales', [App\Http\Controllers\SalesController::class, 'index'])
+     ->name('sales.index');
+
+Route::resource('/projects', ProjectController::class);
+
+

@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'details',
+        'created_by',
+    ];
+
+    function creator() {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
 }

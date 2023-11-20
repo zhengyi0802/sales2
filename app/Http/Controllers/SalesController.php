@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sales;
+use App\Models\User;
+use App\Enums\UserRole;
 use Illuminate\Http\Request;
 
 class SalesController extends Controller
@@ -15,6 +17,10 @@ class SalesController extends Controller
     public function index()
     {
         //
+        $user = auth()->user();
+
+        $saleses = Sales::get();
+        return view('sales.index', compact('saleses'));
     }
 
     /**
@@ -24,7 +30,7 @@ class SalesController extends Controller
      */
     public function create()
     {
-        //
+        return view('sales.create');
     }
 
     /**
@@ -35,7 +41,25 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $creator = auth()->user();
+        $user = User::where('account', $data['account'])->first();
+        if ($user != null) {
+            return redirect()->back();
+        } else {
+            $data1['name'] = $data['name'];
+            $data1['account'] = $data['account'];
+            $data1['password'] = bcrypt($data['password']);
+            $data1['phone'] = $data['phone'];
+            $data1['role'] = UserRole::Sales;
+            $data1['status'] = true;
+            $data1['created_by'] = $creator->id;
+            $user = User::create($data1);
+            $data['user_id'] = $user->id;
+            $data['created_by'] = $creator->id;
+            Sales::create($data);
+        }
+        return redirect()->route('sales.index');
     }
 
     /**
@@ -46,7 +70,7 @@ class SalesController extends Controller
      */
     public function show(Sales $sales)
     {
-        //
+        return view('sales.show', compact('sales'));
     }
 
     /**
@@ -57,7 +81,7 @@ class SalesController extends Controller
      */
     public function edit(Sales $sales)
     {
-        //
+        return view('sales.edit', compact('sales'));
     }
 
     /**
@@ -69,7 +93,13 @@ class SalesController extends Controller
      */
     public function update(Request $request, Sales $sales)
     {
-        //
+        $data = $request->all();
+        $user = $sales->user;
+        $userdata['phone'] = $data['phone'];
+        $user->update($userdata);
+        $sales->update($data);
+
+        return redirect()->route('sales.index');
     }
 
     /**
@@ -80,6 +110,6 @@ class SalesController extends Controller
      */
     public function destroy(Sales $sales)
     {
-        //
+        return redirect()->route('sales.index');
     }
 }

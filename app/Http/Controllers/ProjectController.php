@@ -14,7 +14,11 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $user = auth()->user();
+
+        $projects = Project::get();
+        return view('projects.index', compact('projects'));
+
     }
 
     /**
@@ -24,7 +28,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('projects.create');
     }
 
     /**
@@ -35,7 +39,12 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $creator = auth()->user();
+       $data = $request->all();
+       $data['created_by'] = $creator->id;
+       $data['status'] = true;
+       Project::create($data);
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -46,7 +55,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('projects.show', compact('project'));
     }
 
     /**
@@ -57,7 +66,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('projects.edit', compact('project'));
     }
 
     /**
@@ -69,7 +78,11 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $data = $$request->all();
+        $creaypr = auth()->user();
+        $data['created_by'] = $creator->id;
+        $project->update($data);
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -80,6 +93,6 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        return redirect()->route('projects.index');
     }
 }
