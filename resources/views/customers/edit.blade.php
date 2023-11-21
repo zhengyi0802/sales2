@@ -70,6 +70,15 @@
                     <input type="text" name="address" value="{{ $customer->address }}" class="form-control">
                 </div>
            </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('customers.sales') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                    <select id="sales_id" name="sales_id" >
+                        @foreach ($sales as $s)
+                           <option value="{{ $s->id }}" {{ ($s->id == $customer->sales_id) ? "selected" : null }} >{{ $s->name }}</option>
+                        @endforeach
+                  </select>
+                </div>
+           </div>
            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
            </div>

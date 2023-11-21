@@ -313,6 +313,11 @@ return [
             'can'  => 'manager',
         ],
         [
+            'text' => 'productModels',
+            'url'  => 'productModels',
+            'can'  => 'manager',
+        ],
+        [
             'text' => 'projects',
             'url'  => 'projects',
             'can'  => 'manager',

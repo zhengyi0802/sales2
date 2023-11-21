@@ -21,4 +21,5 @@ return [
     'projects'                      => '行銷方案',
     'sales'                         => '業務人員',
     'customers'                     => '客戶資料',
+    'productModels'                 => '產品型號',
 ];

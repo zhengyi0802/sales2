@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductModel;
+use App\Models\Vendor;
+use App\Models\Catagory;
+use App\Models\User;
+use App\Enums\UserRole;
 use Illuminate\Http\Request;
 
 class ProductModelController extends Controller
@@ -14,7 +18,9 @@ class ProductModelController extends Controller
      */
     public function index()
     {
-        //
+        $productModels = ProductModel::where('status', true)->get();
+
+        return view('productModels.index', compact('productModels'));
     }
 
     /**
@@ -24,7 +30,12 @@ class ProductModelController extends Controller
      */
     public function create()
     {
-        //
+        $vendors = Vendor::get();
+        $catagories = Catagory::get();
+
+        return view('productModels.create')
+               ->with(compact('vendors'))
+               ->with(compact('catagories'));
     }
 
     /**
@@ -35,7 +46,7 @@ class ProductModelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect()->route('productModels.index');
     }
 
     /**
@@ -46,7 +57,7 @@ class ProductModelController extends Controller
      */
     public function show(ProductModel $productModel)
     {
-        //
+        return view('productModels.show', compact('productModel'));
     }
 
     /**
@@ -57,7 +68,12 @@ class ProductModelController extends Controller
      */
     public function edit(ProductModel $productModel)
     {
-        //
+        $catagories = Catagory::get();
+        $vendors = Vendor::get();
+
+        return view('productModels.edit', compact('productModel'))
+               ->with(compact('vendors'))
+               ->with(compact('catagories'));
     }
 
     /**
@@ -69,7 +85,7 @@ class ProductModelController extends Controller
      */
     public function update(Request $request, ProductModel $productModel)
     {
-        //
+        return redirect()->route('productModels.index');
     }
 
     /**
@@ -80,6 +96,6 @@ class ProductModelController extends Controller
      */
     public function destroy(ProductModel $productModel)
     {
-        //
+        return redirect()->route('productModels.index');
     }
 }

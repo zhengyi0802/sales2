@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatagoryController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\ProductModelController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CustomerController;
@@ -28,6 +29,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 Route::resource('/catagories', CatagoryController::class);
 
 Route::resource('/vendors', VendorController::class);
+
+Route::resource('/productModels', ProductModelController::class);
 
 Route::get('/sales/show/{sales}', [App\Http\Controllers\SalesController::class, 'show'])
      ->name('sales.show');

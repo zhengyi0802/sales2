@@ -23,7 +23,7 @@ class ProductModel extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    functioon catagory() {
+    function catagory() {
         return $this->belongsTo(Catagory::class, 'catagory_id');
     }
 
