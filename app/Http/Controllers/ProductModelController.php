@@ -21,7 +21,7 @@ class ProductModelController extends Controller
         $user = auth()->user();
 
         if ($user->account == 'admin') {
-            $productModels = ProductModel::>get();
+            $productModels = ProductModel::get();
         } else {
             $productModels = ProductModel::where('status', true)->get();
         }
