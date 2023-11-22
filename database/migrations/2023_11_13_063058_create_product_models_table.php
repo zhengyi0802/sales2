@@ -22,7 +22,9 @@ class CreateProductModelsTable extends Migration
             $table->json('bridfs')->nullable();
             $table->json('specifications')->nullable();
             $table->text('description')->nullable();
-            $table->bigInteger('product_with')->unsigned()->nullable();
+            $table->bigInteger('accessories')->unsigned()->nullable();
+            $table->boolean('extra')->default(false);
+            $table->boolean('is_accessories')->default(false);
             $table->boolean('status')->default(true);
             $table->bigInteger('created_by')->unsigned();
             $table->timestamps();

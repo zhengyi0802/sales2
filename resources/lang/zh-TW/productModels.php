@@ -11,7 +11,9 @@
            'briefs'           => '特色',
            'specifications'   => '規格',
            'descriptions'     => '產品說明',
-           'product_with'     => '必要附件',
+           'accessories'      => '必要附件',
+           'is_accessories'   => '附件屬性',
+           'extras'           => '贈品',
            'status'           => '狀態',
            'creator'          => '建立者',
     ];

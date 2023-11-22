@@ -43,8 +43,14 @@
         <x-adminlte-card title="{{ __('productModels.descriptions') }}" theme="info" icon="fas fa-lg">
                 {{ $productModel->descriptions }}
         </x-adminlte>
-        <x-adminlte-card title="{{ __('productModels.product_with') }}" theme="info" icon="fas fa-lg">
-                {{ $productModel->product_with }}
+        <x-adminlte-card title="{{ __('productModels.accessories') }}" theme="info" icon="fas fa-lg">
+                {{ $productModel->accessories }}
+        </x-adminlte>
+        <x-adminlte-card title="{{ __('productModels.is_accessories') }}" theme="info" icon="fas fa-lg">
+                {{ $productModel->is_accessories ? __('tables.yes') : __('tables.no') }}
+        </x-adminlte>
+        <x-adminlte-card title="{{ __('productModels.extras') }}" theme="info" icon="fas fa-lg">
+                {{ $productModel->extras ? __('tables.yes') : __('tables.no') }}
         </x-adminlte>
         <x-adminlte-card title="{{ __('productModels.creator') }}" theme="info" icon="fas fa-lg">
                 {{ $productModel->creator->name }}

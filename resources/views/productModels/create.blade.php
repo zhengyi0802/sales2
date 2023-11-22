@@ -44,15 +44,15 @@
     @csrf
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
                 <strong>{{ __('productModels.name') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="name" class="form-control">
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
                 <strong>{{ __('productModels.model') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="model" class="form-control">
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
                 <strong>{{ __('productModels.vendor') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <select id="vendor_id" name="vendor_id" >
                       @foreach ($vendors as $vendor)
@@ -60,7 +60,7 @@
                       @endforeach
                 </select>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
                 <strong>{{ __('productModels.catagory') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <select id="catagory_id" name="catagory_id" >
                       @foreach ($catagories as $catagory)
@@ -68,13 +68,14 @@
                       @endforeach
                 </select>
             </div>
-            <div class="form-group col-md-4">
-                <strong>{{ __('productModels.product_with') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <select id="product_with" name="product_with" >
+            <div class="form-group col-md-6">
+                <strong>{{ __('productModels.accessories') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <select id="accessories" name="accessories" >
                       <option value="" selected>----------</option>
                 </select>
             </div>
-            <table class="table table-bordered" id="dynamicAddRemove">
+            <div class="form-group col-md-6">
+              <table class="table table-bordered" id="briefsTable">
                 <tr>
                     <th>{{ __('productModels.briefs') }}</th>
                     <th>{{ __('tables.action') }}</th>
@@ -82,10 +83,12 @@
                 <tr>
                     <td><input type="text" name="briefs[0]" placeholder="Enter subject" class="form-control" />
                     </td>
-                    <td><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">{{ __('tables.new') }}</button></td>
+                    <td><button type="button" name="add" id="briefAdd" class="btn btn-outline-primary">{{ __('tables.new') }}</button></td>
                 </tr>
-            </table>
-            <table class="table table-bordered" id="dynamicAddRemove">
+              </table>
+            </div>
+            <div class="form-group col-md-6">
+              <table class="table table-bordered" id="specTable">
                 <tr>
                     <th>{{ __('productModels.specifications') }}</th>
                     <th>{{ __('tables.action') }}</th>
@@ -93,12 +96,23 @@
                 <tr>
                     <td><input type="text" name="specifications[0]" placeholder="Enter subject" class="form-control" />
                     </td>
-                    <td><button type="button" name="add" id="dynamic-ar2" class="btn btn-outline-primary">{{ __('tables.new') }}</button></td>
+                    <td><button type="button" name="add" id="specAdd" class="btn btn-outline-primary">{{ __('tables.new') }}</button></td>
                 </tr>
-            </table>
-            <div class="form-group col-md-4">
+              </table>
+            </div>
+            <div class="form-group col-md-6">
                 <strong>{{ __('productModels.descriptions') }} :</span></strong>
-                <textarea name="specifications" class="form-control" rows="10"></textarea>
+                <textarea name="descriptions" class="form-control" rows="10"></textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <strong>{{ __('productModels.is_accessories') }} :</span></strong>
+                <input type="checkbox" name="is_accessories" value="1" />
+                <label for="is_accessories">{{ __('tables.yes') }}</label>
+            </div>
+            <div class="form-group col-md-6">
+                <strong>{{ __('productModels.extras') }} :</span></strong>
+                <input type="checkbox" name="extras" value="1" />
+                <label for="extras">{{ __('tables.yes') }}</label>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
@@ -106,20 +120,31 @@
         </div>
     </div>
 </form>
-
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
     var i = 0;
-    $("#dynamic-ar").click(function () {
+    $("#briefAdd").click(function () {
         ++i;
-        $("#dynamicAddRemove").append('<tr><td><input type="text" name="addMoreInputFields[' + i +
-            '][subject]" placeholder="Enter subject" class="form-control" /></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
+        $("#briefsTable").append('<tr><td><input type="text" name="briefs[' + i +
+            ']" placeholder="Enter subject" class="form-control" /></td><td><button type="button" class="btn btn-outline-danger removeBrief">刪除</button></td></tr>'
             );
     });
-    $(document).on('click', '.remove-input-field', function () {
+    $(document).on('click', '.removeBrief', function () {
         $(this).parents('tr').remove();
     });
+
+    var j=0;
+    $("#specAdd").click(function () {
+        ++j;
+        $("#specTable").append('<tr><td><input type="text" name="specifications[' + j +
+            ']" placeholder="Enter subject" class="form-control" /></td><td><button type="button" class="btn btn-outline-danger specBrief">刪除</button></td></tr>'
+            );
+    });
+    $(document).on('click', '.specBrief', function () {
+        $(this).parents('tr').remove();
+    });
+
 </script>
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
