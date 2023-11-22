@@ -23,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('phone', 20);
             $table->string('address');
             $table->Integer('amount')->unsigned();
+            $table->boolean('status')->default(true);
             $table->bigInteger('created_by')->unsigned();
             $table->timestamps();
         });

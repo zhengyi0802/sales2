@@ -21,6 +21,7 @@ class CreateCustomersTable extends Migration
             $table->string('email', 30)->nullable();
             $table->string('pid', 20)->nullable();
             $table->string('address')->nullable();
+            $table->boolean('status')->default(true);
             $table->bigInteger('sales_id')->unsigned();
             $table->bigInteger('created_by')->unsigned();
             $table->timestamps();

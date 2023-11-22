@@ -7,6 +7,8 @@ use App\Http\Controllers\ProductModelController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,3 +55,6 @@ Route::get('/sales', [App\Http\Controllers\SalesController::class, 'index'])
 Route::resource('/projects', ProjectController::class);
 
 Route::resource('/customers', CustomerController::class);
+
+Route::resource('/orders', OrderController::class);
+

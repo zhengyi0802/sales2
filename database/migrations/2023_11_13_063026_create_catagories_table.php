@@ -16,6 +16,7 @@ class CreateCatagoriesTable extends Migration
         Schema::create('catagories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->boolean('status')->default(true);
             $table->bigInteger('created_by')->unsigned();
             $table->timestamps();
         });

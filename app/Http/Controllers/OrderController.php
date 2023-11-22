@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Customer;
+use App\Models\ProductMode;
+use App\Models\Sales;
+use App\Enums\UserRole;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -14,7 +18,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::get();
+
+        return view('orders.index', compact('orders'));
     }
 
     /**
@@ -24,7 +30,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('orders.create');
     }
 
     /**
@@ -35,7 +41,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect()->route('orders.index');
     }
 
     /**
@@ -46,7 +52,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('orders.show', compact('order'));
     }
 
     /**
@@ -57,7 +63,10 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        $productModels = ProductMode::get();
+
+        return view('orders.show', compact('order'))
+               ->with(compact('productModels'));
     }
 
     /**
@@ -69,7 +78,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        return redirect()->route('orders.index');
     }
 
     /**
@@ -80,6 +89,6 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        return redirect()->route('orders.index');
     }
 }

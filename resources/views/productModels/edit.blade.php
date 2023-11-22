@@ -49,6 +49,10 @@
                     <strong>{{ __('productModels.name') }} :</strong>
                     <input type="text" name="name" value="{{ $productModel->name }}" class="form-control">
                 </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('productModels.model') }} :</strong>
+                    <input type="text" name="model" value="{{ $productModel->model }}" class="form-control">
+                </div>
            </div>
            <div class="form-group col-md-4">
                 <strong>{{ __('productModels.vendor') }} :<span class="must">{{ __('tables.must') }}</span></strong>

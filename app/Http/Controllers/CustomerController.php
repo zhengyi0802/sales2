@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Sales;
+use App\Models\Project;
+use App\Models\Order;
+use App\Models\ProductModel;
 use App\Enums\UserRole;
 use Illuminate\Http\Request;
 
@@ -33,7 +36,11 @@ class CustomerController extends Controller
     public function create()
     {
         $sales = Sales::get();
-        return view('customers.create', compact('sales'));
+        $projects = Project::get();
+        $productModels = ProductModel::get();
+        return view('customers.create', compact('sales'))
+               ->with(compact('projects'))
+               ->with(compact('productModels'));
     }
 
     /**

@@ -25,6 +25,27 @@
         <x-adminlte-card title="{{ __('productModels.name') }}" theme="info" icon="fas fa-lg">
                 {{ $productModel->name }}
         </x-adminlte>
+        <x-adminlte-card title="{{ __('productModels.model') }}" theme="info" icon="fas fa-lg">
+                {{ $productModel->model }}
+        </x-adminlte>
+        <x-adminlte-card title="{{ __('productModels.catagory') }}" theme="info" icon="fas fa-lg">
+                {{ $productModel->catagory }}
+        </x-adminlte>
+        <x-adminlte-card title="{{ __('productModels.vendor') }}" theme="info" icon="fas fa-lg">
+                {{ $productModel->vendor }}
+        </x-adminlte>
+        <x-adminlte-card title="{{ __('productModels.briefs') }}" theme="info" icon="fas fa-lg">
+                {{ $productModel->briefs }}
+        </x-adminlte>
+        <x-adminlte-card title="{{ __('productModels.specificaions') }}" theme="info" icon="fas fa-lg">
+                {{ $productModel->specifications }}
+        </x-adminlte>
+        <x-adminlte-card title="{{ __('productModels.descriptions') }}" theme="info" icon="fas fa-lg">
+                {{ $productModel->descriptions }}
+        </x-adminlte>
+        <x-adminlte-card title="{{ __('productModels.product_with') }}" theme="info" icon="fas fa-lg">
+                {{ $productModel->product_with }}
+        </x-adminlte>
         <x-adminlte-card title="{{ __('productModels.creator') }}" theme="info" icon="fas fa-lg">
                 {{ $productModel->creator->name }}
         </x-adminlte-card>

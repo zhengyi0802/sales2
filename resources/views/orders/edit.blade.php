@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', __('customers.title'))
+@section('title', __('orders.title'))
 
 @section('content_header')
-    <h1 class="m-0 text-dark">{{ __('customers.header') }}</h1>
+    <h1 class="m-0 text-dark">{{ __('orders.header') }}</h1>
 @stop
 
 @section('content')
@@ -40,41 +40,41 @@
           font-size : 12px;
        }
     </style>
-    <form id="customer-form" action="{{ route('customers.update',$customer->id) }}" method="POST" enctype="multipart/form-data">
+    <form id="order-form" action="{{ route('orders.update',$order->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
          <div class="row">
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
-                    <strong>{{ __('customers.name') }} :</strong>
-                    <input type="text" name="name" value="{{ $customer->name }}" class="form-control">
+                    <strong>{{ __('orders.name') }} :</strong>
+                    <input type="text" name="name" value="{{ $order->name }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('customers.phone') }} :</strong>
-                    <input type="text" name="phone" value="{{ $customer->phone }}" class="form-control">
+                    <strong>{{ __('orders.phone') }} :</strong>
+                    <input type="text" name="phone" value="{{ $order->phone }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('customers.line_id') }} :</strong>
-                    <input type="text" name="line_id" value="{{ $customer->line_id }}" class="form-control">
+                    <strong>{{ __('orders.line_id') }} :</strong>
+                    <input type="text" name="line_id" value="{{ $order->line_id }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('customers.email') }} :</strong>
-                    <input type="text" name="email" value="{{ $customer->email }}" class="form-control">
+                    <strong>{{ __('orders.email') }} :</strong>
+                    <input type="text" name="email" value="{{ $order->email }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('customers.pid') }} :</strong>
-                    <input type="text" name="pid" value="{{ $customer->pid }}" class="form-control">
+                    <strong>{{ __('orders.pid') }} :</strong>
+                    <input type="text" name="pid" value="{{ $order->pid }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('customers.address') }} :</strong>
-                    <input type="text" name="address" value="{{ $customer->address }}" class="form-control">
+                    <strong>{{ __('orders.address') }} :</strong>
+                    <input type="text" name="address" value="{{ $order->address }}" class="form-control">
                 </div>
            </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('customers.sales') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                    <strong>{{ __('orders.sales') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                     <select id="sales_id" name="sales_id" >
                         @foreach ($sales as $s)
-                           <option value="{{ $s->id }}" {{ ($s->id == $customer->sales_id) ? "selected" : null }} >{{ $s->name }}</option>
+                           <option value="{{ $s->id }}" {{ ($s->id == $order->sales_id) ? "selected" : null }} >{{ $s->name }}</option>
                         @endforeach
                   </select>
                 </div>

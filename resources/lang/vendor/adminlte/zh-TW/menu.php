@@ -22,4 +22,5 @@ return [
     'sales'                         => '業務人員',
     'customers'                     => '客戶資料',
     'productModels'                 => '產品型號',
+    'orders'                        => '訂單管理',
 ];

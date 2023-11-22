@@ -1,6 +1,7 @@
 @php
 $heads = [
     ['label' =>__('productModels.id'), 'width' => 10],
+    __('productModels.model'),
     __('productModels.name'),
     __('productModels.vendor'),
     __('productModels.catagory'),
@@ -18,6 +19,7 @@ $config = [
   @foreach($productModels as $productModel)
     <tr>
       <td>{{ $productModel->id }}</td>
+      <td>{{ $productModel->model }}</td>
       <td>{{ $productModel->name }}</td>
       <td>{{ $productModel->vendor->company }}</td>
       <td>{{ $productModel->catagory->name }}</td>

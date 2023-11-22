@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', __('customers.title'))
+@section('title', __('orders.title'))
 
 @section('content_header')
-    <h1 class="m-0 text-dark">{{ __('customers.header') }}</h1>
+    <h1 class="m-0 text-dark">{{ __('orders.header') }}</h1>
 @stop
 
 @section('content')
@@ -40,36 +40,36 @@
       font-size : 12px;
    }
 </style>
-<form id="customer-form" action="{{ route('customers.store') }}" method="POST" enctype="multipart/form-data">
+<form id="order-form" action="{{ route('orders.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group col-md-4">
-                <strong>{{ __('customers.name') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <strong>{{ __('orders.name') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="name" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('customers.phone') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <strong>{{ __('orders.phone') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="name" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('customers.line_id') }} :</strong>
+                <strong>{{ __('orders.line_id') }} :</strong>
                 <input type="text" name="phone" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('customers.email') }} :</strong>
+                <strong>{{ __('orders.email') }} :</strong>
                 <input type="text" name="email" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('customers.pid') }} :</strong>
+                <strong>{{ __('orders.pid') }} :</strong>
                 <input type="text" name="pid" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('customers.address') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <strong>{{ __('orders.address') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="address" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('customers.sales') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <strong>{{ __('orders.sales') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <select id="sales_id" name="sales_id" >
                       @foreach ($sales as $s)
                          <option value="{{ $s->id }}" >{{ $s->name }}</option>
@@ -86,7 +86,7 @@
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
     $(document).ready(function(){
-        $('#customer-form').validate({
+        $('#order-form').validate({
            onkeyup: function(element, event) {
                var value = this.elementValue(element).replace(/^\s+/g, "");
                $(element).val(value);

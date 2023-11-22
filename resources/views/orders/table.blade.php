@@ -1,11 +1,11 @@
 @php
 $heads = [
-    ['label' =>__('customers.id'), 'width' => 10],
-    __('customers.name'),
-    __('customers.phone'),
-    __('customers.address'),
-    __('customers.sales'),
-    __('customers.creator'),
+    ['label' =>__('orders.id'), 'width' => 10],
+    __('orders.name'),
+    __('orders.phone'),
+    __('orders.address'),
+    __('orders.sales'),
+    __('orders.creator'),
     ['label' => __('tables.action'), 'no-export' => true, 'width' => 10],
 ];
 $config = [
@@ -15,22 +15,22 @@ $config = [
 ];
 @endphp
 
-<x-adminlte-datatable id="customer-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" striped hoverable bordered>
-  @foreach($customers as $customer)
+<x-adminlte-datatable id="order-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" striped hoverable bordered>
+  @foreach($orders as $order)
     <tr>
-      <td>{{ $customer->id }}</td>
-      <td>{{ $customer->name }}</td>
-      <td>{{ $customer->phone }}</td>
-      <td>{{ $customer->address }}</td>
-      <td>{{ $customer->sales->name }}</td>
-      <td>{{ $customer->creator->name }}</td>
+      <td>{{ $order->id }}</td>
+      <td>{{ $order->name }}</td>
+      <td>{{ $order->phone }}</td>
+      <td>{{ $order->address }}</td>
+      <td>{{ $order->sales->name }}</td>
+      <td>{{ $order->creator->name }}</td>
       <td><nobr>
-          <form name="customer-delete-form" action="{{ route('customers.destroy', $customer->id); }}" method="POST">
+          <form name="order-delete-form" action="{{ route('orders.destroy', $order->id); }}" method="POST">
             @csrf
             @method('DELETE')
             @if (auth()->user()->role == App\Enums\UserRole::Operator || auth()->user()->role == App\Enums\UserRole::Administrator)
               <x-adminlte-button theme="primary" title="{{ __('tables.edit') }}" icon="fa fa-lg fa-fw fa-pen"
-                onClick="window.location='{{ route('customers.edit', $customer->id); }}'" >
+                onClick="window.location='{{ route('orders.edit', $order->id); }}'" >
               </x-adminlte-button>
             @endif
             @if (auth()->user()->role == App\Enums\UserRole::Operator || auth()->user()->role == App\Enums\UserRole::Administrator)
@@ -39,7 +39,7 @@ $config = [
               </x-adminlte-button>
              @endif
               <x-adminlte-button theme="info" title="{{ __('tables.detail') }}" icon="fa fa-lg fa-fw fa-eye"
-                onClick="window.location='{{ route('customers.show', $customer->id); }}'" >
+                onClick="window.location='{{ route('orders.show', $order->id); }}'" >
               </x-adminlte-button>
             </form>
       </nobr></td>

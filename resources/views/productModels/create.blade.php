@@ -49,6 +49,10 @@
                 <input type="text" name="name" class="form-control">
             </div>
             <div class="form-group col-md-4">
+                <strong>{{ __('productModels.model') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <input type="text" name="model" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
                 <strong>{{ __('productModels.vendor') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <select id="vendor_id" name="vendor_id" >
                       @foreach ($vendors as $vendor)
@@ -64,7 +68,38 @@
                       @endforeach
                 </select>
             </div>
-
+            <div class="form-group col-md-4">
+                <strong>{{ __('productModels.product_with') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <select id="product_with" name="product_with" >
+                      <option value="" selected>----------</option>
+                </select>
+            </div>
+            <table class="table table-bordered" id="dynamicAddRemove">
+                <tr>
+                    <th>{{ __('productModels.briefs') }}</th>
+                    <th>{{ __('tables.action') }}</th>
+                </tr>
+                <tr>
+                    <td><input type="text" name="briefs[0]" placeholder="Enter subject" class="form-control" />
+                    </td>
+                    <td><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">{{ __('tables.new') }}</button></td>
+                </tr>
+            </table>
+            <table class="table table-bordered" id="dynamicAddRemove">
+                <tr>
+                    <th>{{ __('productModels.specifications') }}</th>
+                    <th>{{ __('tables.action') }}</th>
+                </tr>
+                <tr>
+                    <td><input type="text" name="specifications[0]" placeholder="Enter subject" class="form-control" />
+                    </td>
+                    <td><button type="button" name="add" id="dynamic-ar2" class="btn btn-outline-primary">{{ __('tables.new') }}</button></td>
+                </tr>
+            </table>
+            <div class="form-group col-md-4">
+                <strong>{{ __('productModels.descriptions') }} :</span></strong>
+                <textarea name="specifications" class="form-control" rows="10"></textarea>
+            </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
@@ -72,6 +107,20 @@
     </div>
 </form>
 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+    var i = 0;
+    $("#dynamic-ar").click(function () {
+        ++i;
+        $("#dynamicAddRemove").append('<tr><td><input type="text" name="addMoreInputFields[' + i +
+            '][subject]" placeholder="Enter subject" class="form-control" /></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
+            );
+    });
+    $(document).on('click', '.remove-input-field', function () {
+        $(this).parents('tr').remove();
+    });
+</script>
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
     $(document).ready(function(){

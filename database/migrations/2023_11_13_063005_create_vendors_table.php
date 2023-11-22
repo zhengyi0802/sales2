@@ -17,6 +17,7 @@ class CreateVendorsTable extends Migration
             $table->id();
             $table->string('company')->unique();
             $table->string('country', 100)->nullable();
+            $table->boolean('status')->default(true);
             $table->bigInteger('created_by')->unsigned();
             $table->text('memo')->nullable();
             $table->timestamps();

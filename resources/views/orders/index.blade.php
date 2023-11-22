@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', __('customers.title'))
+@section('title', __('orders.title'))
 
 @section('content_header')
-    <h1 class="m-0 text-dark">{{ __('customers.header') }}</h1>
+    <h1 class="m-0 text-dark">{{ __('orders.header') }}</h1>
 @stop
 
 @section('content')
@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('customers.create') }}">{{ __('tables.new') }}</a>
+                <a class="btn btn-success" href="{{ route('orders.create') }}">{{ __('tables.new') }}</a>
             </div>
         </div>
     </div>
@@ -23,6 +23,6 @@
         </div>
     @endif
 
-    @include('customers.table')
+    @include('orders.table')
 
 @endsection

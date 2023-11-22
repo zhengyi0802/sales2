@@ -77,6 +77,36 @@
                 </select>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group col-md-4">
+                <strong>{{ __('orders.project') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <select id="project_id" name="project_id" >
+                      @foreach ($projects as $project)
+                         <option value="{{ $project->id }}" >{{ $project->name }}</option>
+                      @endforeach
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <strong>{{ __('orders.model') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <select id="model_id" name="model_id" >
+                      @foreach ($productModels as $model)
+                         <option value="{{ $model->id }}" >{{ $model->name }}</option>
+                      @endforeach
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <strong>{{ __('orders.extra') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <select id="model2_id" name="model2_id" >
+                      @foreach ($productModels2 as $model2)
+                         <option value="{{ $model2->id }}" >{{ $model2->name }}</option>
+                      @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
         </div>

@@ -19,6 +19,7 @@ class CreateSalesTable extends Migration
             $table->string('phone', 20)->unique();
             $table->string('company', 50)->nullable();
             $table->string('job', 30)->nullable();
+            $table->boolean('status')->default(true);
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->bigInteger('created_by')->unsigned();
             $table->timestamps();
