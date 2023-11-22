@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Customer;
-use App\Models\ProductMode;
+use App\Models\Project;
+use App\Models\ProductModel;
 use App\Models\Sales;
 use App\Enums\UserRole;
 use Illuminate\Http\Request;
@@ -34,7 +35,18 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('orders.create');
+        $sales = Sales::where('status', true)->get();
+        $projects = Project::where('status', true)->get();
+        $productModels = ProductModel::where('status', true)->get();
+        $customers = Customer::where('status', true)->get();
+        $extras = ProductModel::where('extra', true)->where('status', true)->get();
+
+        return view('orders.create')
+               ->with(compact('sales'))
+               ->with(compact('projects'))
+               ->with(compact('productModels'))
+               ->with(compact('customers'))
+               ->with(compact('extras'));
     }
 
     /**

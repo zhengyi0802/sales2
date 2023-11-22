@@ -43,11 +43,14 @@ Route::get('/sales/edit/{sales}', [App\Http\Controllers\SalesController::class, 
 Route::get('/sales/create', [App\Http\Controllers\SalesController::class, 'create'])
      ->name('sales.create');
 
-Route::get('/sales/update/{sales}', [App\Http\Controllers\SalesController::class, 'updare'])
+Route::any('/sales/update/{sales}', [App\Http\Controllers\SalesController::class, 'updare'])
      ->name('sales.update');
 
 Route::get('/sales/destroy/{sales}', [App\Http\Controllers\SalesController::class, 'destroy'])
      ->name('sales.destroy');
+
+Route::any('/sales/store', [App\Http\Controllers\SalesController::class, 'store'])
+     ->name('sales.store');
 
 Route::get('/sales', [App\Http\Controllers\SalesController::class, 'index'])
      ->name('sales.index');

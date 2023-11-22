@@ -89,7 +89,7 @@
                 </select>
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('orders.model') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <strong>{{ __('orders.product') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <select id="model_id" name="model_id" >
                       @foreach ($productModels as $model)
                          <option value="{{ $model->id }}" >{{ $model->name }}</option>
@@ -97,10 +97,10 @@
                 </select>
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('orders.extra') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <select id="model2_id" name="model2_id" >
-                      @foreach ($productModels2 as $model2)
-                         <option value="{{ $model2->id }}" >{{ $model2->name }}</option>
+                <strong>{{ __('orders.extras') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <select id="extra_id" name="extra_id" >
+                      @foreach ($extras as $extra)
+                         <option value="{{ $extra->id }}" >{{ $extra->name }}</option>
                       @endforeach
                 </select>
             </div>

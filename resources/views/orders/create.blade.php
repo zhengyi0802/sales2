@@ -53,20 +53,32 @@
                 <input type="text" name="name" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('orders.line_id') }} :</strong>
-                <input type="text" name="phone" class="form-control">
-            </div>
-            <div class="form-group col-md-4">
-                <strong>{{ __('orders.email') }} :</strong>
-                <input type="text" name="email" class="form-control">
-            </div>
-            <div class="form-group col-md-4">
-                <strong>{{ __('orders.pid') }} :</strong>
-                <input type="text" name="pid" class="form-control">
-            </div>
-            <div class="form-group col-md-4">
                 <strong>{{ __('orders.address') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="address" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+                <strong>{{ __('orders.project') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <select id="project_id" name="project_id" >
+                      @foreach ($projects as $project)
+                         <option value="{{ $project->id }}" >{{ $project->name }}</option>
+                      @endforeach
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <strong>{{ __('orders.product') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <select id="product_id" name="product_id" >
+                      @foreach ($productModels as $product)
+                         <option value="{{ $product->id }}" >{{ $product->name }}</option>
+                      @endforeach
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <strong>{{ __('orders.extras') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <select id="extra_id" name="extra_id" >
+                      @foreach ($extras as $extra)
+                         <option value="{{ $extra->id }}" >{{ $extra->name }}</option>
+                      @endforeach
+                </select>
             </div>
             <div class="form-group col-md-4">
                 <strong>{{ __('orders.sales') }} :<span class="must">{{ __('tables.must') }}</span></strong>

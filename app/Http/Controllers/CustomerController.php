@@ -42,9 +42,11 @@ class CustomerController extends Controller
         $sales = Sales::get();
         $projects = Project::get();
         $productModels = ProductModel::get();
+        $extras = ProductModel::where('extra', true)->get();
         return view('customers.create', compact('sales'))
                ->with(compact('projects'))
-               ->with(compact('productModels'));
+               ->with(compact('productModels'))
+               ->with(compact('extras'));
     }
 
     /**
@@ -78,7 +80,16 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        return view('customers.edit', compact('customer'));
+        $sales = Sales::get();
+        $projects = Project::get();
+        $productModels = ProductModel::get();
+        $extras = ProductModel::where('extra', true)->get();
+
+        return view('customers.edit', compact('customer'))
+               ->with(compact('sales'))
+               ->with(compact('projects'))
+               ->with(compact('productModels'))
+               ->with(compact('extras'));
     }
 
     /**
