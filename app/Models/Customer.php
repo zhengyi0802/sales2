@@ -16,6 +16,7 @@ class Customer extends Model
         'email',
         'pid',
         'address',
+        'status',
         'sales_id',
         'created_by',
     ];

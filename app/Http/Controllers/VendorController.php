@@ -18,7 +18,12 @@ class VendorController extends Controller
         //
         $user = auth()->user();
 
-        $vendors = Vendor::get();
+        if ($user->account == "admin") {
+            $vendors = Vendor::get();
+        } else {
+            $vendors = Vendor::where('status', true)->get();
+        }
+
         return view('vendors.index', compact('vendors'));
     }
 
@@ -97,6 +102,9 @@ class VendorController extends Controller
      */
     public function destroy(Vendor $vendor)
     {
+        $vendor->status = false;
+        $vendor->save();
+
         return redirect()->route('vendors.index');
     }
 }

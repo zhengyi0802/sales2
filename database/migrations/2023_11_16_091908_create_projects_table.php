@@ -17,7 +17,7 @@ class CreateProjectsTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->text('details');
-            $table->json('extra')->nullable();
+            $table->json('extras')->nullable();
             $table->boolean('status')->default(true);
             $table->bigInteger('created_by')->unsigned();
             $table->timestamps();

@@ -18,8 +18,12 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::get();
-
+        $user = auth()->user();
+        if ($user->account == 'admin') {
+            $orders = Order::get();
+        } else {
+            $orders = Order::where('status', true)->get();
+        }
         return view('orders.index', compact('orders'));
     }
 

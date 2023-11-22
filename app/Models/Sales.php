@@ -14,6 +14,7 @@ class Sales extends Model
         'phone',
         'company',
         'job',
+        'status',
         'user_id',
         'created_by',
     ];

@@ -18,7 +18,13 @@ class ProductModelController extends Controller
      */
     public function index()
     {
-        $productModels = ProductModel::where('status', true)->get();
+        $user = auth()->user();
+
+        if ($user->account == 'admin') {
+            $productModels = ProductModel::>get();
+        } else {
+            $productModels = ProductModel::where('status', true)->get();
+        }
 
         return view('productModels.index', compact('productModels'));
     }
@@ -32,10 +38,12 @@ class ProductModelController extends Controller
     {
         $vendors = Vendor::get();
         $catagories = Catagory::get();
+        $accessories = ProductModel::where('is_accessories', true)->get();
 
         return view('productModels.create')
                ->with(compact('vendors'))
-               ->with(compact('catagories'));
+               ->with(compact('catagories'))
+               ->with(compact('accessories'));
     }
 
     /**
@@ -70,10 +78,12 @@ class ProductModelController extends Controller
     {
         $catagories = Catagory::get();
         $vendors = Vendor::get();
+        $accessories = ProductModel::where('is_accessories', true)->get();
 
         return view('productModels.edit', compact('productModel'))
                ->with(compact('vendors'))
-               ->with(compact('catagories'));
+               ->with(compact('catagories'))
+               ->with(compact('accessories'));
     }
 
     /**
@@ -96,6 +106,9 @@ class ProductModelController extends Controller
      */
     public function destroy(ProductModel $productModel)
     {
+        $productModel->status = false;
+        $productModel->save();
+
         return redirect()->route('productModels.index');
     }
 }

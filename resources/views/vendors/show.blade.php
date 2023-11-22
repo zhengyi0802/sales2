@@ -28,6 +28,9 @@
         <x-adminlte-card title="{{ __('vendors.country') }}" theme="info" icon="fas fa-lg">
                 {{ $vendor->country }}
         </x-adminlte>
+        <x-adminlte-card title="{{ __('vendors.memo') }}" theme="info" icon="fas fa-lg">
+                {{ $vendor->memo }}
+        </x-adminlte>
         <x-adminlte-card title="{{ __('vendors.creator') }}" theme="info" icon="fas fa-lg">
                 {{ $vendor->creator->name }}
         </x-adminlte-card>

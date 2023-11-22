@@ -11,11 +11,16 @@ class ProductModel extends Model
 
     protected $fillable = [
         'name',
+        'mode;',
         'catagory_id',
         'vendor_id',
         'briefs',
         'spectficaions',
         'descriptions',
+        'accessories',
+        'is_accessories',
+        'extras',
+        'status',
         'created_by',
     ];
 
@@ -29,6 +34,10 @@ class ProductModel extends Model
 
     function vendor() {
         return $this->belongsTo(Vendor::class, 'vendor_id');
+    }
+
+    function accessories() {
+        return $this->belongsTo(ProductModel::class, 'accessories');
     }
 
 }

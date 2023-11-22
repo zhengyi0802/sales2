@@ -11,6 +11,7 @@ class Catagory extends Model
 
     protected $fillable = [
         'name',
+        'status',
         'created_by',
     ];
 

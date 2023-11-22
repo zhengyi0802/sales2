@@ -14,6 +14,7 @@ class Vendor extends Model
         'company',
         'country',
         'memo',
+        'status',
         'created_by',
     ];
 

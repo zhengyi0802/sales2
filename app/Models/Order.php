@@ -18,6 +18,7 @@ class Order extends Model
         'phone',
         'address',
         'amount',
+        'status',
         'created_by',
     ];
 
@@ -30,7 +31,7 @@ class Order extends Model
     }
 
     function product() {
-        return $this->belongsTo(Product::class, 'product_id');
+        return $this->belongsTo(ProductModel::class, 'product_id');
     }
 
     function project() {
@@ -41,4 +42,7 @@ class Order extends Model
         return $this->belongsTo(Sales::class, 'sales_id');
     }
 
+    function extras() {
+        return $this->hasMany(OrderExtra::class, 'order_id');
+    }
 }

@@ -19,7 +19,12 @@ class SalesController extends Controller
         //
         $user = auth()->user();
 
-        $saleses = Sales::get();
+        if ($user->account == 'admin') {
+            $saleses = Sales::get();
+        } else {
+            $saleses = Sales::where('status', true)->get();
+        }
+
         return view('sales.index', compact('saleses'));
     }
 
@@ -110,6 +115,9 @@ class SalesController extends Controller
      */
     public function destroy(Sales $sales)
     {
+        $sales->status = false;
+        $sales->save();
+
         return redirect()->route('sales.index');
     }
 }

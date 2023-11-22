@@ -17,7 +17,11 @@ class CatagoryController extends Controller
     {
         $user = auth()->user();
 
-        $catagories = Catagory::get();
+        if ($user->account == 'admin') {
+            $catagories = Catagory::get();
+        } else {
+            $catagories = Catagory::where('status', true)->get();
+        }
         return view('catagories.index', compact('catagories'));
     }
 
@@ -101,6 +105,9 @@ class CatagoryController extends Controller
      */
     public function destroy(Catagory $catagory)
     {
+        $catagory->status = false;
+        $catagory->save();
+
         return redirect()->route('catagories.index');
     }
 }

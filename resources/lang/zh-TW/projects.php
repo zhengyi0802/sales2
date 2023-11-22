@@ -7,6 +7,7 @@
            'name'        => '行銷方案名稱',
            'description' => '行銷方案描述',
            'details'     => '詳細內容',
+           'extras'      => '贈品表列',
            'status'      => '狀態',
            'creator'     => '建立者',
     ];

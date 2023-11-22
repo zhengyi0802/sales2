@@ -21,9 +21,13 @@ class CustomerController extends Controller
     {
         $user = auth()->user();
         if ($user->role == UserRole::Sales) {
-            $customers = Customer::where('sales_id', $user->id)->get();
+            $customers = Customer::where('sales_id', $user->id)->where('status', true)->get();
         } else {
-            $customers = Customer::get();
+            if ($user->account == 'admin') {
+                $customers = Customer::get();
+            } else {
+                $customers = Customer::where('status', true)->get();
+            }
         }
         return view('customers.index', compact('customers'));
     }
@@ -98,6 +102,9 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
+        $customer->status = false;
+        $customer->save();
+
         return redirect()->route('customers.index');
     }
 }

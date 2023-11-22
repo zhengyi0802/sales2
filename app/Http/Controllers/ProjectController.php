@@ -15,8 +15,11 @@ class ProjectController extends Controller
     public function index()
     {
         $user = auth()->user();
-
-        $projects = Project::get();
+        if ($user->account == 'admin') {
+            $projects = Project::get();
+        } else {
+            $projects = Project::where('status', true)->get();
+        }
         return view('projects.index', compact('projects'));
 
     }
@@ -93,6 +96,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        $project->status = false;
+        $project->save();
+
         return redirect()->route('projects.index');
     }
 }

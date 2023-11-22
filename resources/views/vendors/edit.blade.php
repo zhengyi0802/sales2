@@ -49,11 +49,13 @@
                     <strong>{{ __('vendors.company') }} :</strong>
                     <input type="text" name="company" value="{{ $vendor->company }}" class="form-control">
                 </div>
-           </div>
-           <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
                     <strong>{{ __('vendors.country') }} :</strong>
                     <input type="text" name="country" value="{{ $vendor->country }}" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('vendors.memo') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                    <textarea name="memo" class="form-control" rows="10">{{ $vendor->memo }} </textarea>
                 </div>
            </div>
            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
