@@ -5,6 +5,7 @@
            'edit'        => '編輯',
            'details'     => '詳情',
            'delete'      => '刪除',
+           'recover'     => '恢復',
            'action'      => '動作',
            'submit'      => '提交',
            'back'        => '返回',
