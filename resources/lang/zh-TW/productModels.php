@@ -13,7 +13,7 @@
            'descriptions'     => '產品說明',
            'accessories'      => '必要附件',
            'is_accessories'   => '附件屬性',
-           'extras'           => '贈品',
+           'extras'           => '可為贈品',
            'status'           => '狀態',
            'creator'          => '建立者',
     ];

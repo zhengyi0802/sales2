@@ -72,6 +72,9 @@
                 <strong>{{ __('productModels.accessories') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <select id="accessories" name="accessories" >
                       <option value="" selected>----------</option>
+                      @foreach ($accessories as $accessory)
+                         <option value="{{ $accessory->id }}" >{{ $accessory->name }}</option>
+                      @endforeach
                 </select>
             </div>
             <div class="form-group col-md-6">
