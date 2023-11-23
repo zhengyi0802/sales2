@@ -54,6 +54,18 @@ class ProductModelController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->all();
+        $creator = auth()->user();
+        $productModel = ProductModel::where('name', $data['name'])->orWhere('model', $data['model'])->first();
+        if ($productModel == null) {
+            $data['created_by'] = $creator->id;
+            $data['briefs'] = json_encode($data['briefs']);
+            $data['specifications'] = json_encode($data['specifications']);
+            if ($data['accessories'] == null) {
+                $data['accessories'] = 0;
+            }
+            ProductModel::create($data);
+        }
         return redirect()->route('productModels.index');
     }
 

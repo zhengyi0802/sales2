@@ -48,7 +48,10 @@ class VendorController extends Controller
         $data = $request->all();
         $creator = auth()->user();
         $data['created_by'] = $creator->id;
-        Vendor::create($data);
+        $vendor = Vendor::where('company', $data['company'])->first();
+        if ($vendor == null) {
+            Vendor::create($data);
+        }
 
         return redirect()->route('vendors.index');
     }

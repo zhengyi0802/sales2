@@ -29,22 +29,26 @@
                 {{ $productModel->model }}
         </x-adminlte>
         <x-adminlte-card title="{{ __('productModels.catagory') }}" theme="info" icon="fas fa-lg">
-                {{ $productModel->catagory }}
+                {{ $productModel->catagory->name }}
         </x-adminlte>
         <x-adminlte-card title="{{ __('productModels.vendor') }}" theme="info" icon="fas fa-lg">
-                {{ $productModel->vendor }}
+                {{ $productModel->vendor->name }}
         </x-adminlte>
         <x-adminlte-card title="{{ __('productModels.briefs') }}" theme="info" icon="fas fa-lg">
-                {{ $productModel->briefs }}
+                @foreach(json_decode($productModel->briefs) as $brief)
+                    {{ $brief }}
+                @endforeach
         </x-adminlte>
         <x-adminlte-card title="{{ __('productModels.specificaions') }}" theme="info" icon="fas fa-lg">
-                {{ $productModel->specifications }}
+                @foreach(json_decode($productModel->specifications) as $specification)
+                    {{ $specification }}
+                @endforeach
         </x-adminlte>
         <x-adminlte-card title="{{ __('productModels.descriptions') }}" theme="info" icon="fas fa-lg">
                 {{ $productModel->descriptions }}
         </x-adminlte>
         <x-adminlte-card title="{{ __('productModels.accessories') }}" theme="info" icon="fas fa-lg">
-                {{ $productModel->accessories }}
+                {{ ($productModel->accessories == 0) ? "--------" : $productModel->accessory }}
         </x-adminlte>
         <x-adminlte-card title="{{ __('productModels.is_accessories') }}" theme="info" icon="fas fa-lg">
                 {{ $productModel->is_accessories ? __('tables.yes') : __('tables.no') }}

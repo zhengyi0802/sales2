@@ -17,12 +17,12 @@ class CreateProductModelsTable extends Migration
             $table->id();
             $table->string('name', 100)->unique();
             $table->string('model', 20)->unique();
-            $table->bigInteger('cataogry_id')->unsigned();
+            $table->bigInteger('catagory_id')->unsigned();
             $table->bigInteger('vendor_id')->unsigned();
-            $table->json('bridfs')->nullable();
+            $table->json('briefs')->nullable();
             $table->json('specifications')->nullable();
-            $table->text('description')->nullable();
-            $table->bigInteger('accessories')->unsigned()->nullable();
+            $table->text('descriptions')->nullable();
+            $table->bigInteger('accessories')->unsigned()->default(0);
             $table->boolean('extra')->default(false);
             $table->boolean('is_accessories')->default(false);
             $table->boolean('status')->default(true);

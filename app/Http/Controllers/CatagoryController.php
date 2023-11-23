@@ -51,7 +51,10 @@ class CatagoryController extends Controller
         $data = $request->all();
         $creator = auth()->user();
         $data['created_by'] = $creator->id;
-        Catagory::create($data);
+        $catagory = Catagory::where('name', $data['name'])->first();
+        if ($catagory == null) {
+            Catagory::create($data);
+        }
 
         return redirect()->route('catagories.index');
     }
