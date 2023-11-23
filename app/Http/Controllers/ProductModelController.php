@@ -107,6 +107,16 @@ class ProductModelController extends Controller
      */
     public function update(Request $request, ProductModel $productModel)
     {
+        $creator = auth()->user();
+        $data = $request->all();
+        $data['briefs'] = json_encode($data['briefs']);
+        $data['specificatopms'] = json_encode($data['specifications']);
+        $data['created_by'] = $creator->id;
+        if ($data['accessories'] == null) {
+            $data['accessories'] = 0;
+        }
+        $productModel->update($data);
+
         return redirect()->route('productModels.index');
     }
 

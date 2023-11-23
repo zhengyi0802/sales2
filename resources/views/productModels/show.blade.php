@@ -32,23 +32,27 @@
                 {{ $productModel->catagory->name }}
         </x-adminlte>
         <x-adminlte-card title="{{ __('productModels.vendor') }}" theme="info" icon="fas fa-lg">
-                {{ $productModel->vendor->name }}
+                {{ $productModel->vendor->company }}
         </x-adminlte>
         <x-adminlte-card title="{{ __('productModels.briefs') }}" theme="info" icon="fas fa-lg">
-                @foreach(json_decode($productModel->briefs) as $brief)
-                    {{ $brief }}
-                @endforeach
+                <table>
+                  @foreach(json_decode($productModel->briefs) as $brief)
+                      <tr><td>{{ $brief }}</td></tr>
+                  @endforeach
+                </table>
         </x-adminlte>
         <x-adminlte-card title="{{ __('productModels.specificaions') }}" theme="info" icon="fas fa-lg">
-                @foreach(json_decode($productModel->specifications) as $specification)
-                    {{ $specification }}
-                @endforeach
+                <table>
+                    @foreach(json_decode($productModel->specifications) as $specification)
+                        <tr><td>{{ $specification }}</td></tr>
+                    @endforeach
+                </table>
         </x-adminlte>
         <x-adminlte-card title="{{ __('productModels.descriptions') }}" theme="info" icon="fas fa-lg">
-                {{ $productModel->descriptions }}
+                <pre>{{ $productModel->descriptions }}</pre>
         </x-adminlte>
         <x-adminlte-card title="{{ __('productModels.accessories') }}" theme="info" icon="fas fa-lg">
-                {{ ($productModel->accessories == 0) ? "--------" : $productModel->accessory }}
+                {{ ($productModel->accessories == 0) ? "--------" : $productModel->accessory->name."(".$productModel->accessory->model.")" }}
         </x-adminlte>
         <x-adminlte-card title="{{ __('productModels.is_accessories') }}" theme="info" icon="fas fa-lg">
                 {{ $productModel->is_accessories ? __('tables.yes') : __('tables.no') }}
