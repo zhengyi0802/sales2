@@ -36,8 +36,8 @@ class UserSeeder extends Seeder
                   ],
                   [
                       'name'        => '系統管理員',
-                      'account'     => 'administrator',
-                      'phone'       => 'administrator',
+                      'account'     => 'superuser',
+                      'phone'       => '01234567890',
                       'password'    => bcrypt('1234567890'),
                       'role'        => UserRole::Administrator,
                       'status'      => true,

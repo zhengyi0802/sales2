@@ -338,6 +338,7 @@ return [
             'can'  => ['manager', 'sales', 'operator' ],
         ],
         ['header' => 'account_settings'],
+/*
         [
             'text' => 'profile',
             'url'  => 'admin/settings',
@@ -348,6 +349,7 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
+*/
     ],
 
     /*
@@ -402,6 +404,16 @@ return [
                     'type' => 'css',
                     'asset' => false,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                ],
+            ],
+        ],
+        'jqueryValidation' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/jquery-validation/jquery.validate.min.js',
                 ],
             ],
         ],

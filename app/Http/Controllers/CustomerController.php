@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Sales;
 use App\Models\Project;
 use App\Models\Order;
+use App\Models\OrderExtra;
 use App\Models\ProductModel;
 use App\Enums\UserRole;
 use Illuminate\Http\Request;
@@ -57,7 +58,37 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $creator = auth()->user();
+        $customer = Customer::where('phone', $data['phone'])->first();
+        if ($customer == null) {
+            $data['created_by'] = $creator->id;
+            $customer = Customer::create($data);
+            $orderdata = [
+                  'customer_id' => $customer->id,
+                  'product_id'  => $data['product_id'],
+                  'sales_id'    => $data['sales_id'],
+                  'project_id'  => $data['project_id'],
+                  'name'        => $data['name'],
+                  'phone'       => $data['phone'],
+                  'address'     => $data['address'],
+                  'amount'      => 0,
+                  'status'      => true,
+                  'created_by'  => $creator->id,
+            ];
+            $order = Order::create($orderdata);
+            $accessory = ProductModel::find($orderdata['product_id']);
+            if ($accessory->id > 0) {
+                $orderdata['order_id'] = $order->id;
+                $orderdata['product_id'] = $accessory->accessories;
+                OrderExtra::create($orderdata);
+            }
+            if ($data['extra_id'] > 0) {
+                $orderdata['order_id'] = $order->id;
+                $orderdata['product_id'] = $data['extra_id'];
+                OrderExtra::create($orderdata);
+            }
+        }
         return redirect()->route('customers.index');
     }
 
