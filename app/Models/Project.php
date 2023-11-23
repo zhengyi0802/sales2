@@ -21,4 +21,9 @@ class Project extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
+    function gifts() {
+        $arr = json_decode($this->extras);
+        $products = ProductModel::whereIn('id', $arr)->get();
+        return $products;
+    }
 }

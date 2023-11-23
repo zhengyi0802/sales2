@@ -28,6 +28,13 @@
         <x-adminlte-card title="{{ __('projects.details') }}" theme="info" icon="fas fa-lg">
                 {{ $project->details }}
         </x-adminlte-card>
+        <x-adminlte-card title="{{ __('projects.extras') }}" theme="info" icon="fas fa-lg">
+                <table>
+                @foreach($project->gifts() as $gift)
+                   <tr?<td>{{ $gift->name."(".$gift->model.")" }}</td></tr>
+                @endforeach
+                </table>
+        </x-adminlte-card>
         <x-adminlte-card title="{{ __('projects.creator') }}" theme="info" icon="fas fa-lg">
                 {{ $project->creator->name }}
         </x-adminlte-card>

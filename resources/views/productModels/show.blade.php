@@ -58,7 +58,7 @@
                 {{ $productModel->is_accessories ? __('tables.yes') : __('tables.no') }}
         </x-adminlte>
         <x-adminlte-card title="{{ __('productModels.extras') }}" theme="info" icon="fas fa-lg">
-                {{ $productModel->extras ? __('tables.yes') : __('tables.no') }}
+                {{ $productModel->extra ? __('tables.yes') : __('tables.no') }}
         </x-adminlte>
         <x-adminlte-card title="{{ __('productModels.creator') }}" theme="info" icon="fas fa-lg">
                 {{ $productModel->creator->name }}

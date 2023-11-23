@@ -114,7 +114,7 @@
             </div>
             <div class="form-group col-md-6">
                 <strong>{{ __('productModels.extras') }} :</span></strong>
-                <input type="checkbox" name="extras" value="1" />
+                <input type="checkbox" name="extra" value="1" />
                 <label for="extras">{{ __('tables.yes') }}</label>
             </div>
         </div>

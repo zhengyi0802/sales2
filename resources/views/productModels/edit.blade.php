@@ -57,7 +57,7 @@
                     <strong>{{ __('productModels.vendor') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                     <select id="vendor_id" name="vendor_id" >
                       @foreach ($vendors as $vendor)
-                         <option value="{{ $vendor->id }}" {{ ($vendor->id == $productModel->vendor_id) ? "selected" : null }} >{{ $vendor->name }}</option>
+                         <option value="{{ $vendor->id }}" {{ ($vendor->id == $productModel->vendor_id) ? "selected" : null }} >{{ $vendor->company }}</option>
                       @endforeach
                     </select>
                </div>
@@ -125,7 +125,7 @@
                </div>
                <div class="form-group col-md-6">
                     <strong>{{ __('productModels.extras') }} :</span></strong>
-                    <input type="checkbox" name="extras" value="1" {{ $productModel->extras ? "checked" : null  }}/>
+                    <input type="checkbox" name="extra" value="1" {{ $productModel->extra ? "checked" : null  }}/>
                     <label for="extras">{{ __('tables.yes') }}</label>
                </div>
                <div class="col-xs-12 col-sm-12 col-md-12 text-center">

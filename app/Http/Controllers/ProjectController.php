@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\ProductModel;
+use App\Models\User;
+use App\Enums\UserRole;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -31,7 +34,10 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        $extras = ProductModel::where('extra', true)->where('status', true)->get();
+
+        return view('projects.create')
+               ->with(compact('extras'));
     }
 
     /**
@@ -44,9 +50,11 @@ class ProjectController extends Controller
     {
        $creator = auth()->user();
        $data = $request->all();
+       $data['extras'] = json_encode($data['extras']);
        $data['created_by'] = $creator->id;
        $data['status'] = true;
        Project::create($data);
+
         return redirect()->route('projects.index');
     }
 
@@ -69,7 +77,10 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('projects.edit', compact('project'));
+        $extras = ProductModel::where('extra', true)->where('status', true)->get();
+
+        return view('projects.edit', compact('project'))
+               ->with(compact('extras'));
     }
 
     /**
@@ -82,9 +93,11 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         $data = $$request->all();
+        $data['extras'] = json_encode($data['extras']);
         $creaypr = auth()->user();
         $data['created_by'] = $creator->id;
         $project->update($data);
+
         return redirect()->route('projects.index');
     }
 
