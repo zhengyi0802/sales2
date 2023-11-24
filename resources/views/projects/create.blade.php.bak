@@ -40,18 +40,31 @@
       font-size : 12px;
    }
 </style>
-<form id="project-form" action="{{ route('projects.update', $project->id) }}" method="POST" enctype="multipart/form-data">
-    @method('PUT')
+<form id="project-form" action="{{ route('projects.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group col-md-6">
                 <strong>{{ __('projects.name') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <input type="text" name="name" class="form-control" value="{{ $project->name }}">
+                <input type="text" name="name" class="form-control">
             </div>
             <div class="form-group col-md-6">
                 <strong>{{ __('projects.details') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <textarea name="details" class="form-control" rows="10">{{ $project->details }}</textarea>
+                <textarea name="details" class="form-control" rows="10"></textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <strong>{{ __('projects.extras') }} :</strong>
+                <table>
+                  @php
+                     $i = 0;
+                  @endphp
+                  @foreach($extras as $extra)
+                      <tr><td>
+                          <input type="checkbox" name="extras[{{ $i }}]" value="{{ $extra->id }}" />
+                          <label for="extras[{{ $i++ }}]" >{{ $extra->name."(".$extra->model.")" }}</label>
+                      </td></tr>
+                  @endforeach
+                </table>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

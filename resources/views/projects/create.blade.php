@@ -52,20 +52,6 @@
                 <strong>{{ __('projects.details') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <textarea name="details" class="form-control" rows="10"></textarea>
             </div>
-            <div class="form-group col-md-6">
-                <strong>{{ __('projects.extras') }} :</strong>
-                <table>
-                  @php
-                     $i = 0;
-                  @endphp
-                  @foreach($extras as $extra)
-                      <tr><td>
-                          <input type="checkbox" name="extras[{{ $i }}]" value="{{ $extra->id }}" />
-                          <label for="extras[{{ $i++ }}]" >{{ $extra->name."(".$extra->model.")" }}</label>
-                      </td></tr>
-                  @endforeach
-                </table>
-            </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
@@ -88,7 +74,7 @@
            },
            messages: {
                name: {
-                  required: '姓名必填'
+                  required: '方案必填'
                },
            },
            submitHandler: function(form) {

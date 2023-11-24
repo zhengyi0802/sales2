@@ -50,7 +50,10 @@ class ProjectController extends Controller
     {
        $creator = auth()->user();
        $data = $request->all();
-       $data['extras'] = json_encode($data['extras']);
+       /*
+       $extras = implode(',', $data['extras']);
+       $data['extras'] = json_encode($extras);
+       */
        $data['created_by'] = $creator->id;
        $data['status'] = true;
        Project::create($data);
@@ -93,7 +96,10 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         $data = $$request->all();
-        $data['extras'] = json_encode($data['extras']);
+        /*
+        $extras = implode(',', $data['extras']);
+        $data['extras'] = json_encode($extras);
+        */
         $creaypr = auth()->user();
         $data['created_by'] = $creator->id;
         $project->update($data);

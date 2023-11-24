@@ -35,19 +35,19 @@ Route::resource('/vendors', VendorController::class);
 
 Route::resource('/productModels', ProductModelController::class);
 
-Route::get('/sales/show/{sales}', [App\Http\Controllers\SalesController::class, 'show'])
+Route::get('/sales/{sales}', [App\Http\Controllers\SalesController::class, 'show'])
      ->name('sales.show');
 
-Route::get('/sales/edit/{sales}', [App\Http\Controllers\SalesController::class, 'edit'])
+Route::get('/sales/{sales}/edit', [App\Http\Controllers\SalesController::class, 'edit'])
      ->name('sales.edit');
 
-Route::get('/sales/create', [App\Http\Controllers\SalesController::class, 'create'])
+Route::post('/sales/create', [App\Http\Controllers\SalesController::class, 'create'])
      ->name('sales.create');
 
-Route::any('/sales/update/{sales}', [App\Http\Controllers\SalesController::class, 'updare'])
+Route::any('/sales/update/{sales}', [App\Http\Controllers\SalesController::class, 'update'])
      ->name('sales.update');
 
-Route::any('/sales/destroy/{sales}', [App\Http\Controllers\SalesController::class, 'destroy'])
+Route::any('/sales/{sales}', [App\Http\Controllers\SalesController::class, 'destroy'])
      ->name('sales.destroy');
 
 Route::any('/sales/store', [App\Http\Controllers\SalesController::class, 'store'])

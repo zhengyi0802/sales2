@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', __('catagories.title'))
+@section('title', __('projects.title'))
 
 @section('content_header')
-    <h1 class="m-0 text-dark">{{ __('catagories.header') }}</h1>
+    <h1 class="m-0 text-dark">{{ __('projects.header') }}</h1>
 @stop
 
 @section('content')
@@ -40,21 +40,39 @@
           font-size : 12px;
        }
     </style>
-    <form id="catagory-form" action="{{ route('catagories.update',$catagory->id) }}" method="POST" enctype="multipart/form-data">
+    <form id="project-form" action="{{ route('projects.update',$project->id) }}" method="post">
         @method('PUT')
         @csrf
          <div class="row">
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
-                    <strong>{{ __('catagories.name') }} :</strong>
-                    <input type="text" name="name" value="{{ $catagory->name }}" class="form-control">
+                    <strong>{{ __('projects.name') }} :</strong>
+                    <input type="text" name="name" value="{{ $project->name }}" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('projects.details') }} :</strong>
+                    <textarea name="details" class="form-control" rows="10">{{ $project->details }}</textarea>
+                </div>
+                <div class="form-group col-md-6">
+                    <strong>{{ __('projects.extras') }} :</strong>
+                    <table>
+                      @php
+                         $i = 0;
+                      @endphp
+                      @foreach($extras as $extra)
+                          <tr><td>
+                              <input type="checkbox" name="extras[{{ $i }}]" value="{{ $extra->id }}" />
+                              <label for="extras[{{ $i++ }}]" >{{ $extra->name."(".$extra->model.")" }}</label>
+                          </td></tr>
+                      @endforeach
+                    </table>
                 </div>
            </div>
            @if (auth()->user()->role == App\Enums\UserRole::Administrator)
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
-                    <strong>{{ __('catagories.status') }} :</strong>
-                    <input type="checkbox" name="status" value="1" {{ $catagory->status ? "checked" : null }}>
+                    <strong>{{ __('projects.status') }} :</strong>
+                    <input type="checkbox" name="status" value="1" {{ $project->status ? "checked" : null }}>
                     <label for="status">{{ __('tables.enabled') }}</label>
                 </div>
               <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
@@ -62,5 +80,5 @@
            @endif
         </div>
     </form>
-
 @endsection
+
