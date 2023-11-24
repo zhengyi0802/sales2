@@ -60,6 +60,19 @@ class OrderController extends Controller
         $data = $request->all();
         $creator = auth()->user();
         $data['created_by'] = $creator->id;
+        $order_latest = Order::orderBy('id', 'desc')->get()->first();
+        if ($order_latest == null) {
+            $orderlatest = 0;
+        } else {
+            $orderlatest = $order_latest->id;
+        }
+        $idinit = ((now()->year-2000)*100+(now()->month))*10000+1;
+        if ($idinit <= $orderlatest) {
+            $id = $orderlatest+1;
+        } else {
+            $id = $idinit;
+        }
+        $data['id'] = $id;
         $order = Order::create($data);
         if ($data['extra_id'] > 0) {
             $orderdata['order_id'] = $order->id;

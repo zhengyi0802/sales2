@@ -64,7 +64,20 @@ class CustomerController extends Controller
         if ($customer == null) {
             $data['created_by'] = $creator->id;
             $customer = Customer::create($data);
+            $order_latest = Order::orderBy('id', 'desc')->get()->first();
+            if ($order_latest == null) {
+                $orderlatest = 0;
+            } else {
+                $orderlatest = $order_latest->id;
+            }
+            $idinit = ((now()->year-2000)*100+(now()->month))*10000+1;
+            if ($idinit <= $orderlatest) {
+                $id = $orderlatest+1;
+            } else {
+                $id = $idinit;
+            }
             $orderdata = [
+                  'id'          => $id,
                   'customer_id' => $customer->id,
                   'product_id'  => $data['product_id'],
                   'sales_id'    => $data['sales_id'],
@@ -77,14 +90,6 @@ class CustomerController extends Controller
                   'created_by'  => $creator->id,
             ];
             $order = Order::create($orderdata);
-/*
-            $accessory = ProductModel::find($orderdata['product_id']);
-            if ($accessory->id > 0) {
-                $orderdata['order_id'] = $order->id;
-                $orderdata['product_id'] = $accessory->accessories;
-                OrderExtra::create($orderdata);
-            }
-*/
             if ($data['extra_id'] > 0) {
                 $orderdata['order_id'] = $order->id;
                 $orderdata['product_id'] = $data['extra_id'];
