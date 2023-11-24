@@ -23,6 +23,19 @@
                   @endforeach
                 </select>
             </div>
+            <div class="form-group col-md-6">
+                <strong>{{ __('orders.flow') }} :</strong>
+                <select id="flow" name="flow" >
+                  <option value="1" >{{ trans_choice('orders.flows', 1) }}</option>
+                  <option value="2" >{{ trans_choice('orders.flows', 2) }}</option>
+                  <option value="3" >{{ trans_choice('orders.flows', 3) }}</option>
+                  <option value="4" >{{ trans_choice('orders.flows', 4) }}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <strong>{{ __('orders.flow') }} :</strong>
+                <textarea name="memo" rows="10"></textarea>
+            </div>
 <script>
     function proj() {
       d = document.getElementById("project_id").value;

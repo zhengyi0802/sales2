@@ -45,6 +45,12 @@
         <x-adminlte-card title="{{ __('orders.sales') }}" theme="info" icon="fas fa-lg">
                 {{ $order->sales->name }}
         </x-adminlte>
+        <x-adminlte-card title="{{ __('orders.flow') }}" theme="info" icon="fas fa-lg">
+                {{ trans_choice('orders.flows', $order->flow) }}
+        </x-adminlte>
+        <x-adminlte-card title="{{ __('orders.memo') }}" theme="info" icon="fas fa-lg">
+                <pre>{{ $order->memo }}
+        </x-adminlte>
         <x-adminlte-card title="{{ __('orders.creator') }}" theme="info" icon="fas fa-lg">
                 {{ $order->creator->name }}
         </x-adminlte-card>

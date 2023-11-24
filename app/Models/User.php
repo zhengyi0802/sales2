@@ -50,4 +50,7 @@ class User extends Authenticatable
         return $this->belongsTo(User::class, 'created_by');
     }
 
+    function sales() {
+        return $this->hasOne(Sales::class, 'user_id');
+    }
 }

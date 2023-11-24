@@ -19,7 +19,7 @@ class AuthServiceProvider extends ServiceProvider
     public static $permissions = [
        'manager'           => [ UserRole::Manager ],
        'accounter'         => [ UserRole::Accounter ],
-       'Sales'             => [ UserRole::Sales ],
+       'sales'             => [ UserRole::Sales ],
        'operator'          => [ UserRole::Operator ],
        'installer'         => [ UserRole::Installer],
     ];

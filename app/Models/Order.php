@@ -18,6 +18,8 @@ class Order extends Model
         'phone',
         'address',
         'amount',
+        'flow',
+        'memo',
         'status',
         'created_by',
     ];

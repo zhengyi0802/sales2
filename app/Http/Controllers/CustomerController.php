@@ -22,7 +22,7 @@ class CustomerController extends Controller
     {
         $user = auth()->user();
         if ($user->role == UserRole::Sales) {
-            $customers = Customer::where('sales_id', $user->id)->where('status', true)->get();
+            $customers = Customer::where('sales_id', $user->sales->id)->where('status', true)->get();
         } else {
             if ($user->account == 'admin') {
                 $customers = Customer::get();

@@ -330,7 +330,7 @@ return [
         [
             'text' => 'customers',
             'url'  => 'customers',
-            'can'  => ['manager', 'sales', 'operator' ],
+            'can'  => ['manager', 'sales', 'operator'],
         ],
         [
             'text' => 'orders',
