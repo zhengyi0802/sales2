@@ -338,18 +338,17 @@ return [
             'can'  => ['manager', 'sales', 'operator' ],
         ],
         ['header' => 'account_settings'],
-/*
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
+            'text' => 'users',
+            'url'  => 'users',
             'icon' => 'fas fa-fw fa-user',
+            'can'  => 'manager',
         ],
         [
             'text' => 'change_password',
-            'url'  => 'admin/settings',
+            'url'  => 'users/password',
             'icon' => 'fas fa-fw fa-lock',
         ],
-*/
     ],
 
     /*

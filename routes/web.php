@@ -8,6 +8,7 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,3 +62,10 @@ Route::resource('/customers', CustomerController::class);
 
 Route::resource('/orders', OrderController::class);
 
+Route::get('/users/password', [App\Http\Controllers\UserController::class, 'password'])
+     ->name('users.password');
+
+Route::any('/users/savePassword', [App\Http\Controllers\UserController::class, 'savePassword'])
+     ->name('users.savePassword');
+
+Route::resource('/users', UserController::class);

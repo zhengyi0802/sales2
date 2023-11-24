@@ -5,7 +5,7 @@ return [
     'main_navigation'               => '主導覽',
     'blog'                          => '博客',
     'pages'                         => '頁面',
-    'account_settings'              => '帳號重設',
+    'account_settings'              => '帳號設置',
     'profile'                       => '用戶資料',
     'change_password'               => '修改密碼',
     'multilevel'                    => '多級',
@@ -23,4 +23,5 @@ return [
     'customers'                     => '客戶資料',
     'productModels'                 => '產品型號',
     'orders'                        => '訂單管理',
+    'users'                         => '帳戶管理',
 ];
