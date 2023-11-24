@@ -80,9 +80,16 @@
                     <input type="text" name="job" value="{{ $sales->job }}" class="form-control">
                 </div>
            </div>
-           <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+           @if (auth()->user()->role == App\Enums\UserRole::Administrator)
+           <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('sales.status') }} :</strong>
+                    <input type="checkbox" name="status" value="1" {{ $sales->status ? "checked" : null }}>
+                    <label for="status">{{ __('tables.enabled') }}</label>
+                </div>
               <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
            </div>
+           @endif
         </div>
     </form>
 

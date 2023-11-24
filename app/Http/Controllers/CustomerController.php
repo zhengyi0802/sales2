@@ -150,7 +150,16 @@ class CustomerController extends Controller
     {
         $customer->status = false;
         $customer->save();
-
+        $orders = $customer->orders;
+        foreach($orders as $order) {
+           $order->status = false;
+           $order->save();
+           $extras = $order->extras;
+           foreach($extras as $extra) {
+               $extra->status = false;
+               $extra->status = false;
+           }
+        }
         return redirect()->route('customers.index');
     }
 }

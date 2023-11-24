@@ -14,7 +14,7 @@ $config = [
 
 <x-adminlte-datatable id="catagory-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" striped hoverable bordered>
   @foreach($catagories as $catagory)
-    <tr>
+    <tr class="{{ $catagory->status ? null : "bg-gray"}}">
       <td>{{ $catagory->id }}</td>
       <td>{{ $catagory->name }}</td>
       <td>{{ $catagory->creator->name }}</td>
@@ -27,11 +27,11 @@ $config = [
                 onClick="window.location='{{ route('catagories.edit', $catagory->id); }}'" >
               </x-adminlte-button>
             @endif
-            @if (auth()->user()->role <= App\Enums\UserRole::Manager)
+            @if (auth()->user()->role <= App\Enums\UserRole::Manager && $catagory->status)
               <x-adminlte-button theme="danger" title="{{ __('tables.delete') }}" icon="fa fa-lg fa-fw fa-trash"
                 type="submit" >
               </x-adminlte-button>
-             @endif
+            @endif
               <x-adminlte-button theme="info" title="{{ __('tables.detail') }}" icon="fa fa-lg fa-fw fa-eye"
                 onClick="window.location='{{ route('catagories.show', $catagory->id); }}'" >
               </x-adminlte-button>

@@ -128,6 +128,13 @@
                     <input type="checkbox" name="extra" value="1" {{ $productModel->extra ? "checked" : null  }}/>
                     <label for="extras">{{ __('tables.yes') }}</label>
                </div>
+               @if (auth()->user()->role == App\Enums\UserRole::Administrator)
+               <div class="form-group col-md-4">
+                    <strong>{{ __('productModels.status') }} :</strong>
+                    <input type="checkbox" name="status" value="1" {{ $productModel->status ? "checked" : null }}>
+                    <label for="status">{{ __('tables.enabled') }}</label>
+               </div>
+               @endif
                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                    <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
                </div>

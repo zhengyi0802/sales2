@@ -68,9 +68,16 @@
                     </table>
                 </div>
            </div>
-           <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+           @if (auth()->user()->role == App\Enums\UserRole::Administrator)
+           <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('projects.status') }} :</strong>
+                    <input type="checkbox" name="status" value="1" {{ $project->status ? "checked" : null }}>
+                    <label for="status">{{ __('tables.enabled') }}</label>
+                </div>
               <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
            </div>
+           @endif
         </div>
     </form>
 

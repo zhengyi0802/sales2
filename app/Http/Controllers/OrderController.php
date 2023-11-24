@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderExtra;
 use App\Models\Customer;
 use App\Models\Project;
 use App\Models\ProductModel;
@@ -128,6 +129,14 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
+        $order->status = false;
+        $order->save();
+
+        $orderextras = $order->extras;
+        foreach($orderextras as $extra) {
+            $extra->status = false;
+            $extra->save();
+        }
         return redirect()->route('orders.index');
     }
 }

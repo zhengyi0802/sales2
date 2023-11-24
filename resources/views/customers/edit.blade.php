@@ -69,7 +69,6 @@
                     <strong>{{ __('customers.address') }} :</strong>
                     <input type="text" name="address" value="{{ $customer->address }}" class="form-control">
                 </div>
-           </div>
                 <div class="form-group col-md-4">
                     <strong>{{ __('customers.sales') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                     <select id="sales_id" name="sales_id" >
@@ -79,6 +78,16 @@
                   </select>
                 </div>
            </div>
+           @if (auth()->user()->role == App\Enums\UserRole::Administrator)
+           <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('customers.status') }} :</strong>
+                    <input type="checkbox" name="status" value="1" {{ $customer->status ? "checked" : null }}>
+                    <label for="status">{{ __('tables.enabled') }}</label>
+                </div>
+              <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
+           </div>
+           @endif
            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
            </div>

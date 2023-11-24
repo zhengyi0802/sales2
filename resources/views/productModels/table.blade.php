@@ -17,7 +17,7 @@ $config = [
 
 <x-adminlte-datatable id="productModel-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" striped hoverable bordered>
   @foreach($productModels as $productModel)
-    <tr>
+    <tr class="{{ $productModel->status ? null : "bg-gray"}}">
       <td>{{ $productModel->id }}</td>
       <td>{{ $productModel->model }}</td>
       <td>{{ $productModel->name }}</td>

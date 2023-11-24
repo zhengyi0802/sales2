@@ -14,7 +14,7 @@ $config = [
 
 <x-adminlte-datatable id="project-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" striped hoverable bordered>
   @foreach($projects as $project)
-    <tr>
+    <tr class="{{ $project->status ? null : "bg-gray"}}">
       <td>{{ $project->id }}</td>
       <td>{{ $project->name }}</td>
       <td>{{ $project->creator->name }}</td>

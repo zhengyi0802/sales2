@@ -16,7 +16,7 @@ $config = [
 
 <x-adminlte-datatable id="sales-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" striped hoverable bordered>
   @foreach($saleses as $sales)
-    <tr>
+    <tr class="{{ $sales->status ? null : "bg-gray"}}">
       <td>{{ $sales->id }}</td>
       <td>{{ $sales->name }}</td>
       <td>{{ $sales->company }}</td>

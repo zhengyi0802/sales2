@@ -50,9 +50,16 @@
                     <input type="text" name="name" value="{{ $catagory->name }}" class="form-control">
                 </div>
            </div>
-           <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+           @if (auth()->user()->role == App\Enums\UserRole::Administrator)
+           <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('catagories.status') }} :</strong>
+                    <input type="checkbox" name="status" value="1" {{ $catagory->status ? "checked" : null }}>
+                    <label for="status">{{ __('tables.enabled') }}</label>
+                </div>
               <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
            </div>
+           @endif
         </div>
     </form>
 
