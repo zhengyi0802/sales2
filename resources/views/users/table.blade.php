@@ -22,7 +22,7 @@ $config = [
       <td>{{ $user->account }}</td>
       <td>{{ $user->name }}</td>
       <td>{{ $user->phone }}</td>
-      <td>{{ $user->role }}</td>
+      <td>{{ trans_choice('users.roles', $user->role) }}</td>
       <td>{{ $user->creator->name }}</td>
       <td><nobr>
           <form name="user-delete-form" action="{{ route('users.destroy', $user->id); }}" method="POST">
