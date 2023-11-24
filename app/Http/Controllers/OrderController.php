@@ -33,19 +33,18 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create2(Customer $customer)
     {
         $sales = Sales::where('status', true)->get();
         $projects = Project::where('status', true)->get();
         $productModels = ProductModel::where('status', true)->get();
-        $customers = Customer::where('status', true)->get();
         $extras = ProductModel::where('extra', true)->where('status', true)->get();
 
-        return view('orders.create')
+        return view('orders.create2')
                ->with(compact('sales'))
                ->with(compact('projects'))
                ->with(compact('productModels'))
-               ->with(compact('customers'))
+               ->with(compact('customer'))
                ->with(compact('extras'));
     }
 
@@ -57,6 +56,16 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->all();
+        $creator = auth()->user();
+        $data['created_by'] = $creator->id;
+        $order = Order::create($data);
+        if ($data['extra_id'] > 0) {
+            $orderdata['order_id'] = $order->id;
+            $orderdata['product_id'] = $data['extra_id'];
+            OrderExtra::create($orderdata);
+        }
+
         return redirect()->route('orders.index');
     }
 
@@ -79,10 +88,16 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        $productModels = ProductMode::get();
+        $productModels = ProductModel::where('status', true)->get();
+        $projects = Project::where('status', true)->get();
+        $extras = ProductModel::where('status', true)->where('extra', true)->get();
+        $sales = Sales::where('status', true)->get();
 
-        return view('orders.show', compact('order'))
-               ->with(compact('productModels'));
+        return view('orders.edit', compact('order'))
+               ->with(compact('sales'))
+               ->with(compact('projects'))
+               ->with(compact('productModels'))
+               ->with(compact('extras'));
     }
 
     /**
@@ -94,7 +109,15 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        return redirect()->route('orders.index');
+        $data = $request->all();
+        $order->update($data);
+        $extras = $order->extras->first();
+        if ($data['extra_id'] > 0) {
+            $orderdata['product_id'] = $data['extra_id'];
+            $extras->update($orderdata);
+        }
+
+       return redirect()->route('orders.index');
     }
 
     /**

@@ -28,17 +28,19 @@
         <x-adminlte-card title="{{ __('orders.phone') }}" theme="info" icon="fas fa-lg">
                 {{ $order->phone }}
         </x-adminlte>
-        <x-adminlte-card title="{{ __('orders.line_id') }}" theme="info" icon="fas fa-lg">
-                {{ $order->line_id }}
-        </x-adminlte>
-        <x-adminlte-card title="{{ __('orders.email') }}" theme="info" icon="fas fa-lg">
-                {{ $order->email }}
-        </x-adminlte>
         <x-adminlte-card title="{{ __('orders.address') }}" theme="info" icon="fas fa-lg">
                 {{ $order->address }}
         </x-adminlte>
-        <x-adminlte-card title="{{ __('orders.pid') }}" theme="info" icon="fas fa-lg">
-                {{ $order->pid }}
+        <x-adminlte-card title="{{ __('orders.product') }}" theme="info" icon="fas fa-lg">
+                {{ $order->product->name }}
+        </x-adminlte>
+        <x-adminlte-card title="{{ __('orders.accessories') }}" theme="info" icon="fas fa-lg">
+                {{ $order->product->accessory->name."(".$order->product->accessory->model.")" }}
+        </x-adminlte>
+        <x-adminlte-card title="{{ __('orders.extras') }}" theme="info" icon="fas fa-lg">
+                @foreach($order->extras as $extra)
+                    {{ $extra->product->name."(".$order->product->model.")" }}
+                @endforeach
         </x-adminlte>
         <x-adminlte-card title="{{ __('orders.sales') }}" theme="info" icon="fas fa-lg">
                 {{ $order->sales->name }}

@@ -45,39 +45,27 @@
         @csrf
          <div class="row">
            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <strong>{{ __('orders.name') }} :</strong>
                     <input type="text" name="name" value="{{ $order->name }}" class="form-control">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <strong>{{ __('orders.phone') }} :</strong>
                     <input type="text" name="phone" value="{{ $order->phone }}" class="form-control">
                 </div>
-                <div class="form-group col-md-4">
-                    <strong>{{ __('orders.line_id') }} :</strong>
-                    <input type="text" name="line_id" value="{{ $order->line_id }}" class="form-control">
-                </div>
-                <div class="form-group col-md-4">
-                    <strong>{{ __('orders.email') }} :</strong>
-                    <input type="text" name="email" value="{{ $order->email }}" class="form-control">
-                </div>
-                <div class="form-group col-md-4">
-                    <strong>{{ __('orders.pid') }} :</strong>
-                    <input type="text" name="pid" value="{{ $order->pid }}" class="form-control">
-                </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <strong>{{ __('orders.address') }} :</strong>
                     <input type="text" name="address" value="{{ $order->address }}" class="form-control">
                 </div>
-           </div>
-                <div class="form-group col-md-4">
-                    <strong>{{ __('orders.sales') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <div class="form-group col-md-6">
+                    <strong>{{ __('orders.sales') }} :</strong>
                     <select id="sales_id" name="sales_id" >
                         @foreach ($sales as $s)
                            <option value="{{ $s->id }}" {{ ($s->id == $order->sales_id) ? "selected" : null }} >{{ $s->name }}</option>
                         @endforeach
                   </select>
                 </div>
+                @include('orders.product')
            </div>
            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>

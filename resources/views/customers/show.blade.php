@@ -46,6 +46,9 @@
         <x-adminlte-card title="{{ __('customers.creator') }}" theme="info" icon="fas fa-lg">
                 {{ $customer->creator->name }}
         </x-adminlte-card>
+        <x-adminlte-card title="{{ __('customers.orders') }}" theme="info" icon="fas fa-lg">
+                @include('customers.orders.table')
+        </x-adminlte-card>
      </div>
    </div>
 @endsection

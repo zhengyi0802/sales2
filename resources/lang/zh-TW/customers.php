@@ -12,6 +12,7 @@
            'address'     => '地址',
            'sales'       => '經辦人員',
            'status'      => '狀態',
+           'orders'      => '訂單表列',
            'creator'     => '建立者',
     ];
 

@@ -77,12 +77,14 @@ class CustomerController extends Controller
                   'created_by'  => $creator->id,
             ];
             $order = Order::create($orderdata);
+/*
             $accessory = ProductModel::find($orderdata['product_id']);
             if ($accessory->id > 0) {
                 $orderdata['order_id'] = $order->id;
                 $orderdata['product_id'] = $accessory->accessories;
                 OrderExtra::create($orderdata);
             }
+*/
             if ($data['extra_id'] > 0) {
                 $orderdata['order_id'] = $order->id;
                 $orderdata['product_id'] = $data['extra_id'];
@@ -132,7 +134,9 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
+        $data = $request->all();
+        $customer->update($data);
+
         return redirect()->route('customers.index');
     }
 

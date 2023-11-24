@@ -14,9 +14,16 @@ $config = [
     'language' => [ 'url' => '//cdn.datatables.net/plug-ins/1.13.4/i18n/zh-HANT.json' ],
 ];
 @endphp
+<div class="row">
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-right">
+            <a class="btn btn-success" href="{{ route('orders.create2', $customer->id) }}">{{ __('tables.new') }}</a>
+        </div>
+    </div>
+</div>
 
 <x-adminlte-datatable id="order-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" striped hoverable bordered>
-  @foreach($orders as $order)
+  @foreach($customer->orders as $order)
     <tr>
       <td>{{ $order->id }}</td>
       <td>{{ $order->name }}</td>
@@ -28,12 +35,12 @@ $config = [
           <form name="order-delete-form" action="{{ route('orders.destroy', $order->id); }}" method="POST">
             @csrf
             @method('DELETE')
-            @if (auth()->user()->role == App\Enums\UserRole::Operator || auth()->user()->role == App\Enums\UserRole::Administrator)
+            @if (auth()->user()->id == $order->creator->id || auth()->user()->role == App\Enums\UserRole::Administrator)
               <x-adminlte-button theme="primary" title="{{ __('tables.edit') }}" icon="fa fa-lg fa-fw fa-pen"
                 onClick="window.location='{{ route('orders.edit', $order->id); }}'" >
               </x-adminlte-button>
             @endif
-            @if (auth()->user()->role == App\Enums\UserRole::Operator || auth()->user()->role == App\Enums\UserRole::Administrator)
+            @if (auth()->user()->id == $order->creator->id || auth()->user()->role == App\Enums\UserRole::Administrator)
               <x-adminlte-button theme="danger" title="{{ __('tables.delete') }}" icon="fa fa-lg fa-fw fa-trash"
                 type="submit" >
               </x-adminlte-button>

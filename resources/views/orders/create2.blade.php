@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', __('customers.title'))
+@section('title', __('orders.title'))
 
 @section('content_header')
-    <h1 class="m-0 text-dark">{{ __('customers.header') }}</h1>
+    <h1 class="m-0 text-dark">{{ __('orders.header') }}</h1>
 @stop
 
 @section('content')
@@ -40,36 +40,52 @@
       font-size : 12px;
    }
 </style>
-<form id="customer-form" action="{{ route('customers.store') }}" method="POST" enctype="multipart/form-data">
+
+<form id="order-form" action="{{ route('orders.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group col-md-4">
-                <strong>{{ __('customers.name') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <input type="text" name="name" class="form-control">
+                <strong>{{ __('orders.name') }} : {{ $customer->name }}</strong>
+                <input type="text" name="customer_id" class="form-control" value="{{ $customer->id }}" hidden  />
+                <input type="text" name="name" class="form-control" value="{{ $customer->name }}" hidden  />
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('customers.phone') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <input type="text" name="phone" class="form-control">
+                <strong>{{ __('orders.phone') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <input type="text" name="phone" class="form-control" value="{{ $customer->phone }}">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('customers.line_id') }} :</strong>
-                <input type="text" name="line_id" class="form-control">
+                <strong>{{ __('orders.address') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <input type="text" name="address" class="form-control"value="{{ $customer->address }}">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('customers.email') }} :</strong>
-                <input type="text" name="email" class="form-control">
+                <strong>{{ __('orders.project') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <select id="project_id" name="project_id" >
+                      <option value="">--------</option>
+                      @foreach ($projects as $project)
+                         <option value="{{ $project->id }}" >{{ $project->name }}</option>
+                      @endforeach
+                </select>
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('customers.pid') }} :</strong>
-                <input type="text" name="pid" class="form-control">
+                <strong>{{ __('orders.product') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <select id="product_id" name="product_id" >
+                      @foreach ($productModels as $product)
+                         <option value="{{ $product->id }}" >{{ $product->name }}</option>
+                      @endforeach
+                </select>
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('customers.address') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <input type="text" name="address" class="form-control">
+                <strong>{{ __('orders.extras') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <select id="extra_id" name="extra_id" >
+                      <option value="">--------</option>
+                      @foreach ($extras as $extra)
+                         <option value="{{ $extra->id }}" >{{ $extra->name }}</option>
+                      @endforeach
+                </select>
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('customers.sales') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <strong>{{ __('orders.sales') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <select id="sales_id" name="sales_id" >
                       @foreach ($sales as $s)
                          <option value="{{ $s->id }}" >{{ $s->name }}</option>
@@ -77,9 +93,6 @@
                 </select>
             </div>
         </div>
-    </div>
-    @include('customers.orders.create')
-    <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
         </div>
@@ -89,7 +102,7 @@
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
     $(document).ready(function(){
-        $('#customer-form').validate({
+        $('#order-form').validate({
            onkeyup: function(element, event) {
                var value = this.elementValue(element).replace(/^\s+/g, "");
                $(element).val(value);
