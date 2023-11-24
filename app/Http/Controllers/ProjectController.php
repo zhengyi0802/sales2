@@ -95,12 +95,12 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        $data = $$request->all();
+        $data = $request->all();
         /*
         $extras = implode(',', $data['extras']);
         $data['extras'] = json_encode($extras);
         */
-        $creaypr = auth()->user();
+        $creator = auth()->user();
         $data['created_by'] = $creator->id;
         $project->update($data);
 
