@@ -115,7 +115,7 @@ class UserController extends Controller
     public function savePassword(Request $request, User $user)
     {
         $data = $request->all();
-        if ($user->password == encrypt($data['old_password'])) {
+        if ($user->password == bcrypt($data['old_password'])) {
             if ($data['new_password'] == $data['retry_password']) {
                 $data1['password'] = bcrypt($data['new_password']);
                 $user->update($data1);
