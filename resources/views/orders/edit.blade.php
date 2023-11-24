@@ -59,13 +59,13 @@
                 </div>
                 <div class="form-group col-md-6">
                     <strong>{{ __('orders.sales') }} :</strong>
-                    <select id="sales_id" name="sales_id[]" multiple="multiple" size="10" >
+                    <select id="sales_id" name="sales_id" >
                         @foreach ($sales as $s)
                            <option value="{{ $s->id }}" {{ ($s->id == $order->sales_id) ? "selected" : null }} >{{ $s->name }}</option>
                         @endforeach
                   </select>
                 </div>
-                @include('orders.product')
+                @include('orders.eproduct')
            </div>
            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>

@@ -3,7 +3,7 @@
                 <select id="project_id" name="project_id" onchange="proj()">
                       <option value="" selected>--------</option>
                       @foreach ($projects as $project)
-                         <option value="{{ $project->id }}" >{{ $project->name }}</option>
+                         <option value="{{ $project->id }}" {{ ($order->project_id == $project->id) ? "selected" : null }}>{{ $project->name }}</option>
                       @endforeach
                 </select>
             </div>
@@ -11,7 +11,7 @@
                 <strong>{{ __('orders.product') }} :</strong>
                 <select id="product_id" name="product_id" >
                       @foreach ($productModels as $model)
-                         <option value="{{ $model->id }}" >{{ $model->name }}</option>
+                         <option value="{{ $model->id }}" {{ ($order->product_id == $model->id) ? "selected" : null }}>{{ $model->name }}</option>
                       @endforeach
                 </select>
             </div>
