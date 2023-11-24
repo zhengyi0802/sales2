@@ -74,8 +74,9 @@ class OrderController extends Controller
         }
         $data['id'] = $id;
         $order = Order::create($data);
-        if ($data['extra_id'] > 0) {
-            $orderdata['order_id'] = $order->id;
+        $extras = implode(",", $extra_id);
+        foreach($data['extra_id'] as $extra) {
+            $orderdata['order_id'] = $extra;
             $orderdata['product_id'] = $data['extra_id'];
             OrderExtra::create($orderdata);
         }
@@ -125,10 +126,14 @@ class OrderController extends Controller
     {
         $data = $request->all();
         $order->update($data);
-        $extras = $order->extras->first();
-        if ($data['extra_id'] > 0) {
+        $extras = $order->extras;
+        foreach($extras as $extra) {
+            $extra->delete();
+        }
+        foreach($data['extra_id'] as $extra) {
+            $orderdata['order_id'] = $extra;
             $orderdata['product_id'] = $data['extra_id'];
-            $extras->update($orderdata);
+            OrderExtra::create($orderdata);
         }
 
        return redirect()->route('orders.index');

@@ -19,7 +19,7 @@
             </div>
             <div class="form-group col-md-4">
                 <strong>{{ __('orders.extras') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <select id="extra_id" name="extra_id" >
+                <select id="extra_id" name="extra_id[]" multiple="multiple" size="10">
                       <option value="" selected >--------</option>
                       @foreach ($extras as $extra)
                          <option value="{{ $extra->id }}" >{{ $extra->name }}</option>
