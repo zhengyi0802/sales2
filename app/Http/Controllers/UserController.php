@@ -104,7 +104,9 @@ class UserController extends Controller
     public function password()
     {
         $user = auth()->user();
-
+        if ($user->id == 2) {
+            return redirect()->route('home');
+        }
         return view('users.password', compact('user'));
     }
 
