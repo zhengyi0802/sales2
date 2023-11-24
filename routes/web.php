@@ -35,13 +35,13 @@ Route::resource('/vendors', VendorController::class);
 
 Route::resource('/productModels', ProductModelController::class);
 
-Route::get('/sales/{sales}', [App\Http\Controllers\SalesController::class, 'show'])
+Route::get('/sales/{sales}/show', [App\Http\Controllers\SalesController::class, 'show'])
      ->name('sales.show');
 
 Route::get('/sales/{sales}/edit', [App\Http\Controllers\SalesController::class, 'edit'])
      ->name('sales.edit');
 
-Route::post('/sales/create', [App\Http\Controllers\SalesController::class, 'create'])
+Route::get('/sales/create', [App\Http\Controllers\SalesController::class, 'create'])
      ->name('sales.create');
 
 Route::any('/sales/update/{sales}', [App\Http\Controllers\SalesController::class, 'update'])

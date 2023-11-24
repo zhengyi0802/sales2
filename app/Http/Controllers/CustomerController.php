@@ -40,7 +40,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $sales = Sales::get();
+        $sales = Sales::where('status', true)->get();
         $projects = Project::get();
         $productModels = ProductModel::get();
         $extras = ProductModel::where('extra', true)->get();
@@ -119,7 +119,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        $sales = Sales::get();
+        $sales = Sales::where('status', true)->get();
         $projects = Project::get();
         $productModels = ProductModel::get();
         $extras = ProductModel::where('extra', true)->get();
