@@ -47,7 +47,7 @@ Route::get('/sales/create', [App\Http\Controllers\SalesController::class, 'creat
 Route::any('/sales/update/{sales}', [App\Http\Controllers\SalesController::class, 'updare'])
      ->name('sales.update');
 
-Route::get('/sales/destroy/{sales}', [App\Http\Controllers\SalesController::class, 'destroy'])
+Route::any('/sales/destroy/{sales}', [App\Http\Controllers\SalesController::class, 'destroy'])
      ->name('sales.destroy');
 
 Route::any('/sales/store', [App\Http\Controllers\SalesController::class, 'store'])
@@ -59,7 +59,6 @@ Route::get('/sales', [App\Http\Controllers\SalesController::class, 'index'])
 Route::resource('/projects', ProjectController::class);
 
 Route::resource('/customers', CustomerController::class);
-
 
 Route::get('/orders/create2/{customer}', [App\Http\Controllers\OrderController::class, 'create2'])
      ->name('orders.create2');

@@ -45,6 +45,7 @@ class UserController extends Controller
         $creator = auth()->user();
         $data = $request->all();
         $data['created_by'] = $creator->id;
+        $data['password'] = bcrypt($data['password']);
         User::create($data);
 
         return redirect()->route('users.index');
@@ -82,6 +83,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $data = $request->all();
+        $data['password'] = bcrypt($data['password']);
         $user->update($data);
 
         return redirect()->route('users.index');
@@ -115,7 +117,7 @@ class UserController extends Controller
         $data = $request->all();
         if ($user->password == encrypt($data['old_password'])) {
             if ($data['new_password'] == $data['retry_password']) {
-                $data1['password'] = encrypt($data['new_password']);
+                $data1['password'] = bcrypt($data['new_password']);
                 $user->update($data1);
                 return redirect()->route('home');
             }
