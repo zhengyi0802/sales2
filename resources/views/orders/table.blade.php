@@ -33,7 +33,8 @@ $config = [
                 onClick="window.location='{{ route('orders.edit', $order->id); }}'" >
               </x-adminlte-button>
             @endif
-            @if (auth()->user()->role == App\Enums\UserRole::Operator || auth()->user()->role == App\Enums\UserRole::Administrator)
+            @if ((auth()->user()->role == App\Enums\UserRole::Operator || auth()->user()->role == App\Enums\UserRole::Administrator) &&
+                 $order->status)
               <x-adminlte-button theme="danger" title="{{ __('tables.delete') }}" icon="fa fa-lg fa-fw fa-trash"
                 type="submit" >
               </x-adminlte-button>

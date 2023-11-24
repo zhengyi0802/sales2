@@ -33,7 +33,7 @@ $config = [
                 onClick="window.location='{{ route('productModels.edit', $productModel->id); }}'" >
               </x-adminlte-button>
             @endif
-            @if (auth()->user()->role <= App\Enums\UserRole::Manager)
+            @if (auth()->user()->role <= App\Enums\UserRole::Manager && $productModel->status)
               <x-adminlte-button theme="danger" title="{{ __('tables.delete') }}" icon="fa fa-lg fa-fw fa-trash"
                 type="submit" >
               </x-adminlte-button>
