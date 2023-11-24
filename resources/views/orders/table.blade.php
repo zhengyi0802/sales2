@@ -1,6 +1,7 @@
 @php
 $heads = [
     ['label' =>__('orders.id'), 'width' => 10],
+    __('orders.flow'),
     __('orders.name'),
     __('orders.phone'),
     __('orders.product'),
@@ -19,6 +20,7 @@ $config = [
   @foreach($orders as $order)
     <tr class="{{ $order->status ? null : "bg-gray"}}">
       <td>{{ $order->id }}</td>
+      <td>{{ trans_choice('orders.flows', $order->flow) }}</td>
       <td>{{ $order->name }}</td>
       <td>{{ $order->phone }}</td>
       <td>{{ $order->product->model }}</td>
