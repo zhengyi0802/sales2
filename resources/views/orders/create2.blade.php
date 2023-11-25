@@ -58,40 +58,42 @@
                 <strong>{{ __('orders.address') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="address" class="form-control"value="{{ $customer->address }}">
             </div>
-            <div class="form-group col-md-4">
-                <strong>{{ __('orders.project') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <select id="project_id" name="project_id" >
+            <table>
+            <tr class="form-group col-md-4">
+                <td<<strong>{{ __('orders.project') }} :<span class="must">{{ __('tables.must') }}</span></strong></td>
+                <td><select id="project_id" name="project_id" >
                       <option value="">--------</option>
                       @foreach ($projects as $project)
                          <option value="{{ $project->id }}" >{{ $project->name }}</option>
                       @endforeach
-                </select>
-            </div>
-            <div class="form-group col-md-4">
-                <strong>{{ __('orders.product') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <select id="product_id" name="product_id" >
+                </select></td>
+            </tr>
+            <tr class="form-group col-md-4">
+                <td><strong>{{ __('orders.product') }} :<span class="must">{{ __('tables.must') }}</span></strong></td>
+                <td><select id="product_id" name="product_id" >
                       @foreach ($productModels as $product)
                          <option value="{{ $product->id }}" >{{ $product->name }}</option>
                       @endforeach
-                </select>
-            </div>
-            <div class="form-group col-md-4">
-                <strong>{{ __('orders.extras') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <select id="extra_id" name="extra_id[]" multiple="multiple" size="10">
+                </select></td>
+            </tr>
+            <tr class="form-group col-md-4">
+                <td><strong>{{ __('orders.extras') }} :</strong></td>
+                <td><select id="extra_id" name="extra_id[]" multiple="multiple" size="10">
                       <option value="">--------</option>
                       @foreach ($extras as $extra)
                          <option value="{{ $extra->id }}" >{{ $extra->name }}</option>
                       @endforeach
-                </select>
+                </select></td>
             </div>
-            <div class="form-group col-md-4">
-                <strong>{{ __('orders.sales') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <select id="sales_id" name="sales_id" >
+            <tr class="form-group col-md-4">
+                <td><strong>{{ __('orders.sales') }} :<span class="must">{{ __('tables.must') }}</span></strong></td>
+                <td><select id="sales_id" name="sales_id" >
                       @foreach ($sales as $s)
                          <option value="{{ $s->id }}" >{{ $s->name }}</option>
                       @endforeach
-                </select>
-            </div>
+                </select></td>
+            </tr>
+            </table>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
