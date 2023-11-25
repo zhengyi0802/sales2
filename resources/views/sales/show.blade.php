@@ -37,6 +37,9 @@
         <x-adminlte-card title="{{ __('saleses.job') }}" theme="info" icon="fas fa-lg">
                 {{ $sales->job }}
         </x-adminlte>
+        <x-adminlte-card title="{{ __('saleses.identity') }}" theme="info" icon="fas fa-lg">
+                {{ ($sales->user->role == App\Enums\UserRole::Sales) ? __('saleses.id_sales') : __('saleses.id_reseller') }}
+        </x-adminlte>
      </div>
    </div>
 @endsection

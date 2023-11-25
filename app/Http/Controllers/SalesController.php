@@ -56,11 +56,12 @@ class SalesController extends Controller
             $data1['account'] = $data['account'];
             $data1['password'] = bcrypt($data['password']);
             $data1['phone'] = $data['phone'];
-            if ($data['reseller'] == 1) {
+            if (array_key_exists('reseller', $data)) {
                 $data1['role'] = UserRole::Reseller;
             } else {
                 $data1['role'] = UserRole::Sales;
             }
+
             $data1['status'] = true;
             $data1['created_by'] = $creator->id;
             $user = User::create($data1);
@@ -105,7 +106,7 @@ class SalesController extends Controller
         $data = $request->all();
         $user = $sales->user;
         $userdata['phone'] = $data['phone'];
-        if ($data['reseller'] == 1) {
+        if (array_key_exists('reseller', $data)) {
             $userdata['role'] = UserRole::Reseller;
         } else {
             $userdata['role'] = UserRole::Sales;

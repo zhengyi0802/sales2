@@ -81,11 +81,11 @@
                 </div>
            </div>
            <div class="col-xs-12 col-sm-12 col-md-12">
-               <div class="form-group col-md-4">
-                    <strong>{{ __('saleses.reseller') }}  :</strong>
-                    <input type="checkbox" name="reseller" value="1" {{ ($sales->user->role == App\Enums\UserRole::Reseller) ? 'checked' : null }}>
-                    <label for="reseller">{{ __('tables.yes') }}</label>
-               </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('saleses.reseller') }} :</strong>
+                    <input type="checkbox" name="reseller" value="1" {{ $sales->reseller ? "checked" : null }}>
+                    <label for="reseller">{{ __('tables.enabled') }}</label>
+                </div>
            </div>
            @if (auth()->user()->role == App\Enums\UserRole::Administrator)
            <div class="col-xs-12 col-sm-12 col-md-12">
@@ -94,9 +94,13 @@
                     <input type="checkbox" name="status" value="1" {{ $sales->status ? "checked" : null }}>
                     <label for="status">{{ __('tables.enabled') }}</label>
                 </div>
-              <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
            </div>
            @endif
+           <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                  <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
+                </div>
+           </div>
         </div>
     </form>
 

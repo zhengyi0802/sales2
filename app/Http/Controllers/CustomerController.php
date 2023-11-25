@@ -95,11 +95,13 @@ class CustomerController extends Controller
                   'created_by'  => $creator->id,
             ];
             $order = Order::create($orderdata);
-            $extras = implode(",", $data['extra_id']);
-            foreach($extras as $extra) {
-                $orderdata['order_id'] = $order->id;
-                $orderdata['product_id'] = $extra;
-                OrderExtra::create($orderdata);
+            if (array_key_exists('extra_id', $data)) {
+                foreach($data['extra_id'] as $extra) {
+                    $orderdata['order_id'] = $order->id;
+                    $orderdata['product_id'] = $extra;
+                    $orderdata['created_by'] = $creator->id;
+                    OrderExtra::create($orderdata);
+                }
             }
         }
         return redirect()->route('customers.index');

@@ -23,6 +23,10 @@ class OrderController extends Controller
         $user = auth()->user();
         if ($user->role == UserRole::Administrator) {
             $orders = Order::get();
+        } else if ($user->role == UserRole::Reseller) {
+            $orders = Order::where('sales_id', $user->sales->id)->get();
+        } else if ($user->role == UserRole::Sales) {
+            $orders = Order::where('sales_id', $user->sales->id)->get();
         } else {
             $orders = Order::where('status', true)->get();
         }
@@ -74,13 +78,14 @@ class OrderController extends Controller
         }
         $data['id'] = $id;
         $order = Order::create($data);
-        $extras = implode(",", $data['extra_id']);
-        foreach($extras as $extra) {
-            $orderdata['order_id'] = $order->id;
-            $orderdata['product_id'] = $extra;
-            OrderExtra::create($orderdata);
+        if (array_key_exists('extra_id', $data)) {
+            foreach($data['extra_id'] as $extra) {
+                $orderdata['order_id'] = $order->id;
+                $orderdata['product_id'] = $extra;
+                $orderdata['created_by'] = $creator->id;
+                OrderExtra::create($orderdata);
+            }
         }
-
         return redirect()->route('orders.index');
     }
 
@@ -124,16 +129,20 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
+        $creator = auth()->user();
         $data = $request->all();
         $order->update($data);
         $extras = $order->extras;
         foreach($extras as $extra) {
             $extra->delete();
         }
-        foreach($extras as $extra) {
-            $orderdata['order_id'] = $order->id;
-            $orderdata['product_id'] = $extra;
-            OrderExtra::create($orderdata);
+        if (array_key_exists('extra_id', $data)) {
+            foreach($data['extra_id'] as $extra) {
+                $orderdata['order_id'] = $order->id;
+                $orderdata['product_id'] = $extra;
+                $orderdata['created_by'] = $creator->id;
+                OrderExtra::create($orderdata);
+            }
         }
 
        return redirect()->route('orders.index');
