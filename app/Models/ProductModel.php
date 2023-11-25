@@ -19,7 +19,7 @@ class ProductModel extends Model
         'descriptions',
         'accessories',
         'is_accessories',
-        'extras',
+        'extra',
         'status',
         'created_by',
     ];

@@ -4,6 +4,7 @@ $heads = [
     __('saleses.name'),
     __('saleses.company'),
     __('saleses.phone'),
+    __('saleses.identity'),
     __('saleses.creator'),
     ['label' => __('tables.action'), 'no-export' => true, 'width' => 10],
 ];
@@ -21,6 +22,7 @@ $config = [
       <td>{{ $sales->name }}</td>
       <td>{{ $sales->company }}</td>
       <td>{{ $sales->phone }}</td>
+      <td>{{ ($sales->user->role == App\Enums\UserRole::Sales) ? __('saleses.id_sales') : __('saleses.id_reseller') }}
       <td>{{ $sales->creator->name }}</td>
       <td><nobr>
           <form name="sales-delete-form" action="{{ route('sales.destroy', $sales->id); }}" method="POST">

@@ -18,7 +18,7 @@ class ProjectController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if ($user->account == 'admin') {
+        if ($user->role == UserRole::Administrator) {
             $projects = Project::get();
         } else {
             $projects = Project::where('status', true)->get();

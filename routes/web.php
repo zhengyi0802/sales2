@@ -50,7 +50,7 @@ Route::any('/sales/update/{sales}', [App\Http\Controllers\SalesController::class
 Route::any('/sales/{sales}', [App\Http\Controllers\SalesController::class, 'destroy'])
      ->name('sales.destroy');
 
-Route::any('/sales/store', [App\Http\Controllers\SalesController::class, 'store'])
+Route::any('/sales', [App\Http\Controllers\SalesController::class, 'store'])
      ->name('sales.store');
 
 Route::get('/sales', [App\Http\Controllers\SalesController::class, 'index'])

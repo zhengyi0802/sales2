@@ -79,6 +79,13 @@
                 <input type="text" name="job" class="form-control">
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group col-md-4">
+                <strong>{{ __('saleses.reseller') }}  :</strong>
+                <input type="checkbox" name="reseller" value="1">
+                <label for="reseller">{{ __('tables.yes') }}</label>
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
         </div>

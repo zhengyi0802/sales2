@@ -38,7 +38,7 @@ $config = [
               <x-adminlte-button theme="danger" title="{{ __('tables.delete') }}" icon="fa fa-lg fa-fw fa-trash"
                 type="submit" >
               </x-adminlte-button>
-             @endif
+            @endif
               <x-adminlte-button theme="info" title="{{ __('tables.detail') }}" icon="fa fa-lg fa-fw fa-eye"
                 onClick="window.location='{{ route('customers.show', $customer->id); }}'" >
               </x-adminlte-button>

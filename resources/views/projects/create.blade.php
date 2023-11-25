@@ -71,10 +71,16 @@
                name: {
                   required: true
                },
+               details: {
+                  required: true
+               },
            },
            messages: {
                name: {
                   required: '方案必填'
+               },
+               details: {
+                  required: '方案內容必填'
                },
            },
            submitHandler: function(form) {

@@ -20,7 +20,7 @@ class ProductModelController extends Controller
     {
         $user = auth()->user();
 
-        if ($user->account == 'admin') {
+        if ($user->role == UserRole::Administrator) {
             $productModels = ProductModel::get();
         } else {
             $productModels = ProductModel::where('status', true)->get();

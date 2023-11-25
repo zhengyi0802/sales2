@@ -18,7 +18,7 @@ class VendorController extends Controller
         //
         $user = auth()->user();
 
-        if ($user->account == "admin") {
+        if ($user->role == UserRole::Administrator) {
             $vendors = Vendor::get();
         } else {
             $vendors = Vendor::where('status', true)->get();

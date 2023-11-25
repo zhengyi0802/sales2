@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => '業務訂單系統',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '業務訂單系統',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -302,6 +302,7 @@ return [
         ],
 
         // Sidebar items:
+        ['header' => 'manager_settings'],
         [
             'text' => 'catagories',
             'url'  => 'catagories',
@@ -327,15 +328,16 @@ return [
             'url'  => 'sales',
             'can'  => 'manager',
         ],
+        ['header' => 'business_settings'],
         [
             'text' => 'customers',
             'url'  => 'customers',
-            'can'  => ['manager', 'sales', 'operator'],
+            'can'  => ['manager', 'sales', 'operator', 'reseller'],
         ],
         [
             'text' => 'orders',
             'url'  => 'orders',
-            'can'  => ['manager', 'sales', 'operator' ],
+            'can'  => ['manager', 'sales', 'operator', 'reseller'],
         ],
         ['header' => 'account_settings'],
         [

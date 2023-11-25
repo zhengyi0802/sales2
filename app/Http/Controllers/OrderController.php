@@ -21,7 +21,7 @@ class OrderController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if ($user->account == 'admin') {
+        if ($user->role == UserRole::Administrator) {
             $orders = Order::get();
         } else {
             $orders = Order::where('status', true)->get();
@@ -74,10 +74,10 @@ class OrderController extends Controller
         }
         $data['id'] = $id;
         $order = Order::create($data);
-        $extras = implode(",", $extra_id);
+        $extras = implode(",", $data['extra_id']);
         foreach($data['extra_id'] as $extra) {
-            $orderdata['order_id'] = $extra;
-            $orderdata['product_id'] = $data['extra_id'];
+            $orderdata['order_id'] = $order->id;
+            $orderdata['product_id'] = $extra;
             OrderExtra::create($orderdata);
         }
 
@@ -131,8 +131,8 @@ class OrderController extends Controller
             $extra->delete();
         }
         foreach($data['extra_id'] as $extra) {
-            $orderdata['order_id'] = $extra;
-            $orderdata['product_id'] = $data['extra_id'];
+            $orderdata['order_id'] = $order->id;
+            $orderdata['product_id'] = $extra;
             OrderExtra::create($orderdata);
         }
 

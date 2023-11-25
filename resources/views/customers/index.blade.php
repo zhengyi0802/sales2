@@ -8,7 +8,8 @@
 
 @section('content')
     @if (auth()->user()->role == App\Enums\UserRole::Administrator ||
-         auth()->user()->role == App\Enums\UserRole::Operator)
+         auth()->user()->role == App\Enums\UserRole::Operator ||
+         auth()->user()->role == App\Enums\UserRole::Reseller)
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right">

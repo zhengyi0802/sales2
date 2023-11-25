@@ -19,6 +19,7 @@ class UserController extends Controller
         $users = User::where('status', true)
                      ->where('role', '>', '0')
                      ->where('role', '!=', '4')
+                     ->where('role', '!=', '7')
                      ->get();
 
         return view('users.index', compact('users'));

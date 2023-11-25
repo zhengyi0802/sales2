@@ -67,7 +67,6 @@
                    <option value="3" >{{ trans_choice('users.roles', 3) }}</option>
                    <option value="5" >{{ trans_choice('users.roles', 5) }}</option>
                    <option value="6" >{{ trans_choice('users.roles', 6) }}</option>
-                   <option value="7" >{{ trans_choice('users.roles', 7) }}</option>
                 </select>
             </div>
         </div>

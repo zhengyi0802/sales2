@@ -80,10 +80,17 @@
                     <input type="text" name="job" value="{{ $sales->job }}" class="form-control">
                 </div>
            </div>
+           <div class="col-xs-12 col-sm-12 col-md-12">
+               <div class="form-group col-md-4">
+                    <strong>{{ __('saleses.reseller') }}  :</strong>
+                    <input type="checkbox" name="reseller" value="1" {{ ($sales->user->role == App\Enums\UserRole::Reseller) ? 'checked' : null }}>
+                    <label for="reseller">{{ __('tables.yes') }}</label>
+               </div>
+           </div>
            @if (auth()->user()->role == App\Enums\UserRole::Administrator)
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
-                    <strong>{{ __('sales.status') }} :</strong>
+                    <strong>{{ __('saleses.status') }} :</strong>
                     <input type="checkbox" name="status" value="1" {{ $sales->status ? "checked" : null }}>
                     <label for="status">{{ __('tables.enabled') }}</label>
                 </div>

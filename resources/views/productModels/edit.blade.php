@@ -46,12 +46,12 @@
         <div class="row">
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
-                    <strong>{{ __('productModels.name') }} :</strong>
-                    <input type="text" name="name" value="{{ $productModel->name }}" class="form-control">
-                </div>
-                <div class="form-group col-md-6">
                     <strong>{{ __('productModels.model') }} :</strong>
                     <input type="text" name="model" value="{{ $productModel->model }}" class="form-control">
+                </div>
+                <div class="form-group col-md-6">
+                    <strong>{{ __('productModels.name') }} :</strong>
+                    <input type="text" name="name" value="{{ $productModel->name }}" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
                     <strong>{{ __('productModels.vendor') }} :<span class="must">{{ __('tables.must') }}</span></strong>
@@ -70,7 +70,7 @@
                     </select>
                </div>
                <div class="form-group col-md-6">
-                <strong>{{ __('productModels.accessories') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <strong>{{ __('productModels.accessories') }} :</strong>
                 <select id="accessories" name="accessories" >
                       <option value="" {{ ($productModel->accessories == 0) ? "selected" : null }}>----------</option>
                       @foreach ($accessories as $accessory)
@@ -115,16 +115,16 @@
                   </table>
                 </div>
                 <div class="form-group col-md-6">
-                    <strong>{{ __('productModels.descriptions') }} :</span></strong>
+                    <strong>{{ __('productModels.descriptions') }} :</strong>
                     <textarea name="descriptions" class="form-control" rows="10">{{ $productModel->descriptions }}</textarea>
                </div>
                <div class="form-group col-md-6">
-                    <strong>{{ __('productModels.is_accessories') }} :</span></strong>
+                    <strong>{{ __('productModels.is_accessories') }} :</strong>
                     <input type="checkbox" name="is_accessories" value="1" {{ $productModel->is_accessories ? "checked" : null }} />
                     <label for="is_accessories">{{ __('tables.yes') }}</label>
                </div>
                <div class="form-group col-md-6">
-                    <strong>{{ __('productModels.extras') }} :</span></strong>
+                    <strong>{{ __('productModels.extras') }} :</strong>
                     <input type="checkbox" name="extra" value="1" {{ $productModel->extra ? "checked" : null  }}/>
                     <label for="extras">{{ __('tables.yes') }}</label>
                </div>
@@ -175,13 +175,31 @@
                $(element).val(value);
            },
            rules: {
+               model: {
+                  required: true
+               },
                name: {
+                  required: true
+               },
+               vendor_id: {
+                  required: true
+               },
+               catagory_id: {
                   required: true
                },
            },
            messages: {
-               name: {
+               model: {
                   required: '產品型號必填'
+               },
+               name: {
+                  required: '產品品名必填'
+               },
+               vendor_id: {
+                  required: '廠商必填'
+               },
+               catagory_id: {
+                  required: '產品類別必填'
                },
            },
            submitHandler: function(form) {

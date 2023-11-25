@@ -53,7 +53,7 @@
                 <input type="text" name="country" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('vendors.memo') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <strong>{{ __('vendors.memo') }} :</strong>
                 <textarea name="memo" class="form-control" rows="10"></textarea>
             </div>
         </div>
@@ -75,7 +75,7 @@
                company: {
                   required: true
                },
-               counyru: {
+               country: {
                   required: true
                },
            },

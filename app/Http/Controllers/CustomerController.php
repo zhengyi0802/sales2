@@ -23,12 +23,12 @@ class CustomerController extends Controller
         $user = auth()->user();
         if ($user->role == UserRole::Sales) {
             $customers = Customer::where('sales_id', $user->sales->id)->where('status', true)->get();
+        } else if ($user->role == UserRole::Reseller) {
+            $customers = Customer::where('sales_id', $user->id)->where('status', true)->get();
+        } else if ($user->role == UserRole::Administrator) {
+            $customers = Customer::get();
         } else {
-            if ($user->account == 'admin') {
-                $customers = Customer::get();
-            } else {
-                $customers = Customer::where('status', true)->get();
-            }
+            $customers = Customer::where('status', true)->get();
         }
         return view('customers.index', compact('customers'));
     }
@@ -40,7 +40,12 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $sales = Sales::where('status', true)->get();
+        $creator = auth()->user();
+        if ($creator->role == UserRole::Reseller) {
+            $sales = Sales::where('user_id', $creator->id)->get();
+        } else {
+            $sales = Sales::where('status', true)->get();
+        }
         $projects = Project::get();
         $productModels = ProductModel::get();
         $extras = ProductModel::where('extra', true)->get();
@@ -90,10 +95,10 @@ class CustomerController extends Controller
                   'created_by'  => $creator->id,
             ];
             $order = Order::create($orderdata);
-            $extras = implode(",", $extra_id);
+            $extras = implode(",", $data['extra_id']);
             foreach($data['extra_id'] as $extra) {
-                $orderdata['order_id'] = $extra;
-                $orderdata['product_id'] = $data['extra_id'];
+                $orderdata['order_id'] = $order->id;
+                $orderdata['product_id'] = $extra;
                 OrderExtra::create($orderdata);
             }
         }
@@ -119,7 +124,12 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        $sales = Sales::where('status', true)->get();
+        $creator = auth()->user();
+        if ($creator->role == UserRole::Reseller) {
+            $sales = Sales::where('user_id', $creator->id)->get();
+        } else {
+            $sales = Sales::where('status', true)->get();
+        }
         $projects = Project::get();
         $productModels = ProductModel::get();
         $extras = ProductModel::where('extra', true)->get();

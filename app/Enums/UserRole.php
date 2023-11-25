@@ -18,5 +18,5 @@ final class UserRole extends Enum
     const Sales         =   4;  //代理經銷商
     const Operator      =   5;  //輸入者
     const Installer     =   6;  //工班
-    const Customer      =   7;
+    const Reseller      =   7;  //經銷加盟商
 }
