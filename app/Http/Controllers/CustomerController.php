@@ -96,7 +96,7 @@ class CustomerController extends Controller
             ];
             $order = Order::create($orderdata);
             $extras = implode(",", $data['extra_id']);
-            foreach($data['extra_id'] as $extra) {
+            foreach($extras as $extra) {
                 $orderdata['order_id'] = $order->id;
                 $orderdata['product_id'] = $extra;
                 OrderExtra::create($orderdata);

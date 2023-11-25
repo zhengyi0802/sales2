@@ -75,7 +75,7 @@ class OrderController extends Controller
         $data['id'] = $id;
         $order = Order::create($data);
         $extras = implode(",", $data['extra_id']);
-        foreach($data['extra_id'] as $extra) {
+        foreach($extras as $extra) {
             $orderdata['order_id'] = $order->id;
             $orderdata['product_id'] = $extra;
             OrderExtra::create($orderdata);
@@ -130,7 +130,7 @@ class OrderController extends Controller
         foreach($extras as $extra) {
             $extra->delete();
         }
-        foreach($data['extra_id'] as $extra) {
+        foreach($extras as $extra) {
             $orderdata['order_id'] = $order->id;
             $orderdata['product_id'] = $extra;
             OrderExtra::create($orderdata);
