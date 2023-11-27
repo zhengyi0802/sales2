@@ -55,9 +55,9 @@
                 {{ $order->creator->name }}
         </x-adminlte-card>
         <x-adminlte-card title="{{ __('orders.shipment') }}" theme="info" icon="fas fa-lg">
-              <x-adminlte-button theme="info" title="{{ __('orders.shipment_button') }}" icon="fa fa-lg fa-fw fa-eye"
-                onClick="window.location='{{ route('orders.shipment', $order->id); }}'" >
-              </x-adminlte-button>
+              <button onClick="window.location='{{ route('orders.shipment', $order->id); }}'" >
+                {{ __('orders.shipment_button') }}
+              </button>
         </x-adminlte-card>
      </div>
    </div>
