@@ -75,8 +75,26 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group col-md-4">
+                <strong>{{ __('saleses.line_id') }} :</strong>
+                <input type="text" name="line_id" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group col-md-4">
+                <strong>{{ __('saleses.email') }} :</strong>
+                <input type="text" name="email" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group col-md-4">
                 <strong>{{ __('saleses.job') }} :</strong>
                 <input type="text" name="job" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group col-md-4">
+                <strong>{{ __('saleses.address') }} :</strong>
+                <input type="text" name="address" class="form-control">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

@@ -26,4 +26,5 @@ return [
     'productModels'                 => '產品型號',
     'orders'                        => '訂單管理',
     'users'                         => '帳戶管理',
+    'profiles'                      => '修改個人資料',
 ];

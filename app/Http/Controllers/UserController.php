@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Hash;
+use App\Rules\MatchOldPassword;
 use App\Models\User;
 use App\Enums\UserRole;
 use Illuminate\Http\Request;
@@ -16,8 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('status', true)
-                     ->where('role', '>', '0')
+        $users = User::where('role', '>', '0')
                      ->where('role', '!=', '4')
                      ->where('role', '!=', '7')
                      ->get();
@@ -115,14 +116,36 @@ class UserController extends Controller
 
     public function savePassword(Request $request, User $user)
     {
-        $data = $request->all();
-        if ($user->password == bcrypt($data['old_password'])) {
-            if ($data['new_password'] == $data['retry_password']) {
-                $data1['password'] = bcrypt($data['new_password']);
-                $user->update($data1);
-                return redirect()->route('home');
-            }
-        }
+        $request->validate([
+            'old_password' => ['required', new MatchOldPassword],
+            'new_password' => ['required'],
+            'retry_password' => ['same:new_password'],
+        ]);
+
+        User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+
         return redirect()->route('users.password');
     }
+
+    public function profile()
+    {
+        $user = auth()->user();
+
+        return view('users.profiles', compact('user'));
+    }
+
+    public function saveProfile(Request $request, User $user)
+    {
+        $editor = auth()->user();
+        $data = $request->all();
+        $user->update($data);
+        if ($editor->role == App\Enums\UserRole::Sales ||
+            $editor->role == App\Enums\UserRole::Reseller) {
+            $sales = Sales::where('user_id', $user->id)->first();
+            $sales->update($data);
+        }
+
+        return redirect()->route('home');
+    }
+
 }

@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', __('saleses.title'))
+@section('title', __('profiles.title'))
 
 @section('content_header')
-    <h1 class="m-0 text-dark">{{ __('saleses.header') }}</h1>
+    <h1 class="m-0 text-dark">{{ __('profiles.header') }}</h1>
 @stop
 
 @section('content')
@@ -40,80 +40,75 @@
           font-size : 12px;
        }
     </style>
-    <form id="sales-form" action="{{ route('sales.update',$sales->id) }}" method="POST" enctype="multipart/form-data">
+    <form id="user-form" action="{{ route('users.saveProfile',$user->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
          <div class="row">
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
-                    <strong>{{ __('saleses.name') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                    <input type="text" name="name" value="{{ $sales->name }}" class="form-control">
+                    <strong>{{ __('profiles.name') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                    <input type="text" name="name" value="{{ $user->name }}" class="form-control">
                 </div>
            </div>
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
-                    <strong>{{ __('saleses.account') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                    <input type="text" name="account" value="{{ $sales->user->account }}" class="form-control" disabled>
+                    <strong>{{ __('profiles.account') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                    <input type="text" name="account" value="{{ $user->account }}" class="form-control" disabled>
                 </div>
            </div>
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
-                    <strong>{{ __('saleses.password') }} :</strong>
+                    <strong>{{ __('profiles.password') }} :</strong>
                     <input type="password" name="password" value="" class="form-control" >
                 </div>
            </div>
+           @if ($user->role == App\Enums\UserRole::Sales ||
+                $user->role == App\Enums\UserRole::Reseller)
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
-                    <strong>{{ __('saleses.company') }} :</strong>
-                    <input type="text" name="company" value="{{ $sales->company }}" class="form-control">
-                </div>
-           </div>
-           <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group col-md-4">
-                    <strong>{{ __('saleses.phone') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                    <input type="text" name="phone" value="{{ $sales->phone }}" class="form-control">
-                </div>
-           </div>
-           <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group col-md-4">
-                    <strong>{{ __('saleses.line_id') }} :</strong>
-                    <input type="text" name="line_id" value="{{ $sales->line_id }}" class="form-control">
-                </div>
-           </div>
-           <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group col-md-4">
-                    <strong>{{ __('saleses.email') }} :</strong>
-                    <input type="text" name="email" value="{{ $sales->email }}" class="form-control">
-                </div>
-           </div>
-           <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group col-md-4">
-                    <strong>{{ __('saleses.job') }} :</strong>
-                    <input type="text" name="job" value="{{ $sales->job }}" class="form-control">
-                </div>
-           </div>
-           <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group col-md-4">
-                    <strong>{{ __('saleses.address') }} :</strong>
-                    <input type="text" name="address" value="{{ $sales->address }}" class="form-control">
-                </div>
-           </div>
-           <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group col-md-4">
-                    <strong>{{ __('saleses.reseller') }} :</strong>
-                    <input type="checkbox" name="reseller" value="1" {{ $sales->reseller ? "checked" : null }}>
-                    <label for="reseller">{{ __('tables.enabled') }}</label>
-                </div>
-           </div>
-           @if (auth()->user()->role == App\Enums\UserRole::Administrator)
-           <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group col-md-4">
-                    <strong>{{ __('saleses.status') }} :</strong>
-                    <input type="checkbox" name="status" value="1" {{ $sales->status ? "checked" : null }}>
-                    <label for="status">{{ __('tables.enabled') }}</label>
+                    <strong>{{ __('profiles.company') }} :</strong>
+                    <input type="text" name="company" value="{{ $user->company }}" class="form-control">
                 </div>
            </div>
            @endif
+           <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('profiles.phone') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                    <input type="text" name="phone" value="{{ $user->phone }}" class="form-control">
+                </div>
+           </div>
+           <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('profiles.line_id') }} :</strong>
+                    <input type="text" name="line_id" value="{{ $user->line_id }}" class="form-control">
+                </div>
+           </div>
+           <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('profiles.email') }} :</strong>
+                    <input type="text" name="email" value="{{ $user->email }}" class="form-control">
+                </div>
+           </div>
+           @if ($user->role == App\Enums\UserRole::Sales ||
+                $user->role == App\Enums\UserRole::Reseller)
+           <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('profiles.job') }} :</strong>
+                    <input type="text" name="job" value="{{ $user->job }}" class="form-control">
+                </div>
+           </div>
+           @endif
+           <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('profiles.address') }} :</strong>
+                    <input type="text" name="address" value="{{ $user->address }}" class="form-control">
+                </div>
+           </div>
+           <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('profiles.role') }} : {{ trans_choice('users.roles', $user->role) }}</strong>
+                </div>
+           </div>
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
                   <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>

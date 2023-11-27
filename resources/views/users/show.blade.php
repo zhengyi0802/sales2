@@ -31,6 +31,15 @@
         <x-adminlte-card title="{{ __('users.phone') }}" theme="info" icon="fas fa-lg">
                 {{ $user->phone }}
         </x-adminlte>
+        <x-adminlte-card title="{{ __('users.line_id') }}" theme="info" icon="fas fa-lg">
+                {{ $user->line_id }}
+        </x-adminlte>
+        <x-adminlte-card title="{{ __('users.email') }}" theme="info" icon="fas fa-lg">
+                {{ $user->email }}
+        </x-adminlte>
+        <x-adminlte-card title="{{ __('users.address') }}" theme="info" icon="fas fa-lg">
+                {{ $user->address }}
+        </x-adminlte>
         <x-adminlte-card title="{{ __('users.role') }}" theme="info" icon="fas fa-lg">
                 {{ trans_choice('users.roles', $user->role) }}
         </x-adminlte>

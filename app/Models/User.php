@@ -21,9 +21,12 @@ class User extends Authenticatable
         'name',
         'account',
         'phone',
+        'line_id',
         'email',
         'password',
+        'address',
         'role',
+        'status',
         'created_by',
     ];
 

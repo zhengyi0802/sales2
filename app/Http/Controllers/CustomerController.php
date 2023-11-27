@@ -24,7 +24,7 @@ class CustomerController extends Controller
         if ($user->role == UserRole::Sales) {
             $customers = Customer::where('sales_id', $user->sales->id)->where('status', true)->get();
         } else if ($user->role == UserRole::Reseller) {
-            $customers = Customer::where('sales_id', $user->id)->where('status', true)->get();
+            $customers = Customer::where('sales_id', $user->sales->id)->where('status', true)->get();
         } else if ($user->role == UserRole::Administrator) {
             $customers = Customer::get();
         } else {

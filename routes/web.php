@@ -71,4 +71,10 @@ Route::get('/users/password', [App\Http\Controllers\UserController::class, 'pass
 Route::any('/users/savePassword', [App\Http\Controllers\UserController::class, 'savePassword'])
      ->name('users.savePassword');
 
+Route::get('/profiles', [App\Http\Controllers\UserController::class, 'profile'])
+     ->name('users.profiles');
+
+Route::get('/users/saveProfile', [App\Http\Controllers\UserController::class, 'saveProfile'])
+     ->name('users.saveProfile');
+
 Route::resource('/users', UserController::class);

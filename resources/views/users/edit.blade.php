@@ -47,7 +47,7 @@
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
                     <strong>{{ __('users.account') }} :</strong>
-                    <input type="text" name="account" value="{{ $user->account }}" class="form-control">
+                    <input type="text" name="account" value="{{ $user->account }}" class="form-control" disabled>
                 </div>
                 <div class="form-group col-md-4">
                     <strong>{{ __('users.name') }} :</strong>
@@ -56,6 +56,18 @@
                 <div class="form-group col-md-4">
                     <strong>{{ __('users.phone') }} :</strong>
                     <input type="text" name="phone" value="{{ $user->phone }}" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('users.line_id') }} :</strong>
+                    <input type="text" name="line_id" value="{{ $user->line_id }}" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('users.email') }} :</strong>
+                    <input type="text" name="email" value="{{ $user->email }}" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('users.address') }} :</strong>
+                    <input type="text" name="address" value="{{ $user->address }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
                     <strong>{{ __('users.password') }} :</strong>

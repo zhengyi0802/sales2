@@ -57,6 +57,18 @@
                 <input type="text" name="phone" class="form-control">
             </div>
             <div class="form-group col-md-4">
+                <strong>{{ __('users.line_id') }} :</strong>
+                <input type="text" name="line_id" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+                <strong>{{ __('users.email') }} :</strong>
+                <input type="text" name="email" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+                <strong>{{ __('users.address') }} :</strong>
+                <input type="text" name="address" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
                 <strong>{{ __('users.password') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="password" name="password" class="form-control">
             </div>
@@ -88,10 +100,22 @@
                name: {
                   required: true
                },
+               account: {
+                  required: true
+               },
+               password: {
+                  required: true
+               },
            },
            messages: {
                name: {
                   required: '姓名必填'
+               },
+               account: {
+                  required: '帳號必填'
+               },
+               password: {
+                  required: '密碼必填'
                },
            },
            submitHandler: function(form) {

@@ -37,14 +37,18 @@ $config = [
           <form name="order-delete-form" action="{{ route('orders.destroy', $order->id); }}" method="POST">
             @csrf
             @method('DELETE')
-            @if (auth()->user()->id == $order->creator->id || auth()->user()->role == App\Enums\UserRole::Administrator)
+            @if (auth()->user()->id == $order->creator->id ||
+                 auth()->user()->role == App\Enums\UserRole::Operator ||
+                 auth()->user()->role == App\Enums\UserRole::Administrator)
               <x-adminlte-button theme="primary" title="{{ __('tables.edit') }}" icon="fa fa-lg fa-fw fa-pen"
                 onClick="window.location='{{ route('orders.edit', $order->id); }}'" >
               </x-adminlte-button>
             @endif
-            @if (auth()->user()->id == $order->creator->id || auth()->user()->role == App\Enums\UserRole::Administrator)
+            @if (auth()->user()->id == $order->creator->id ||
+                 auth()->user()->role == App\Enums\UserRole::Operator ||
+                 auth()->user()->role == App\Enums\UserRole::Administrator)
               <x-adminlte-button theme="danger" title="{{ __('tables.delete') }}" icon="fa fa-lg fa-fw fa-trash"
-                type="submit" >
+                type="submit" onclick="return confirm('{{ __('tables.confirm_delete') }}');">
               </x-adminlte-button>
              @endif
               <x-adminlte-button theme="info" title="{{ __('tables.detail') }}" icon="fa fa-lg fa-fw fa-eye"

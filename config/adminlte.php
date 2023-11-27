@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '業務訂單系統',
-    'logo_img' => 'hplogo.png',
+    'logo_img' => 'hplogo2.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -302,7 +302,8 @@ return [
         ],
 
         // Sidebar items:
-        ['header' => 'manager_settings'],
+        ['header' => 'manager_settings',
+         'can'    => 'manager', ],
         [
             'text' => 'catagories',
             'url'  => 'catagories',
@@ -349,6 +350,11 @@ return [
         [
             'text' => 'change_password',
             'url'  => 'users/password',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+        [
+            'text' => 'profiles',
+            'url'  => 'profiles',
             'icon' => 'fas fa-fw fa-lock',
         ],
     ],

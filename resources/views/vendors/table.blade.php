@@ -31,7 +31,7 @@ $config = [
             @endif
             @if (auth()->user()->role <= App\Enums\UserRole::Manager && $vendor->status)
               <x-adminlte-button theme="danger" title="{{ __('tables.delete') }}" icon="fa fa-lg fa-fw fa-trash"
-                type="submit" >
+                type="submit" onclick="return confirm('{{ __('tables.confirm_delete') }}');">
               </x-adminlte-button>
              @endif
               <x-adminlte-button theme="info" title="{{ __('tables.detail') }}" icon="fa fa-lg fa-fw fa-eye"

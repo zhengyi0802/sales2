@@ -20,7 +20,7 @@ class CatagoryController extends Controller
         if ($user->role == UserRole::Administrator) {
             $catagories = Catagory::get();
         } else {
-            $catagories = Catagory::where('staatus', true)->get();
+            $catagories = Catagory::where('status', true)->get();
         }
         return view('catagories.index', compact('catagories'));
     }

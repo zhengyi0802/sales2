@@ -31,10 +31,12 @@
                   <option value="2" >{{ trans_choice('orders.flows', 2) }}</option>
                   <option value="3" >{{ trans_choice('orders.flows', 3) }}</option>
                   <option value="4" >{{ trans_choice('orders.flows', 4) }}</option>
+                  <option value="5" >{{ trans_choice('orders.flows', 5) }}</option>
+                  <option value="6" >{{ trans_choice('orders.flows', 6) }}</option>
                 </select></td>
             </tr>
             <tr class="form-group col-md-6">
-                <td><strong>{{ __('orders.flow') }} :</strong></td>
+                <td><strong>{{ __('orders.memo') }} :</strong></td>
                 <td><textarea name="memo" rows="10"></textarea></td>
             </tr>
          </table>

@@ -31,11 +31,20 @@
         <x-adminlte-card title="{{ __('saleses.phone') }}" theme="info" icon="fas fa-lg">
                 {{ $sales->phone }}
         </x-adminlte>
+        <x-adminlte-card title="{{ __('saleses.line_id') }}" theme="info" icon="fas fa-lg">
+                {{ $sales->line_id }}
+        </x-adminlte>
+        <x-adminlte-card title="{{ __('saleses.email') }}" theme="info" icon="fas fa-lg">
+                {{ $sales->email }}
+        </x-adminlte>
         <x-adminlte-card title="{{ __('saleses.company') }}" theme="info" icon="fas fa-lg">
                 {{ $sales->company }}
         </x-adminlte>
         <x-adminlte-card title="{{ __('saleses.job') }}" theme="info" icon="fas fa-lg">
                 {{ $sales->job }}
+        </x-adminlte>
+        <x-adminlte-card title="{{ __('saleses.address') }}" theme="info" icon="fas fa-lg">
+                {{ $sales->address }}
         </x-adminlte>
         <x-adminlte-card title="{{ __('saleses.identity') }}" theme="info" icon="fas fa-lg">
                 {{ ($sales->user->role == App\Enums\UserRole::Sales) ? __('saleses.id_sales') : __('saleses.id_reseller') }}

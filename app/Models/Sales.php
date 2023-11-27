@@ -12,8 +12,11 @@ class Sales extends Model
     protected $fillable = [
         'name',
         'phone',
+        'lin_id',
+        'email',
         'company',
         'job',
+        'address',
         'status',
         'user_id',
         'created_by',
