@@ -9,6 +9,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ShippingProcessController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,3 +82,5 @@ Route::get('/users/saveProfile', [App\Http\Controllers\UserController::class, 's
      ->name('users.saveProfile');
 
 Route::resource('/users', UserController::class);
+
+Route::resource('/shippingprocesses', ShippingProcessController::class);

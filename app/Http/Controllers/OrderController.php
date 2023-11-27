@@ -8,6 +8,7 @@ use App\Models\Customer;
 use App\Models\Project;
 use App\Models\ProductModel;
 use App\Models\Sales;
+use App\Models\ShippingProcess;
 use App\Enums\UserRole;
 use Illuminate\Http\Request;
 
@@ -134,9 +135,58 @@ class OrderController extends Controller
         $creator = auth()->user();
         $data = $request->all();
         $order->update($data);
+        switch($data['flow']) {
+            case 3 :
+                     $shippingProcess = ShippingProcess::where('order_id', $order->id)->first();
+                     if ($shippingProcess == null) {
+                         $spdata = [ 'order_id' => $order->id, 'shipping_date' => $data['shipping_date'], 'created_by' => $creator->id, ];
+                         ShippingProcess::create($spdata);
+                     } else {
+                         $spdata['shipping_date'] = $data['shipping_date'];
+                         $spdata['created_by'] = $creator->id;
+                         $shippingProcess->update($spdata);
+                     }
+                     break;
+            case 4 :
+                     $shippingProcess = ShippingProcess::where('order_id', $order->id)->first();
+                     if ($shippingProcess == null) {
+                         $spdata = [ 'order_id' => $order->id, 'shipping_date' => $data['shipping_date'], 'created_by' => $creator->id, ];
+                         ShippingProcess::create($spdata);
+                     } else {
+                         $spdata['shipping_date'] = $data['shipping_date'];
+                         $spdata['created_by'] = $creator->id;
+                         $shippingProcess->update($spdata);
+                     }
+                     break;
+            case 5 :
+                     $shippingProcess = ShippingProcess::where('order_id', $order->id)->first();
+                     if ($shippingProcess == null) {
+                         $spdata = [ 'order_id' => $order->id, 'completion_time' => date('Y-m-d H:i:s'), 'created_by' => $creator->id, ];
+                         ShippingProcess::create($spdata);
+                     } else {
+                         $spdata['completion_date'] = date('Y-m-d H:i:s');
+                         $spdata['created_by'] = $creator->id;
+                         $shippingProcess->update($spdata);
+                     }
+                     break;
+            case 6 :
+                     $shippingProcess = ShippingProcess::where('order_id', $order->id)->first();
+                     if ($shippingProcess == null) {
+                         $spdata = [ 'order_id' => $order->id, 'chargeback_time' => date('Y-m-d H:i:s'), 'created_by' => $creator->id, ];
+                         ShippingProcess::create($spdata);
+                     } else {
+                         $spdata['chargeback_date'] = date('Y-m-d H:i:s');
+                         $spdata['created_by'] = $creator->id;
+                         $shippingProcess->update($spdata);
+                     }
+                     break;
+        }
         $extras = $order->extras;
         foreach($extras as $extra) {
             $extra->delete();
+        }
+        if ($data['flow'] == 6) {
+            return redirect()->route('orders.index');
         }
         if (array_key_exists('extra_id', $data)) {
             foreach($data['extra_id'] as $extra) {

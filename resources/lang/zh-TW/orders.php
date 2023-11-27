@@ -19,5 +19,6 @@
            'creator'     => '建立者',
            'shipment'    => '出貨單',
            'shipment_button' => '顯示出貨單',
+           'shipping_date'   => '預計裝機日期',
     ];
 

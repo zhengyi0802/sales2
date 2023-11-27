@@ -340,6 +340,11 @@ return [
             'url'  => 'orders',
             'can'  => ['manager', 'sales', 'operator', 'reseller'],
         ],
+        [
+            'text' => 'shippingprocesses',
+            'url'  => 'shippingprocesses',
+            'can'  => ['manager', 'sales', 'operator', 'installer', 'reseller'],
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'users',

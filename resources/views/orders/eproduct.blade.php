@@ -27,7 +27,7 @@
             </tr>
             <tr class="form-group col-md-6">
                 <td><strong>{{ __('orders.flow') }} :</strong></td>
-                <td><select id="flow" name="flow" >
+                <td><select id="flow" name="flow" onchange="checkflow(this)">
                   <option value="1" >{{ trans_choice('orders.flows', 1) }}</option>
                   <option value="2" >{{ trans_choice('orders.flows', 2) }}</option>
                   <option value="3" >{{ trans_choice('orders.flows', 3) }}</option>
@@ -35,6 +35,10 @@
                   <option value="5" >{{ trans_choice('orders.flows', 5) }}</option>
                   <option value="6" >{{ trans_choice('orders.flows', 6) }}</option>
                 </select></td>
+            </tr>
+            <tr class="form-group col-md-6" id="shipdate" style="display:none" >
+                <td><strong>{{ __('orders.shipping_date') }} :</strong></td>
+                <td><input type="date"  name="shipping_date" /></td>
             </tr>
             <tr class="form-group col-md-6">
                 <td><strong>{{ __('orders.memo') }} :</strong></td>
@@ -44,5 +48,14 @@
 <script>
     function proj() {
       d = document.getElementById("project_id").value;
+    }
+
+    function checkflow(event) {
+       var val = event.value;
+       if (val > 2 && val < 5) {
+           document.getElementById('shipdate').style.display="";
+       } else {
+           document.getElementById('shipdate').style.display="none";
+       }
     }
 </script>

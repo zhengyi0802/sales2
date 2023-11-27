@@ -18,7 +18,7 @@ $config = [
 
 <x-adminlte-datatable id="order-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" striped hoverable bordered>
   @foreach($orders as $order)
-    <tr class="{{ $order->status ? null : "bg-gray"}}">
+    <tr class="{{ ($order->status || $order->flow == 6) ? null : "bg-gray"}}">
       <td>{{ $order->id }}</td>
       <td>{{ trans_choice('orders.flows', $order->flow) }}</td>
       <td>{{ $order->name }}</td>
