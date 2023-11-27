@@ -80,10 +80,12 @@ class OrderController extends Controller
         $order = Order::create($data);
         if (array_key_exists('extra_id', $data)) {
             foreach($data['extra_id'] as $extra) {
-                $orderdata['order_id'] = $order->id;
-                $orderdata['product_id'] = $extra;
-                $orderdata['created_by'] = $creator->id;
-                OrderExtra::create($orderdata);
+                if ($extra > 0) {
+                    $orderdata['order_id'] = $order->id;
+                    $orderdata['product_id'] = $extra;
+                    $orderdata['created_by'] = $creator->id;
+                    OrderExtra::create($orderdata);
+                }
             }
         }
         return redirect()->route('orders.index');
@@ -138,10 +140,12 @@ class OrderController extends Controller
         }
         if (array_key_exists('extra_id', $data)) {
             foreach($data['extra_id'] as $extra) {
-                $orderdata['order_id'] = $order->id;
-                $orderdata['product_id'] = $extra;
-                $orderdata['created_by'] = $creator->id;
-                OrderExtra::create($orderdata);
+                if ($extra > 0) {
+                    $orderdata['order_id'] = $order->id;
+                    $orderdata['product_id'] = $extra;
+                    $orderdata['created_by'] = $creator->id;
+                    OrderExtra::create($orderdata);
+                }
             }
         }
 
@@ -165,5 +169,10 @@ class OrderController extends Controller
             $extra->save();
         }
         return redirect()->route('orders.index');
+    }
+
+    public function shipment(Order $order)
+    {
+        return view('shippings.shipment', compact('order'));
     }
 }

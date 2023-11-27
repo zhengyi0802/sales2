@@ -97,10 +97,12 @@ class CustomerController extends Controller
             $order = Order::create($orderdata);
             if (array_key_exists('extra_id', $data)) {
                 foreach($data['extra_id'] as $extra) {
-                    $orderdata['order_id'] = $order->id;
-                    $orderdata['product_id'] = $extra;
-                    $orderdata['created_by'] = $creator->id;
-                    OrderExtra::create($orderdata);
+                    if ($extra > 0) {
+                        $orderdata['order_id'] = $order->id;
+                        $orderdata['product_id'] = $extra;
+                        $orderdata['created_by'] = $creator->id;
+                        OrderExtra::create($orderdata);
+                    }
                 }
             }
         }

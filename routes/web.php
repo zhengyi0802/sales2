@@ -63,6 +63,9 @@ Route::resource('/customers', CustomerController::class);
 Route::get('/orders/create2/{customer}', [App\Http\Controllers\OrderController::class, 'create2'])
      ->name('orders.create2');
 
+Route::get('/orders/{order}/shipment', [App\Http\Controllers\OrderController::class, 'shipment'])
+     ->name('orders.shipment');
+
 Route::resource('/orders', OrderController::class);
 
 Route::get('/users/password', [App\Http\Controllers\UserController::class, 'password'])
