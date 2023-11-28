@@ -1,3 +1,4 @@
+
 <html xmlns:v="urn:schemas-microsoft-com:vml"
 xmlns:o="urn:schemas-microsoft-com:office:office"
 xmlns:w="urn:schemas-microsoft-com:office:word"
@@ -8,26 +9,57 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <meta http-equiv=Content-Type content="text/html; charset=utf-8">
 </head>
 
-<body lang=ZH-TW style='tab-interval:24.0pt;text-justify-trim:punctuation'>
+<style type="text/css">
+         body {
+                tab-interval:24.0pt;
+                text-justify-trim:punctuation;
+              }
+     .content {
+                layout-grid:18.0pt;
+              }
+   .tableGrid {
+                 margin-left:9.25pt;
+                 border-collapse:collapse;
+                 border:none;
+                 mso-border-alt: solid windowtext .5pt;
+                 mso-yfti-tbllook:1184;
+                 mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+              }
+         .tr1 {
+                 mso-yfti-irow:0;
+                 mso-yfti-firstrow:yes;
+                 height:57.75pt;
+              }
+     .titletd {
+                 width:513.8pt;
+                 border:none;
+                 border-bottom:solid windowtext 1.0pt;
+                 mso-border-bottom-alt:solid windowtext .5pt;
+                 padding:0cm 5.4pt 0cm 5.4pt;
+                 height:57.75pt;
+                 text-align:center;
+              }
+       .title {
+                 font-size:24.0pt;
+                 font-family:標楷體;
+              }
+      .ordern {
+                 font-family:標楷體;
+                 padding-left: 10.0cm;
+              }
+         .tr2 {
+                 mso-yfti-irow:1;
+                 height:39.75pt;
+              }
+</style>
 
-<div class=WordSection1 style='layout-grid:18.0pt'>
-
-<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
- style='margin-left:9.25pt;border-collapse:collapse;border:none;mso-border-alt:
- solid windowtext .5pt;mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
- <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;height:57.75pt'>
-  <td width=685 colspan=6 valign=top style='width:513.8pt;border:none;
-  border-bottom:solid windowtext 1.0pt;mso-border-bottom-alt:solid windowtext .5pt;
-  padding:0cm 5.4pt 0cm 5.4pt;height:57.75pt'>
-  <p class=MsoNormal align=center style='text-align:center'><a
-  name="RANGE!A1:E15"><span style='font-size:24.0pt;font-family:標楷體'>禾昌國際事業股份有限公司出貨單</span></a><span
-  style='mso-bookmark:"RANGE\!A1\:E15"'><span lang=EN-US style='font-family:
-  標楷體'><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><span
-  lang=EN-US style='font-family:標楷體'><o:p></o:p></span></p>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-family:標楷體'><span
-  style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </span></span><span style='font-family:標楷體'>訂單編號<span lang=EN-US>:<o:p></o:p></span></span></p>
+<body lang=ZH-TW>
+<div class="content" >
+<table class="tableGrid" border="1" cellspacing="0" cellpadding="0">
+ <tr class="tr1">
+  <td width="685" colspan="6" valign="top" class="titletd">
+    <p><span class="title">禾昌國際事業股份有限公司出貨單</span></p>
+    <p><span class="ordern">訂單編號 :</span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:1;height:39.75pt'>
