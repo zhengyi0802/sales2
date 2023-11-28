@@ -341,9 +341,8 @@ return [
             'can'  => ['manager', 'sales', 'operator', 'reseller'],
         ],
         [
-            'text' => 'shippingprocesses',
-            'url'  => 'shippingprocesses',
-            'can'  => ['manager', 'sales', 'operator', 'installer', 'reseller'],
+            'text' => 'shippings',
+            'url'  => 'shippings',
         ],
         ['header' => 'account_settings'],
         [

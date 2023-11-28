@@ -27,4 +27,7 @@ class ShippingProcess extends Model
         return $this->belongsTo(Order::class, 'order_id');
     }
 
+    function installer() {
+        return $this->belongsTo(User::class, 'installer_id');
+    }
 }

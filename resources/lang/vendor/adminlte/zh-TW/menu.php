@@ -27,5 +27,5 @@ return [
     'orders'                        => '訂單管理',
     'users'                         => '帳戶管理',
     'profiles'                      => '修改個人資料',
-    'shippingprocesses'             => '裝機排程資料',
+    'shippings'                     => '裝機排程資料',
 ];

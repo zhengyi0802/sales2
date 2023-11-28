@@ -54,11 +54,14 @@
         <x-adminlte-card title="{{ __('orders.creator') }}" theme="info" icon="fas fa-lg">
                 {{ $order->creator->name }}
         </x-adminlte-card>
+        @if (auth()->user()->role == App\Enums\UserRole::Administrator ||
+             auth()->user()->role == App\Enums\UserRole::Operator)
         <x-adminlte-card title="{{ __('orders.shipment') }}" theme="info" icon="fas fa-lg">
               <button onClick="window.location='{{ route('orders.shipment', $order->id); }}'" >
                 {{ __('orders.shipment_button') }}
               </button>
         </x-adminlte-card>
+        @endif
      </div>
    </div>
 @endsection

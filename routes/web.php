@@ -83,4 +83,4 @@ Route::get('/users/saveProfile', [App\Http\Controllers\UserController::class, 's
 
 Route::resource('/users', UserController::class);
 
-Route::resource('/shippingprocesses', ShippingProcessController::class);
+Route::resource('/shippings', ShippingProcessController::class);

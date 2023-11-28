@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', __('catagories.title'))
+@section('title', __('shippings.title'))
 
 @section('content_header')
-    <h1 class="m-0 text-dark">{{ __('catagories.header') }}</h1>
+    <h1 class="m-0 text-dark">{{ __('shippings.header') }}</h1>
 @stop
 
 @section('content')
@@ -40,26 +40,41 @@
           font-size : 12px;
        }
     </style>
-    <form id="catagory-form" action="{{ route('catagories.update',$catagory->id) }}" method="POST" enctype="multipart/form-data">
+    <form id="shipping-form" action="{{ route('shippings.update',$shipping->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
          <div class="row">
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
-                    <strong>{{ __('catagories.name') }} :</strong>
-                    <input type="text" name="name" value="{{ $catagory->name }}" class="form-control">
+                    <strong>{{ __('shippings.order_id') }} :</strong>
+                    <input type="text" name="order_id" value="{{ $shipping->order_id }}" class="form-control" disabled>
                 </div>
-           </div>
-           @if (auth()->user()->role == App\Enums\UserRole::Administrator)
-           <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
-                    <strong>{{ __('catagories.status') }} :</strong>
-                    <input type="checkbox" name="status" value="1" {{ $catagory->status ? "checked" : null }}>
-                    <label for="status">{{ __('tables.enabled') }}</label>
+                    <strong>{{ __('shippings.name') }} :</strong>
+                    <input type="text" name="name" value="{{ $shipping->order->name }}" class="form-control">
                 </div>
-              <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('shippings.phone') }} :</strong>
+                    <input type="text" name="phone" value="{{ $shipping->order->phone }}" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('shippings.name') }} :</strong>
+                    <input type="text" name="address" value="{{ $shipping->order->name }}" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('shippings.flow') }} :</strong>
+                </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('shippings.shipping_date') }} :</strong>
+                    <input type="date" name="shipping_date" value="{{ $shipping->shipping_date }}" class="form-control">
+                </div>
+                @if (auth()->user()->role == App\Enums\UserRole::Installer)
+                <div class="form-group col-md-4">
+                    <strong>{{ __('shippings.completion') }} :</strong>
+                    <input type="checkbox" name="completion" ><label for="completion">{{ __('tables.yes') }}
+                </div>
+                @endif
            </div>
-           @endif
         </div>
     </form>
 
