@@ -20,7 +20,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
                  margin-left:9.25pt;
                  border-collapse:collapse;
                  border:none;
-                 mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+                 padding:0cm 5.4pt 0cm 5.4pt;
               }
          .tr1 {
                  height:57.75pt;
@@ -55,11 +55,14 @@ xmlns="http://www.w3.org/TR/REC-html40">
       .ordern {
                  padding-left: 10.0cm;
               }
+     .padding {
+                 padding:0cm 5.4pt 0cm 5.4pt;
+                 text-align:center;
+              }
           .c1 {
                  width:97.9pt;
                  border:solid windowtext 1.0pt;
                  border-top:none;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
           .c2 {
                  width:98.85pt;
@@ -67,7 +70,6 @@ xmlns="http://www.w3.org/TR/REC-html40">
                  border-left:none;
                  border-bottom:solid windowtext 1.0pt;
                  border-right:solid windowtext 1.0pt;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
           .c3 {
                  width:70.55pt;
@@ -75,7 +77,6 @@ xmlns="http://www.w3.org/TR/REC-html40">
                  border-left:none;
                  border-bottom:solid windowtext 1.0pt;
                  border-right:solid windowtext 1.0pt;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
           .c4 {
                  width:120.45pt;
@@ -83,7 +84,6 @@ xmlns="http://www.w3.org/TR/REC-html40">
                  border-left:none;
                  border-bottom:solid windowtext 1.0pt;
                  border-right:solid windowtext 1.0pt;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
           .c5 {
                  width:126.05pt;
@@ -91,13 +91,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
                  border-left:none;
                  border-bottom:solid windowtext 1.0pt;
                  border-right:solid windowtext 1.0pt;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
           .c6 {
                  width:97.9pt;
                  border:solid windowtext 1.0pt;
                  border-top:none;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
           .c7 {
                  width:98.85pt;
@@ -105,7 +103,6 @@ xmlns="http://www.w3.org/TR/REC-html40">
                  border-left:none;
                  border-bottom:solid windowtext 1.0pt;
                  border-right:solid windowtext 1.0pt;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
           .c8 {
                  width:317.05pt;
@@ -113,13 +110,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
                  border-left:none;
                  border-bottom:solid windowtext 1.0pt;
                  border-right:solid windowtext 1.0pt;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
           .c9 {
                  width:97.9pt;
                  border:solid windowtext 1.0pt;
                  border-top:none;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
          .c10 {
                  width:415.9pt;
@@ -127,13 +122,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
                  border-left:none;
                  border-bottom:solid windowtext 1.0pt;
                  border-right:solid windowtext 1.0pt;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
          .c11 {
                  width:97.9pt;
                  border:solid windowtext 1.0pt;
                  border-top:none;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
          .c12 {
                  width:169.4pt;
@@ -141,7 +134,6 @@ xmlns="http://www.w3.org/TR/REC-html40">
                  border-left:none;
                  border-bottom:solid windowtext 1.0pt;
                  border-right:solid windowtext 1.0pt;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
          .c13 {
                  width:56.6pt;
@@ -149,7 +141,6 @@ xmlns="http://www.w3.org/TR/REC-html40">
                  border-left:none;
                  border-bottom:solid windowtext 1.0pt;
                  border-right:solid windowtext 1.0pt;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
          .c14 {
                  width:63.85pt;
@@ -157,7 +148,6 @@ xmlns="http://www.w3.org/TR/REC-html40">
                  border-left:none;
                  border-bottom:solid windowtext 1.0pt;
                  border-right:solid windowtext 1.0pt;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
          .c15 {
                  width:126.05pt;
@@ -165,14 +155,12 @@ xmlns="http://www.w3.org/TR/REC-html40">
                  border-left:none;
                  border-bottom:solid windowtext 1.0pt;
                  border-right:solid windowtext 1.0pt;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
          .c16 {
                  width:196.75pt;
                  border:solid windowtext 1.0pt;
                  border-top:none;
                  mso-border-top-alt:solid windowtext .5pt;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
          .c17 {
                  width:191.0pt;
@@ -180,13 +168,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
                  border-left:none;
                  border-bottom:solid windowtext 1.0pt;
                  border-right:solid windowtext 1.0pt;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
          .c18 {
                  width:97.9pt;
                  border:solid windowtext 1.0pt;
                  border-top:none;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
          .c19 {
                  width:415.9pt;
@@ -194,13 +180,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
                  border-left:none;
                  border-bottom:solid windowtext 1.0pt;
                  border-right:solid windowtext 1.0pt;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
          .c20 {
                  width:267.3pt;
                  border:solid windowtext 1.0pt;
                  border-top:none;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
          .c21 {
                  width:246.5pt;
@@ -208,13 +192,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
                  border-left:none;
                  border-bottom:solid windowtext 1.0pt;
                  border-right:solid windowtext 1.0pt;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
          .c22 {
                  width:97.9pt;
                  border:solid windowtext 1.0pt;
                  border-top:none;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
          .c23 {
                  width:98.85pt;
@@ -222,7 +204,6 @@ xmlns="http://www.w3.org/TR/REC-html40">
                  border-left:none;
                  border-bottom:solid windowtext 1.0pt;
                  border-right:solid windowtext 1.0pt;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
          .c24 {
                  width:70.55pt;
@@ -230,13 +211,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
                  border-left:none;
                  border-bottom:solid windowtext 1.0pt;
                  border-right:solid windowtext 1.0pt;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
          .c25 {
                  width:246.5pt;
                  border-top:none;
                  border:solid windowtext 1.0pt;
-                 padding:0cm 5.4pt 0cm 5.4pt;
               }
 </style>
 
@@ -251,206 +230,206 @@ xmlns="http://www.w3.org/TR/REC-html40">
   </td>
  </tr>
  <tr class="tr2">
-  <td class="c1" width="131" valign="top" >
+  <td width="131" class="c1 padding" >
       <p><span>客戶編號 : </span></p>
   </td>
-  <td width="132" valign="top" class="c2"></td>
-  <td width="94"  valign="top" class="c3">
+  <td width="132" class="c2"></td>
+  <td width="94"  class="c3 padding">
       <p><span>客戶名稱</span></p>
   </td>
-  <td width="161" colspan="2" valign="top" class="c4"></td>
-  <td width="168" valign="top" class="c5">
+  <td width="161" colspan="2" class="c4"></td>
+  <td width="168" class="c5 padding">
       <p><span>出貨日期</span></p>
   </td>
  </tr>
  <tr class="tr2">
-  <td width="131" valign="top" class="c6">
+  <td width="131" class="c6 padding">
       <p><span>電話</span></p>
   </td>
-  <td width="132" valign="top" class="c7"></td>
-  <td width="423" colspan="4" valign="top" class="c8">
+  <td width="132" class="c7"></td>
+  <td width="423" colspan="4" class="c8 padding">
       <p><span lang=EN-US>□</span><span>代理商<span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>□</span>經銷商
          <span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>□</span>一般用戶
          <span lang=EN-US><o:p></o:p></span></span></p>
   </td>
  </tr>
  <tr class="tr2">
-  <td width="131" valign="top" class="c9">
+  <td width="131" class="c9 padding">
       <p><span>地址</span></p>
   </td>
-  <td width="555" colspan="5" valign="top" class="c10"></td>
+  <td width="555" colspan="5" class="c10"></td>
  </tr>
  <tr class="tr2">
-  <td width="131" valign="top" class="c11">
+  <td width="131" class="c11 padding">
       <p><span>品名</span></p>
   </td>
-  <td width="226" colspan="2" valign="top" class="c12">
+  <td width="226" colspan="2" class="c12 padding">
       <p><span>主機機器序號</span></p>
   </td>
-  <td width="75" valign="top" class="c13">
+  <td width="75" class="c13 padding">
       <p><span>數量</span></p>
   </td>
-  <td width="85" valign="top" class="c14">
+  <td width="85" class="c14 padding">
       <p><span>單價</span></p>
   </td>
-  <td width="168" valign="top" class="c15">
+  <td width="168" class="c15 padding">
       <p><span>備註</span></p>
   </td>
  </tr>
  <tr class="tr2" id="product_1_row">
-  <td width="131" valign="top" class="c11">
+  <td width="131" class="c11">
       <p><span></span></p>
   </td>
-  <td width="226" colspan="2" valign="top" class="c12">
+  <td width="226" colspan="2" class"="c12">
       <p><span></span></p>
   </td>
-  <td width="75" valign="top" class="c13">
+  <td width="75" class="c13">
       <p><span></span></p>
   </td>
-  <td width="85" valign="top" class="c14">
+  <td width="85" class="c14">
       <p><span></span></p>
   </td>
-  <td width="168" valign="top" class="c15">
+  <td width="168" class="c15">
       <p><span></span></p>
   </td>
  </tr>
  <tr class="tr2"  id="product_2_row">
-  <td width="131" valign="top" class="c11">
+  <td width="131" class="c11">
       <p><span></span></p>
   </td>
-  <td width="226" colspan="2" valign="top" class="c12">
+  <td width="226" colspan="2" class="c12">
       <p><span></span></p>
   </td>
-  <td width="75" valign="top" class="c13">
+  <td width="75" class="c13">
       <p><span></span></p>
   </td>
-  <td width="85" valign="top" class="c14">
+  <td width="85" class="c14">
       <p><span></span></p>
   </td>
-  <td width="168" valign="top" class="c15">
+  <td width="168" class="c15">
       <p><span></span></p>
   </td>
  </tr>
  <tr class="tr2"  id="product_3_row">
-  <td width="131" valign="top" class="c11">
+  <td width="131" class="c11">
       <p><span></span></p>
   </td>
-  <td width="226" colspan="2" valign="top" class="c12">
+  <td width="226" colspan="2" class="c12">
       <p><span></span></p>
   </td>
-  <td width="75" valign="top" class="c13">
+  <td width="75" class="c13">
       <p><span></span></p>
   </td>
-  <td width="85" valign="top" class="c14">
+  <td width="85" class="c14">
       <p><span></span></p>
   </td>
-  <td width="168" valign="top" class="c15">
+  <td width="168" class="c15">
       <p><span></span></p>
   </td>
  </tr>
  <tr class="tr2"  id="product_4_row">
-  <td width="131" valign="top" class="c11">
+  <td width="131" class="c11">
       <p><span></span></p>
   </td>
-  <td width="226" colspan="2" valign="top" class="c12">
+  <td width="226" colspan="2" class="c12">
       <p><span></span></p>
   </td>
-  <td width="75" valign="top" class="c13">
+  <td width="75" class="c13">
       <p><span></span></p>
   </td>
-  <td width="85" valign="top" class="c14">
+  <td width="85"  class="c14">
       <p><span></span></p>
   </td>
-  <td width="168" valign="top" class="c15">
+  <td width="168" class="c15">
       <p><span></span></p>
   </td>
  </tr>
  <tr class="tr2"  id="product_5_row">
-  <td width="131" valign="top" class="c11">
+  <td width="131" class="c11">
       <p><span></span></p>
   </td>
-  <td width="226" colspan="2" valign="top" class="c12">
+  <td width="226" colspan="2" class="c12">
       <p><span></span></p>
   </td>
-  <td width="75" valign="top" class="c13">
+  <td width="75" class="c13">
       <p><span></span></p>
   </td>
-  <td width="85" valign="top" class="c14">
+  <td width="85" class="c14">
       <p><span></span></p>
   </td>
-  <td width="168" valign="top" class="c15">
+  <td width="168" class="c15">
       <p><span></span></p>
   </td>
  </tr>
  <tr class="tr2"  id="product_6_row">
-  <td width="131" valign="top" class="c11">
+  <td width="131" class="c11">
       <p><span></span></p>
   </td>
-  <td width="226" colspan="2" valign="top" class="c12">
+  <td width="226" colspan="2" class="c12">
       <p><span></span></p>
   </td>
-  <td width="75" valign="top" class="c13">
+  <td width="75" class="c13">
       <p><span></span></p>
   </td>
-  <td width="85" valign="top" class="c14">
+  <td width="85" class="c14">
       <p><span></span></p>
   </td>
-  <td width="168" valign="top" class="c15">
+  <td width="168" class="c15">
       <p><span></span></p>
   </td>
  </tr>
  <tr class="tr2">
-  <td width="262" colspan="2" valign="top" class="c16">
+  <td width="262" colspan="2" class="c16 padding">
       <p align="right" style='text-align:right'><span>小計未稅</span></p>
   </td>
-  <td width="255" colspan="3" valign="top" class="c17"></td>
-  <td width="168" valign="top" class="c15"></td>
+  <td width="255" colspan="3" class="c17"></td>
+  <td width="168" class="c15"></td>
  </tr>
  <tr class="tr2">
-  <td width="262" colspan="2" valign="top" class="c16">
+  <td width="262" colspan="2" class="c16 padding">
       <p align="right" style='text-align:right'><span>稅金</span></p>
   </td>
-  <td width="255" colspan="3" valign="top" class="c17"></td>
-  <td width="168" valign="top" class="c15"></td>
+  <td width="255" colspan="3" class="c17"></td>
+  <td width="168" class="c15"></td>
  </tr>
  <tr class="tr2">
-  <td width="262" colspan="2" valign="top" class="c16">
+  <td width="262" colspan="2" class="c16 padding">
       <p align="right" style='text-align:right'><span>合計</span></p>
   </td>
-  <td width="255" colspan="3" valign="top" class="c17"></td>
-  <td width="168" valign="top" class="c15"></td>
+  <td width="255" colspan="3" class="c17"></td>
+  <td width="168" class="c15"></td>
  </tr>
  <tr class="tr3">
-  <td width="131" valign="top" class="c18">
+  <td width="131" class="c18 padding">
       <p><span>備註事項</span></p>
   </td>
-  <td width="555" colspan="5" valign="top" class="c19"></td>
+  <td width="555" colspan="5" class="c19"></td>
  </tr>
  <tr class="tr2">
-  <td width="356" colspan="3" valign="top" class="c20">
+  <td width="356" colspan="3" class="c20 padding">
       <p><span>承辦人員</span></p>
   </td>
-  <td width="329" nowrap colspan="3" valign="top" class="c21">
+  <td width="329" nowrap colspan="3" class="c21 padding">
       <p><span>客戶簽名</span></p>
   </td>
  </tr>
  <tr class="tr5">
-  <td width="131" valign="top" class="c22">
+  <td width="131" class="c22 padding">
       <p><span>倉管</span></p>
   </td>
-  <td width="131" valign="top" class="c23">
+  <td width="131" class="c23 padding">
       <p><span>QC</span></p>
   </td>
-  <td width="94" valign="top" class="c24">
+  <td width="94" class="c24 padding">
       <p><span>領(送)貨</span></p>
   </td>
-  <td width="329" colspan="3" valign="top" class="c25"></td>
+  <td width="329" colspan="3" class="c25 padding"></td>
  </tr>
  <tr class="tr6">
-  <td width="131" nowrap valign="top" class="c22"></td>
-  <td width="132" nowrap valign="top" class="c23"></td>
-  <td width="94" nowrap valign="top" class="c24"></td>
-  <td width="329" nowrap colspan="3" valign="top" class="c25"></td>
+  <td width="131" nowrap class="c22 padding"></td>
+  <td width="132" nowrap class="c23 padding"></td>
+  <td width="94" nowrap class="c24 padding"></td>
+  <td width="329" nowrap colspan="3" class="c25 padding"></td>
  </tr>
 </table>
 

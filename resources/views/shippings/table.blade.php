@@ -1,8 +1,7 @@
 @php
 $heads = [
-    ['label' =>__('shippings.id'), 'width' => 10],
-    __('shippings.orderid'),
-    __('shippings.flows'),
+    ['label' =>__('shippings.order_id'), 'width' => 14],
+    __('shippings.flow'),
     __('shippings.shipping_date'),
     __('shippings.completion_time'),
     __('shippings.installer'),
