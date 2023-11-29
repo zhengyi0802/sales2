@@ -23,6 +23,7 @@ class AuthServiceProvider extends ServiceProvider
        'operator'          => [ UserRole::Operator ],
        'installer'         => [ UserRole::Installer],
        'reseller'          => [ UserRole::Reseller],
+       'admin'             => [ UserRole::Administrator],
     ];
 
     /**

@@ -344,6 +344,11 @@ return [
             'text' => 'shippings',
             'url'  => 'shippings',
         ],
+        [
+            'text' => 'csvs',
+            'url'  => 'csvs',
+            'can'  => ['admin'],
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'users',

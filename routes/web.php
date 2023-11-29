@@ -10,6 +10,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShippingProcessController;
+use App\Http\Controllers\CsvController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,3 +85,15 @@ Route::get('/users/saveProfile', [App\Http\Controllers\UserController::class, 's
 Route::resource('/users', UserController::class);
 
 Route::resource('/shippings', ShippingProcessController::class);
+
+Route::get('/csvs', [App\Http\Controllers\CsvController::class, 'index'])
+     ->name('csvs.index');
+
+Route::any('/csvs/imports', [App\Http\Controllers\CsvController::class, 'imports'])
+     ->name('csvs.imports');
+
+Route::any('/csvs/store', [App\Http\Controllers\CsvController::class, 'store'])
+     ->name('csvs.store');
+
+Route::get('/csv/exports', [App\Http\Controllers\CsvController::class, 'exports'])
+     ->name('csvs.exports');

@@ -22,6 +22,7 @@ class Order extends Model
         'flow',
         'memo',
         'status',
+        'order_date',
         'created_by',
     ];
 
@@ -47,5 +48,9 @@ class Order extends Model
 
     function extras() {
         return $this->hasMany(OrderExtra::class, 'order_id');
+    }
+
+    function shipping() {
+        return $this->hasOne(ShippingProcess::class, 'order_id');
     }
 }

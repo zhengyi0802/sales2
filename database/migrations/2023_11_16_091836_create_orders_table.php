@@ -26,6 +26,7 @@ class CreateOrdersTable extends Migration
             $table->text('memo')->nullable();
             $table->Integer('flow')->unsigned()->default(1);
             $table->boolean('status')->default(true);
+            $table->date('order_date')->nullable();
             $table->bigInteger('created_by')->unsigned();
             $table->timestamps();
         });

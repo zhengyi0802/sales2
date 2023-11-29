@@ -14,6 +14,7 @@ class OrderExtra extends Model
         'product_id',
         'memo',
         'status',
+        'order_date',
         'created_by',
     ];
 

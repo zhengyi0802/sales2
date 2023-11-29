@@ -5,13 +5,14 @@ $heads = [
     __('orders.name'),
     __('orders.phone'),
     __('orders.product'),
+    __('orders.order_date'),
     __('orders.sales'),
     __('orders.creator'),
     ['label' => __('tables.action'), 'no-export' => true, 'width' => 10],
 ];
 $config = [
     'order' => [[0, 'desc']],
-    'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
+    'columns' => [null, null, null, null, null, null, null, null, ['orderable' => false]],
     'language' => [ 'url' => '//cdn.datatables.net/plug-ins/1.13.4/i18n/zh-HANT.json' ],
 ];
 @endphp
@@ -24,6 +25,7 @@ $config = [
       <td>{{ $order->name }}</td>
       <td>{{ $order->phone }}</td>
       <td>{{ $order->product->model }}</td>
+      <td>{{ $order->order_date }}</td>
       <td>{{ $order->sales->name }}</td>
       <td>{{ $order->creator->name }}</td>
       <td><nobr>

@@ -28,4 +28,5 @@ return [
     'users'                         => '帳戶管理',
     'profiles'                      => '修改個人資料',
     'shippings'                     => '裝機排程資料',
+    'csvs'                          => '匯入/匯出訂單',
 ];

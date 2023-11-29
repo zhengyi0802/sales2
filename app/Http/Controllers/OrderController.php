@@ -224,10 +224,6 @@ class OrderController extends Controller
 
     public function shipment(Order $order)
     {
-        //$pdf = PDF::loadView('pdfs.shipment', $order->toArray());
-
-        //return $pdf->Download('shipment.pdf');
-
         return view('shippings.shipment', compact('order'));
     }
 }

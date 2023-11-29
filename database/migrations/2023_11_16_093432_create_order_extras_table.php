@@ -19,6 +19,7 @@ class CreateOrderExtrasTable extends Migration
             $table->bigInteger('product_id')->unsigned();
             $table->string('memo')->nullable();
             $table->boolean('status')->default(true);
+            $table->date('order_date')->nullable();
             $table->bigInteger('created_by')->unsigned();
             $table->timestamps();
         });
