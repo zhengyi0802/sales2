@@ -134,7 +134,6 @@ xmlns="http://www.w3.org/TR/REC-html40">
               }
         .prod {
                  width:97.9pt;
-                 text-align:left;
               }
         .sno  {
                  width:169.4pt;
@@ -144,7 +143,6 @@ xmlns="http://www.w3.org/TR/REC-html40">
               }
        .price {
                  width:63.85pt;
-                 text-align:right;
               }
       .remark {
                  width:126.05pt;
@@ -219,64 +217,64 @@ xmlns="http://www.w3.org/TR/REC-html40">
          <td width="555" colspan="5" class="address padding">{{ $order->address }}</td>
        </tr>
        <tr class="tr2">
-         <td width="131" class="prod padding"><p><span>品名</span></p></td>
+         <td width="131" class="prod padding" ><p><span>品名</span></p></td>
          <td width="226" colspan="2" class="sno padding"><p><span>主機機器序號</span></p></td>
          <td width="75" class="amount padding"><p><span>數量</span></p></td>
          <td width="85" class="price padding"><p><span>單價</span></p></td>
          <td width="168" class="remark padding"><p><span>備註</span></p></td>
        </tr>
        <tr class="dataField" id="product">
-             <td width="131" class="prod padding">
+             <td width="131" class="prod padding" style="text-align:left">
                  <p><span>{{ $order->product->name.'('.$order->product->model.')' }}</span></p>
              </td>
              <td width="226" colspan="2" class="sno padding"><p><span></span></p></td>
              <td width="75" class="amount padding"><p><span></span>1</p></td>
-             <td width="85" class="price padding"><p><span></span></p></td>
+             <td width="85" class="price padding" style="text-align:right"><p><span></span></p></td>
              <td width="168" class="remark padding"><p><span></span></p></td>
        </tr>
        <tr class="dataField" id="accessory">
-             <td width="131" class="prod padding">
+             <td width="131" class="prod padding" style="text-align:left">
                <p><span>{{ ($order->product->accessories > 0) ? $order->product->accessory->name.'('.$order->product->accessory->model.')' : null }}</span></p>
              </td>
              <td width="226" colspan="2" class="sno padding"><p><span></span></p></td>
              <td width="75" class="amount padding"><p><span>{{ ($order->product->accessories > 0) ? "1" : null }}</span></p></td>
-             <td width="85" class="price padding"><p><span></span></p></td>
+             <td width="85" class="price padding" style="text-align:right"><p><span></span></p></td>
              <td width="168" class="remark padding"><p><span></span></p></td>
        </tr>
        <tr class="dataField" id="extra1">
-             <td width="131" class="prod padding">
+             <td width="131" class="prod padding" style="text-align:left">
                <p><span>{{ isset($order->extras[0]) ? $order->extras[0]->product->name.'('.$order->extras[0]->product->model.')' : null }}</span></p>
              </td>
              <td width="226" colspan="2" class="sno padding"><p><span></span></p></td>
              <td width="75" class="amount padding"><p><span>{{ isset($order->extras[0]) ? "1" : null }}</span></p></td>
-             <td width="85" class="price padding"><p><span></span></p></td>
+             <td width="85" class="price padding" style="text-align:right"><p><span></span></p></td>
              <td width="168" class="remark padding"><p><span></span></p></td>
        </tr>
        <tr class="dataField" id="extra2">
-             <td width="131" class="prod padding">
+             <td width="131" class="prod padding" style="text-align:left">
                <p><span>{{ (isset($order->extras[1])) ? $order->extras[1]->product->name.'('.$order->extras[1]->product->model.')' : null }}</span></p>
              </td>
              <td width="226" colspan="2" class="sno padding"><p><span></span></p></td>
              <td width="75" class="amount padding"><p><span>{{ (isset($order->extras[1])) ? "1" : null }}</span></p></td>
-             <td width="85" class="price padding"><p><span></span></p></td>
+             <td width="85" class="price padding" style="text-align:right"><p><span></span></p></td>
              <td width="168" class="remark padding"><p><span></span></p></td>
        </tr>
        <tr class="dataField" id="extra3">
-             <td width="131" class="prod padding">
+             <td width="131" class="prod padding" style="text-align:left">
                <p><span>{{ (isset($order->extras[2])) ? $order->extras[2]->product->name.'('.$order->extras[2]->product->model.')' : null }}</span></p>
              </td>
              <td width="226" colspan="2" class="sno padding"><p><span></span></p></td>
              <td width="75" class="amount padding"><p><span>{{ (isset($order->extras[2])) ? "1" : null }}</span></p></td>
-             <td width="85" class="price padding"><p><span></span></p></td>
+             <td width="85" class="price padding" style="text-align:right"><p><span></span></p></td>
              <td width="168" class="remark padding"><p><span></span></p></td>
        </tr>
        <tr class="dataField" id="extra4">
-             <td width="131" class="prod padding">
+             <td width="131" class="prod padding" style="text-align:left">
                <p><span>{{ (isset($order->extras[3])) ? $order->extras[3]->product->name.'('.$order->extras[3]->product->model.')' : null }}</span></p>
              </td>
              <td width="226" colspan="2" class="sno padding"><p><span></span></p></td>
              <td width="75" class="amount padding"><p><span></span></p></td>
-             <td width="85" class="price padding"><p><span></span></p></td>
+             <td width="85" class="price padding" style="text-align:right"><p><span></span></p></td>
              <td width="168" class="remark padding"><p><span></span></p></td>
        </tr>
        <tr class="tr2">
