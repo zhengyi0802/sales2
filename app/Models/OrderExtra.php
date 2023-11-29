@@ -12,6 +12,7 @@ class OrderExtra extends Model
     protected $fillable = [
         'order_id',
         'product_id',
+        'price',
         'memo',
         'status',
         'order_date',

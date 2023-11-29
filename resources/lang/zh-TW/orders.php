@@ -7,6 +7,7 @@
            'order_date'  => '訂單日期',
            'name'        => '訂貨人',
            'product'     => '產品',
+           'price'       => '實售價',
            'project'     => '行銷方案',
            'phone'       => '聯絡電話',
            'address'     => '裝機地址',

@@ -18,7 +18,7 @@ class Order extends Model
         'name',
         'phone',
         'address',
-        'amount',
+        'price',
         'flow',
         'memo',
         'status',

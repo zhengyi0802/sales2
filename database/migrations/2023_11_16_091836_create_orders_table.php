@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('name');
             $table->string('phone', 20);
             $table->string('address');
-            $table->Integer('amount')->unsigned();
+            $table->Integer('price')->unsigned()->default(0);
             $table->text('memo')->nullable();
             $table->Integer('flow')->unsigned()->default(1);
             $table->boolean('status')->default(true);

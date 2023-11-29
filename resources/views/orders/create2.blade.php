@@ -56,11 +56,11 @@
             </div>
             <div class="form-group col-md-4">
                 <strong>{{ __('orders.address') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <input type="text" name="address" class="form-control"value="{{ $customer->address }}">
+                <input type="text" name="address" class="form-control" value="{{ $customer->address }}">
             </div>
             <table>
             <tr class="form-group col-md-4">
-                <td<<strong>{{ __('orders.project') }} :<span class="must">{{ __('tables.must') }}</span></strong></td>
+                <td><strong>{{ __('orders.project') }} :<span class="must">{{ __('tables.must') }}</span></strong></td>
                 <td><select id="project_id" name="project_id" >
                       <option value="">--------</option>
                       @foreach ($projects as $project)
@@ -77,6 +77,10 @@
                 </select></td>
             </tr>
             <tr class="form-group col-md-4">
+                <td><strong>{{ __('orders.price') }} :<span class="must">{{ __('tables.must') }}</span></strong></td>
+                <td><input type="number" name="price" value="0">
+            </tr>
+            <tr class="form-group col-md-4">
                 <td><strong>{{ __('orders.extras') }} :</strong></td>
                 <td><select id="extra_id" name="extra_id[]" multiple="multiple" size="10">
                       <option value="0">----------</option>
@@ -84,7 +88,7 @@
                          <option value="{{ $extra->id }}" >{{ $extra->name }}</option>
                       @endforeach
                 </select></td>
-            </div>
+            </tr>
             <tr class="form-group col-md-4">
                 <td><strong>{{ __('orders.sales') }} :<span class="must">{{ __('tables.must') }}</span></strong></td>
                 <td><select id="sales_id" name="sales_id" >

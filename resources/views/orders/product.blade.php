@@ -16,6 +16,10 @@
                       @endforeach
                 </select></td>
             </tr>
+            <tr class="form-group col-md-4">
+                <td><strong>{{ __('orders.price') }} :<span class="must">{{ __('tables.must') }}</span></strong></td>
+                <td><input type="number" name="price" value="{{ $order->price }}">
+            </tr>
             <tr class="form-group col-md-6">
                 <td><strong>{{ __('orders.extras') }} :</strong></td>
                 <td><select id="extra_id" name="extra_id[]" multiple="multiple" size="10" >

@@ -203,7 +203,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
       </tr>
       <tr class="tr2">
         <td width="131" class="c1 padding" ><p><span>客戶編號</span></p></td>
-        <td width="132" class="c2 padding">{{ $order->customer->id }}</td>
+        <td width="132" class="c2 padding">{{ $order->customer_id }}</td>
         <td width="94"  class="c3 padding"><p><span>客戶名稱</span></p></td>
         <td width="161" colspan="2" class="c4 padding">{{ $order->name }}</td>
         <td width="168" class="c5 padding"><p><span>出貨日期 : {{ $order->shipping_date }}</span></p></td>
