@@ -134,18 +134,23 @@ xmlns="http://www.w3.org/TR/REC-html40">
               }
         .prod {
                  width:97.9pt;
+                 border:solid windowtext 1.0pt;
               }
         .sno  {
                  width:169.4pt;
+                 border:solid windowtext 1.0pt;
               }
       .amount {
                  width:56.6pt;
+                 border:solid windowtext 1.0pt;
               }
        .price {
                  width:63.85pt;
+                 border:solid windowtext 1.0pt;
               }
       .remark {
                  width:126.05pt;
+                 border:solid windowtext 1.0pt;
               }
       .total1 {
                  width:196.75pt;
@@ -294,7 +299,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
        </tr>
        <tr class="tr3">
          <td width="131" class="remark2 padding"><p><span>備註事項</span></p></td>
-         <td width="555" colspan="5" class="remarks"></td>
+         <td width="555" colspan="5" class="remarks padding"></td>
        </tr>
        <tr class="tr2">
          <td width="356" colspan="3" class="c20 padding"><p><span>承辦人員</span></p></td>
