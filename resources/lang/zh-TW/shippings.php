@@ -11,6 +11,7 @@
            'address'          => '裝機地址',
            'sales'            => '經辦人員',
            'installer'        => '安裝人員',
+           'completion'       => '已完成',
            'accessories'      => '附件',
            'extras'           => '贈品',
            'memo'             => '備註',

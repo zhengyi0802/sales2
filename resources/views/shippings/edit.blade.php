@@ -58,24 +58,25 @@
                     <input type="text" name="phone" value="{{ $shipping->order->phone }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('shippings.name') }} :</strong>
-                    <input type="text" name="address" value="{{ $shipping->order->name }}" class="form-control">
+                    <strong>{{ __('shippings.address') }} :</strong>
+                    <input type="text" name="address" value="{{ $shipping->order->address }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
                     <strong>{{ __('shippings.flow') }} :</strong>
+                    <td><select id="flow" name="flow" onchange="checkflow(this)">
+                      <option value="3" {{ ($shipping->order->flow == 3) ? "selected" : null }}>{{ trans_choice('orders.flows', 3) }}</option>
+                      <option value="4" {{ ($shipping->order->flow == 4) ? "selected" : null }}>{{ trans_choice('orders.flows', 4) }}</option>
+                      <option value="5" {{ ($shipping->order->flow == 5) ? "selected" : null }}>{{ trans_choice('orders.flows', 5) }}</option>
+                </select></td>
                 </div>
                 <div class="form-group col-md-4">
                     <strong>{{ __('shippings.shipping_date') }} :</strong>
                     <input type="date" name="shipping_date" value="{{ $shipping->shipping_date }}" class="form-control">
                 </div>
-                @if (auth()->user()->role == App\Enums\UserRole::Installer)
-                <div class="form-group col-md-4">
-                    <strong>{{ __('shippings.completion') }} :</strong>
-                    <input type="checkbox" name="completion" ><label for="completion">{{ __('tables.yes') }}
-                </div>
-                @endif
+           </div>
+           <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+              <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
            </div>
         </div>
     </form>
-
 @endsection

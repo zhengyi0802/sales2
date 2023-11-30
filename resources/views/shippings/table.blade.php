@@ -19,10 +19,10 @@ $config = [
   @foreach($shippings as $shipping)
     <tr class="{{ $shipping->status ? null : "bg-gray"}}">
       <td>{{ $shipping->order_id }}</td>
-      <td>{{ $shipping->order->flow }}</td>
+      <td>{{ trans_choice('orders.flows', $shipping->order->flow) }}</td>
       <td>{{ $shipping->shipping_date }}</td>
       <td>{{ $shipping->completion_time }}</td>
-      <td>{{ $shipping->installer->name }}</td>
+      <td>{{ ($shipping->installer) ? $shipping->installer->name : null }}</td>
       <td>{{ $shipping->creator->name }}</td>
       <td><nobr>
           <form name="shipping-delete-form" action="{{ route('shippings.destroy', $shipping->id); }}" method="POST">
