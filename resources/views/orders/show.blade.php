@@ -54,8 +54,9 @@
         <x-adminlte-card title="{{ __('orders.creator') }}" theme="warning" icon="fas fa-lg">
                 {{ $order->creator->name }}
         </x-adminlte-card>
-        @if (auth()->user()->role == App\Enums\UserRole::Administrator ||
-             auth()->user()->role == App\Enums\UserRole::Operator)
+        @if ((auth()->user()->role == App\Enums\UserRole::Administrator ||
+             auth()->user()->role == App\Enums\UserRole::Operator) &&
+             $order->flow < 5)
         <x-adminlte-card title="{{ __('orders.shipment') }}" theme="info" icon="fas fa-lg">
               <button onClick="window.location='{{ route('orders.shipment', $order->id); }}'" >
                 {{ __('orders.shipment_button') }}

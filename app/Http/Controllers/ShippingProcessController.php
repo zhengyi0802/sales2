@@ -82,7 +82,14 @@ class ShippingProcessController extends Controller
      */
     public function update(Request $request, ShippingProcess $shipping)
     {
+        $user = auth()->user();
         $data = $request->all();
+        if ($user->role == UserRole::Installer) {
+            if ($data['flow'] == 5) {
+                $data['coompletion_time'] = date('Y-M-D h:m:s');
+                $data['installer_id'] = $user->id;
+            }
+        }
         $shipping->update($data);
 
         return redirect()->route('shippings.index');
