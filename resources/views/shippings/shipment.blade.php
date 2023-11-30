@@ -157,6 +157,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
       .remark {
                  width:126.05pt;
                  border:solid windowtext 1.0pt;
+                 text-align:left;
               }
       .total1 {
                  width:196.75pt;
@@ -250,7 +251,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
              <td width="226" colspan="2" class="sno padding"><p><span></span></p></td>
              <td width="75" class="amount padding"><p><span>{{ ($order->product->accessories > 0) ? "1" : null }}</span></p></td>
              <td width="85" class="price padding" style="text-align:right"><p><span></span></p></td>
-             <td width="168" class="remark padding"><p><span></span></p></td>
+             <td width="168" class="remark padding"><p>{{ ($order->product->accessories > 0) ? __('shippings.accessories') : null }}<span></span></p></td>
        </tr>
        <tr class="dataField" id="extra1">
              <td width="131" class="prod padding" style="text-align:left">
@@ -259,7 +260,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
              <td width="226" colspan="2" class="sno padding"><p><span></span></p></td>
              <td width="75" class="amount padding"><p><span>{{ isset($order->extras[0]) ? "1" : null }}</span></p></td>
              <td width="85" class="price padding" style="text-align:right"><p><span></span></p></td>
-             <td width="168" class="remark padding"><p><span></span></p></td>
+             <td width="168" class="remark padding"><p><span>{{ isset($order->extras[0]) ? __('shippings.extras') : null }}</span></p></td>
        </tr>
        <tr class="dataField" id="extra2">
              <td width="131" class="prod padding" style="text-align:left">
@@ -268,7 +269,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
              <td width="226" colspan="2" class="sno padding"><p><span></span></p></td>
              <td width="75" class="amount padding"><p><span>{{ (isset($order->extras[1])) ? "1" : null }}</span></p></td>
              <td width="85" class="price padding" style="text-align:right"><p><span></span></p></td>
-             <td width="168" class="remark padding"><p><span></span></p></td>
+             <td width="168" class="remark padding"><p><span>{{ isset($order->extras[1]) ? __('shippings.extras') : null }}</span></p></td>
        </tr>
        <tr class="dataField" id="extra3">
              <td width="131" class="prod padding" style="text-align:left">
@@ -277,16 +278,16 @@ xmlns="http://www.w3.org/TR/REC-html40">
              <td width="226" colspan="2" class="sno padding"><p><span></span></p></td>
              <td width="75" class="amount padding"><p><span>{{ (isset($order->extras[2])) ? "1" : null }}</span></p></td>
              <td width="85" class="price padding" style="text-align:right"><p><span></span></p></td>
-             <td width="168" class="remark padding"><p><span></span></p></td>
+             <td width="168" class="remark padding"><p><span>{{ isset($order->extras[2]) ? __('shippings.extras') : null }}</span></p></td>
        </tr>
        <tr class="dataField" id="extra4">
              <td width="131" class="prod padding" style="text-align:left">
                <p><span>{{ (isset($order->extras[3])) ? $order->extras[3]->product->name.'('.$order->extras[3]->product->model.')' : null }}</span></p>
              </td>
              <td width="226" colspan="2" class="sno padding"><p><span></span></p></td>
-             <td width="75" class="amount padding"><p><span></span></p></td>
+             <td width="75" class="amount padding"><p><span>{{ (isset($order->extras[3])) ? "1" : null }}</span></p></td>
              <td width="85" class="price padding" style="text-align:right"><p><span></span></p></td>
-             <td width="168" class="remark padding"><p><span></span></p></td>
+             <td width="168" class="remark padding"><p><span>{{ isset($order->extras[3]) ? __('shippings.extras') : null }}</span></p></td>
        </tr>
        <tr class="tr2">
          <td width="262" colspan="2" class="total1 padding"><p align="right" style='text-align:right'><span>小計未稅</span></p></td>
