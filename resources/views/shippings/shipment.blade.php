@@ -9,9 +9,15 @@ xmlns="http://www.w3.org/TR/REC-html40">
 </head>
 
 <style type="text/css">
+    @font-face {
+                 font-family: "DFKai";
+                 src: url('{{ storage_path("fonts/MoeStandardKai.otf") }}') format('truetype');
+                 font-style: normal;
+              }
          body {
                 tab-interval:24.0pt;
                 text-justify-trim:punctuation;
+                font-family: "DFKai";
               }
      .content {
                 layout-grid:18.0pt;
@@ -206,7 +212,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
         <td width="132" class="c2 padding">{{ $order->customer_id }}</td>
         <td width="94"  class="c3 padding"><p><span>客戶名稱</span></p></td>
         <td width="161" colspan="2" class="c4 padding">{{ $order->name }}</td>
-        <td width="168" class="c5 padding"><p><span>出貨日期 : {{ $order->shipping_date }}</span></p></td>
+        <td width="168" class="c5 padding"><p><span>出貨日期 : {{ ($order->shipping) ? $order->shipping->shipping_date : null}}</span></p></td>
       </tr>
       <tr class="tr2">
         <td width="131" class="c6 padding"><p><span>電話</span></p></td>

@@ -33,19 +33,19 @@ class OrderController extends Controller
             if ($flow > 0) {
                 $orders = Order::where('flow', $flow)->get();
             } else {
-                $orders = Order::get();
+                $orders = Order::where('flow', '!=', 5)->get();
             }
         } else if ($user->role == UserRole::Reseller) {
            if ($flow > 0) {
                $orders = Order::where('sales_id', $user->sales->id)->where('flow', $flow)->get();
            } else {
-               $orders = Order::where('sales_id', $user->sales->id)->get();
+               $orders = Order::where('flow', '!=', 5)->where('sales_id', $user->sales->id)->get();
            }
         } else if ($user->role == UserRole::Sales) {
            if ($flow > 0) {
                $orders = Order::where('sales_id', $user->sales->id)->where('flow', $flow)->get();
            } else {
-               $orders = Order::where('sales_id', $user->sales->id)->get();
+               $orders = Order::where('flow', '!=', 5)->where('sales_id', $user->sales->id)->get();
            }
         } else if ($user->role == UserRole::Installer) {
             if ($flow > 0) {
@@ -59,7 +59,7 @@ class OrderController extends Controller
             if ($flow > 0) {
                 $orders = Order::where('status', true)->where('flow', $flow)->get();
             } else {
-                $orders = Order::where('status', true)->get();
+                $orders = Order::where('flow', '!=', 5)->where('status', true)->get();
             }
         }
         return view('orders.index', compact('orders'));
@@ -254,6 +254,12 @@ class OrderController extends Controller
 
     public function shipment(Order $order)
     {
+        $user = auth()->user();
+        if ($user->id == 1) {
+            $pdf = PDF::loadView('shippings.shipment', compact('order'));
+            $pdf_file = 'shipment-'.$order->id.'.pdf';
+            return $pdf->download($pdf_file);
+        }
         return view('shippings.shipment', compact('order'));
     }
 }

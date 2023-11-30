@@ -32,17 +32,17 @@
             <tr class="form-group col-md-6">
                 <td><strong>{{ __('orders.flow') }} :</strong></td>
                 <td><select id="flow" name="flow" onchange="checkflow(this)">
-                  <option value="1" >{{ trans_choice('orders.flows', 1) }}</option>
-                  <option value="2" >{{ trans_choice('orders.flows', 2) }}</option>
-                  <option value="3" >{{ trans_choice('orders.flows', 3) }}</option>
-                  <option value="4" >{{ trans_choice('orders.flows', 4) }}</option>
-                  <option value="5" >{{ trans_choice('orders.flows', 5) }}</option>
-                  <option value="6" >{{ trans_choice('orders.flows', 6) }}</option>
+                  <option value="1" {{ ($order->flow == 1) ? "selected" : null }}>{{ trans_choice('orders.flows', 1) }}</option>
+                  <option value="2" {{ ($order->flow == 2) ? "selected" : null }}>{{ trans_choice('orders.flows', 2) }}</option>
+                  <option value="3" {{ ($order->flow == 3) ? "selected" : null }}>{{ trans_choice('orders.flows', 3) }}</option>
+                  <option value="4" {{ ($order->flow == 4) ? "selected" : null }}>{{ trans_choice('orders.flows', 4) }}</option>
+                  <option value="5" {{ ($order->flow == 5) ? "selected" : null }}>{{ trans_choice('orders.flows', 5) }}</option>
+                  <option value="6" {{ ($order->flow == 6) ? "selected" : null }}>{{ trans_choice('orders.flows', 6) }}</option>
                 </select></td>
             </tr>
-            <tr class="form-group col-md-6" id="shipdate" style="display:none" >
+            <tr class="form-group col-md-6" id="shipdate" >
                 <td><strong>{{ __('orders.shipping_date') }} :</strong></td>
-                <td><input type="date"  name="shipping_date" /></td>
+                <td><input type="date"  name="shipping_date" value="{{ $order->shipping ? $order->shipping->shipping_date : null }}" /></td>
             </tr>
             <tr class="form-group col-md-6">
                 <td><strong>{{ __('orders.memo') }} :</strong></td>
