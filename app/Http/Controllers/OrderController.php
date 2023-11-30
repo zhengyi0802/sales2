@@ -20,17 +20,47 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = auth()->user();
-        if ($user->role == UserRole::Administrator) {
-            $orders = Order::get();
-        } else if ($user->role == UserRole::Reseller) {
-            $orders = Order::where('sales_id', $user->sales->id)->get();
-        } else if ($user->role == UserRole::Sales) {
-            $orders = Order::where('sales_id', $user->sales->id)->get();
+        $data = $request->all();
+        if (isset($data['flow'])) {
+            $flow = $data['flow'];
         } else {
-            $orders = Order::where('status', true)->get();
+            $flow = 0;
+        }
+        if ($user->role == UserRole::Administrator) {
+            if ($flow > 0) {
+                $orders = Order::where('flow', $flow)->get();
+            } else {
+                $orders = Order::get();
+            }
+        } else if ($user->role == UserRole::Reseller) {
+           if ($flow > 0) {
+               $orders = Order::where('sales_id', $user->sales->id)->where('flow', $flow)->get();
+           } else {
+               $orders = Order::where('sales_id', $user->sales->id)->get();
+           }
+        } else if ($user->role == UserRole::Sales) {
+           if ($flow > 0) {
+               $orders = Order::where('sales_id', $user->sales->id)->where('flow', $flow)->get();
+           } else {
+               $orders = Order::where('sales_id', $user->sales->id)->get();
+           }
+        } else if ($user->role == UserRole::Installer) {
+            if ($flow > 0) {
+                $orders = Order::where('status', true)->where('flow', $flow)->get();
+            } else {
+                $orders = Order::where('status', true)
+                               ->where('flow', '>', 2)
+                               ->where('flow', '<', 6)->get();
+            }
+        } else {
+            if ($flow > 0) {
+                $orders = Order::where('status', true)->where('flow', $flow)->get();
+            } else {
+                $orders = Order::where('status', true)->get();
+            }
         }
         return view('orders.index', compact('orders'));
     }
