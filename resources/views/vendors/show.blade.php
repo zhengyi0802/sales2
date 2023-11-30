@@ -22,18 +22,28 @@
 
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
-        <x-adminlte-card title="{{ __('vendors.company') }}" theme="info" icon="fas fa-lg">
-                {{ $vendor->company }}
-        </x-adminlte>
-        <x-adminlte-card title="{{ __('vendors.country') }}" theme="info" icon="fas fa-lg">
-                {{ $vendor->country }}
-        </x-adminlte>
-        <x-adminlte-card title="{{ __('vendors.memo') }}" theme="info" icon="fas fa-lg">
-                {{ $vendor->memo }}
-        </x-adminlte>
-        <x-adminlte-card title="{{ __('vendors.creator') }}" theme="info" icon="fas fa-lg">
-                {{ $vendor->creator->name }}
-        </x-adminlte-card>
+        <table>
+          <tr>
+             <td><x-adminlte-card title="{{ __('vendors.company') }}" theme="info" icon="fas fa-lg">
+                    {{ $vendor->company }}
+             </x-adminlte></td>
+             <td><x-adminlte-card title="{{ __('vendors.country') }}" theme="info" icon="fas fa-lg">
+                    {{ $vendor->country }}
+             </x-adminlte></td>
+             <td><x-adminlte-card title="{{ __('vendors.creator') }}" theme="warning" icon="fas fa-lg">
+                    {{ $vendor->creator->name }}
+             </x-adminlte-card></td>
+          </tr>
+          <tr>
+             <td colspan="3"><x-adminlte-card title="{{ __('vendors.memo') }}" theme="info" icon="fas fa-lg">
+                    <pre>{{ $vendor->memo }}</pre>
+             </x-adminlte></td>
+          <tr>
+             <td colspan="3"><x-adminlte-card title="{{ __('vendors.products') }}" theme="primary" icon="fas fa-lg">
+                    @include('vendors.productmodels.table')
+             </x-adminlte></td>
+          </tr>
+        </table>
      </div>
    </div>
 @endsection

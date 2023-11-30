@@ -51,7 +51,7 @@
         <x-adminlte-card title="{{ __('orders.memo') }}" theme="info" icon="fas fa-lg">
                 <pre>{{ $order->memo }}
         </x-adminlte>
-        <x-adminlte-card title="{{ __('orders.creator') }}" theme="info" icon="fas fa-lg">
+        <x-adminlte-card title="{{ __('orders.creator') }}" theme="warning" icon="fas fa-lg">
                 {{ $order->creator->name }}
         </x-adminlte-card>
         @if (auth()->user()->role == App\Enums\UserRole::Administrator ||

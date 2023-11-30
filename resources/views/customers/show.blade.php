@@ -43,7 +43,7 @@
         <x-adminlte-card title="{{ __('customers.sales') }}" theme="info" icon="fas fa-lg">
                 {{ $customer->sales->name }}
         </x-adminlte>
-        <x-adminlte-card title="{{ __('customers.creator') }}" theme="info" icon="fas fa-lg">
+        <x-adminlte-card title="{{ __('customers.creator') }}" theme="warning" icon="fas fa-lg">
                 {{ $customer->creator->name }}
         </x-adminlte-card>
         <x-adminlte-card title="{{ __('customers.orders') }}" theme="info" icon="fas fa-lg">

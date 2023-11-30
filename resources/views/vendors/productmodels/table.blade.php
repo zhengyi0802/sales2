@@ -16,13 +16,23 @@ $config = [
 ];
 @endphp
 
+@if (auth()->user()->role <= App\Enums\UserRole::Manager)
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-right">
+                <a class="btn btn-success" href="{{ route('productModels.create') }}">{{ __('tables.new') }}</a>
+            </div>
+        </div>
+    </div>
+@endif
+
 <x-adminlte-datatable id="productModel-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" striped hoverable bordered>
-  @foreach($productModels as $productModel)
+  @foreach($vendor->products as $productModel)
     <tr class="{{ $productModel->status ? null : "bg-gray"}}">
       <td>{{ $productModel->id }}</td>
       <td>{{ $productModel->model }}</td>
       <td>{{ $productModel->name }}</td>
-      <td>{{ ($productModel->price > 0) ? "BTD ".$productModel->price : null }}</td>
+      <td>{{ ($productModel->price > 0) ? $productModel->price : null }}</td>
       <td>{{ $productModel->vendor->company }}</td>
       <td>{{ $productModel->catagory->name }}</td>
       <td>{{ $productModel->creator->name }}</td>

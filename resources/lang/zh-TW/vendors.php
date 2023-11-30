@@ -9,5 +9,6 @@
            'memo'        => '備註',
            'status'      => '狀態',
            'creator'     => '建立者',
+           'products'    => '產品列表',
     ];
 

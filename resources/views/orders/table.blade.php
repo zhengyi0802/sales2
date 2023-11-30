@@ -4,6 +4,7 @@ $heads = [
     __('orders.flow'),
     __('orders.name'),
     __('orders.phone'),
+    __('orders.project'),
     __('orders.product'),
     __('orders.order_date'),
     __('orders.sales'),
@@ -12,7 +13,7 @@ $heads = [
 ];
 $config = [
     'order' => [[0, 'desc']],
-    'columns' => [null, null, null, null, null, null, null, null, ['orderable' => false]],
+    'columns' => [null, null, null, null, null, null, null, null, null, ['orderable' => false]],
     'language' => [ 'url' => '//cdn.datatables.net/plug-ins/1.13.4/i18n/zh-HANT.json' ],
 ];
 @endphp
@@ -24,6 +25,7 @@ $config = [
       <td>{{ trans_choice('orders.flows', $order->flow) }}</td>
       <td>{{ $order->name }}</td>
       <td>{{ $order->phone }}</td>
+      <td>{{ $order->project->name }}</td>
       <td>{{ $order->product->model }}</td>
       <td>{{ $order->order_date }}</td>
       <td>{{ $order->sales->name }}</td>

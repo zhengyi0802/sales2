@@ -234,7 +234,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
              </td>
              <td width="226" colspan="2" class="sno padding"><p><span></span></p></td>
              <td width="75" class="amount padding"><p><span></span>1</p></td>
-             <td width="85" class="price padding" style="text-align:right"><p><span></span></p></td>
+             <td width="85" class="price padding" style="text-align:right"><p><span>{{ "NTD ".$order->price }} </span></p></td>
              <td width="168" class="remark padding"><p><span></span></p></td>
        </tr>
        <tr class="dataField" id="accessory">
@@ -284,17 +284,17 @@ xmlns="http://www.w3.org/TR/REC-html40">
        </tr>
        <tr class="tr2">
          <td width="262" colspan="2" class="total1 padding"><p align="right" style='text-align:right'><span>小計未稅</span></p></td>
-         <td width="255" colspan="3" class="total1val"></td>
+         <td width="255" colspan="3" class="total1val padding" style="text-align:right">{{ "NTD ".$order->price }}</td>
          <td width="168" class="remark"></td>
        </tr>
        <tr class="tr2">
          <td width="262" colspan="2" class="total1 padding"><p align="right" style='text-align:right'><span>稅金</span></p></td>
-         <td width="255" colspan="3" class="total1val"></td>
+         <td width="255" colspan="3" class="total1val padding"  style="text-align:right">{{ "NTD ".$order->price*0.05 }}</td>
          <td width="168" class="remark"></td>
        </tr>
        <tr class="tr2">
          <td width="262" colspan="2" class="total1 padding"><p align="right" style='text-align:right'><span>合計</span></p></td>
-         <td width="255" colspan="3" class="total1val"></td>
+         <td width="255" colspan="3" class="total1val padding"  style="text-align:right">{{ "NTD ".$order->price*1.05 }}</td>
          <td width="168" class="remark"></td>
        </tr>
        <tr class="tr3">

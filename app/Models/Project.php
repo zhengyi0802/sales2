@@ -22,6 +22,9 @@ class Project extends Model
     }
 
     function gifts() {
+        if ($this->extras == null) {
+            return null;
+        }
         $arr = json_decode($this->extras);
         $products = ProductModel::whereIn('id', $arr)->get();
         return $products;

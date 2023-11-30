@@ -22,12 +22,21 @@
 
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
-        <x-adminlte-card title="{{ __('catagories.name') }}" theme="info" icon="fas fa-lg">
+      <table>
+        <tr>
+            <td><x-adminlte-card title="{{ __('catagories.name') }}" theme="info" icon="fas fa-lg">
                 {{ $catagory->name }}
-        </x-adminlte>
-        <x-adminlte-card title="{{ __('catagories.creator') }}" theme="info" icon="fas fa-lg">
+            </x-adminlte></td>
+            <td><x-adminlte-card title="{{ __('catagories.creator') }}" theme="warning" icon="fas fa-lg">
                 {{ $catagory->creator->name }}
-        </x-adminlte-card>
-     </div>
+            </x-adminlte-card></td>
+        </tr>
+        <tr>
+            <td colspan="2"><x-adminlte-card title="{{ __('catagories.products') }}" theme="primary" icon="fas fa-lg">
+                @include('catagories.productmodels.table')
+            </x-adminlte></td>
+        </tr>
+      </table>
+      </div>
    </div>
 @endsection

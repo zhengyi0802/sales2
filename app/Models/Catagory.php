@@ -18,4 +18,8 @@ class Catagory extends Model
     function creator() {
         return $this->belongsTo(User::class, 'created_by');
     }
+
+    function products() {
+        return $this->hasMany(ProductModel::class, 'catagory_id');
+    }
 }

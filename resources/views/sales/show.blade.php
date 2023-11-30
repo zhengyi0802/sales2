@@ -22,31 +22,41 @@
 
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
-        <x-adminlte-card title="{{ __('saleses.name') }}" theme="info" icon="fas fa-lg">
+        <table class="col-xs-12 col-sm-12 col-md-12">
+          <tr>
+            <td><x-adminlte-card title="{{ __('saleses.name') }}" theme="info" icon="fas fa-lg">
                 {{ $sales->name }}
-        </x-adminlte>
-        <x-adminlte-card title="{{ __('saleses.account') }}" theme="info" icon="fas fa-lg">
+            </x-adminlte></td>
+            <td><x-adminlte-card title="{{ __('saleses.account') }}" theme="info" icon="fas fa-lg">
                 {{ $sales->user->account }}
-        </x-adminlte>
-        <x-adminlte-card title="{{ __('saleses.phone') }}" theme="info" icon="fas fa-lg">
+            </x-adminlte></td>
+            <td><x-adminlte-card title="{{ __('saleses.phone') }}" theme="info" icon="fas fa-lg">
                 {{ $sales->phone }}
-        </x-adminlte>
-        <x-adminlte-card title="{{ __('saleses.line_id') }}" theme="info" icon="fas fa-lg">
+            </x-adminlte></td>
+          </tr>
+        </table>
+        <table class="col-xs-12 col-sm-12 col-md-12">
+          <tr>
+            <td><x-adminlte-card title="{{ __('saleses.line_id') }}" theme="info" icon="fas fa-lg">
                 {{ $sales->line_id }}
-        </x-adminlte>
-        <x-adminlte-card title="{{ __('saleses.email') }}" theme="info" icon="fas fa-lg">
+            </x-adminlte></td>
+            <td><x-adminlte-card title="{{ __('saleses.email') }}" theme="info" icon="fas fa-lg">
                 {{ $sales->email }}
-        </x-adminlte>
-        <x-adminlte-card title="{{ __('saleses.company') }}" theme="info" icon="fas fa-lg">
+            </x-adminlte></td>
+          </tr>
+          <tr>
+            <td><x-adminlte-card title="{{ __('saleses.company') }}" theme="info" icon="fas fa-lg">
                 {{ $sales->company }}
-        </x-adminlte>
-        <x-adminlte-card title="{{ __('saleses.job') }}" theme="info" icon="fas fa-lg">
+            </x-adminlte></td>
+            <td><x-adminlte-card title="{{ __('saleses.job') }}" theme="info" icon="fas fa-lg">
                 {{ $sales->job }}
-        </x-adminlte>
+            </x-adminlte></td>
+          </tr>
+        </table>
         <x-adminlte-card title="{{ __('saleses.address') }}" theme="info" icon="fas fa-lg">
                 {{ $sales->address }}
         </x-adminlte>
-        <x-adminlte-card title="{{ __('saleses.identity') }}" theme="info" icon="fas fa-lg">
+        <x-adminlte-card title="{{ __('saleses.identity') }}" theme="primary" icon="fas fa-lg">
                 {{ ($sales->user->role == App\Enums\UserRole::Sales) ? __('saleses.id_sales') : __('saleses.id_reseller') }}
         </x-adminlte>
      </div>

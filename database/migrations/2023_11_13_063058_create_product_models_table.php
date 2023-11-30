@@ -19,6 +19,7 @@ class CreateProductModelsTable extends Migration
             $table->string('model', 20)->unique();
             $table->bigInteger('catagory_id')->unsigned();
             $table->bigInteger('vendor_id')->unsigned();
+            $table->integer('price')->unsigned()->default(0);
             $table->json('briefs')->nullable();
             $table->json('specifications')->nullable();
             $table->text('descriptions')->nullable();

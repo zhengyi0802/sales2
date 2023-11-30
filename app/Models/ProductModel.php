@@ -14,6 +14,7 @@ class ProductModel extends Model
         'model',
         'catagory_id',
         'vendor_id',
+        'price',
         'briefs',
         'specifications',
         'descriptions',

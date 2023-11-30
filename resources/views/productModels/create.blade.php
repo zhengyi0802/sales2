@@ -53,6 +53,10 @@
                 <input type="text" name="name" class="form-control">
             </div>
             <div class="form-group col-md-6">
+                <strong>{{ __('productModels.price') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <input type="number" name="price" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
                 <strong>{{ __('productModels.vendor') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <select id="vendor_id" name="vendor_id" >
                       <option value="" selected>----------</option>

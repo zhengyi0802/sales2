@@ -54,6 +54,10 @@
                     <input type="text" name="name" value="{{ $productModel->name }}" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
+                    <strong>{{ __('productModels.price') }} :</strong>
+                    <input type="number" name="price" value="{{ $productModel->price }}" class="form-control">
+                </div>
+                <div class="form-group col-md-6">
                     <strong>{{ __('productModels.vendor') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                     <select id="vendor_id" name="vendor_id" >
                       @foreach ($vendors as $vendor)

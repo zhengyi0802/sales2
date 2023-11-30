@@ -1,0 +1,19 @@
+@extends('adminlte::page')
+
+@section('title', __('home.title'))
+
+@section('content_header')
+    <h1 class="m-0 text-dark">Dashboard</h1>
+@stop
+
+@section('content')
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <x-adminlte-card title="{{ __('home.unhandled') }}" theme="info" icon="fas fa-lg">
+                {{ $data->unhandled }}
+        </x-adminlte>
+        <x-adminlte-card title="{{ __('catagories.creator') }}" theme="info" icon="fas fa-lg">
+                {{ $catagory->creator->name }}
+        </x-adminlte-card>
+     </div>
+@stop

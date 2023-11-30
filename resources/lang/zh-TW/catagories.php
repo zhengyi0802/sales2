@@ -7,6 +7,7 @@
            'name'        => '產品類別名稱',
            'description' => '產品類別描述',
            'status'      => '狀態',
-           'creator'    => '建立者',
+           'creator'     => '建立者',
+           'products'    => '產品列表',
     ];
 

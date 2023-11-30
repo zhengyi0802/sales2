@@ -22,4 +22,7 @@ class Vendor extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
+    function products() {
+        return $this->hasMany(ProductModel::class, 'vendor_id');
+    }
 }

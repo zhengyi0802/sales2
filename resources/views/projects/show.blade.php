@@ -26,16 +26,16 @@
                 {{ $project->name }}
         </x-adminlte>
         <x-adminlte-card title="{{ __('projects.details') }}" theme="info" icon="fas fa-lg">
-                {{ $project->details }}
+                <pre>{{ $project->details }}</pre>
         </x-adminlte-card>
-        <x-adminlte-card title="{{ __('projects.extras') }}" theme="info" icon="fas fa-lg">
-                <table>
-                @foreach($project->gifts() as $gift)
-                   <tr?<td>{{ $gift->name."(".$gift->model.")" }}</td></tr>
-                @endforeach
-                </table>
+        <x-adminlte-card title="{{ __('projects.extras') }}" theme="primary" icon="fas fa-lg">
+                @if ($project->gifts() != null)
+                  @foreach($project->gifts() as $gift)
+                     {{ $gift->name.'('.$gift->model.')' }}
+                  @endforeach
+                @endif
         </x-adminlte-card>
-        <x-adminlte-card title="{{ __('projects.creator') }}" theme="info" icon="fas fa-lg">
+        <x-adminlte-card title="{{ __('projects.creator') }}" theme="warning" icon="fas fa-lg">
                 {{ $project->creator->name }}
         </x-adminlte-card>
      </div>

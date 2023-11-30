@@ -8,6 +8,7 @@
            'model'            => '產品型號',
            'catagory'         => '產品類別',
            'vendor'           => '製造廠商',
+           'price'            => '牌價',
            'briefs'           => '特色',
            'specifications'   => '規格',
            'descriptions'     => '產品說明',
