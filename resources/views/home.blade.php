@@ -5,7 +5,14 @@
 @section('content_header')
     <h1 class="m-0 text-dark">Dashboard</h1>
 @stop
-
+<style>
+   span {
+          font-size:24pt;
+        }
+   td   {
+          text-align:center;
+        }
+</style>
 @section('content')
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
@@ -15,7 +22,7 @@
          <tr>
             <td>
                <x-adminlte-card title="{{ __('home.unhandled') }}" theme="info" icon="fas fa-lg">
-                  {{ $data['unhandled'] }}
+                  <span>{{ $data['unhandled'] }}</span>
                   <button onClick="window.location='{{ route('orders.index', ['flow' => '1']); }}'" >
                      {{ __('tables.details') }}
                   </button>
@@ -23,7 +30,7 @@
             </td>
             <td>
                <x-adminlte-card title="{{ __('home.contacted') }}" theme="info" icon="fas fa-lg">
-                  {{ $data['contacted'] }}
+                  <span>{{ $data['contacted'] }}</span>
                   <button onClick="window.location='{{ route('orders.index', ['flow' => '2']); }}'" >
                      {{ __('tables.details') }}
                   </button>
@@ -31,7 +38,7 @@
             </td>
             <td>
                <x-adminlte-card title="{{ __('home.confirmed') }}" theme="info" icon="fas fa-lg">
-                  {{ $data['confirmed'] }}
+                  <span>{{ $data['confirmed'] }}</span>
                   <button onClick="window.location='{{ route('orders.index', ['flow' => '3']); }}'" >
                      {{ __('tables.details') }}
                   </button>
@@ -42,7 +49,7 @@
          <tr>
             <td>
                <x-adminlte-card title="{{ __('home.shippings') }}" theme="primary" icon="fas fa-lg">
-                  {{ $data['shippings'] }}
+                  <span>{{ $data['shippings'] }}</span>
                   <button onClick="window.location='{{ route('orders.index', ['flow' => '4']); }}'" >
                      {{ __('tables.details') }}
                   </button>
@@ -50,7 +57,7 @@
              </td>
              <td>
                <x-adminlte-card title="{{ __('home.completions') }}" theme="success" icon="fas fa-lg">
-                  {{ $data['completions'] }}
+                  <span>{{ $data['completions'] }}</span>
                   <button onClick="window.location='{{ route('orders.index', ['flow' => '5']); }}'" >
                      {{ __('tables.details') }}
                   </button>
@@ -58,7 +65,7 @@
              </td>
              <td>
                <x-adminlte-card title="{{ __('home.chargebacks') }}" theme="danger" icon="fas fa-lg">
-                  {{ $data['chargebacks'] }}
+                  <span>{{ $data['chargebacks'] }}</span>
                   <button onClick="window.location='{{ route('orders.index', ['flow' => '6']); }}'" >
                      {{ __('tables.details') }}
                   </button>
@@ -69,7 +76,7 @@
          <tr>
             <td>
                <x-adminlte-card title="{{ __('home.disabled') }}" theme="warning" icon="fas fa-lg">
-                  {{ $data['disabled'] }}
+                  <span<{{ $data['disabled'] }}</span>
                </x-adminlte-card>
             </td>
          </tr>
