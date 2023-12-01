@@ -88,8 +88,7 @@ class HomeController extends Controller
                  $confirmed = Order::where('status', true)->where('flow', FlowStatus::Confirmed)->count();
                  $shippings = Order::where('status', true)->where('flow', FlowStatus::Shipping)->count();
                  $completions = Order::where('status', true)->where('flow', FlowStatus::Completion)->count();
-                 $finished = Order::where('status', true)->where('sales_id', $user->sales->id)
-                                  ->where('flow', FlowStatus::Finished)->count();
+                 $finished = Order::where('status', true)->where('flow', FlowStatus::Finished)->count();
                  $chargebacks = Order::where('status', true)->where('flow', FlowStatus::ChargeBack)->count();
                  $disabled = 0;
                  break;

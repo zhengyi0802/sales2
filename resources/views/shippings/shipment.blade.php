@@ -350,19 +350,19 @@ xmlns="http://www.w3.org/TR/REC-html40">
              </td>
        </tr>
        <tr class="tr2">
-         <td width="262" colspan="2" class="total1 padding"><p align="right" style='text-align:right'><span>運送安裝費</span></p></td>
+         <td width="262" colspan="2" class="total1 padding"><p align="right" style='text-align:right'><span>運費基本安裝</span></p></td>
          <td width="255" colspan="3" class="total1val padding" style="text-align:right">{{ 'NTD '.$order->installation_fee }}</td>
+         <td width="168" class="remark"></td>
+       </tr>
+       <tr class="tr2">
+         <td width="262" colspan="2" class="total1 padding"><p align="right" style='text-align:right'><span>合計</span></p></td>
+         <td width="255" colspan="3" class="total1val padding"  style="text-align:right">{{ "NTD ".($order->price+$order->installation_fee) }}</td>
          <td width="168" class="remark"></td>
        </tr>
        <tr class="tr2">
          <td width="262" colspan="2" class="total1 padding"><p align="right" style='text-align:right'><span>璧掛安裝費</span></p></td>
          <td width="255" colspan="3" class="total1val padding"  style="text-align:right"></td>
          <td width="168" class="remark">依現場環境需求估價</td>
-       </tr>
-       <tr class="tr2">
-         <td width="262" colspan="2" class="total1 padding"><p align="right" style='text-align:right'><span>合計</span></p></td>
-         <td width="255" colspan="3" class="total1val padding"  style="text-align:right"></td>
-         <td width="168" class="remark"></td>
        </tr>
        <tr class="tr3">
          <td width="131" class="remark2 padding"><p><span>備註事項</span></p></td>
