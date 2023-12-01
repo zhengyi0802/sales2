@@ -205,7 +205,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
     <table class="tableGrid" border="1" cellspacing="0" cellpadding="0">
       <tr class="titleHeight">
         <td width="685" colspan="6" valign="top" class="titleField">
-            <p><span class="title">禾昌國際事業股份有限公司出貨單</span></p>
+            <p><img src="/hplogo1.png" width="100" align="left"><span class="title">禾昌國際事業股份有限公司出貨單</span></p>
             <p><span class="orderNo">訂單編號 : {{ $order->id }}</span></p></td>
       </tr>
       <tr class="tr2">
@@ -255,53 +255,113 @@ xmlns="http://www.w3.org/TR/REC-html40">
        </tr>
        <tr class="dataField" id="extra1">
              <td width="131" class="prod padding" style="text-align:left">
-               <p><span>{{ isset($order->extras[0]) ? $order->extras[0]->product->name.'('.$order->extras[0]->product->model.')' : null }}</span></p>
+               <p><span>
+                 @if (isset($order->extras[0]) && ($order->extras[0]->flow == App\Enums\FlowStatus::Shipping) )
+                   {{ $order->extras[0]->product->name.'('.$order->extras[0]->product->model.')' }}
+                 @endif
+               </span></p>
              </td>
              <td width="226" colspan="2" class="sno padding"><p><span></span></p></td>
-             <td width="75" class="amount padding"><p><span>{{ isset($order->extras[0]) ? "1" : null }}</span></p></td>
+             <td width="75" class="amount padding">
+                <p><span>
+                  @if (isset($order->extras[0]) && ($order->extras[0]->flow == App\Enums\FlowStatus::Shipping) )
+                    {{ "1" }}
+                  @endif
+                </span></p>
+             </td>
              <td width="85" class="price padding" style="text-align:right"><p><span></span></p></td>
-             <td width="168" class="remark padding"><p><span>{{ isset($order->extras[0]) ? __('shippings.extras') : null }}</span></p></td>
+             <td width="168" class="remark padding">
+                <p><span>
+                  @if (isset($order->extras[0]) && ($order->extras[0]->flow == App\Enums\FlowStatus::Shipping) )
+                    {{  __('shippings.extras') }}
+                  @endif
+                </span></p>
+             </td>
        </tr>
        <tr class="dataField" id="extra2">
              <td width="131" class="prod padding" style="text-align:left">
-               <p><span>{{ (isset($order->extras[1])) ? $order->extras[1]->product->name.'('.$order->extras[1]->product->model.')' : null }}</span></p>
+               <p><span>
+                 @if (isset($order->extras[1]) && ($order->extras[1]->flow == App\Enums\FlowStatus::Shipping) )
+                   {{ $order->extras[1]->product->name.'('.$order->extras[1]->product->model.')' }}
+                 @endif
+               </span></p>
              </td>
              <td width="226" colspan="2" class="sno padding"><p><span></span></p></td>
-             <td width="75" class="amount padding"><p><span>{{ (isset($order->extras[1])) ? "1" : null }}</span></p></td>
+             <td width="75" class="amount padding">
+                <p><span>
+                  @if (isset($order->extras[1]) && ($order->extras[1]->flow == App\Enums\FlowStatus::Shipping) )
+                    {{ "1" }}
+                  @endif
+                </span></p>
+             </td>
              <td width="85" class="price padding" style="text-align:right"><p><span></span></p></td>
-             <td width="168" class="remark padding"><p><span>{{ isset($order->extras[1]) ? __('shippings.extras') : null }}</span></p></td>
+             <td width="168" class="remark padding">
+                <p><span>
+                  @if (isset($order->extras[1]) && ($order->extras[1]->flow == App\Enums\FlowStatus::Shipping) )
+                    {{  __('shippings.extras') }}
+                  @endif
+                </span></p>
+             </td>
        </tr>
        <tr class="dataField" id="extra3">
              <td width="131" class="prod padding" style="text-align:left">
-               <p><span>{{ (isset($order->extras[2])) ? $order->extras[2]->product->name.'('.$order->extras[2]->product->model.')' : null }}</span></p>
+                 @if (isset($order->extras[2]) && ($order->extras[2]->flow == App\Enums\FlowStatus::Shipping) )
+                   {{ $order->extras[2]->product->name.'('.$order->extras[2]->product->model.')' }}
+                 @endif
              </td>
              <td width="226" colspan="2" class="sno padding"><p><span></span></p></td>
-             <td width="75" class="amount padding"><p><span>{{ (isset($order->extras[2])) ? "1" : null }}</span></p></td>
+             <td width="75" class="amount padding">
+                <p><span>
+                  @if (isset($order->extras[2]) && ($order->extras[2]->flow == App\Enums\FlowStatus::Shipping) )
+                    {{ "1" }}
+                  @endif
+                </span></p>
+             </td>
              <td width="85" class="price padding" style="text-align:right"><p><span></span></p></td>
-             <td width="168" class="remark padding"><p><span>{{ isset($order->extras[2]) ? __('shippings.extras') : null }}</span></p></td>
+             <td width="168" class="remark padding">
+                <p><span>
+                  @if (isset($order->extras[2]) && ($order->extras[2]->flow == App\Enums\FlowStatus::Shipping) )
+                    {{  __('shippings.extras') }}
+                  @endif
+                </span></p>
+             </td>
        </tr>
        <tr class="dataField" id="extra4">
              <td width="131" class="prod padding" style="text-align:left">
-               <p><span>{{ (isset($order->extras[3])) ? $order->extras[3]->product->name.'('.$order->extras[3]->product->model.')' : null }}</span></p>
+                 @if (isset($order->extras[3]) && ($order->extras[3]->flow == App\Enums\FlowStatus::Shipping) )
+                   {{ $order->extras[3]->product->name.'('.$order->extras[3]->product->model.')' }}
+                 @endif
              </td>
              <td width="226" colspan="2" class="sno padding"><p><span></span></p></td>
-             <td width="75" class="amount padding"><p><span>{{ (isset($order->extras[3])) ? "1" : null }}</span></p></td>
+             <td width="75" class="amount padding">
+                <p><span>
+                  @if (isset($order->extras[3]) && ($order->extras[3]->flow == App\Enums\FlowStatus::Shipping) )
+                    {{ "1" }}
+                  @endif
+                </span></p>
+             </td>
              <td width="85" class="price padding" style="text-align:right"><p><span></span></p></td>
-             <td width="168" class="remark padding"><p><span>{{ isset($order->extras[3]) ? __('shippings.extras') : null }}</span></p></td>
+             <td width="168" class="remark padding">
+                <p><span>
+                  @if (isset($order->extras[3]) && ($order->extras[3]->flow == App\Enums\FlowStatus::Shipping) )
+                    {{  __('shippings.extras') }}
+                  @endif
+                </span></p>
+             </td>
        </tr>
        <tr class="tr2">
-         <td width="262" colspan="2" class="total1 padding"><p align="right" style='text-align:right'><span>小計未稅</span></p></td>
-         <td width="255" colspan="3" class="total1val padding" style="text-align:right">{{ "NTD ".$order->price }}</td>
+         <td width="262" colspan="2" class="total1 padding"><p align="right" style='text-align:right'><span>運送安裝費</span></p></td>
+         <td width="255" colspan="3" class="total1val padding" style="text-align:right">{{ 'NTD '.$order->installation_fee }}</td>
          <td width="168" class="remark"></td>
        </tr>
        <tr class="tr2">
-         <td width="262" colspan="2" class="total1 padding"><p align="right" style='text-align:right'><span>稅金</span></p></td>
-         <td width="255" colspan="3" class="total1val padding"  style="text-align:right">{{ "NTD ".$order->price*0.05 }}</td>
-         <td width="168" class="remark"></td>
+         <td width="262" colspan="2" class="total1 padding"><p align="right" style='text-align:right'><span>璧掛安裝費</span></p></td>
+         <td width="255" colspan="3" class="total1val padding"  style="text-align:right"></td>
+         <td width="168" class="remark">依現場環境需求估價</td>
        </tr>
        <tr class="tr2">
          <td width="262" colspan="2" class="total1 padding"><p align="right" style='text-align:right'><span>合計</span></p></td>
-         <td width="255" colspan="3" class="total1val padding"  style="text-align:right">{{ "NTD ".$order->price*1.05 }}</td>
+         <td width="255" colspan="3" class="total1val padding"  style="text-align:right"></td>
          <td width="168" class="remark"></td>
        </tr>
        <tr class="tr3">

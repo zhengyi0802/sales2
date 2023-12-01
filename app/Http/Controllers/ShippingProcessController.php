@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Customer;
 use App\Models\User;
 use App\Enums\UserRole;
+use App\Enums\FlowStatus;
 use Illuminate\Http\Request;
 
 class ShippingProcessController extends Controller
@@ -85,12 +86,22 @@ class ShippingProcessController extends Controller
         $user = auth()->user();
         $data = $request->all();
         if ($user->role == UserRole::Installer) {
-            if ($data['flow'] == 5) {
+            if ($data['flow'] == FlowStatus::Completion) {
                 $data['coompletion_time'] = date('Y-M-D h:m:s');
                 $data['installer_id'] = $user->id;
             }
         }
         $shipping->update($data);
+        $extras = $shipping->order->extras->toArray();
+        for($i=0; $i<count($extras); $i++) {
+            $extra = $shipping->order->extras[$i];
+            if (isset($data['includes'][$i])) {
+                $extra->flow = FlowStatus::Shipping;
+            } else {
+                $extra->flow = FlowStatus::UnHandled;
+            }
+            $extra->save();
+        }
 
         return redirect()->route('shippings.index');
     }

@@ -81,6 +81,10 @@
                 <td><input type="number" name="price" value="0">
             </tr>
             <tr class="form-group col-md-4">
+                <td><strong>{{ __('orders.installation_fee') }} :<span class="must">{{ __('tables.must') }}</span></strong></td>
+                <td><input type="number" name="installation_fee" value="0">
+            </tr>
+            <tr class="form-group col-md-4">
                 <td><strong>{{ __('orders.extras') }} :</strong></td>
                 <td><select id="extra_id" name="extra_id[]" multiple="multiple" size="10">
                       <option value="0">----------</option>

@@ -39,6 +39,9 @@
           color     : red;
           font-size : 12px;
        }
+       option:checked {
+          background-color: yellow;
+       }
     </style>
     <form id="order-form" action="{{ route('orders.update',$order->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')

@@ -36,6 +36,7 @@ class HomeController extends Controller
                  $confirmed = Order::where('status', true)->where('flow', FlowStatus::Confirmed)->count();
                  $shippings = Order::where('status', true)->where('flow', FlowStatus::Shipping)->count();
                  $completions = Order::where('status', true)->where('flow', FlowStatus::Completion)->count();
+                 $finished = Order::where('status', true)->where('flow', FlowStatus::Finished)->count();
                  $chargebacks = Order::where('status', true)->where('flow', FlowStatus::ChargeBack)->count();
                  $disabled = Order::where('status',false)->count();
                  break;
@@ -45,6 +46,7 @@ class HomeController extends Controller
                  $confirmed = Order::where('status', true)->where('flow', FlowStatus::Confirmed)->count();
                  $shippings = Order::where('status', true)->where('flow', FlowStatus::Shipping)->count();
                  $completions = Order::where('status', true)->where('flow', FlowStatus::Completion)->count();
+                 $finished = Order::where('status', true)->where('flow', FlowStatus::Finished)->count();
                  $chargebacks = Order::where('status', true)->where('flow', FlowStatus::ChargeBack)->count();
                  $disabled = 0;
                  break;
@@ -59,6 +61,8 @@ class HomeController extends Controller
                                    ->where('flow', FlowStatus::Shipping)->count();
                  $completions = Order::where('status', true)->where('sales_id', $user->sales->id)
                                      ->where('flow', FlowStatus::Completion)->count();
+                 $finished = Order::where('status', true)->where('sales_id', $user->sales->id)
+                                  ->where('flow', FlowStatus::Finished)->count();
                  $chargebacks = Order::where('status', true)->where('sales_id', $user->sales->id)
                                      ->where('flow', FlowStatus::ChargeBack)->count();
                  $disabled = 0;
@@ -84,6 +88,8 @@ class HomeController extends Controller
                  $confirmed = Order::where('status', true)->where('flow', FlowStatus::Confirmed)->count();
                  $shippings = Order::where('status', true)->where('flow', FlowStatus::Shipping)->count();
                  $completions = Order::where('status', true)->where('flow', FlowStatus::Completion)->count();
+                 $finished = Order::where('status', true)->where('sales_id', $user->sales->id)
+                                  ->where('flow', FlowStatus::Finished)->count();
                  $chargebacks = Order::where('status', true)->where('flow', FlowStatus::ChargeBack)->count();
                  $disabled = 0;
                  break;
@@ -93,6 +99,7 @@ class HomeController extends Controller
                  $confirmed = Order::where('status', true)->where('flow', FlowStatus::Confirmed)->count();
                  $shippings = Order::where('status', true)->where('flow', FlowStatus::Shipping)->count();
                  $completions = Order::where('status', true)->where('flow', FlowStatus::Completion)->count();
+                 $finished = Order::where('status', true)->where('flow', FlowStatus::Finished)->count();
                  $chargebacks = Order::where('status', true)->where('flow', FlowStatus::ChargeBack)->count();
                  $disabled = 0;
                  break;
@@ -102,8 +109,19 @@ class HomeController extends Controller
                  $confirmed = 0;
                  $shippings = Order::where('status', true)->where('flow', FlowStatus::Shipping)->count();
                  $completions = Order::where('status', true)->where('flow', FlowStatus::Completion)->count();
+                 $finished = Order::where('status', true)->where('flow', FlowStatus::Finished)->count();
                  $chargebacks = Order::where('status', true)->where('flow', FlowStatus::ChargeBack)->count();
                  $disabled = 0;
+                 break;
+             case UserRole::ShareHolder:
+                 $unhandled = Order::where('status', true)->where('flow', FlowStatus::UnHandled)->count();
+                 $contacted = Order::where('status', true)->where('flow', FlowStatus::Contacted)->count();
+                 $confirmed = Order::where('status', true)->where('flow', FlowStatus::Confirmed)->count();
+                 $shippings = Order::where('status', true)->where('flow', FlowStatus::Shipping)->count();
+                 $completions = Order::where('status', true)->where('flow', FlowStatus::Completion)->count();
+                 $finished = Order::where('status', true)->where('flow', FlowStatus::Finished)->count();
+                 $chargebacks = Order::where('status', true)->where('flow', FlowStatus::ChargeBack)->count();
+                 $disabled = Order::where('status',false)->count();
                  break;
         }
         $data = [
@@ -112,6 +130,7 @@ class HomeController extends Controller
                 'confirmed'    => $confirmed,
                 'shippings'    => $shippings,
                 'completions'  => $completions,
+                'finished'     => $finished,
                 'chargebacks'  => $chargebacks,
                 'disabled'     => $disabled,
         ];

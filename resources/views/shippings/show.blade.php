@@ -17,6 +17,16 @@
                 <h1>{{ __('tables.details') }}</h1>
             </div>
             @include('layouts.back')
+            @if ((auth()->user()->role == App\Enums\UserRole::Administrator ||
+                 auth()->user()->role == App\Enums\UserRole::Installer ||
+                 auth()->user()->role == App\Enums\UserRole::Operator) &&
+                 $shipping->order->flow < 5)
+                <div class="card col-md-2">
+                  <button onClick="window.location='{{ route('orders.shipment', $shipping->order->id); }}'" class="btn-primary">
+                    {{ __('orders.shipment_button') }}
+                  </button>
+                </div>
+        @endif
         </div>
     </div>
 

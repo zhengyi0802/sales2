@@ -11,6 +11,7 @@ use App\Models\ProductModel;
 use App\Models\Sales;
 use App\Models\ShippingProcess;
 use App\Enums\UserRole;
+use App\Enums\FlowStatus;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -146,11 +147,13 @@ class OrderController extends Controller
         $projects = Project::where('status', true)->get();
         $extras = ProductModel::where('status', true)->where('extra', true)->get();
         $sales = Sales::where('status', true)->get();
+        $gifts = $order->extras->pluck('product_id')->toArray();
 
         return view('orders.edit', compact('order'))
                ->with(compact('sales'))
                ->with(compact('projects'))
                ->with(compact('productModels'))
+               ->with(compact('gifts'))
                ->with(compact('extras'));
     }
 
@@ -167,7 +170,7 @@ class OrderController extends Controller
         $data = $request->all();
         $order->update($data);
         switch($data['flow']) {
-            case 3 :
+            case FlowStatus::Confirmed :
                      $shippingProcess = ShippingProcess::where('order_id', $order->id)->first();
                      if ($shippingProcess == null) {
                          $spdata = [ 'order_id' => $order->id, 'shipping_date' => $data['shipping_date'], 'created_by' => $creator->id, ];
@@ -178,7 +181,7 @@ class OrderController extends Controller
                          $shippingProcess->update($spdata);
                      }
                      break;
-            case 4 :
+            case FlowStatus::Shipping :
                      $shippingProcess = ShippingProcess::where('order_id', $order->id)->first();
                      if ($shippingProcess == null) {
                          $spdata = [ 'order_id' => $order->id, 'shipping_date' => $data['shipping_date'], 'created_by' => $creator->id, ];
@@ -189,18 +192,7 @@ class OrderController extends Controller
                          $shippingProcess->update($spdata);
                      }
                      break;
-            case 5 :
-                     $shippingProcess = ShippingProcess::where('order_id', $order->id)->first();
-                     if ($shippingProcess == null) {
-                         $spdata = [ 'order_id' => $order->id, 'completion_time' => date('Y-m-d H:i:s'), 'created_by' => $creator->id, ];
-                         ShippingProcess::create($spdata);
-                     } else {
-                         $spdata['completion_date'] = date('Y-m-d H:i:s');
-                         $spdata['created_by'] = $creator->id;
-                         $shippingProcess->update($spdata);
-                     }
-                     break;
-            case 6 :
+            case FlowStatus::ChargeBack :
                      $shippingProcess = ShippingProcess::where('order_id', $order->id)->first();
                      if ($shippingProcess == null) {
                          $spdata = [ 'order_id' => $order->id, 'chargeback_time' => date('Y-m-d H:i:s'), 'created_by' => $creator->id, ];

@@ -6,11 +6,14 @@
     <h1 class="m-0 text-dark">Dashboard</h1>
 @stop
 <style>
-   span {
+   .num {
           font-size:24pt;
         }
-   td   {
+  .cell {
           text-align:center;
+        }
+  .btnd {
+          border-radius: 8px;
         }
 </style>
 @section('content')
@@ -20,26 +23,26 @@
          @if(auth()->user()->role != App\Enums\UserRole::Installer &&
              auth()->user()->role != App\Enums\UserRole::Accounter)
          <tr>
-            <td>
+            <td class="cell">
                <x-adminlte-card title="{{ __('home.unhandled') }}" theme="info" icon="fas fa-lg">
-                  <span>{{ $data['unhandled'] }}</span>
-                  <button onClick="window.location='{{ route('orders.index', ['flow' => '1']); }}'" >
+                  <span class="num">{{ $data['unhandled'] }}</span><br>
+                  <button class="btnd btn-info" onClick="window.location='{{ route('orders.index', ['flow' => '1']); }}'" >
                      {{ __('tables.details') }}
                   </button>
                </x-adminlte>
             </td>
-            <td>
+            <td class="cell">
                <x-adminlte-card title="{{ __('home.contacted') }}" theme="info" icon="fas fa-lg">
-                  <span>{{ $data['contacted'] }}</span>
-                  <button onClick="window.location='{{ route('orders.index', ['flow' => '2']); }}'" >
+                  <span class="num">{{ $data['contacted'] }}</span><br>
+                  <button class="btnd btn-info"onClick="window.location='{{ route('orders.index', ['flow' => '2']); }}'" >
                      {{ __('tables.details') }}
                   </button>
                </x-adminlte-card>
             </td>
-            <td>
+            <td class="cell">
                <x-adminlte-card title="{{ __('home.confirmed') }}" theme="info" icon="fas fa-lg">
-                  <span>{{ $data['confirmed'] }}</span>
-                  <button onClick="window.location='{{ route('orders.index', ['flow' => '3']); }}'" >
+                  <span class="num">{{ $data['confirmed'] }}</span><br>
+                  <button class="btnd btn-info" onClick="window.location='{{ route('orders.index', ['flow' => '3']); }}'" >
                      {{ __('tables.details') }}
                   </button>
                </x-adminlte>
@@ -47,40 +50,51 @@
          </tr>
          @endif
          <tr>
-            <td>
+            <td class="cell">
                <x-adminlte-card title="{{ __('home.shippings') }}" theme="primary" icon="fas fa-lg">
-                  <span>{{ $data['shippings'] }}</span>
-                  <button onClick="window.location='{{ route('orders.index', ['flow' => '4']); }}'" >
+                  <span class="num">{{ $data['shippings'] }}</span><br>
+                  <button class="btnd btn-info" onClick="window.location='{{ route('orders.index', ['flow' => '4']); }}'" >
                      {{ __('tables.details') }}
                   </button>
                </x-adminlte-card>
              </td>
-             <td>
+             <td class="cell">
                <x-adminlte-card title="{{ __('home.completions') }}" theme="success" icon="fas fa-lg">
-                  <span>{{ $data['completions'] }}</span>
-                  <button onClick="window.location='{{ route('orders.index', ['flow' => '5']); }}'" >
+                  <span class="num">{{ $data['completions'] }}</span><br>
+                  <button class="btnd btn-info" onClick="window.location='{{ route('orders.index', ['flow' => '5']); }}'" >
                      {{ __('tables.details') }}
                   </button>
                </x-adminlte>
              </td>
-             <td>
-               <x-adminlte-card title="{{ __('home.chargebacks') }}" theme="danger" icon="fas fa-lg">
-                  <span>{{ $data['chargebacks'] }}</span>
-                  <button onClick="window.location='{{ route('orders.index', ['flow' => '6']); }}'" >
+             <td class="cell">
+               <x-adminlte-card title="{{ __('home.finished') }}" theme="success" icon="fas fa-lg">
+                  <span class="num">{{ $data['finished'] }}</span><br>
+                  <button class="btnd btn-info" onClick="window.location='{{ route('orders.index', ['flow' => '6']); }}'" >
                      {{ __('tables.details') }}
                   </button>
                </x-adminlte-card>
              </td>
          </tr>
-         @if (auth()->user()->role == App\Enums\UserRole::Administrator)
          <tr>
-            <td>
+             <td class="cell">
+               <x-adminlte-card title="{{ __('home.chargebacks') }}" theme="danger" icon="fas fa-lg">
+                  <span class="num">{{ $data['chargebacks'] }}</span><br>
+                  <button class="btnd btn-info" onClick="window.location='{{ route('orders.index', ['flow' => '7']); }}'" >
+                     {{ __('tables.details') }}
+                  </button>
+               </x-adminlte-card>
+             </td>
+          @if (auth()->user()->role == App\Enums\UserRole::Administrator)
+            <td class="cell">
                <x-adminlte-card title="{{ __('home.disabled') }}" theme="warning" icon="fas fa-lg">
-                  <span<{{ $data['disabled'] }}</span>
+                  <span class="num">{{ $data['disabled'] }}</span><br>
+                  <button class="btnd btn-info" onClick="window.location='{{ route('orders.index', ['flow' => '-1']); }}'" >
+                     {{ __('tables.details') }}
+                  </button>
                </x-adminlte-card>
             </td>
-         </tr>
          @endif
+         </tr>
       </table>
      </div>
 @stop

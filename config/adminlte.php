@@ -335,22 +335,30 @@ return [
         [
             'text' => 'customers',
             'url'  => 'customers',
-            'can'  => ['manager', 'sales', 'operator', 'reseller'],
+            'can'  => ['manager', 'sales', 'operator', 'reseller',],
         ],
         [
             'text' => 'orders',
             'url'  => 'orders',
-            'can'  => ['manager', 'sales', 'operator', 'reseller'],
+            'can'  => ['manager', 'sales', 'operator', 'reseller',],
         ],
         [
             'text' => 'shippings',
             'url'  => 'shippings',
+            'can'  => ['operator', 'installer',],
         ],
+        [
+            'text' => 'stocks',
+            'url'  => 'stocks',
+            'can'  => ['admin'],
+        ],
+/*
         [
             'text' => 'csvs',
             'url'  => 'csvs',
             'can'  => ['admin'],
         ],
+*/
         ['header' => 'account_settings'],
         [
             'text' => 'users',

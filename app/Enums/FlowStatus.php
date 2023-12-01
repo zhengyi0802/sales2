@@ -17,5 +17,6 @@ final class FlowStatus extends Enum
     const Confirmed      =   3;  //已預約
     const Shipping       =   4;  //裝機中
     const Completion     =   5;  //已完成
-    const ChargeBack     =   6;  //退單
+    const Finished       =   6;  //已結案
+    const ChargeBack     =   7;  //退單
 }

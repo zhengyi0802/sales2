@@ -22,9 +22,10 @@ class CreateOrdersTable extends Migration
             $table->string('name');
             $table->string('phone', 20);
             $table->string('address');
-            $table->Integer('price')->unsigned()->default(0);
+            $table->integer('price')->unsigned()->default(0);
+            $table->integer('installation_fee')->unsigned()->default(0);
             $table->text('memo')->nullable();
-            $table->Integer('flow')->unsigned()->default(1);
+            $table->tinyInteger('flow')->unsigned()->default(1);
             $table->boolean('status')->default(true);
             $table->date('order_date')->nullable();
             $table->bigInteger('created_by')->unsigned();

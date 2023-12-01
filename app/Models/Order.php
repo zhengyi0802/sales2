@@ -19,6 +19,7 @@ class Order extends Model
         'phone',
         'address',
         'price',
+        'installation_fee',
         'flow',
         'memo',
         'status',

@@ -13,9 +13,11 @@ class OrderExtra extends Model
         'order_id',
         'product_id',
         'price',
+        'flow',
         'memo',
         'status',
         'order_date',
+        'shipping_time',
         'created_by',
     ];
 

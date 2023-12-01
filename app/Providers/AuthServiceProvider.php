@@ -38,7 +38,7 @@ class AuthServiceProvider extends ServiceProvider
         // Roles based authorization
         Gate::before(
             function ($user, $ability) {
-                if ($user->role === UserRole::Administrator) {
+                if ($user->role === UserRole::Administrator || $user->role === UserRole::ShareHolder) {
                     return true;
                 }
             }

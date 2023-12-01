@@ -39,6 +39,18 @@
           color     : red;
           font-size : 12px;
        }
+       .cell {
+          border:solid 1px;
+          padding-left:10px;
+          padding-right:10px;
+          text-align:center;
+       }
+       .cell2 {
+          border:solid 1px;
+          padding-left:10px;
+          padding-right:10px;
+          text-align:left;
+       }
     </style>
     <form id="shipping-form" action="{{ route('shippings.update',$shipping->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
@@ -63,16 +75,108 @@
                 </div>
                 <div class="form-group col-md-4">
                     <strong>{{ __('shippings.flow') }} :</strong>
-                    <td><select id="flow" name="flow" onchange="checkflow(this)">
-                      <option value="3" {{ ($shipping->order->flow == 3) ? "selected" : null }}>{{ trans_choice('orders.flows', 3) }}</option>
+                    <select id="flow" name="flow" onchange="checkflow(this)">
                       <option value="4" {{ ($shipping->order->flow == 4) ? "selected" : null }}>{{ trans_choice('orders.flows', 4) }}</option>
                       <option value="5" {{ ($shipping->order->flow == 5) ? "selected" : null }}>{{ trans_choice('orders.flows', 5) }}</option>
-                </select></td>
+                      <option value="6" {{ ($shipping->order->flow == 6) ? "selected" : null }}>{{ trans_choice('orders.flows', 6) }}</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-4">
                     <strong>{{ __('shippings.shipping_date') }} :</strong>
                     <input type="date" name="shipping_date" value="{{ $shipping->shipping_date }}" class="form-control">
                 </div>
+                <div class="form-group col-md-6">
+                    <strong>{{ __('orders.product') }}</strong>
+                  <table style="border:solid 2px">
+                    <tr>
+                      <td class="cell">{{ __('shippings.id') }}</td>
+                      <td class="cell">{{ __('shippings.product') }}</td>
+                      <td class="cell">{{ __('shippings.amount') }}</td>
+                      <td class="cell">{{ __('shippings.includes') }}</td>
+                    </tr>
+                    <tr>
+                       <td class="cell">1</td>
+                       <td class="cell2">
+                         {{ $shipping->order->product->name.'('.$shipping->order->product->model.')' }}
+                       </td>
+                       <td class="cell">1</td>
+                       <td class="cell">{{ __('tables.yes') }}</td>
+                    </tr>
+                    <tr>
+                       <td class="cell">2</td>
+                       <td class="cell2">
+                          @if ($shipping->order->product->accessories > 0)
+                             {{ $shipping->order->product->accessory->name.'('.$shipping->order->product->accessory->model.')' }}
+                          @endif
+                       </td>
+                       <td class="cell">{{ ($shipping->order->product->accessories > 0) ? "1" : null }}</td>
+                       <td class="cell">{{ ($shipping->order->product->accessories > 0) ? __('tables.yes') : null }}</td>
+                    </tr>
+                    <tr>
+                       <td class="cell">3</td>
+                       <td class="cell2">
+                           @if (isset($shipping->order->extras[0]))
+                               {{  $shipping->order->extras[0]->product->name.'('.$shipping->order->extras[0]->product->model.')' }}
+                           @endif
+                       </td>
+                       <td class="cell">{{ isset($shipping->order->extras[0]) ? "1" : null }}</td>
+                       <td class="cell">
+                           @if (isset($shipping->order->extras[0]))
+                               <input type="checkbox" name="includes[0]" value="1"
+                                  {{ ($shipping->order->extras[0]->flow >= App\Enums\FlowStatus::Shipping) ? "checked" : null }}>
+                               <label for="include[0]">{{ __('tables.yes') }}</label>
+                           @endif
+                       </td>
+                    </tr>
+                    <tr>
+                       <td class="cell">4</td>
+                       <td class="cell2">
+                           @if (isset($shipping->order->extras[1]))
+                               {{  $shipping->order->extras[1]->product->name.'('.$shipping->order->extras[1]->product->model.')' }}
+                           @endif
+                       </td>
+                       <td class="cell">{{ isset($shipping->order->extras[1]) ? "1" : null }}</td>
+                       <td class="cell">
+                           @if (isset($shipping->order->extras[1]))
+                               <input type="checkbox" name="includes[1]" value="1"
+                                  {{ ($shipping->order->extras[1]->flow >= App\Enums\FlowStatus::Shipping) ? "checked" : null }}>
+                               <label for="include[1]">{{ __('tables.yes') }}</label>
+                           @endif
+                        </td>
+                    </tr>
+                    <tr>
+                       <td class="cell">5</td>
+                       <td class="cell2">
+                           @if (isset($shipping->order->extras[2]))
+                               {{  $shipping->order->extras[2]->product->name.'('.$shipping->order->extras[2]->product->model.')' }}
+                           @endif
+                       </td>
+                       <td class="cell">{{ isset($shipping->order->extras[2]) ? "1" : null }}</td>
+                       <td class="cell">
+                           @if (isset($shipping->order->extras[2]))
+                               <input type="checkbox" name="includes[2]" value="1"
+                                  {{ ($shipping->order->extras[2]->flow >= App\Enums\FlowStatus::Shipping) ? "checked" : null }} >
+                               <label for="include[2]">{{ __('tables.yes') }}</label>
+                           @endif
+                        </td>
+                    </tr>
+                    <tr>
+                       <td class="cell">6</td>
+                       <td class="cell2">
+                           @if (isset($shipping->order->extras[3]))
+                               {{  $shipping->order->extras[3]->product->name.'('.$shipping->order->extras[3]->product->model.')' }}
+                           @endif
+                       </td>
+                       <td class="cell">{{ isset($shipping->order->extras[3]) ? "1" : null }}</td>
+                       <td class="cell">
+                           @if (isset($shipping->order->extras[3]))
+                               <input type="checkbox" name="includes[3]" value="1"
+                                  {{ ($shipping->order->extras[0]->flow >= App\Enums\FlowStatus::Shipping) ? "checked" : null }}>
+                               <label for="include[3]">{{ __('tables.yes') }}</label>
+                           @endif
+                        </td>
+                    </tr>
+                </table>
            </div>
            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
