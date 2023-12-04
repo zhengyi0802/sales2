@@ -24,10 +24,10 @@ $config = [
       <td>{{ $order->id }}</td>
       <td>{{ trans_choice('orders.flows', $order->flow) }}</td>
       <td>{{ $order->name }}</td>
-      <td>{{ $order->phone }}</td>
+      <td>{{ str_split($order->phone, 5)[0].'****' }}</td>
       <td>{{ $order->project->name }}</td>
       <td>{{ $order->product->model }}</td>
-      <td>{{ $order->order_date }}</td>
+      <td>{{ ($order->order_date) ? $order->order_date : $order->created_at }}</td>
       <td>{{ $order->sales->name }}</td>
       <td>{{ $order->creator->name }}</td>
       <td><nobr>
@@ -49,9 +49,11 @@ $config = [
                 type="submit" onclick="return confirm('{{ __('tables.confirm_delete') }}');">
               </x-adminlte-button>
              @endif
+             @if (auth()->user()->role != App\Enums\UserRole::ShareHolder)
               <x-adminlte-button theme="info" title="{{ __('tables.detail') }}" icon="fa fa-lg fa-fw fa-eye"
                 onClick="window.location='{{ route('orders.show', $order->id); }}'" >
               </x-adminlte-button>
+             @endif
             </form>
       </nobr></td>
     </tr>

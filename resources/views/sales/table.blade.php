@@ -21,7 +21,7 @@ $config = [
       <td>{{ $sales->id }}</td>
       <td>{{ $sales->name }}</td>
       <td>{{ $sales->company }}</td>
-      <td>{{ $sales->phone }}</td>
+      <td>{{ str_split($sales->phone, 55)[0]."****" }}</td>
       <td>{{ ($sales->user->role == App\Enums\UserRole::Sales) ? __('saleses.id_sales') : __('saleses.id_reseller') }}
       <td>{{ $sales->creator->name }}</td>
       <td><nobr>
@@ -38,9 +38,11 @@ $config = [
                 type="submit" onclick="return confirm('{{ __('tables.confirm_delete') }}');">
               </x-adminlte-button>
              @endif
+             @if (auth()->user()->role == App\Enums\UserRole::ShareHolder)
               <x-adminlte-button theme="info" title="{{ __('tables.detail') }}" icon="fa fa-lg fa-fw fa-eye"
                 onClick="window.location='{{ route('sales.show', $sales->id); }}'" >
               </x-adminlte-button>
+             @endif
             </form>
       </nobr></td>
     </tr>

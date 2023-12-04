@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrderExtrasTable extends Migration
+class CreateInventoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateOrderExtrasTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_extras', function (Blueprint $table) {
+        Schema::create('inventories', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('order_id')->unsigned();
+            $table->string('serial', 6);
             $table->bigInteger('product_id')->unsigned();
-            $table->integer('price')->unsigned()->default(0);
-            $table->tinyInteger('flow')->unsigned()->default(0);
-            $table->string('memo')->nullable();
+            $table->integer('start_amount')->unsigned()->default(0);
+            $table->integer('inbound')->unsigned()->default(0);
+            $table->integer('outbound')->unsigned()->default(0);
+            $table->integer('defective')->unsigned()->default(0);
+            $table->integer('stock')->unsigned()->default(0);
             $table->boolean('status')->default(true);
-            $table->date('order_date')->nullable();
-            $table->dateTime('shipping_time')->nullable();
             $table->bigInteger('created_by')->unsigned();
             $table->timestamps();
         });
@@ -35,6 +35,6 @@ class CreateOrderExtrasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_extras');
+        Schema::dropIfExists('inventories');
     }
 }

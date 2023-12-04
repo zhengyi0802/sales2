@@ -11,8 +11,8 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShippingProcessController;
 use App\Http\Controllers\CsvController;
-use App\Http\Controllers\StockController;
-
+//use App\Http\Controllers\StockController;
+use App\Http\Controllers\InventoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -99,5 +99,4 @@ Route::any('/csvs/store', [App\Http\Controllers\CsvController::class, 'store'])
 Route::get('/csv/exports', [App\Http\Controllers\CsvController::class, 'exports'])
      ->name('csvs.exports');
 
-Route::get('/stocks', [App\Http\Controllers\StockController::class, 'index'])
-     ->name('stocks.index');
+Route::resource('/inventories', InventoryController::class);

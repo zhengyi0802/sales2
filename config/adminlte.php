@@ -348,8 +348,8 @@ return [
             'can'  => ['operator', 'installer',],
         ],
         [
-            'text' => 'stocks',
-            'url'  => 'stocks',
+            'text' => 'inventories',
+            'url'  => 'inventories',
             'can'  => ['admin'],
         ],
 /*
