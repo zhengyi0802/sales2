@@ -27,7 +27,7 @@ $config = [
       <td>{{ str_split($order->phone, 5)[0].'****' }}</td>
       <td>{{ $order->project->name }}</td>
       <td>{{ $order->product->model }}</td>
-      <td>{{ ($order->order_date) ? $order->order_date : $order->created_at }}</td>
+      <td>{{ ($order->order_date) ? $order->order_date : date('Y-m-d', strtotime($order->created_at)) }}</td>
       <td>{{ $order->sales->name }}</td>
       <td>{{ $order->creator->name }}</td>
       <td><nobr>

@@ -205,7 +205,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
     <table class="tableGrid" border="1" cellspacing="0" cellpadding="0">
       <tr class="titleHeight">
         <td width="685" colspan="6" valign="top" class="titleField">
-            <p><img src="/hplogo1.png" width="300"></p>
+            <p><img src="/hplogo4.png" width="300"></p>
             <p><span class="title">禾昌國際事業股份有限公司出貨單</span></p>
             <p><span class="orderNo">訂單編號 : {{ $order->id }}</span></p></td>
       </tr>
