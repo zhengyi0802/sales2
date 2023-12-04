@@ -22,7 +22,7 @@ $config = [
     <tr class="{{ $inventory->status ? null : "bg-gray"}}">
       <td>{{ $inventory->id }}</td>
       <td>{{ $inventory->serial }}</td>
-      <td>{{ $inventory->product->name }}</td>
+      <td>{{ $inventory->product->model }}</td>
       <td>{{ $inventory->start_amount }}</td>
       <td>{{ $inventory->inbound }}</td>
       <td>{{ $inventory->outbound }}</td>
