@@ -39,7 +39,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
                  height:23.75pt;
               }
          .tr3 {
-                 height:77.45pt;
+                 height:100pt;
               }
          .tr5 {
                  height:15.75pt;
@@ -205,7 +205,8 @@ xmlns="http://www.w3.org/TR/REC-html40">
     <table class="tableGrid" border="1" cellspacing="0" cellpadding="0">
       <tr class="titleHeight">
         <td width="685" colspan="6" valign="top" class="titleField">
-            <p><img src="/hplogo1.png" width="100" align="left"><span class="title">禾昌國際事業股份有限公司出貨單</span></p>
+            <p><img src="/hplogo1.png" width="300"></p>
+            <p><span class="title">禾昌國際事業股份有限公司出貨單</span></p>
             <p><span class="orderNo">訂單編號 : {{ $order->id }}</span></p></td>
       </tr>
       <tr class="tr2">
@@ -336,6 +337,52 @@ xmlns="http://www.w3.org/TR/REC-html40">
              <td width="75" class="amount padding">
                 <p><span>
                   @if (isset($order->extras[3]) && ($order->extras[3]->flow == App\Enums\FlowStatus::Shipping) )
+                    {{ "1" }}
+                  @endif
+                </span></p>
+             </td>
+             <td width="85" class="price padding" style="text-align:right"><p><span></span></p></td>
+             <td width="168" class="remark padding">
+                <p><span>
+                  @if (isset($order->extras[3]) && ($order->extras[3]->flow == App\Enums\FlowStatus::Shipping) )
+                    {{  __('shippings.extras') }}
+                  @endif
+                </span></p>
+             </td>
+       </tr>
+       <tr class="dataField" id="extra4">
+             <td width="131" class="prod padding" style="text-align:left">
+                 @if (isset($order->extras[4]) && ($order->extras[4]->flow == App\Enums\FlowStatus::Shipping) )
+                   {{ $order->extras[4]->product->name.'('.$order->extras[4]->product->model.')' }}
+                 @endif
+             </td>
+             <td width="226" colspan="2" class="sno padding"><p><span></span></p></td>
+             <td width="75" class="amount padding">
+                <p><span>
+                  @if (isset($order->extras[4]) && ($order->extras[4]->flow == App\Enums\FlowStatus::Shipping) )
+                    {{ "1" }}
+                  @endif
+                </span></p>
+             </td>
+             <td width="85" class="price padding" style="text-align:right"><p><span></span></p></td>
+             <td width="168" class="remark padding">
+                <p><span>
+                  @if (isset($order->extras[4]) && ($order->extras[4]->flow == App\Enums\FlowStatus::Shipping) )
+                    {{  __('shippings.extras') }}
+                  @endif
+                </span></p>
+             </td>
+       </tr>
+       <tr class="dataField" id="extra4">
+             <td width="131" class="prod padding" style="text-align:left">
+                 @if (isset($order->extras[5]) && ($order->extras[5]->flow == App\Enums\FlowStatus::Shipping) )
+                   {{ $order->extras[5]->product->name.'('.$order->extras[5]->product->model.')' }}
+                 @endif
+             </td>
+             <td width="226" colspan="2" class="sno padding"><p><span></span></p></td>
+             <td width="75" class="amount padding">
+                <p><span>
+                  @if (isset($order->extras[5]) && ($order->extras[5]->flow == App\Enums\FlowStatus::Shipping) )
                     {{ "1" }}
                   @endif
                 </span></p>
