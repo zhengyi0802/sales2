@@ -47,6 +47,18 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->all();
+        $creator = auth()->user();
+        $data['created_by'] = $creator->id;
+        $last = Inventory::where('product_id', $data['product_id'])->last();
+        if ($last == null) {
+            $last_amount = 0;
+        } else {
+            $last_amount = $last->stock;
+        }
+        $data['start_amount'] = $last_amount;
+        $data['stock'] = $last_amount + $data['inbount'] - $data['outbound']-$data['defective'];
+        Inventory::create($data);
         return redirect()->route('inventories.index');
     }
 
@@ -81,6 +93,10 @@ class InventoryController extends Controller
      */
     public function update(Request $request, Inventory $inventory)
     {
+        $creator = auth()->user();
+        $data = $request->all();
+        $inventory->update($data);
+
         return redirect()->route('inventories.index');
     }
 

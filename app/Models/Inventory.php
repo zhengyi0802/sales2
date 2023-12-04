@@ -15,7 +15,7 @@ class Inventory extends Model
         'start_amount',
         'inbound',
         'outbound',
-        'defactive',
+        'defective',
         'stock',
         'status',
         'created_by',

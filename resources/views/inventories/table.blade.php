@@ -26,7 +26,7 @@ $config = [
       <td>{{ $inventory->start_amount }}</td>
       <td>{{ $inventory->inbound }}</td>
       <td>{{ $inventory->outbound }}</td>
-      <td>{{ $inventory->defactive }}</td>
+      <td>{{ $inventory->defective }}</td>
       <td>{{ $inventory->stock }}</td>
       <td><nobr>
           <form name="inventory-delete-form" action="{{ route('inventories.destroy', $inventory->id); }}" method="POST">

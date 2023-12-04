@@ -43,7 +43,7 @@ $config = [
                 type="submit" onclick="return confirm('{{ __('tables.confirm_delete') }}');">
               </x-adminlte-button>
             @endif
-            @if ((auth()->user()->role != App\Enums\UserRole::ShareHolder)
+            @if (auth()->user()->role != App\Enums\UserRole::ShareHolder)
               <x-adminlte-button theme="info" title="{{ __('tables.detail') }}" icon="fa fa-lg fa-fw fa-eye"
                 onClick="window.location='{{ route('customers.show', $customer->id); }}'" >
               </x-adminlte-button>
