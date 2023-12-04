@@ -80,6 +80,8 @@ class HomeController extends Controller
                                      ->where('flow', FlowStatus::Completion)->count();
                  $chargebacks = Order::where('status', true)->where('sales_id', $user->sales->id)
                                      ->where('flow', FlowStatus::ChargeBack)->count();
+                 $finished = Order::where('status', true)->where('sales_id', $user->sales->id)
+                                  ->where('flow', FlowStatus::Finished)->count();
                  $disabled = 0;
                  break;
             case UserRole::Operator:
