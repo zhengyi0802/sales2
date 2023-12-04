@@ -50,14 +50,14 @@ class InventoryController extends Controller
         $data = $request->all();
         $creator = auth()->user();
         $data['created_by'] = $creator->id;
-        $last = Inventory::where('product_id', $data['product_id'])->last();
+        $last = Inventory::where('product_id', $data['product_id'])->latest()->first();
         if ($last == null) {
             $last_amount = 0;
         } else {
             $last_amount = $last->stock;
         }
         $data['start_amount'] = $last_amount;
-        $data['stock'] = $last_amount + $data['inbount'] - $data['outbound']-$data['defective'];
+        $data['stock'] = $last_amount + $data['inbound'] - $data['outbound']-$data['defective'];
         Inventory::create($data);
         return redirect()->route('inventories.index');
     }
@@ -81,7 +81,9 @@ class InventoryController extends Controller
      */
     public function edit(Inventory $inventory)
     {
-        return view('inventories.edit', compact('inventory'));
+        $products = ProductModel::where('status', true)->get();
+
+        return view('inventories.edit', compact('inventory'))->with(compact('products'));
     }
 
     /**
@@ -95,6 +97,7 @@ class InventoryController extends Controller
     {
         $creator = auth()->user();
         $data = $request->all();
+        $data['stock'] = $inventory->start_amount+$data['inbound']-$data['outbound']-$data['defective'];
         $inventory->update($data);
 
         return redirect()->route('inventories.index');

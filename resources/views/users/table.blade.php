@@ -21,7 +21,7 @@ $config = [
       <td>{{ $user->id }}</td>
       <td>{{ $user->account }}</td>
       <td>{{ $user->name }}</td>
-      <td>{{ $user->phone }}</td>
+      <td>{{ str_split($user->phone, 5)[0]."****" }}</td>
       <td>{{ trans_choice('users.roles', $user->role) }}</td>
       <td>{{ $user->creator->name }}</td>
       <td><nobr>

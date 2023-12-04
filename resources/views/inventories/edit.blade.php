@@ -40,7 +40,8 @@
       font-size : 12px;
    }
 </style>
-<form id="inventory-form" action="{{ route('inventories.store') }}" method="POST" enctype="multipart/form-data">
+<form id="inventory-form" action="{{ route('inventories.update', $inventory->id) }}" method="POST" enctype="multipart/form-data">
+    @method('PUT')
     @csrf
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -62,19 +63,19 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group col-md-4">
                 <strong>{{ __('inventories.inbound') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <input type="number" name="inbound" class="form-control">
+                <input type="number" name="inbound" class="form-control" value="{{ $inventory->inbound }}">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group col-md-4">
                 <strong>{{ __('inventories.outbound') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <input type="number" name="outbound" class="form-control">
+                <input type="number" name="outbound" class="form-control" value="{{ $inventory->outbound }}">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group col-md-4">
                 <strong>{{ __('inventories.defective') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <input type="number" name="defective" class="form-control">
+                <input type="number" name="defective" class="form-control" value="{{ $inventory->defective }}">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
