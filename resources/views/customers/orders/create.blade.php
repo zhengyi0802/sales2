@@ -4,7 +4,6 @@
             <tr class="form-group col-md-4">
                 <td><strong>{{ __('orders.project') }} :<span class="must">{{ __('tables.must') }}</span></strong></td>
                 <td><select id="project_id" name="project_id">
-                      <option value="" selected>--------</option>
                       @foreach ($projects as $project)
                          <option value="{{ $project->id }}" >{{ $project->name }}</option>
                       @endforeach
