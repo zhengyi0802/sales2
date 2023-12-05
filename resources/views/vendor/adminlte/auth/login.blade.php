@@ -24,7 +24,7 @@
     <form action="{{ $login_url }}" method="post">
         @csrf
 
-        {{-- Email field --}}
+        {{-- Account field --}}
         <div class="input-group mb-3">
             <input type="account" name="account" class="form-control @error('account') is-invalid @enderror"
                    value="{{ old('account') }}" placeholder="{{ __('adminlte::adminlte.account') }}" autofocus>
@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            @error('email')
+            @error('account')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

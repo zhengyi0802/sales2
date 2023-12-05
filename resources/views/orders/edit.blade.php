@@ -88,10 +88,22 @@
                name: {
                   required: true
                },
+               phone: {
+                  required: true
+               },
+               address: {
+                  required: true
+               },
            },
            messages: {
                name: {
                   required: '姓名必填'
+               },
+               phone: {
+                  required: '電話必填'
+               },
+               address: {
+                  required: '地址必填'
                },
            },
            submitHandler: function(form) {

@@ -3,7 +3,7 @@
           <table>
             <tr class="form-group col-md-4">
                 <td><strong>{{ __('orders.project') }} :<span class="must">{{ __('tables.must') }}</span></strong></td>
-                <td><select id="project_id" name="project_id" onchange="proj()">
+                <td><select id="project_id" name="project_id">
                       <option value="" selected>--------</option>
                       @foreach ($projects as $project)
                          <option value="{{ $project->id }}" >{{ $project->name }}</option>
@@ -30,8 +30,34 @@
           </table>
         </div>
     </div>
+script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
-    function proj() {
-      d = document.getElementById("project_id").value;
-    }
+    $(document).ready(function(){
+        $('#customer-form').validate({
+           onkeyup: function(element, event) {
+               var value = this.elementValue(element).replace(/^\s+/g, "");
+               $(element).val(value);
+           },
+           rules: {
+               project_id: {
+                  required: true
+               },
+               product_id: {
+                  required: true
+               },
+           },
+           messages: {
+               project_id: {
+                  required: '行銷方案必選'
+               },
+               product_id: {
+                  required: '產品型號必選'
+               },
+           },
+           submitHandler: function(form) {
+                form.submit();
+           }
+        });
+    });
 </script>
+@section('plugins.jqueryValidation', true)

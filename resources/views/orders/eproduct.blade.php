@@ -2,7 +2,6 @@
             <tr class="form-group col-md-6">
                 <td><strong>{{ __('orders.project') }} :</strong></td>
                 <td><select id="project_id" name="project_id" onchange="proj()">
-                      <option value="" selected>--------</option>
                       @foreach ($projects as $project)
                          <option value="{{ $project->id }}" {{ ($order->project_id == $project->id) ? "selected" : null }}>{{ $project->name }}</option>
                       @endforeach
@@ -56,10 +55,6 @@
             </tr>
          </table>
 <script>
-    function proj() {
-      d = document.getElementById("project_id").value;
-    }
-
     function checkflow(event) {
        var val = event.value;
        if (val > 2 && val < 5) {

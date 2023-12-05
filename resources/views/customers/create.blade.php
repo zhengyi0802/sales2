@@ -54,6 +54,9 @@
             </div>
             <div class="form-group col-md-4">
                 <strong>{{ __('customers.line_id') }} :</strong>
+               name: {
+                  required: true
+               },
                 <input type="text" name="line_id" class="form-control">
             </div>
             <div class="form-group col-md-4">
@@ -98,10 +101,22 @@
                name: {
                   required: true
                },
+               phone: {
+                  required: true
+               },
+               address: {
+                  required: true
+               },
            },
            messages: {
                name: {
                   required: '姓名必填'
+               },
+               phone: {
+                  required: '電話必填'
+               },
+               address: {
+                  required: '地址必填'
                },
            },
            submitHandler: function(form) {

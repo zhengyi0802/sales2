@@ -121,10 +121,34 @@
                name: {
                   required: true
                },
+               phone: {
+                  required: true
+               },
+               address: {
+                  required: true
+               },
+               project_id: {
+                  required: true
+               },
+               product_id: {
+                  required: true
+               },
            },
            messages: {
                name: {
                   required: '姓名必填'
+               },
+               phone: {
+                  required: '電話必填'
+               },
+               address: {
+                  required: '地址必填'
+               },
+               product_id: {
+                  required: '產品型號必選'
+               },
+               project_id: {
+                  required: '行銷方案必選'
                },
            },
            submitHandler: function(form) {
