@@ -333,6 +333,11 @@ return [
         ],
         ['header' => 'business_settings'],
         [
+            'text' => 'massorders',
+            'url'  => 'massorders',
+            'can'  => 'admin',
+        ],
+        [
             'text' => 'customers',
             'url'  => 'customers',
             'can'  => ['manager', 'sales', 'operator', 'reseller',],

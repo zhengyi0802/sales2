@@ -30,4 +30,5 @@ return [
     'shippings'                     => '裝機排程資料',
     'csvs'                          => '匯入/匯出訂單',
     'inventories'                   => '存貨庫存表',
+    'massorders'                    => '經銷團購訂單',
 ];

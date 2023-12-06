@@ -13,6 +13,8 @@ use App\Http\Controllers\ShippingProcessController;
 use App\Http\Controllers\CsvController;
 //use App\Http\Controllers\StockController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\MassOrderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -100,3 +102,6 @@ Route::get('/csv/exports', [App\Http\Controllers\CsvController::class, 'exports'
      ->name('csvs.exports');
 
 Route::resource('/inventories', InventoryController::class);
+
+Route::resource('/massorders', MassOrderController::class);
+
