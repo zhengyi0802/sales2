@@ -39,6 +39,8 @@
                   <option value="2" {{ ($order->flow == 2) ? "selected" : null }}>{{ trans_choice('orders.flows', 2) }}</option>
                   <option value="3" {{ ($order->flow == 3) ? "selected" : null }}>{{ trans_choice('orders.flows', 3) }}</option>
                   <option value="4" {{ ($order->flow == 4) ? "selected" : null }}>{{ trans_choice('orders.flows', 4) }}</option>
+                  <option value="5" {{ ($order->flow == 5) ? "selected" : null }}>{{ trans_choice('orders.flows', 5) }}</option>
+                  <option value="6" {{ ($order->flow == 6) ? "selected" : null }}>{{ trans_choice('orders.flows', 6) }}</option>
                   <option value="7" {{ ($order->flow == 7) ? "selected" : null }}>{{ trans_choice('orders.flows', 7) }}</option>
                 </select></td>
             </tr>
