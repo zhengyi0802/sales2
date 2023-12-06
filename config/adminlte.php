@@ -334,7 +334,7 @@ return [
         ['header' => 'business_settings'],
         [
             'text' => 'massorders',
-            'url'  => 'massorders',
+            'url'  => 'massOrders',
             'can'  => 'admin',
         ],
         [

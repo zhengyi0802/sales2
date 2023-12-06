@@ -40,8 +40,8 @@
       font-size : 12px;
    }
 </style>
-@include('massorders.products')
-<form id="massOrder-form" action="{{ route('massorders.store') }}" method="POST" enctype="multipart/form-data">
+@include('massOrders.products')
+<form id="massOrder-form" action="{{ route('massOrders.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
         <div class="raw card-group">
            <x-adminlte-input name="cname" label="{{ __('massorders.cname') }}" fgroup-class="col-md-6" />

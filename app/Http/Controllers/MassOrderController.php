@@ -26,7 +26,7 @@ class MassOrderController extends Controller
             $massOrders = MassOrder::get();
         }
 
-        return view('massorders.index', compact('massOrders'));
+        return view('massOrders.index', compact('massOrders'));
     }
 
     /**
@@ -39,7 +39,7 @@ class MassOrderController extends Controller
         $sales = Sales::where('status', true)->get();
         $productModels = ProductModel::where('status', true)->get();
 
-        return view('massorders.create', compact('productModels'))
+        return view('massOrders.create', compact('productModels'))
                ->with(compact('sales'));
     }
 
@@ -52,8 +52,33 @@ class MassOrderController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        dd($data);
-        return redirect()->route('massorders.index');
+        $items = $data['products'];
+        $titems = array();
+        foreach($items as $item) {
+           $model = substr($item["'product'"], strpos($item["'product'"], "(")+1);
+           $model = substr($model, 0, strlen($model)-1);
+           $product = ProductModel::where('model', $model)->first();
+           $aitem = [
+               'product_id'    => $product->id,
+               'amount'        => $item["'amount'"],
+               'single_price'  => 0,
+               'total_price'   => 0,
+           ];
+           array_push($titems, $aitem);
+        }
+        $pitems = json_encode($titems);
+        $data['products'] = $pitems;
+        $creator = auth()->user();
+        $data['created_by'] = $creator->id;
+        $data['mark'] = 1;
+        $data['flow'] = 1;
+        $data['price'] = 0;
+        $data['tax'] = 0;
+        $data['total'] = 0;
+        $data['memo'] = null;
+        MassOrder::create($data);
+
+        return redirect()->route('massOrders.index');
     }
 
     /**
@@ -64,7 +89,7 @@ class MassOrderController extends Controller
      */
     public function show(MassOrder $massOrder)
     {
-        return view('massorders.show', compact('massOrder'));
+        return view('massOrders.show', compact('massOrder'));
     }
 
     /**
@@ -78,7 +103,7 @@ class MassOrderController extends Controller
         $productModels = ProductModel::where('status', true)->get();
         $sales == Sales::where('status', true)->get();
 
-        return view('massorders.index', compact('massOrder'))
+        return view('massOrders.index', compact('massOrder'))
                ->with(compact('productModels'))
                ->with(compact('sales'));
 
@@ -93,7 +118,7 @@ class MassOrderController extends Controller
      */
     public function update(Request $request, MassOrder $massOrder)
     {
-        return redirect()->route('massorders.index');
+        return redirect()->route('massOrders.index');
     }
 
     /**
@@ -107,6 +132,6 @@ class MassOrderController extends Controller
         $massOrder->status = false;
         $massOrder->save();
 
-        return redirect()->route('massorders.index');
+        return redirect()->route('massOrders.index');
     }
 }

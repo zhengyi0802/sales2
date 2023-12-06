@@ -103,5 +103,5 @@ Route::get('/csv/exports', [App\Http\Controllers\CsvController::class, 'exports'
 
 Route::resource('/inventories', InventoryController::class);
 
-Route::resource('/massorders', MassOrderController::class);
+Route::resource('/massOrders', MassOrderController::class);
 

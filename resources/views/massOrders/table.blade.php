@@ -18,26 +18,26 @@ $config = [
 
 <x-adminlte-datatable id="massorder-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" striped hoverable bordered>
   @foreach($massOrders as $massOrder)
-    <tr class="{{ $massorder->status ? null : "bg-gray"}}">
+    <tr class="{{ $massOrder->status ? null : "bg-gray"}}">
       <td>{{ $massOrder->id }}</td>
       <td>{{ $massOrder->order_date }}</td>
       <td>{{ $massOrder->cname }}</td>
-      <td>{{ $massOrder->flow }}</td>
+      <td>{{ trans_choice('massorders.flows',$massOrder->flow) }}</td>
       <td>{{ $massOrder->shipping_date }}</td>
       <td>{{ $massOrder->arrived_date }}</td>
       <td>{{ $massOrder->creator->name }}</td>
       <td><nobr>
-          <form name="massorder-delete-form" action="{{ route('massorders.destroy', $massOrder->id); }}" method="POST">
+          <form name="massorder-delete-form" action="{{ route('massOrders.destroy', $massOrder->id); }}" method="POST">
             @csrf
             @method('DELETE')
               <x-adminlte-button theme="primary" title="{{ __('tables.edit') }}" icon="fa fa-lg fa-fw fa-pen"
-                onClick="window.location='{{ route('massorders.edit', $massOrder->id); }}'" >
+                onClick="window.location='{{ route('massOrders.edit', $massOrder->id); }}'" >
               </x-adminlte-button>
               <x-adminlte-button theme="danger" title="{{ __('tables.delete') }}" icon="fa fa-lg fa-fw fa-trash"
                 type="submit" onclick="return confirm('{{ __('tables.confirm_delete') }}');">
               </x-adminlte-button>
               <x-adminlte-button theme="info" title="{{ __('tables.detail') }}" icon="fa fa-lg fa-fw fa-eye"
-                onClick="window.location='{{ route('massorders.show', $massOrder->id); }}'" >
+                onClick="window.location='{{ route('massOrders.show', $massOrder->id); }}'" >
               </x-adminlte-button>
             </form>
       </nobr></td>

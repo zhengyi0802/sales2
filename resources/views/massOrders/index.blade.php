@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('massorders.create') }}">{{ __('tables.new') }}</a>
+                <a class="btn btn-success" href="{{ route('massOrders.create') }}">{{ __('tables.new') }}</a>
             </div>
         </div>
     </div>
@@ -23,6 +23,6 @@
         </div>
     @endif
 
-    @include('massorders.table')
+    @include('massOrders.table')
 
 @endsection
