@@ -4,7 +4,7 @@ $heads = [
     __('massorders.order_date'),
     __('massorders.cname'),
     __('massorders.flow'),
-    __('massorders.shipping_date'),
+    __('massorders.outbound_date'),
     __('massorders.arrived_date'),
     __('massorders.creator'),
     ['label' => __('tables.action'), 'no-export' => true, 'width' => 10],
@@ -23,7 +23,7 @@ $config = [
       <td>{{ $massOrder->order_date }}</td>
       <td>{{ $massOrder->cname }}</td>
       <td>{{ trans_choice('massorders.flows',$massOrder->flow) }}</td>
-      <td>{{ $massOrder->shipping_date }}</td>
+      <td>{{ $massOrder->outbound_date }}</td>
       <td>{{ $massOrder->arrived_date }}</td>
       <td>{{ $massOrder->creator->name }}</td>
       <td><nobr>

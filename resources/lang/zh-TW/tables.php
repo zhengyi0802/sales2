@@ -4,6 +4,7 @@
            'new'         => '新增',
            'edit'        => '編輯',
            'details'     => '詳情',
+           'detail'      => '詳情',
            'delete'      => '刪除',
            'recover'     => '恢復',
            'action'      => '動作',

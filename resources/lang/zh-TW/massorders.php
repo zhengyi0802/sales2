@@ -14,11 +14,12 @@
            'invoice'           => '發票號碼',
            'address'           => '送貨地址',
            'sales'             => '經辦人員',
+           'single_price'      => '單價',
            'price'             => '小計',
            'tax'               => '稅',
            'total'             => '總計',
            'process_date'      => '處理日期',
-           'shipping_date'     => '出貨日期',
+           'outbound_date'     => '出貨日期',
            'arrived_date'      => '送達日期',
            'accessories'       => '附件',
            'extras'            => '贈品',
@@ -34,5 +35,7 @@
            'product'           => '品名',
            'amount'            => '數量',
            'action'            => '動作',
+           'orderitems'        => '訂購明細',
+           'index'             => '項目',
     ];
 

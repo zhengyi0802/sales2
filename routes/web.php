@@ -103,5 +103,8 @@ Route::get('/csv/exports', [App\Http\Controllers\CsvController::class, 'exports'
 
 Route::resource('/inventories', InventoryController::class);
 
+Route::get('/massOrders/{massOrder}/shipment', [App\Http\Controllers\MassOrderController::class, 'shipment'])
+     ->name('massOrders.shipment');
+
 Route::resource('/massOrders', MassOrderController::class);
 

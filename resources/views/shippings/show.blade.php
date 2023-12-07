@@ -26,7 +26,7 @@
                     {{ __('orders.shipment_button') }}
                   </button>
                 </div>
-        @endif
+            @endif
         </div>
     </div>
 

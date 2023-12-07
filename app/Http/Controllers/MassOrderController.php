@@ -76,6 +76,21 @@ class MassOrderController extends Controller
         $data['tax'] = 0;
         $data['total'] = 0;
         $data['memo'] = null;
+
+        $order_latest = MassOrder::orderBy('id', 'desc')->get()->first();
+        if ($order_latest == null) {
+            $orderlatest = 0;
+        } else {
+            $orderlatest = $order_latest->id;
+        }
+        $idinit = ((now()->year-2000)*100+(now()->month))*1000+1;
+        if ($idinit <= $orderlatest) {
+            $id = $orderlatest+1;
+        } else {
+            $id = $idinit;
+        }
+        $data['id'] = $id;
+
         MassOrder::create($data);
 
         return redirect()->route('massOrders.index');
@@ -101,12 +116,9 @@ class MassOrderController extends Controller
     public function edit(MassOrder $massOrder)
     {
         $productModels = ProductModel::where('status', true)->get();
-        $sales == Sales::where('status', true)->get();
 
-        return view('massOrders.index', compact('massOrder'))
-               ->with(compact('productModels'))
-               ->with(compact('sales'));
-
+        return view('massOrders.edit', compact('massOrder'))
+               ->with(compact('productModels'));
     }
 
     /**
@@ -118,6 +130,21 @@ class MassOrderController extends Controller
      */
     public function update(Request $request, MassOrder $massOrder)
     {
+        $data = $request->all();
+        $products = $data['products'];
+        $price = 0;
+        for($i=0; $i<sizeof($products); $i++) {
+                $products[$i]["price"] = $products[$i]["amount"] * $products[$i]["single_price"];
+                $price += $products[$i]["price"];
+        }
+        $tax = $price * 0.05;
+        $total = $price * 1.05;
+        $data['products'] = json_encode($products);
+        $data['price'] = $price;
+        $data['tax'] = $tax;
+        $data['total'] = $total;
+        $massOrder->update($data);
+
         return redirect()->route('massOrders.index');
     }
 
@@ -134,4 +161,10 @@ class MassOrderController extends Controller
 
         return redirect()->route('massOrders.index');
     }
+
+    public function shipment(MassOrder $massOrder)
+    {
+        return view('massOrders.shipment', compact('massOrder'));
+    }
+
 }

@@ -59,6 +59,7 @@
            <x-adminlte-input name="address" label="{{ __('massorders.address') }}" fgroup-class="col-md-12" />
         </div>
         <div class="raw card-group">
+          <p><strong>{{ __('massorders.orderitems') }}</strong></p>
           <table class="table table-bordered" id="productsTable">
             <tr>
                  <td>{{ __('massorders.product') }}</td>
