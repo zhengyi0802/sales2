@@ -335,7 +335,6 @@ return [
         [
             'text' => 'massorders',
             'url'  => 'massOrders',
-            'can'  => 'admin',
         ],
         [
             'text' => 'customers',
