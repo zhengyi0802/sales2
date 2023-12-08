@@ -54,9 +54,6 @@
             </div>
             <div class="form-group col-md-4">
                 <strong>{{ __('customers.line_id') }} :</strong>
-               name: {
-                  required: true
-               },
                 <input type="text" name="line_id" class="form-control">
             </div>
             <div class="form-group col-md-4">
