@@ -62,7 +62,7 @@ class MassOrderController extends Controller
                'product_id'    => $product->id,
                'amount'        => $item["'amount'"],
                'single_price'  => 0,
-               'total_price'   => 0,
+               'price'         => 0,
            ];
            array_push($titems, $aitem);
         }
