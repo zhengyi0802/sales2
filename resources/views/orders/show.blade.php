@@ -35,7 +35,7 @@
                 {{ $order->product->name }}
         </x-adminlte>
         <x-adminlte-card title="{{ __('orders.accessories') }}" theme="info" icon="fas fa-lg">
-                {{ $order->product->accessory->name."(".$order->product->accessory->model.")" }}
+                {{ ($order->product->accessories > 0) ? $order->product->accessory->name."(".$order->product->accessory->model.")"  : null }}
         </x-adminlte>
         <x-adminlte-card title="{{ __('orders.extras') }}" theme="info" icon="fas fa-lg">
                 @foreach($order->extras as $extra)
