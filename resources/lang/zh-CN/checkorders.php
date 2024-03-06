@@ -1,0 +1,25 @@
+<?php
+
+    return [
+        'header'         => '訂購單',
+        'title'          => '訂購單',
+        'sales_id'       => '業務編號',
+        'id'             => '編號',
+        'phone'          => '電話',
+        'line_id'        => 'Line ID',
+        'email'          => 'E-Mail電子信箱',
+        'pid'            => '公司統一編號(法人)',
+        'password'       => '密碼',
+        'name'           => '姓名/公司名稱',
+        'address'        => '地址',
+        'model'          => '電視機種',
+        'project'        => '行銷方案',
+        'extras'         => '選用贈品(可複選)',
+        'payment'        => '付款方式',
+        'payment_credit' => '信用卡',
+        'payment_cash'   => '現金',
+        'memo'           => '備註',
+        'status'         => '狀態',
+        'order_title'    => '線上訂購書',
+        'sales'          => '所屬業務',
+    ];

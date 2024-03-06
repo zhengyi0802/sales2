@@ -1,0 +1,30 @@
+<?php
+
+    return [
+           'title'            => '裝機排程資料表',
+           'header'           => '裝機排程資料表',
+           'order_id'         => '訂單編號',
+           'name'             => '訂貨人',
+           'phone'            => '聯絡電話',
+           'product'          => '產品',
+           'project'          => '行銷方案',
+           'address'          => '裝機地址',
+           'sales'            => '經辦人員',
+           'installer'        => '安裝人員',
+           'completion'       => '已完成',
+           'accessories'      => '附件',
+           'extras'           => '贈品',
+           'memo'             => '備註',
+           'flow'             => '流程狀態',
+           'flows'            => '{1}未處理 |{2}已聯絡 |{3}已預約 |{4}裝機中 |{5}已完成 |{6}已結案 |{7}退單 ',
+           'status'           => '狀態',
+           'creator'          => '建立者',
+           'shipment'         => '出貨單',
+           'shipping_date'    => '預計裝機日期',
+           'completion_time'  => '安裝完成時間',
+           'chargeback_time'  => '退單時間',
+           'id'               => '編號',
+           'amount'           => '數量',
+           'includes'         => '本次出貨',
+    ];
+
