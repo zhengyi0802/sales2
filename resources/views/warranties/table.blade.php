@@ -13,7 +13,13 @@ $config = [
     'language' => [ 'url' => __('tables.language_url') ],
 ];
 @endphp
-<x-adminlte-datatable id="warranty-table" :heads="$heads"  :config="$config" theme="info" head-theme="dark" striped hoverable bordered>
+@if (auth()->user()->role == App\Enums\UserRole::ShareHolder)
+<x-adminlte-datatable id="warranty-table" :heads="$heads"  :config="$config" theme="info" head-theme="dark"
+    striped hoverable bordered>
+@else
+<x-adminlte-datatable id="warranty-table" :heads="$heads"  :config="$config" theme="info" head-theme="dark"
+    striped hoverable bordered with-buttons>
+@endif
         @foreach ($warranties as $warranty)
         <tr>
             <td>{{ $warranty->id }}</td>

@@ -16,7 +16,13 @@ $config = [
 ];
 @endphp
 
-<x-adminlte-datatable id="shipping-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" striped hoverable bordered>
+@if (auth()->user()->role == App\Enums\UserRole::ShareHolder)
+<x-adminlte-datatable id="shipping-table" :heads="$heads" :config="$config" theme="info" head-theme="dark"
+   striped hoverable bordered >
+@else
+<x-adminlte-datatable id="shipping-table" :heads="$heads" :config="$config" theme="info" head-theme="dark"
+   striped hoverable bordered with-buttons>
+@endif
   @foreach($shippings as $shipping)
     <tr class="{{ $shipping->status ? null : "bg-gray"}}">
       <td>{{ $shipping->order_id }}</td>

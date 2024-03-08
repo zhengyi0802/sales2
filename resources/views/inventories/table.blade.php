@@ -41,7 +41,8 @@ $config = [
 ];
 @endphp
 
-<x-adminlte-datatable id="inventory-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" striped hoverable bordered>
+<x-adminlte-datatable id="inventory-table" :heads="$heads" :config="$config" theme="info" head-theme="dark"
+    striped hoverable bordered with-buttons>
   @foreach($inventories as $inventory)
     <tr class="{{ $inventory->status ? null : "bg-gray"}}">
       <td>{{ $inventory->serial }}</td>

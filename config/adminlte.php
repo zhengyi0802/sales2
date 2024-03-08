@@ -301,21 +301,21 @@ return [
         [
             'text'         => 'Language',
             'topnav_right' => true,
-            'icon'         => 'flag-icon flag-icon-us',
+            'icon'         => 'fas fa-fw fa-flag',
             'submenu'      => [
                 [
                      'text' => 'English',
-                     'icon' => 'flag-icon flag-icon-us',
+                     'icon' => 'flag-icon flag-icon-us flag-icon-square',
                      'url'  => 'locate/en-US',
                 ],
                 [
                      'text' => 'Chinese(Simple)',
-                     'icon' => 'flag-icon flag-icon-cn',
+                     'icon' => 'flag-icon flag-icon-cn flag-icon-square',
                      'url'  => 'locate/zh-CN',
                 ],
                 [
                      'text' => 'Chinese(Traditional)',
-                     'icon' => 'flag-icon flag-icon-TW',
+                     'icon' => 'flag-icon flag-icon-tw flag-icon-square',
                      'url'  => 'locate/zh-TW',
                 ],
             ],
@@ -468,6 +468,46 @@ return [
                     'asset' => false,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
+                [
+                     'type' => 'js',
+                     'asset' => true,
+                     'location' => 'vendor/datatables-plugins/buttons/js/dataTables.buttons.min.js',
+                ],
+                [
+                     'type' => 'js',
+                     'asset' => true,
+                     'location' => 'vendor/datatables-plugins/buttons/js/buttons.bootstrap4.min.js',
+                ],
+                [
+                     'type' => 'js',
+                     'asset' => true,
+                     'location' => 'vendor/datatables-plugins/buttons/js/buttons.html5.min.js',
+                ],
+                [
+                     'type' => 'js',
+                     'asset' => true,
+                     'location' => 'vendor/datatables-plugins/buttons/js/buttons.print.min.js',
+                ],
+                [
+                     'type' => 'js',
+                     'asset' => true,
+                     'location' => 'vendor/datatables-plugins/jszip/jszip.min.js',
+                ],
+                [
+                     'type' => 'js',
+                     'asset' => true,
+                     'location' => 'vendor/datatables-plugins/pdfmake/pdfmake.min.js',
+                ],
+                [
+                     'type' => 'js',
+                     'asset' => true,
+                     'location' => 'vendor/datatables-plugins/pdfmake/vfs_fonts.js',
+                ],
+                [
+                     'type' => 'css',
+                     'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/css/buttons.bootstrap4.min.css',
+                ],
             ],
         ],
         'jqueryValidation' => [
@@ -492,6 +532,16 @@ return [
                     'type' => 'css',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
+                ],
+            ],
+        ],
+        'flagIconCss' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => 'vendor/flag-icon-css/css/flag-icon.css',
                 ],
             ],
         ],
