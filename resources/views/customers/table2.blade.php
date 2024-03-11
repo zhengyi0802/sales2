@@ -17,7 +17,7 @@ $config = [
 @endphp
 
 <x-adminlte-datatable id="customer-table" :heads="$heads" :config="$config" theme="info" head-theme="dark"
-   striped hoverable bordered with-buttons>
+   striped hoverable bordered>
   @foreach($customers as $customer)
     <tr class="{{ $customer->status ? null : "bg-gray"}}">
       <td>{{ $customer->id }}</td>

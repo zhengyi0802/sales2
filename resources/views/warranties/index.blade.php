@@ -13,6 +13,9 @@
         </div>
     @endif
 
-    @include('warranties.table')
-
+    @if (auth()->user()->role == App\Enums\UserRole::ShareHolder)
+      @include('warranties.table2')
+    @else
+      @include('warranties.table')
+    @endif
 @endsection

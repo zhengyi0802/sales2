@@ -25,6 +25,7 @@ class AuthServiceProvider extends ServiceProvider
        'reseller'          => [ UserRole::Reseller],
        'admin'             => [ UserRole::Administrator],
        'stocker'           => [ UserRole::Stocker],
+       'CSR'               => [ UserRole::CSR],
     ];
 
     /**

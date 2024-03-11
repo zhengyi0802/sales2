@@ -125,6 +125,16 @@ class HomeController extends Controller
                  $chargebacks = Order::where('status', true)->where('flow', FlowStatus::ChargeBack)->count();
                  $disabled = Order::where('status',false)->count();
                  break;
+            case UserRole::CSR:
+                 $unhandled = Order::where('status', true)->where('flow', FlowStatus::UnHandled)->count();
+                 $contacted = Order::where('status', true)->where('flow', FlowStatus::Contacted)->count();
+                 $confirmed = Order::where('status', true)->where('flow', FlowStatus::Confirmed)->count();
+                 $shippings = Order::where('status', true)->where('flow', FlowStatus::Shipping)->count();
+                 $completions = Order::where('status', true)->where('flow', FlowStatus::Completion)->count();
+                 $finished = Order::where('status', true)->where('flow', FlowStatus::Finished)->count();
+                 $chargebacks = Order::where('status', true)->where('flow', FlowStatus::ChargeBack)->count();
+                 $disabled = Order::where('status',false)->count();
+                 break;
         }
         $data = [
                 'unhandled'    => $unhandled,

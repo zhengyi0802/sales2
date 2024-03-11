@@ -14,7 +14,7 @@ $config = [
 ];
 @endphp
 <x-adminlte-datatable id="warranty-table" :heads="$heads"  :config="$config" theme="info" head-theme="dark"
-    striped hoverable bordered with-buttons>
+    striped hoverable bordered>
         @foreach ($warranties as $warranty)
         <tr>
             <td>{{ $warranty->id }}</td>

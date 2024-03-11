@@ -16,7 +16,7 @@ $config = [
 ];
 @endphp
 <x-adminlte-datatable id="massorder-table" :heads="$heads" :config="$config" theme="info" head-theme="dark"
-    striped hoverable bordered with-buttons>
+    striped hoverable bordered>
   @foreach($massOrders as $massOrder)
     <tr class="{{ $massOrder->status ? null : "bg-gray"}}">
       <td>{{ $massOrder->id }}</td>

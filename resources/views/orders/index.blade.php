@@ -13,6 +13,10 @@
         </div>
     @endif
 
-    @include('orders.table')
+    @if (auth()->user()->role == App\Enums\UserRole::ShareHolder)
+      @include('orders.table2')
+    @else
+      @include('orders.table')
+    @endif
 
 @endsection

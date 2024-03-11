@@ -13,6 +13,9 @@
         </div>
     @endif
 
-    @include('shippings.table')
-
+    @if (auth()->user()->role == App\Enums\UserRole::ShareHolder)
+      @include('shippings.table2')
+    @else
+      @include('shippings.table')
+    @endif
 @endsection

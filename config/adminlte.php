@@ -357,7 +357,7 @@ return [
         [
             'text' => 'massorders',
             'url'  => 'massOrders',
-            'can'  => ['manager', 'sales', 'operator', 'reseller',],
+            'can'  => ['manager', 'sales', 'operator', 'reseller', 'CSR'],
         ],
         [
             'text' => 'checkOrders',
@@ -367,22 +367,22 @@ return [
         [
             'text' => 'customers',
             'url'  => 'customers',
-            'can'  => ['manager', 'sales', 'operator', 'reseller',],
+            'can'  => ['manager', 'sales', 'operator', 'reseller', 'CSR' ],
         ],
         [
             'text' => 'orders',
             'url'  => 'orders',
-            'can'  => ['manager', 'sales', 'operator', 'reseller',],
+            'can'  => ['manager', 'sales', 'operator', 'reseller', 'CSR' ],
         ],
         [
             'text' => 'shippings',
             'url'  => 'shippings',
-            'can'  => ['operator', 'installer',],
+            'can'  => ['operator', 'installer', 'CSR'],
         ],
         [
             'text' => 'warranties',
             'url'  => 'warranties',
-            'can'  => ['operator',],
+            'can'  => ['operator', 'CSR'],
         ],
         [
             'text' => 'inventories',

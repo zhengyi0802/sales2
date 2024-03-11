@@ -36,6 +36,9 @@
         @yield('messages')
     </div>
 
-    @include('customers.table')
-
+    @if (auth()->user()->role == App\Enums\UserRole::ShareHolder)
+        @include('customers.table2')
+    @else
+        @include('customers.table')
+    @endif
 @endsection
