@@ -65,6 +65,14 @@
                     <input type="date" name="order_date" value="{{ ($order->order_date) ? $order->order_date : date('Y-m-d', strtotime($order->created_at)) }}" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
+                    <strong>{{ __('orders.installer') }} :</strong>
+                    <select id="installer_id" name="installer_id" >
+                        @foreach ($installers as $installer)
+                           <option value="{{ $installer->id }}" >{{ $installer->name }}</option>
+                        @endforeach
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
                     <strong>{{ __('orders.sales') }} :</strong>
                     <select id="sales_id" name="sales_id" >
                         @foreach ($sales as $s)

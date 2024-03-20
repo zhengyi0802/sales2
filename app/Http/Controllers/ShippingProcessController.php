@@ -84,7 +84,7 @@ class ShippingProcessController extends Controller
      */
     public function update(Request $request, ShippingProcess $shipping)
     {
-        //$user = auth()->user();
+        $user = auth()->user();
         $data = $request->all();
         if ($user->role == UserRole::Installer) {
             if ($data['flow'] == FlowStatus::Completion) {

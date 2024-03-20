@@ -9,6 +9,7 @@ use App\Models\Customer;
 use App\Models\Project;
 use App\Models\ProductModel;
 use App\Models\Sales;
+use App\Models\User;
 use App\Models\ShippingProcess;
 use App\Enums\UserRole;
 use App\Enums\FlowStatus;
@@ -83,10 +84,12 @@ class OrderController extends Controller
             $projects = Project::where('status', true)->get();
             $productModels = ProductModel::where('status', true)->get();
         }
+        $installers = User::where('role', UserRole::Installer)->get();
         $extras = ProductModel::where('extra', true)->where('status', true)->get();
 
         return view('orders.create2')
                ->with(compact('sales'))
+               ->with(compact('installers'))
                ->with(compact('projects'))
                ->with(compact('productModels'))
                ->with(compact('customer'))
@@ -165,9 +168,11 @@ class OrderController extends Controller
         }
         $extras = ProductModel::where('extra', true)->where('status', true)->get();
         $gifts = $order->extras->pluck('product_id')->toArray();
+        $installers = User::where('role', UserRole::Installer)->get();
 
         return view('orders.edit', compact('order'))
                ->with(compact('sales'))
+               ->with(compact('installers'))
                ->with(compact('projects'))
                ->with(compact('productModels'))
                ->with(compact('gifts'))
@@ -193,11 +198,15 @@ class OrderController extends Controller
             case FlowStatus::Confirmed :
                      $shippingProcess = ShippingProcess::where('order_id', $order->id)->first();
                      if ($shippingProcess == null) {
-                         $spdata = [ 'order_id' => $order->id, 'shipping_date' => $data['shipping_date'], 'created_by' => $creator->id, ];
+                         $spdata = [ 'order_id' => $order->id,
+                                     'shipping_date' => $data['shipping_date'],
+                                     'created_by' => $creator->id,
+                                     'installer_id' => $data['installer_id'], ];
                          ShippingProcess::create($spdata);
                      } else {
                          $spdata['shipping_date'] = $data['shipping_date'];
                          $spdata['created_by'] = $creator->id;
+                         $spdata['installer_id'] = $data['installer_id'];
                          $shippingProcess->update($spdata);
                      }
                      break;
@@ -209,18 +218,25 @@ class OrderController extends Controller
                          //$order->save();
                      }
                      if ($shippingProcess == null) {
-                         $spdata = [ 'order_id' => $order->id, 'shipping_date' => $data['shipping_date'], 'created_by' => $creator->id, ];
+                         $spdata = [ 'order_id' => $order->id,
+                                     'shipping_date' => $data['shipping_date'],
+                                     'created_by' => $creator->id,
+                                     'installer_id' => $data['installer_id'], ];
                          ShippingProcess::create($spdata);
                      } else {
                          $spdata['shipping_date'] = $data['shipping_date'];
                          $spdata['created_by'] = $creator->id;
+                         $spdata['installer_id'] = $data['installer_id'];
                          $shippingProcess->update($spdata);
                      }
                      break;
             case FlowStatus::ChargeBack :
                      $shippingProcess = ShippingProcess::where('order_id', $order->id)->first();
                      if ($shippingProcess == null) {
-                         $spdata = [ 'order_id' => $order->id, 'chargeback_time' => date('Y-m-d H:i:s'), 'created_by' => $creator->id, ];
+                         $spdata = [ 'order_id' => $order->id,
+                                     'chargeback_time' => date('Y-m-d H:i:s'),
+                                     'created_by' => $creator->id,
+                                     'installer_id' => $data['installer_id'], ];
                          ShippingProcess::create($spdata);
                      } else {
                          $spdata['chargeback_date'] = date('Y-m-d H:i:s');
