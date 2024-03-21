@@ -19,6 +19,7 @@ $config = [
 <x-adminlte-datatable id="shipping-table" :heads="$heads" :config="$config" theme="info" head-theme="dark"
    striped hoverable bordered with-buttons>
   @foreach($shippings as $shipping)
+    @if ($shipping->order->flow < App\Enums\FlowStatus::Completion)
     <tr class="{{ $shipping->status ? null : "bg-gray"}}">
       <td>{{ $shipping->order_id }}</td>
       <td>{{ $shipping->order->phone }}</td>
@@ -51,6 +52,7 @@ $config = [
             </form>
       </nobr></td>
     </tr>
+    @endif
   @endforeach
 </x-adminlte-datatable>
 @section('plugins.Datatables', true)
