@@ -20,7 +20,7 @@
            'status'           => '狀態',
            'creator'          => '建立者',
            'shipment'         => '出貨單',
-           'shipping_date'    => '預計裝機日期',
+           'shipping_date'    => '預計裝機時間',
            'completion_time'  => '安裝完成時間',
            'chargeback_time'  => '退單時間',
            'id'               => '編號',

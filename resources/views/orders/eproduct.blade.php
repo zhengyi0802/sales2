@@ -49,7 +49,7 @@
             </tr>
             <tr class="form-group col-md-6" id="shipdate" >
                 <td><strong>{{ __('orders.shipping_date') }} :</strong></td>
-                <td><input type="date"  name="shipping_date" value="{{ $order->shipping ? $order->shipping->shipping_date : null }}" /></td>
+                <td><input type="datetime-local"  name="shipping_date" value="{{ $order->shipping ? $order->shipping->shipping_date : null }}" /></td>
             </tr>
             <tr class="form-group col-md-6">
                 <td><strong>{{ __('orders.memo') }} :</strong></td>

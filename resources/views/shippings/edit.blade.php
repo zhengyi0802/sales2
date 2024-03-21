@@ -91,7 +91,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <strong>{{ __('shippings.shipping_date') }} :</strong>
-                    <input type="date" name="shipping_date" value="{{ $shipping->shipping_date }}" class="form-control">
+                    <input type="datetime-local" name="shipping_date" value="{{ $shipping->shipping_date }}" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
                     <strong>{{ __('orders.product') }}</strong>

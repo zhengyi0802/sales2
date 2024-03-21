@@ -17,7 +17,7 @@ class CreateShippingProcessesTable extends Migration
             $table->id();
             $table->bigInteger('order_id')->unsigned();
             $table->string('serialno', 30)->nullable();
-            $table->date('shipping_date')->nullable();
+            $table->dateTime('shipping_date')->nullable();
             $table->dateTime('completion_time')->nullable();
             $table->dateTime('chargeback_time')->nullable();
             $table->bigInteger('installer_id')->bigInteger()->nullable();
