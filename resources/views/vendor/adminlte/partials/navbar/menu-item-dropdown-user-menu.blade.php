@@ -23,7 +23,7 @@
                  alt="{{ Auth::user()->name }}">
         @endif
         <span @if(config('adminlte.usermenu_image')) class="d-none d-md-inline" @endif>
-            {{ Auth::user()->name }}
+            {{ (Auth::user()->role == App\Enums\UserRole::Reseller) ? (Auth::user()->sales->company.'('.Auth::user()->name.')'): Auth::user()->name }}
         </span>
     </a>
 
