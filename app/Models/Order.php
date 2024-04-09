@@ -22,6 +22,7 @@ class Order extends Model
         'address',
         'price',
         'installation_fee',
+        'extra_price',
         'flow',
         'memo',
         'status',

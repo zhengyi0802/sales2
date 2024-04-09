@@ -32,6 +32,10 @@
                   @endforeach
                 </select></td>
             </tr>
+            <tr class="form-group col-md-4">
+                <td><strong>{{ __('orders.extraprice') }} :</strong></td>
+                <td><input type="number" name="extra_price" class="form-control" value="{{ $order->extra_price }}"></td>
+            </tr>
             <tr class="form-group col-md-6">
                 <td><strong>{{ __('orders.flow') }} :</strong></td>
                 <td><select id="flow" name="flow" onchange="checkflow(this)">

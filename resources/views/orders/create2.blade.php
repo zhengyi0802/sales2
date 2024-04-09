@@ -104,6 +104,10 @@
                       @endforeach
                 </select></td>
             </tr>
+            <tr class="form-group col-md-4">
+                <td><strong>{{ __('orders.extraprice') }} :</strong></td>
+                <td><input type="number" name="extra_price" class="form-control" value="0"></td>
+            </tr>
             </table>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

@@ -57,6 +57,7 @@ class MassOrderController extends Controller
         foreach($items as $item) {
            $model = substr($item["'product'"], strpos($item["'product'"], "(")+1);
            $model = substr($model, 0, strlen($model)-1);
+           //dd($model);
            $product = ProductModel::where('model', $model)->first();
            $aitem = [
                'product_id'    => $product->id,

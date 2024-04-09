@@ -97,6 +97,7 @@ class CustomerController extends Controller
                   'name'        => $data['name'],
                   'phone'       => $data['phone'],
                   'address'     => $data['address'],
+                  'extra_price' => $data['extra_price'],
                   'order_date'  => $order_date,
                   'amount'      => 0,
                   'status'      => true,

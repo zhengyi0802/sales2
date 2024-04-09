@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EWarranty;
 use App\Models\Warranty;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -10,9 +11,9 @@ class WarrantyController extends Controller
 {
     public function index()
     {
-        $warranties = Warranty::get();
+        $ewarranties = EWarranty::get();
 
-        return view('warranties.index', compact('warranties'));
+        return view('warranties.index', compact('ewarranties'));
     }
 
     public function create()
