@@ -60,7 +60,10 @@ class ShippingProcessController extends Controller
      */
     public function show(ShippingProcess $shipping)
     {
-        return view('shippings.show', compact('shipping'));
+        $qrdata = "https://sales2.mdo.tw/warranties/register?order_id=".$shipping->order->id;
+        $qrdata .= "&phone=".$shipping->order->phone."&product_id=".$shipping->order->product_id;
+
+        return view('shippings.show', compact('shipping'))->with(compact('qrdata'));
     }
 
     /**

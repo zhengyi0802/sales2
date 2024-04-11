@@ -293,6 +293,9 @@ class OrderController extends Controller
             $pdf_file = 'shipment-'.$order->id.'.pdf';
             return $pdf->download($pdf_file);
         }
-        return view('shippings.shipment', compact('order'));
+        $qrdata = "https://sales2.mdo.tw/warranties/register?order_id=".$order->id;
+        $qrdata .= "&phone=".$order->phone."&product_id=".$order->product_id;
+
+        return view('shippings.shipment', compact('order'))->with(compact('qrdata'));
     }
 }

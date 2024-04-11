@@ -413,7 +413,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
        </tr>
        <tr class="tr3">
          <td width="131" class="remark2 padding"><p><span>備註事項</span></p></td>
-         <td width="555" colspan="5" class="remarks padding"></td>
+         <td width="555" colspan="5" class="remarks padding"><p align="right">{{ QrCode::size(100)->generate($qrdata) }}</p></td>
        </tr>
        <tr class="tr2">
          <td width="356" colspan="3" class="c20 padding"><p><span>承辦人員</span></p></td>
