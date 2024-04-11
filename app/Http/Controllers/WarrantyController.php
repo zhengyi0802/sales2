@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\EWarranty;
 use App\Models\Warranty;
 use App\Models\Order;
+use App\Enums\FlowStatus;
 use Illuminate\Http\Request;
 
 class WarrantyController extends Controller
@@ -53,6 +54,9 @@ class WarrantyController extends Controller
         $data['register_time'] = date('Y-m-d h:i:s');
         $data['warranty_date'] = date('Y-m-d', strtotime('+2 years'));
         $warranty = Warranty::create($data);
+        $order = $warranty->order;
+        $order->flow = FlowStatus::Completion;
+        $order->save();
 
         return view('warranties.show', compact('warranty'));
     }
