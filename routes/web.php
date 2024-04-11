@@ -116,6 +116,9 @@ Route::get('/massOrders/{massOrder}/shipment', [App\Http\Controllers\MassOrderCo
 
 Route::resource('/massOrders', MassOrderController::class);
 
+Route::get('/warranties/register', [App\Http\Controllers\WarrantyController::class, 'register'])
+     ->name('warranties.register');
+
 Route::resource('/warranties', WarrantyController::class);
 
 Route::get('/checkOrders', [App\Http\Controllers\CheckOrderController::class, 'index'])

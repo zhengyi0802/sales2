@@ -28,10 +28,10 @@
          </tr>
          <tr>
             <td><x-adminlte-card title="{{ __('warranties.model_id') }}" theme="info" icon="fas fa-lg">
-              {{ $warranty->productModel()->model ?? '' }}
+              {{ $warranty->product->model ?? '' }}
             </x-adminlte-card></td>
-            <td><x-adminlte-card title="{{ __('warranties.android_id') }}" theme="info" icon="fas fa-lg">
-              {{ $warranty->product->android_id ?? '' }}
+            <td><x-adminlte-card title="{{ __('warranties.order_id') }}" theme="info" icon="fas fa-lg">
+              {{ $warranty->order_id ?? '' }}
              </x-adminlte-card></td>
          </tr>
          <tr>
@@ -39,9 +39,18 @@
               {{ $warranty->register_time }}
             </x-adminlte-card></td>
             <td><x-adminlte-card title="{{ __('warranties.warranty_date') }}" theme="info" icon="fas fa-lg">
-              {{ date('Y-m-d', strtotime('+3 years', strtotime($warranty->warranties_time))) }}
+              {{ $warranty->warranty_date }}
             </x-adminlte-card></td>
          </tr>
+         <tr>
+            <td colspan="2"><h2>{{ __('warranties.company') }}</h3></td>
+         </td>
+         <tr>
+            <td colspan="2"><h3>{{ __('warranties.caddress') }}</h3></td>
+         </td>
+         <tr>
+            <td colspan="2"><h3>{{ __('warranties.cphone') }}</h3></td>
+         </td>
       </table>
     </div>
 @endsection

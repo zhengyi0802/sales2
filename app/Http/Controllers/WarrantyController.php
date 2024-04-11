@@ -11,9 +11,9 @@ class WarrantyController extends Controller
 {
     public function index()
     {
-        $ewarranties = EWarranty::get();
+        $warranties = Warranty::get();
 
-        return view('warranties.index', compact('ewarranties'));
+        return view('warranties.index', compact('warranties'));
     }
 
     public function create()
@@ -23,6 +23,7 @@ class WarrantyController extends Controller
 
     public function store(Request $request)
     {
+
         return redirect()->route('warranties.index');
     }
 
@@ -46,4 +47,13 @@ class WarrantyController extends Controller
         return redirect()->route('warranties.index');
     }
 
+    public function register(Request $request)
+    {
+        $data = $request->all();
+        $data['register_time'] = date('Y-m-d h:i:s');
+        $data['warranty_date'] = date('Y-m-d', strtotime('+2 years'));
+        $warranty = Warranty::create($data);
+
+        return view('warranties.show', compact('warranty'));
+    }
 }
