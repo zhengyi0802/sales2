@@ -15,15 +15,15 @@
       <table>
          <tr>
             <td><x-adminlte-card title="{{ __('warranties.name') }}" theme="info" icon="fas fa-lg">
-              {{ $warranty->order()->name ?? '' }}
+              {{ $warranty->order->name ?? '' }}
             </x-adminlte-card></td>
             <td><x-adminlte-card title="{{ __('warranties.phone') }}" theme="info" icon="fas fa-lg">
-              {{ $warranty->order()->phone ?? '' }}
+              {{ $warranty->order->phone ?? '' }}
              </x-adminlte-card></td>
          </tr>
          <tr>
             <td colspan="2"><x-adminlte-card title="{{ __('warranties.address') }}" theme="info" icon="fas fa-lg">
-              {{ $warranty->order()->address ?? '' }}
+              {{ $warranty->order->address ?? '' }}
              </x-adminlte-card></td>
          </tr>
          <tr>

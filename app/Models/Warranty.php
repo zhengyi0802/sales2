@@ -20,8 +20,7 @@ class Warranty extends Model
     ];
 
     public function order() {
-        $order = Order::where('phone', $this->phone)->first();
-        return $order;
+        return $this->belongsTo(Order::class, 'order_id');;
     }
 
     public function product() {

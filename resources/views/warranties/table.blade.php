@@ -19,7 +19,7 @@ $config = [
         <tr>
             <td>{{ $warranty->id }}</td>
             <td>{{ $warranty->order_id }}</td>
-            <td>{{ ($warranty->order()) ? $warranty->order()->name : $warranty->name }}</td>
+            <td>{{ ($warranty->order) ? $warranty->order->name : null }}</td>
             @if (auth()->user()->role == App\Enums\UserRole::ShareHolder)
                <td>{{ str_split($warranty->phone, 5)[0].'****' }}</td>
             @else
