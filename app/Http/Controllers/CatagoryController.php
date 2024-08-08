@@ -25,6 +25,13 @@ class CatagoryController extends Controller
         return view('catagories.index', compact('catagories'));
     }
 
+    public function query()
+    {
+        $catagories = Catagory::select('id', 'name')->where('status', true)->get()->toJson();
+
+        return response($catagories, 200)->header('Content-Type', 'text/json');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

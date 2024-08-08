@@ -27,6 +27,13 @@ class VendorController extends Controller
         return view('vendors.index', compact('vendors'));
     }
 
+    public function query()
+    {
+        $vendors = Vendor::select('id', 'company', 'country')->where('status', true)->get();
+
+        return response($vendors, 200)->header('Content-Type', 'text/json');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

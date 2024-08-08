@@ -16,6 +16,8 @@ class ProductModel extends Model
         'model',
         'catagory_id',
         'vendor_id',
+        'currency_id',
+        'puchase_cost',
         'price',
         'briefs',
         'specifications',
@@ -43,4 +45,7 @@ class ProductModel extends Model
         return $this->belongsTo(ProductModel::class, 'accessories');
     }
 
+    function currency() {
+        return $this->belongsTo(Currency::class, 'currency_id');
+    }
 }

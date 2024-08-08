@@ -53,6 +53,15 @@
                 <input type="text" name="name" class="form-control">
             </div>
             <div class="form-group col-md-6">
+                <strong>{{ __('productModels.purchase_cost') }} :</strong>
+                <select id="currency_id" name="currency_id" style="width: 100px;">
+                      @foreach ($currencies as $currency)
+                         <option value="{{ $currency->id }}" >{{ $currency->currency_name }}</option>
+                      @endforeach
+                </select>
+                <input type="number" name="purchase_cost" step="0.01" placeholder="1.00">
+            </div>
+            <div class="form-group col-md-6">
                 <strong>{{ __('productModels.price') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="number" name="price" class="form-control">
             </div>

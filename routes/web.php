@@ -15,6 +15,7 @@ use App\Http\Controllers\CsvController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\MassOrderController;
 use App\Http\Controllers\WarrantyController;
+use App\Http\Controllers\CurrencyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,9 +43,18 @@ Route::get('/locate/{locate}', function($locate) {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
      ->name('home')->middleware('auth');
 
+Route::get('/catagories/query', [App\Http\Controllers\CatagoryController::class, 'query'])
+     ->name('catagories.query');
+
 Route::resource('/catagories', CatagoryController::class);
 
+Route::get('/vendors/query', [App\Http\Controllers\VendorController::class, 'query'])
+     ->name('vendors.query');
+
 Route::resource('/vendors', VendorController::class);
+
+Route::get('/productModels/query', [App\Http\Controllers\ProductModelController::class, 'query'])
+     ->name('productModels.query');
 
 Route::resource('/productModels', ProductModelController::class);
 
@@ -142,3 +152,8 @@ Route::get('inventories/table', [App\Http\Controllers\InventoryController::class
      ->name('inventories.table');
 
 Route::resource('/inventories', InventoryController::class);
+
+Route::get('/currencies/query', [App\Http\Controllers\CurrencyController::class, 'query'])
+     ->name('currencies.query');
+
+Route::resource('/currencies', CurrencyController::class);

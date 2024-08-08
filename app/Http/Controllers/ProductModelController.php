@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ProductModel;
 use App\Models\Vendor;
 use App\Models\Catagory;
+use App\Models\Currency;
 use App\Models\User;
 use App\Enums\UserRole;
 use Illuminate\Http\Request;
@@ -29,6 +30,31 @@ class ProductModelController extends Controller
         return view('productModels.index', compact('productModels'));
     }
 
+    public function query()
+    {
+        $productmodels = ProductModel::where('status', true)->get();
+
+        $products = array();
+        foreach($productmodels as $pm) {
+          $vendor = $pm->vendor;
+          $catagory = $pm->catagory;
+          $currency = $pm->currency;
+          $product = array(
+                              'id'         => $pm->id,
+                              'name'       => $pm->name,
+                              'model'      => $pm->model,
+                              'catagory'   => $catagory->name,
+                              'vendor'     => $vendor->company,
+                              'from'       => $vendor->country,
+                              'currency'   => $currency->currency_name,
+                              'rate'       => $currency->currency_rate,
+                              'cost'       => $pm->purchase_cost,
+                     );
+          array_push($products, $product);
+        }
+        return response(json_encode($products))->header('Content-Type', 'text/json');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -39,8 +65,10 @@ class ProductModelController extends Controller
         $vendors = Vendor::get();
         $catagories = Catagory::get();
         $accessories = ProductModel::where('is_accessories', true)->get();
+        $currencies = Currency::get();
 
         return view('productModels.create')
+               ->with(compact('currencies'))
                ->with(compact('vendors'))
                ->with(compact('catagories'))
                ->with(compact('accessories'));
@@ -91,8 +119,10 @@ class ProductModelController extends Controller
         $catagories = Catagory::get();
         $vendors = Vendor::get();
         $accessories = ProductModel::where('is_accessories', true)->get();
+        $currencies = Currency::get();
 
         return view('productModels.edit', compact('productModel'))
+               ->with(compact('currencies'))
                ->with(compact('vendors'))
                ->with(compact('catagories'))
                ->with(compact('accessories'));

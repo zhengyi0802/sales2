@@ -17,5 +17,7 @@
            'extras'           => '可為贈品',
            'status'           => '狀態',
            'creator'          => '建立者',
+           'currency'         => '成本(貨幣別)',
+           'purchase_cost'    => '單價成本',
     ];
 
