@@ -52,6 +52,7 @@
                 <strong>{{ __('productModels.name') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="name" class="form-control">
             </div>
+            @if (auth()->user()->role == App\Enums\UserRole::CEO)
             <div class="form-group col-md-6">
                 <strong>{{ __('productModels.purchase_cost') }} :</strong>
                 <select id="currency_id" name="currency_id" style="width: 100px;">
@@ -61,6 +62,7 @@
                 </select>
                 <input type="number" name="purchase_cost" step="0.01" placeholder="1.00">
             </div>
+            @endif
             <div class="form-group col-md-6">
                 <strong>{{ __('productModels.price') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="number" name="price" class="form-control">

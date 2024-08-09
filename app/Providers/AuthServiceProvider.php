@@ -17,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
     ];
     public static $permissions = [
+       'ceo'               => [ UserRole::CEO ],
        'manager'           => [ UserRole::Manager ],
        'accounter'         => [ UserRole::Accounter ],
        'sales'             => [ UserRole::Sales ],
