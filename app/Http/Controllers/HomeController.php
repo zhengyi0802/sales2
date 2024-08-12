@@ -40,6 +40,7 @@ class HomeController extends Controller
                  $chargebacks = Order::where('status', true)->where('flow', FlowStatus::ChargeBack)->count();
                  $disabled = Order::where('status',false)->count();
                  break;
+            case UserRole::CEO:
             case UserRole::Manager:
                  $unhandled = Order::where('status', true)->where('flow', FlowStatus::UnHandled)->count();
                  $contacted = Order::where('status', true)->where('flow', FlowStatus::Contacted)->count();
