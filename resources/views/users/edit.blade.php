@@ -78,11 +78,14 @@
                     <select id="role" name="role">
                        <option value="2" {{ ($user->role == 2) ? "selected" : null }}>{{ trans_choice('users.roles', 2) }}</option>
                        <option value="3" {{ ($user->role == 3) ? "selected" : null }}>{{ trans_choice('users.roles', 3) }}</option>
+                       <option value="4" {{ ($user->role == 4) ? "selected" : null }}>{{ trans_choice('users.roles', 4) }}</option>
                        <option value="5" {{ ($user->role == 5) ? "selected" : null }}>{{ trans_choice('users.roles', 5) }}</option>
                        <option value="6" {{ ($user->role == 6) ? "selected" : null }}>{{ trans_choice('users.roles', 6) }}</option>
+                       <option value="7" {{ ($user->role == 7) ? "selected" : null }}>{{ trans_choice('users.roles', 7) }}</option>
                        <option value="8" {{ ($user->role == 8) ? "selected" : null }}>{{ trans_choice('users.roles', 8) }}</option>
                        <option value="9" {{ ($user->role == 9) ? "selected" : null }}>{{ trans_choice('users.roles', 9) }}</option>
                        <option value="10" {{ ($user->role == 10) ? "selected" : null }}>{{ trans_choice('users.roles', 10) }}</option>
+                       <option value="11" {{ ($user->role == 11) ? "selected" : null }}>{{ trans_choice('users.roles', 11) }}</optio>
                     </select>
                 </div>
            </div>
