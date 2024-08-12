@@ -42,3 +42,7 @@ $config = [
 </x-adminlte-datatable>
 @section('plugins.Datatables', true)
 @section('plugins.DatatablesPlugin', true)
+<<<<<<< HEAD
+=======
+
+>>>>>>> d86a7a198ecb88181a7e7dd60e61c387dcbb7bad

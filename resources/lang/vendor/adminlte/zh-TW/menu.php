@@ -33,7 +33,7 @@ return [
     'massorders'                    => '經銷團購訂單',
     'warranties'                    => '線上保固資料',
     'checkOrders'                   => '線上訂購單審核',
-    'currencies'                    => '外匯匯率',
+    'currencies'                    => '外幣匯率表',
     'test'                          => '測試頁面',
     'Language'                      => '語言',
     'English'                       => 'English',
