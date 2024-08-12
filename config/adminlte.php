@@ -329,6 +329,11 @@ return [
         ['header' => 'manager_settings',
          'can'    => 'manager', ],
         [
+            'text' => 'currencies',
+            'url'  => 'currencies',
+            'can'  => ['CEO',],
+        ],
+        [
             'text' => 'catagories',
             'url'  => 'catagories',
             'can'  => ['CEO', 'manager', 'stocker',],
