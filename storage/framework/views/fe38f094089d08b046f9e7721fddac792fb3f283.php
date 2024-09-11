@@ -79,8 +79,4 @@ $config = [
 <?php endif; ?>
 <?php $__env->startSection('plugins.Datatables', true); ?>
 <?php $__env->startSection('plugins.DatatablesPlugin', true); ?>
-<<<<<<< HEAD
-=======
-
->>>>>>> d86a7a198ecb88181a7e7dd60e61c387dcbb7bad
 <?php /**PATH /files/www/sales2/resources/views/currencies/table.blade.php ENDPATH**/ ?>

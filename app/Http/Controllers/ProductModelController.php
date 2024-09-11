@@ -62,15 +62,9 @@ class ProductModelController extends Controller
      */
     public function create()
     {
-        $vendors = Vendor::get();
-        $catagories = Catagory::get();
         $accessories = ProductModel::where('is_accessories', true)->get();
-        $currencies = Currency::get();
 
         return view('productModels.create')
-               ->with(compact('currencies'))
-               ->with(compact('vendors'))
-               ->with(compact('catagories'))
                ->with(compact('accessories'));
     }
 

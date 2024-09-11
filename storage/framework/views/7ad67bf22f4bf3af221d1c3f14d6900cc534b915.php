@@ -50,36 +50,66 @@
                 <strong><?php echo e(__('productModels.name')); ?> :<span class="must"><?php echo e(__('tables.must')); ?></span></strong>
                 <input type="text" name="name" class="form-control">
             </div>
+            <?php if(auth()->user()->role == App\Enums\UserRole::Administrator): ?>
             <div class="form-group col-md-6">
                 <strong><?php echo e(__('productModels.purchase_cost')); ?> :</strong>
-                <select id="currency_id" name="currency_id" style="width: 100px;">
-                      <?php $__currentLoopData = $currencies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $currency): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                         <option value="<?php echo e($currency->id); ?>" ><?php echo e($currency->currency_name); ?></option>
-                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </select>
+                <?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('currencies')->html();
+} elseif ($_instance->childHasBeenRendered('CifeNyO')) {
+    $componentId = $_instance->getRenderedChildComponentId('CifeNyO');
+    $componentTag = $_instance->getRenderedChildComponentTagName('CifeNyO');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('CifeNyO');
+} else {
+    $response = \Livewire\Livewire::mount('currencies');
+    $html = $response->html();
+    $_instance->logRenderedChild('CifeNyO', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
                 <input type="number" name="purchase_cost" step="0.01" placeholder="1.00">
             </div>
+            <?php endif; ?>
             <div class="form-group col-md-6">
                 <strong><?php echo e(__('productModels.price')); ?> :<span class="must"><?php echo e(__('tables.must')); ?></span></strong>
                 <input type="number" name="price" class="form-control">
             </div>
             <div class="form-group col-md-6">
                 <strong><?php echo e(__('productModels.vendor')); ?> :<span class="must"><?php echo e(__('tables.must')); ?></span></strong>
-                <select id="vendor_id" name="vendor_id" >
-                      <option value="" selected>----------</option>
-                      <?php $__currentLoopData = $vendors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $vendor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                         <option value="<?php echo e($vendor->id); ?>" ><?php echo e($vendor->company); ?></option>
-                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </select>
+                <?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('vendors')->html();
+} elseif ($_instance->childHasBeenRendered('pF62Gzs')) {
+    $componentId = $_instance->getRenderedChildComponentId('pF62Gzs');
+    $componentTag = $_instance->getRenderedChildComponentTagName('pF62Gzs');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('pF62Gzs');
+} else {
+    $response = \Livewire\Livewire::mount('vendors');
+    $html = $response->html();
+    $_instance->logRenderedChild('pF62Gzs', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
             </div>
             <div class="form-group col-md-6">
                 <strong><?php echo e(__('productModels.catagory')); ?> :<span class="must"><?php echo e(__('tables.must')); ?></span></strong>
-                <select id="catagory_id" name="catagory_id" >
-                      <option value="" selected>----------</option>
-                      <?php $__currentLoopData = $catagories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $catagory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                         <option value="<?php echo e($catagory->id); ?>" ><?php echo e($catagory->name); ?></option>
-                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </select>
+                <?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('catagories')->html();
+} elseif ($_instance->childHasBeenRendered('xuqfhMn')) {
+    $componentId = $_instance->getRenderedChildComponentId('xuqfhMn');
+    $componentTag = $_instance->getRenderedChildComponentTagName('xuqfhMn');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('xuqfhMn');
+} else {
+    $response = \Livewire\Livewire::mount('catagories');
+    $html = $response->html();
+    $_instance->logRenderedChild('xuqfhMn', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
             </div>
             <div class="form-group col-md-6">
                 <strong><?php echo e(__('productModels.accessories')); ?> :</strong>

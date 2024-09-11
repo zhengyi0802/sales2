@@ -51,15 +51,17 @@
                     <strong><?php echo e(__('productModels.name')); ?> :</strong>
                     <input type="text" name="name" value="<?php echo e($productModel->name); ?>" class="form-control">
                 </div>
+                <?php if(auth()->user()->role == App\Enums\UserRole::CEO): ?>
                 <div class="form-group col-md-6">
                     <strong><?php echo e(__('productModels.purchase_cost')); ?> :</strong>
-                    <select id="currency_id' name="currency_id' style="width:100px">
+                    <select id="currency_id" name="currency_id" style="width:100px;">
                           <?php $__currentLoopData = $currencies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $currency): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                              <option value="<?php echo e($currency->id); ?>" <?php echo e(($currency->id == $productModel->currency_id) ? "selected" : null); ?>><?php echo e($currency->currency_name); ?></option>
                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </select>
-                    <input type="number" name="purchase_cost" class="form-control">
+                    <input type="number" name="purchase_cost" step="0.01" value="$productModel->purchase_cost">
                 </div>
+                <?php endif; ?>
                 <div class="form-group col-md-6">
                     <strong><?php echo e(__('productModels.price')); ?> :</strong>
                     <input type="number" name="price" value="<?php echo e($productModel->price); ?>" class="form-control">

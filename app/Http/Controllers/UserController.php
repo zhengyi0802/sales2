@@ -152,4 +152,10 @@ class UserController extends Controller
         return redirect()->route('home');
     }
 
+    public function check_aid(Request $request)
+    {
+        $aid = $request->all();
+
+        return "true";
+    }
 }

@@ -52,14 +52,10 @@
                 <strong>{{ __('productModels.name') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="name" class="form-control">
             </div>
-            @if (auth()->user()->role == App\Enums\UserRole::CEO)
+            @if (auth()->user()->role == App\Enums\UserRole::Administrator)
             <div class="form-group col-md-6">
                 <strong>{{ __('productModels.purchase_cost') }} :</strong>
-                <select id="currency_id" name="currency_id" style="width: 100px;">
-                      @foreach ($currencies as $currency)
-                         <option value="{{ $currency->id }}" >{{ $currency->currency_name }}</option>
-                      @endforeach
-                </select>
+                @livewire('currencies')
                 <input type="number" name="purchase_cost" step="0.01" placeholder="1.00">
             </div>
             @endif
@@ -69,21 +65,11 @@
             </div>
             <div class="form-group col-md-6">
                 <strong>{{ __('productModels.vendor') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <select id="vendor_id" name="vendor_id" >
-                      <option value="" selected>----------</option>
-                      @foreach ($vendors as $vendor)
-                         <option value="{{ $vendor->id }}" >{{ $vendor->company }}</option>
-                      @endforeach
-                </select>
+                @livewire('vendors')
             </div>
             <div class="form-group col-md-6">
                 <strong>{{ __('productModels.catagory') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <select id="catagory_id" name="catagory_id" >
-                      <option value="" selected>----------</option>
-                      @foreach ($catagories as $catagory)
-                         <option value="{{ $catagory->id }}" >{{ $catagory->name }}</option>
-                      @endforeach
-                </select>
+                @livewire('catagories')
             </div>
             <div class="form-group col-md-6">
                 <strong>{{ __('productModels.accessories') }} :</strong>

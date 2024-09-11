@@ -28,6 +28,9 @@ use App\Http\Controllers\CurrencyController;
 |
 */
 
+Route::get('/auth/line', [SocialiteController::class, 'lineLogin']);
+Route::get('/auth/line/callback', [SocialiteController::class, 'lineLoginCallback']);
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])
      ->middleware('auth');
 
@@ -102,6 +105,9 @@ Route::get('/profiles', [App\Http\Controllers\UserController::class, 'profile'])
 
 Route::get('/users/saveProfile', [App\Http\Controllers\UserController::class, 'saveProfile'])
      ->name('users.saveProfile');
+
+Route::get('/users/check_aid', [App\Http\Controllers\UserController::class, 'check_aid'])
+     ->name('users.check_aid');
 
 Route::resource('/users', UserController::class);
 
