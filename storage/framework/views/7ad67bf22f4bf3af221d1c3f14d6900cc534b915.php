@@ -56,15 +56,15 @@
                 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('currencies')->html();
-} elseif ($_instance->childHasBeenRendered('CifeNyO')) {
-    $componentId = $_instance->getRenderedChildComponentId('CifeNyO');
-    $componentTag = $_instance->getRenderedChildComponentTagName('CifeNyO');
+} elseif ($_instance->childHasBeenRendered('I8qGjNf')) {
+    $componentId = $_instance->getRenderedChildComponentId('I8qGjNf');
+    $componentTag = $_instance->getRenderedChildComponentTagName('I8qGjNf');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('CifeNyO');
+    $_instance->preserveRenderedChild('I8qGjNf');
 } else {
     $response = \Livewire\Livewire::mount('currencies');
     $html = $response->html();
-    $_instance->logRenderedChild('CifeNyO', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('I8qGjNf', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -80,15 +80,15 @@ echo $html;
                 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('vendors')->html();
-} elseif ($_instance->childHasBeenRendered('pF62Gzs')) {
-    $componentId = $_instance->getRenderedChildComponentId('pF62Gzs');
-    $componentTag = $_instance->getRenderedChildComponentTagName('pF62Gzs');
+} elseif ($_instance->childHasBeenRendered('lz1GCub')) {
+    $componentId = $_instance->getRenderedChildComponentId('lz1GCub');
+    $componentTag = $_instance->getRenderedChildComponentTagName('lz1GCub');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('pF62Gzs');
+    $_instance->preserveRenderedChild('lz1GCub');
 } else {
     $response = \Livewire\Livewire::mount('vendors');
     $html = $response->html();
-    $_instance->logRenderedChild('pF62Gzs', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('lz1GCub', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -98,27 +98,36 @@ echo $html;
                 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('catagories')->html();
-} elseif ($_instance->childHasBeenRendered('xuqfhMn')) {
-    $componentId = $_instance->getRenderedChildComponentId('xuqfhMn');
-    $componentTag = $_instance->getRenderedChildComponentTagName('xuqfhMn');
+} elseif ($_instance->childHasBeenRendered('ehlUsQR')) {
+    $componentId = $_instance->getRenderedChildComponentId('ehlUsQR');
+    $componentTag = $_instance->getRenderedChildComponentTagName('ehlUsQR');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('xuqfhMn');
+    $_instance->preserveRenderedChild('ehlUsQR');
 } else {
     $response = \Livewire\Livewire::mount('catagories');
     $html = $response->html();
-    $_instance->logRenderedChild('xuqfhMn', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('ehlUsQR', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
             </div>
             <div class="form-group col-md-6">
                 <strong><?php echo e(__('productModels.accessories')); ?> :</strong>
-                <select id="accessories" name="accessories" >
-                      <option value="" selected>----------</option>
-                      <?php $__currentLoopData = $accessories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $accessory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                         <option value="<?php echo e($accessory->id); ?>" ><?php echo e($accessory->name); ?></option>
-                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </select>
+                <?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('accessories')->html();
+} elseif ($_instance->childHasBeenRendered('C4bDKjw')) {
+    $componentId = $_instance->getRenderedChildComponentId('C4bDKjw');
+    $componentTag = $_instance->getRenderedChildComponentTagName('C4bDKjw');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('C4bDKjw');
+} else {
+    $response = \Livewire\Livewire::mount('accessories');
+    $html = $response->html();
+    $_instance->logRenderedChild('C4bDKjw', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
             </div>
             <div class="form-group col-md-6">
               <table class="table table-bordered" id="briefsTable">

@@ -62,10 +62,7 @@ class ProductModelController extends Controller
      */
     public function create()
     {
-        $accessories = ProductModel::where('is_accessories', true)->get();
-
-        return view('productModels.create')
-               ->with(compact('accessories'));
+        return view('productModels.create');
     }
 
     /**

@@ -73,12 +73,7 @@
             </div>
             <div class="form-group col-md-6">
                 <strong>{{ __('productModels.accessories') }} :</strong>
-                <select id="accessories" name="accessories" >
-                      <option value="" selected>----------</option>
-                      @foreach ($accessories as $accessory)
-                         <option value="{{ $accessory->id }}" >{{ $accessory->name }}</option>
-                      @endforeach
-                </select>
+                @livewire('accessories')
             </div>
             <div class="form-group col-md-6">
               <table class="table table-bordered" id="briefsTable">
