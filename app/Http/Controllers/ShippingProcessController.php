@@ -96,6 +96,9 @@ class ShippingProcessController extends Controller
             }
         }
         $shipping->update($data);
+        $order = $shipping->order;
+        $order->flow = $data['flow'];
+        $order->save();
         $extras = $shipping->order->extras->toArray();
         for($i=0; $i<count($extras); $i++) {
             $extra = $shipping->order->extras[$i];

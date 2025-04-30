@@ -83,6 +83,13 @@ class ProductModelController extends Controller
             if ($data['accessories'] == null) {
                 $data['accessories'] = 0;
             }
+            if (!isset($data['extra'])) {
+                $data['extra'] = false;
+            }
+            if (!isset($data['status'])) {
+                $data['status'] = false;
+            }
+
             ProductModel::create($data);
         }
         return redirect()->route('productModels.index');
@@ -135,6 +142,15 @@ class ProductModelController extends Controller
         $data['created_by'] = $creator->id;
         if ($data['accessories'] == null) {
             $data['accessories'] = 0;
+        }
+        if (!isset($data['is_accessories'])) {
+            $data['is_accessories'] = false;
+        }
+        if (!isset($data['extra'])) {
+            $data['extra'] = false;
+        }
+        if (!isset($data['status'])) {
+            $data['status'] = false;
         }
         $productModel->update($data);
 

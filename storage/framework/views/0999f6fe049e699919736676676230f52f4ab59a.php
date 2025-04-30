@@ -23,7 +23,7 @@ $config = [
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php $component->withAttributes([]); ?>
   <?php $__currentLoopData = $shippings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $shipping): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-    <?php if($shipping->order->flow < App\Enums\FlowStatus::Completion): ?>
+    <?php if($shipping->order->flow <= App\Enums\FlowStatus::Completion): ?>
     <tr class="<?php echo e($shipping->status ? null : "bg-gray"); ?>">
       <td><?php echo e($shipping->order_id); ?></td>
       <td><?php echo e($shipping->order->phone); ?></td>

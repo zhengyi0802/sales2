@@ -20,7 +20,7 @@ class CreateProductModelsTable extends Migration
             $table->bigInteger('catagory_id')->unsigned();
             $table->bigInteger('vendor_id')->unsigned();
             $table->bigInteger('currency_id')->unsigned()->default(1);
-            $table->decimal('purchase_cost', total: 10, places: 2)->default(1.00);
+            $table->decimal('purchase_cost', total:10, places:2)->default(1.00);
             $table->integer('price')->unsigned()->default(0);
             $table->json('briefs')->nullable();
             $table->json('specifications')->nullable();

@@ -82,6 +82,7 @@ class CheckOrderController extends Controller
                   'address'     => $data['address'],
                   'amount'      => 0,
                   'payment'     => $data['payment'],
+                  'memo'        => $data['memo'],
                   'status'      => true,
                   'created_by'  => $creator->id,
             ];

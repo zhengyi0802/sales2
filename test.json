@@ -1,0 +1,46 @@
+{
+  "info": {
+    "name": "ECPay - 查詢特店基本資料",
+    "_postman_id": "c01e6fd5-bccb-4a3a-bf8e-6c2e7c1d45ed",
+    "description": "綠界電子發票 - 查詢特店基本資料（測試環境）",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "查詢特店基本資料",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "MerchantID", "value": "2000132", "type": "text" },
+            { "key": "TimeStamp", "value": "1713843287", "type": "text" },
+            { "key": "CheckMacValue", "value": "3AE4B4E717B80156B3BA8DA8362B8C92A95C8EC71350B0E01477E9E06B40C04D", "type": "text" }
+          ]
+        },
+        "url": {
+          "raw": "https://einvoice-stage.ecpay.com.tw/B2CInvoice/GetIssuePeriod",
+          "protocol": "https",
+          "host": [
+            "einvoice-stage",
+            "ecpay",
+            "com",
+            "tw"
+          ],
+          "path": [
+            "B2CInvoice",
+            "GetIssuePeriod"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

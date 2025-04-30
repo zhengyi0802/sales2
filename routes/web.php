@@ -16,6 +16,11 @@ use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\MassOrderController;
 use App\Http\Controllers\WarrantyController;
 use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\EApplyController;
+use App\Http\Controllers\LockInstallerController;
+use App\Http\Controllers\ProcessController;
+use App\Http\Controllers\EcpayController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +33,8 @@ use App\Http\Controllers\CurrencyController;
 |
 */
 
-Route::get('/auth/line', [SocialiteController::class, 'lineLogin']);
-Route::get('/auth/line/callback', [SocialiteController::class, 'lineLoginCallback']);
+//Route::get('/auth/line', [SocialiteController::class, 'lineLogin']);
+//Route::get('/auth/line/callback', [SocialiteController::class, 'lineLoginCallback']);
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])
      ->middleware('auth');
@@ -47,14 +52,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
      ->name('home')->middleware('auth');
 
 Route::get('/catagories/query', [App\Http\Controllers\CatagoryController::class, 'query'])
-     ->name('catagories.query');
+     ->name('catagories.query')->middleware('auth');
 
-Route::resource('/catagories', CatagoryController::class);
+Route::resource('/catagories', CatagoryController::class)->middleware('auth');
 
 Route::get('/vendors/query', [App\Http\Controllers\VendorController::class, 'query'])
-     ->name('vendors.query');
+     ->name('vendors.query')->middleware('auth');
 
-Route::resource('/vendors', VendorController::class);
+Route::resource('/vendors', VendorController::class)->middleware('auth');
 
 Route::get('/productModels/query', [App\Http\Controllers\ProductModelController::class, 'query'])
      ->name('productModels.query');
@@ -163,3 +168,19 @@ Route::get('/currencies/query', [App\Http\Controllers\CurrencyController::class,
      ->name('currencies.query');
 
 Route::resource('/currencies', CurrencyController::class);
+
+Route::get('/eapplies/export', [EApplyController::class, 'export'])->name('eapplies.export');
+
+Route::any('/eapplies/exports', [EApplyController::class, 'exports'])->name('eapplies.exports');
+
+Route::resource('/eapplies', EApplyController::class);
+
+//Route::get('/eapplies/export', [EApplyController::class, 'export'])->name('eapplies.export');
+
+//Route::any('/eapplies/exports', [EApplyController::class, 'exports'])->name('eapplies.exports');
+
+//Route::resource('/lockinstallers', LockInstallerController::class);
+
+Route::resource('/processes', ProcessController::class);
+
+Route::resource('/ecpay', EcpayController::class);

@@ -27,4 +27,7 @@
            'confirm_delete' => '確定刪除本筆資料?',
            'language_url' => '//cdn.datatables.net/plug-ins/1.13.4/i18n/zh-HANT.json',
            'copylink'    => '複製鏈接',
+           'export'      => '已對帳/可轉單查詢',
+           'exporting'   => '批量轉單',
+           'selector'    => '選擇',
     ];

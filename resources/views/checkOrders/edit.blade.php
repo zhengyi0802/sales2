@@ -82,6 +82,10 @@
                     <input type="radio" name="payment" value="1" {{ ($customer->order->payment == 1) ? "checked" : null }}>{{ __('checkorders.payment_credit') }}
                     <input type="radio" name="payment" value="2" {{ ($customer->order->payment == 2) ? "checked" : null }}>{{ __('checkorders.payment_cash') }}
                 </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('checkorders.memo') }} :</strong>
+                    <textarea name="memo" class="form-control" rows="10">{{ $customer->order->memo }}</textarea>
+                </div>
            </div>
            @include('checkOrders.orders.create')
            <div class="col-xs-12 col-sm-12 col-md-12 text-center">

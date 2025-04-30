@@ -1,0 +1,27 @@
+<?php
+
+    return [
+        'title'           => '綠界交易紀錄列表',
+        'title2'          => '綠界ATM/代碼/條碼紀錄(未付款)',
+        'header'          => '綠界交易紀錄列表',
+        'id'              => '編號',
+        'payment_type'    => '支付方式',
+        'type_credit'     => '信用卡(一次付清)',
+        'type_atm'        => 'ATM轉帳',
+        'type_cvs'        => '超商代碼',
+        'type_barcode'    => '超商條碼',
+        'payment_date'    => '支付日期',
+        'trade_amount'    => '支付金額',
+        'trade_no'        => '公司交易編號',
+        'trade_date'      => '交易日期',
+        'item_name'       => '品項',
+        'item_desc'       => '說明',
+        'ecpay_trade_no'  => '綠界交易編號',
+        'rtn_code'        => '回傳碼',
+        'rtn_msg'         => '回傳訊息',
+        'created_at'      => '記錄時間',
+        'bank_code'       => '銀行代碼',
+        'vaccount'        => '虛擬帳號',
+        'payment_no'      => '超商代碼',
+        'barcodes'        => '超商條碼',
+    ];

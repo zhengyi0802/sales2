@@ -1,0 +1,143 @@
+apply_id :6 has changed. name=邵柏翔&phone=0922788571&address=花蓮縣吉安鄉慈惠四街21巷5號
+apply_id :48 has changed. name=錢卉菱&phone=0931037985&address=桃園市中壢區民享二街55號
+apply_id :49 has changed. name=金盈宏&phone=0975107979&address=新北市汐止區新台五路2段238巷83號5樓
+apply_id :51 has changed. name=洪英哲&phone=0916857733&address=新竹縣竹北市嘉政五街29號6樓
+apply_id :87 has changed. name=楊昆霖&phone=0989259015&address=桃園市桃園區國強十街77號8樓
+name=楊澔庭&phone=0909168534 is empty
+apply_id :108 has changed. name=張俊義&phone=0982399651&address=桃園市楊梅區新農街666號12樓
+apply_id :109 has changed. name=蔡政達&phone=0980192431&address=苗栗縣竹南鎮大埔里想思林25-3號
+apply_id :122 has changed. name=賴裕濠&phone=0911034007&address=新北市汐止區康寧街141巷38號1樓
+apply_id :126 has changed. name=李文斌&phone=0912564313&address=台北市萬華區德昌街26號2F
+name=孫妃君&phone=0988666357 is empty
+apply_id :141 has changed. name=郭雯琪&phone=0929039121&address=台南市新營區民治路336號9樓
+apply_id :148 has changed. name=王榆萱&phone=0920770799&address=台北市內湖區民權東路六段216之一號6樓
+apply_id :149 has changed. name=江俊文&phone=0918872774&address=新北市中和區保健路76巷10號1樓
+apply_id :154 has changed. name=王雅菁&phone=0966962679&address=新北市新店區安康路二段208號5樓
+apply_id :164 has changed. name=涂振偉&phone=0928341134&address=苗栗縣頭份市東興路266號
+apply_id :172 has changed. name=陳韻如&phone=0910161003&address=臺南市東區崇善十二街45號6樓之一
+apply_id :178 has changed. name=施國彬&phone=0903537200&address=新北市土城區中央路四段56-1號3樓
+apply_id :177 has changed. name=施菩行&phone=0903537200&address=新北市土城區中央路四段56-1號3樓
+apply_id :192 has changed. name=施菩行&phone=0903537200&address=新北市土城區中央路四段56-1號3樓
+name=施國彬&phone=0903537200 is empty
+name=施菩行&phone=0903537200 is empty
+name=施菩行&phone=0903537200 is empty
+name=牛先生&phone=0961261551 is empty
+apply_id :179 has changed. name=牛致強&phone=0961261551&address=高雄市鳳山區建國路三段319巷12-3號
+apply_id :461 has changed. name=牛致強&phone=0961261551&address=高雄市鳳山區建國路三段319巷12-3號
+name=楊小姐&phone=0960022462 is empty
+apply_id :180 has changed. name=楊瑾宸&phone=0960022462&address=台南市南區興昌路38巷19弄11號
+apply_id :182 has changed. name=黃禹晨&phone=0922161355&address=台北市大安區信義路四段199巷18號7樓
+apply_id :186 has changed. name=陳宇仁&phone=0932792965&address=高雄市鼓山區翠華路299巷2號
+apply_id :187 has changed. name=陳宇仁&phone=0932792965&address=高雄市鼓山區翠華路299巷2號
+apply_id :190 has changed. name=官菄苓&phone=0929868689&address=高雄市大寮區巷尾路50之1號
+apply_id :195 has changed. name=張國漂&phone=0939359445&address=台北市中正區忠孝西路一段41號5樓之11
+apply_id :196 has changed. name=張國漂&phone=0939359445&address=台北市中正區忠孝西路一段41號5樓之11
+apply_id :208 has changed. name=章幼翔&phone=0908852585&address=新北市林口區中北一街99號3樓
+apply_id :213 has changed. name=林建良&phone=0931751993&address=台南市南區健康路二段56號5樓之一
+name=林建良&phone=0931751993 is empty
+apply_id :214 has changed. name=蔡昌霖&phone=0966707972&address=基隆市中正區信三路12巷9號3樓
+apply_id :217 has changed. name=陳瓊蕙&phone=0920957621&address=基隆市安樂區安一路100巷219-4號
+apply_id :218 has changed. name=林佳慧&phone=0928507908&address=基隆市信義區東光路30之6號4樓
+apply_id :226 has changed. name=賴宣憲&phone=0932996886&address=明志路三段123巷3號4樓
+name=曾輝堂&phone=0987321628 is empty
+apply_id :228 has changed. name=蘇珮綸&phone=0975665169&address=高雄市三民區大昌一路301巷6弄22號
+apply_id :229 has changed. name=蘇漢永&phone=0923518883&address=宜蘭五結鄉孝威南路19-6 11樓
+name=蘇漢永&phone=0923518883 is empty
+apply_id :234 has changed. name=黃程業&phone=0937993197&address=新竹市西門街150巷12號
+apply_id :235 has changed. name=黃程業&phone=0937993197&address=新竹市西門街150巷12號
+name=黃程業&phone=0937993197 is empty
+apply_id :238 has changed. name=周大周秘書長&phone=0939169636&address=台北市內湖區環山路一段30號B1
+name=周大周秘書長&phone=0939169636 is empty
+name=周大周秘書長&phone=0939169636 is empty
+apply_id :238 has changed. name=周大周秘書長&phone=0939169636&address=台北市內湖區環山路一段30號B1
+apply_id :240 has changed. name=林廷柏&phone=0977003568&address=南投縣草屯鎮富寮里富昌路富裕巷26號
+apply_id :245 has changed. name=鐘瑞良&phone=0930668837&address=台中市北屯區松義街137號6樓
+apply_id :246 has changed. name=鐘瑞良&phone=0930668837&address=台中市北屯區松義街137號5樓
+apply_id :247 has changed. name=傅達綸&phone=0937633683&address=高雄市三民區明誠一路68號
+apply_id :253 has changed. name=鄭琬于&phone=0925089682&address=高雄市仁武區名山十街108巷3號
+apply_id :254 has changed. name=陳宥嘉&phone=0938389098&address=高雄新興區中山一路14-6號11樓-2
+apply_id :255 has changed. name=吳欣蓉&phone=0976808797&address=高雄市鼓山區裕誠路1799號11樓
+apply_id :257 has changed. name=郭家銘&phone=0988236698&address=桃園市龜山區華亞三路39巷2號3樓之5
+apply_id :259 has changed. name=張慧芳&phone=0987502389&address=高市仁武區名山十街108巷10號
+apply_id :260 has changed. name=賴春靜&phone=0936734950&address=新北市中和區自立路50號4樓
+apply_id :265 has changed. name=陳俊逢&phone=0932318893&address=花蓮縣吉安鄉仁和村南海一街201-20號
+apply_id :269 has changed. name=張思絲&phone=0903141310&address=台北市中山區敬業三路162巷186號8樓
+apply_id :272 has changed. name=古怡玟&phone=0976466245&address=新北市土城區中央路一段249巷10弄7號2樓
+apply_id :274 has changed. name=徐其正&phone=0983000883&address=新北市淡水區自強路351號2樓
+apply_id :275 has changed. name=黃苑瑄&phone=0939826390&address=台北市北寧路58-3號7樓
+apply_id :276 has changed. name=許文彬&phone=0933012821&address=宜蘭縣礁溪鄉中山路二段31號4樓
+apply_id :281 has changed. name=湖惠芳&phone=0922898000&address=台中市南區建國南路一段252號14樓-2
+name=蕭韻軒&phone=0918259133 is empty
+apply_id :282 has changed. name=蕭韻軒&phone=0910018133&address=新北市蘆洲區集賢路362號16樓
+apply_id :287 has changed. name=李虹汝&phone=0973366305&address=高雄市前鎮區建基街9號7樓
+apply_id :306 has changed. name=李虹汝&phone=0973366305&address=高雄市前鎮區建基街9號7樓
+apply_id :289 has changed. name=梁傑&phone=0910641396&address=桃園市八德區桃德路142巷14號
+name=黃美球&phone=0932887461 is empty
+name=黃美球&phone=0932887461 is empty
+apply_id :296 has changed. name=王佳曜&phone=0907676323&address=新北市樹林區中華路323號2樓
+apply_id :300 has changed. name=孟聖力&phone=0933736575&address=板橋市大觀路2段174巷116弄22號
+apply_id :301 has changed. name=呂軒葳&phone=0938408365&address=新北市土城區日和街23號9樓
+apply_id :310 has changed. name=張智光&phone=0956116358&address=台南市東區裕義路202-5號
+apply_id :311 has changed. name=張文昌&phone=0905817648&address=台南市仁德區成功一街201巷15號
+apply_id :313 has changed. name=蔡雁如&phone=0915086525&address=桃園市楊梅區萬大路174巷2號12樓
+apply_id :318 has changed. name=楊博盛&phone=0975011110&address=高雄市楠梓區萬昌街22巷18號9樓
+apply_id :325 has changed. name=楊其生&phone=0937114721&address=桃園市中壢區松義路127號9樓
+apply_id :327 has changed. name=徐湘榆&phone=0916113980&address=高雄市三民區民族巷16-3號8樓
+apply_id :328 has changed. name=劉仰聖&phone=0921423163&address=台東市興盛路192巷17號
+apply_id :331 has changed. name=蔡怡慧&phone=0933982601&address=高雄市苓雅區尚勇路10號5樓
+apply_id :334 has changed. name=陳靖英&phone=0971826135&address=仁智街106巷19號5樓之1
+apply_id :336 has changed. name=賀丹&phone=0921901087&address=苗栗縣竹南鎮環市路三段127巷28弄11號
+apply_id :339 has changed. name=劉楚璿&phone=0922124747&address=台北市中正區衡陽路36號8樓之5
+apply_id :343 has changed. name=陳維裕&phone=0936852520&address=高雄市鳳山區仁義街83巷5-4號
+apply_id :344 has changed. name=林雅芳&phone=0918820633&address=新北市淡水區沙崙路20號2樓
+apply_id :345 has changed. name=張永沛&phone=0903357991&address=高雄市小港區永義街92巷1弄9號
+apply_id :376 has changed. name=張泳沛&phone=0903357991&address=高雄市小港區永義街92巷1弄9號
+apply_id :346 has changed. name=黃國倫&phone=0912916631&address=台北市中正區臨沂街29巷3號3樓
+apply_id :347 has changed. name=徐章華&phone=0970584400&address=新北市永和區中和路501巷34號
+apply_id :348 has changed. name=陳品洋&phone=0935532624&address=新北市永和區環河東路2段16號2樓
+name=袁秀絹&phone=0935380035 is empty
+apply_id :350 has changed. name=袁秀絹&phone=0935380035&address=台南市安平區建平十七街165號7樓之8
+array(1) {
+  ["message"]=>
+  string(24) "查詢沒有符合資料"
+}
+apply_id :369 has changed. name=盧慧真&phone=0939112285&address=新北市永和區民權路84號5樓
+name=四哥&phone=0905803589 is empty
+name=王勝鉗&phone=0905803589 is empty
+name=蔡宜臻&phone=0905803589 is empty
+name=陳維樞&phone=0905803589 is empty
+name=鄒金龍&phone=0905803589 is empty
+name=陳福全&phone=0905803589 is empty
+name=鄒瑞香&phone=0905803589 is empty
+name=王勝鉗&phone=0905803589 is empty
+apply_id :373 has changed. name=詹朝興&phone=0905803589&address=新竹縣新埔鎮上樟路一段530巷15號
+apply_id :374 has changed. name=詹朝興&phone=0905803589&address=新竹縣新埔鎮上樟路一段530巷15號
+name=詹朝興&phone=0905803589 is empty
+name=詹朝興&phone=0905803589 is empty
+name=張永沛&phone=0903357991 is empty
+name=張泳沛&phone=0903357991 is empty
+apply_id :380 has changed. name=廖祝敏&phone=0936923345&address=新北市新店區五峰路143號7樓
+apply_id :381 has changed. name=孫鳳儀&phone=0913330935&address=新北市土城區延和路108巷5號5樓
+apply_id :392 has changed. name=羅世婷&phone=0987342733&address=新北市淡水區自強路289-1號11樓
+apply_id :407 has changed. name=郭珉甫&phone=0938836737&address=高雄市三民區大豐二路628巷6弄1號
+apply_id :408 has changed. name=郭珉甫&phone=0938836837&address=高雄市三民區正興路9號13樓之3
+apply_id :409 has changed. name=郭珉甫&phone=0938836837&address=高雄市三民區正興路9號14樓之3
+name=郭珉甫&phone=0938836737 is empty
+name=郭珉甫&phone=0938836837 is empty
+name=郭珉甫&phone=0938836837 is empty
+apply_id :414 has changed. name=劉胤豪&phone=0905123837&address=桃園市平鎮區東勢里42鄰金龍路190巷39弄92號八樓
+apply_id :419 has changed. name=薛惠文&phone=0932203781&address=新北市林口區民有街60號10樓
+apply_id :425 has changed. name=楊明佳&phone=0921811823&address=台北市內湖區文德路210巷30弄24號八樓
+apply_id :429 has changed. name=黃彗綾&phone=0977654618&address=新北市新莊區福基里9鄰福前街500之6號10樓
+apply_id :440 has changed. name=沈世揚&phone=0920222228&address=新北市蘆洲區三民路120-1號9樓
+apply_id :443 has changed. name=張馨月&phone=0929466816&address=高雄市仁武區名山十街108巷6號
+apply_id :448 has changed. name=吳昆濱&phone=0931831346&address=高雄市仁武區名山十街108巷6號
+apply_id :452 has changed. name=許瑞明&phone=0919009514&address=台中市沙鹿區自強路176號
+apply_id :464 has changed. name=黃渼棋&phone=0976090678&address=嘉義市東區彌陀路161號6樓2
+apply_id :468 has changed. name=陳進東&phone=0967077127&address=台北市松山區民生東路五段138巷9號12樓之三
+apply_id :479 has changed. name=林芳妤&phone=0913978777&address=台北市中正區杭州南路一段89號2樓
+apply_id :482 has changed. name=汪海&phone=0910124418&address=新北市新店區吉祥街7巷16號2樓
+name=汪海&phone=0910124418 is empty
+name=汪海&phone=0910124418 is empty
+apply_id :483 has changed. name=張家迪&phone=0932888462&address=台北市內湖區港華街119號3樓
+apply_id :491 has changed. name=王達宸&phone=0982339475&address=高雄市楠梓區壽民路228號9樓之二

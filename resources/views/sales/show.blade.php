@@ -59,10 +59,14 @@
         <x-adminlte-card title="{{ __('saleses.identity') }}" theme="primary" icon="fas fa-lg">
                 {{ ($sales->user->role == App\Enums\UserRole::Sales) ? __('saleses.id_sales') : __('saleses.id_reseller') }}
         </x-adminlte>
+        @if (false)
         <x-adminlte-card title="{{ __('saleses.sales_link') }}" theme="info" icon="fas fa-lg">
                 {{ __('saleses.sales_http').$sales->id }}
         </x-adminlte>
-
+        @endif
+        <x-adminlte-card title="{{ __('saleses.apply_link') }}" theme="info" icon="fas fa-lg">
+                {{ __('saleses.apply_http').$sales->id }}
+        </x-adminlte>
      </div>
    </div>
 @endsection

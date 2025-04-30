@@ -75,11 +75,14 @@
                 <select id="role" name="role">
                    <option value="2" ><?php echo e(trans_choice('users.roles', 2)); ?></option>
                    <option value="3" ><?php echo e(trans_choice('users.roles', 3)); ?></option>
+                   <option value="4" ><?php echo e(trans_choice('users.roles', 4)); ?></option>
                    <option value="5" ><?php echo e(trans_choice('users.roles', 5)); ?></option>
                    <option value="6" ><?php echo e(trans_choice('users.roles', 6)); ?></option>
+                   <option value="7" ><?php echo e(trans_choice('users.roles', 7)); ?></option>
                    <option value="8" ><?php echo e(trans_choice('users.roles', 8)); ?></option>
                    <option value="9" ><?php echo e(trans_choice('users.roles', 9)); ?></option>
                    <option value="10" ><?php echo e(trans_choice('users.roles', 10)); ?></option>
+                   <option value="11" ><?php echo e(trans_choice('users.roles', 11)); ?></option>
                 </select>
             </div>
         </div>

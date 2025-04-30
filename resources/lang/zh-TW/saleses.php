@@ -22,5 +22,7 @@
            'id_reseller' => '經銷加盟商',
            'sales_link'  => '訂購單分享鏈接',
            'sales_http'  => 'https://sales.mdo.tw/customers/create?sales_id=',
+           'apply_link'  => '門鎖申請書分享鏈接',
+           'apply_http'  => 'https://sales.mdo.tw/applies?reseller_id=',
     ];
 

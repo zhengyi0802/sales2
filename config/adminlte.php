@@ -385,6 +385,28 @@ return [
             'can'  => ['CEO', 'operator', 'installer', 'CSR'],
         ],
         [
+            'text' => 'doorlocker_applies',
+            'url'  => 'eapplies',
+            'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR' ],
+        ],
+/*
+        [
+            'text' => 'lockinstallers',
+            'url'  => 'lockinstallers',
+            'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR' ],
+        ],
+*/
+        [
+            'text' => 'processes',
+            'url'  => 'processes',
+            'can'  => ['manager'],
+        ],
+        [
+            'text' => 'ecpay',
+            'url'  => 'ecpay',
+            'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR' ],
+        ],
+        [
             'text' => 'warranties',
             'url'  => 'warranties',
             'can'  => ['CEO', 'operator', 'CSR'],
@@ -396,8 +418,8 @@ return [
         ],
 /*
         [
-            'text' => 'csvs',
-            'url'  => 'csvs',
+            'text' => 'tests',
+            'url'  => 'tests',
             'can'  => ['admin'],
         ],
 */
@@ -417,6 +439,13 @@ return [
             'text' => 'profiles',
             'url'  => 'profiles',
             'icon' => 'fas fa-fw fa-lock',
+        ],
+        ['header' => 'account_menu', 'can' => ['admin', 'manager', 'accounter'],],
+        ['header' => 'admin_menu', 'can' => 'admin',],
+        [
+           'text' => 'ecpay_invoices_settings',
+           'url'  => '#',
+           'icon' => 'fas fa-fw fa-lock',
         ],
     ],
 
@@ -511,8 +540,58 @@ return [
                 [
                      'type' => 'css',
                      'asset' => true,
-                    'location' => 'vendor/datatables-plugins/buttons/css/buttons.bootstrap4.min.css',
+                     'location' => 'vendor/datatables-plugins/buttons/css/buttons.bootstrap4.min.css',
                 ],
+/*
+                [
+                     'type' => 'js',
+                     'asset' => true,
+                     'location' => 'vendor/datatables-plugins/fixedcolumns/js/dataTables.fixedColumns.min.js',
+                ],
+                [
+                     'type' => 'js',
+                     'asset' => true,
+                     'location' => 'vendor/datatables-plugins/fixedcolumns/js/fixedColumns.bootstrap4.min.js',
+                ],
+                [
+                     'type' => 'css',
+                     'asset' => true,
+                     'location' => 'vendor/datatables-plugins/fixedcolumns/css/fixedColumns.bootstrap4.min.css',
+                ],
+*/
+                [
+                     'type' => 'js',
+                     'asset' => true,
+                     'location' => 'vendor/datatables-plugins/select/js/dataTables.select.min.js',
+                ],
+                [
+                     'type' => 'js',
+                     'asset' => true,
+                     'location' => 'vendor/datatables-plugins/select/js/select.bootstrap4.min.js',
+                ],
+                [
+                     'type' => 'css',
+                     'asset' => true,
+                     'location' => 'vendor/datatables-plugins/select/css/select.bootstrap4.min.css',
+                ],
+
+                [
+                     'type' => 'js',
+                     'asset' => true,
+                     'location' => 'vendor/datatables-plugins/scroller/js/dataTables.scroller.min.js',
+                ],
+                [
+                     'type' => 'js',
+                     'asset' => true,
+                     'location' => 'vendor/datatables-plugins/scroller/js/scroller.bootstrap4.min.js',
+                ],
+                [
+                     'type' => 'css',
+                     'asset' => true,
+                     'location' => 'vendor/datatables-plugins/scroller/css/scroller.bootstrap4.min.css',
+                ],
+
+
             ],
         ],
         'jqueryValidation' => [

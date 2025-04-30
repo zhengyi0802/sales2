@@ -21,10 +21,17 @@
       <div class="col-xs-12 col-sm-12 col-md-12">
     @if (auth()->user()->role == App\Enums\UserRole::Sales ||
          auth()->user()->role == App\Enums\UserRole::Reseller)
+         @if (false)
          <x-adminlte-card title="{{ __('saleses.sales_link') }}" theme="info" icon="fas fa-lg">
                 <span id="url">{{ __('saleses.sales_http').auth()->user()->sales->id }}</span>
                 <a href="#" onclick="CopyToClipboard('url');return false;">{{ __('tables.copylink') }}</a><br>
          </x-adminlte>
+         @else
+         <x-adminlte-card title="{{ __('saleses.apply_link') }}" theme="info" icon="fas fa-lg">
+                <span id="url">{{ __('saleses.apply_http').auth()->user()->sales->id }}</span>
+                <a href="#" onclick="CopyToClipboard('url');return false;">{{ __('tables.copylink') }}</a><br>
+         </x-adminlte>
+         @endif
     @endif
         <table class="col-xs-12 col-sm-12 col-md-12">
          @if(auth()->user()->role != App\Enums\UserRole::Installer &&

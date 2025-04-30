@@ -19,6 +19,7 @@
       <div class="col-xs-12 col-sm-12 col-md-12">
     <?php if(auth()->user()->role == App\Enums\UserRole::Sales ||
          auth()->user()->role == App\Enums\UserRole::Reseller): ?>
+         <?php if(false): ?>
          <?php if (isset($component)) { $__componentOriginal0016fe8f62f0dc60d54a606049e169e1ae7c8127 = $component; } ?>
 <?php $component = $__env->getContainer()->make(JeroenNoten\LaravelAdminLte\View\Components\Widget\Card::class, ['title' => ''.e(__('saleses.sales_link')).'','theme' => 'info','icon' => 'fas fa-lg']); ?>
 <?php $component->withName('adminlte-card'); ?>
@@ -33,6 +34,22 @@
 <?php $component = $__componentOriginal0016fe8f62f0dc60d54a606049e169e1ae7c8127; ?>
 <?php unset($__componentOriginal0016fe8f62f0dc60d54a606049e169e1ae7c8127); ?>
 <?php endif; ?>
+         <?php else: ?>
+         <?php if (isset($component)) { $__componentOriginal0016fe8f62f0dc60d54a606049e169e1ae7c8127 = $component; } ?>
+<?php $component = $__env->getContainer()->make(JeroenNoten\LaravelAdminLte\View\Components\Widget\Card::class, ['title' => ''.e(__('saleses.apply_link')).'','theme' => 'info','icon' => 'fas fa-lg']); ?>
+<?php $component->withName('adminlte-card'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+                <span id="url"><?php echo e(__('saleses.apply_http').auth()->user()->sales->id); ?></span>
+                <a href="#" onclick="CopyToClipboard('url');return false;"><?php echo e(__('tables.copylink')); ?></a><br>
+          <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal0016fe8f62f0dc60d54a606049e169e1ae7c8127)): ?>
+<?php $component = $__componentOriginal0016fe8f62f0dc60d54a606049e169e1ae7c8127; ?>
+<?php unset($__componentOriginal0016fe8f62f0dc60d54a606049e169e1ae7c8127); ?>
+<?php endif; ?>
+         <?php endif; ?>
     <?php endif; ?>
         <table class="col-xs-12 col-sm-12 col-md-12">
          <?php if(auth()->user()->role != App\Enums\UserRole::Installer &&

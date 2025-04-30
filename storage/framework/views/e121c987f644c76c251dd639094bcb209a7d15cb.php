@@ -82,6 +82,10 @@
                     <input type="radio" name="payment" value="2" <?php echo e(($customer->order->payment == 2) ? "checked" : null); ?>><?php echo e(__('checkorders.payment_cash')); ?>
 
                 </div>
+                <div class="form-group col-md-4">
+                    <strong><?php echo e(__('checkorders.memo')); ?> :</strong>
+                    <textarea name="memo" class="form-control" rows="10"><?php echo e($customer->order->memo); ?></textarea>
+                </div>
            </div>
            <?php echo $__env->make('checkOrders.orders.create', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
