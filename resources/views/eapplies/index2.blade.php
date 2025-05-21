@@ -32,8 +32,6 @@
                 <th><input type="checkbox" onchange="selectAll(this)"></th>
                 <th>{{ __('eapplies.id') }}</th>
                 <th>{{ __('eapplies.reseller') }}</th>
-                <th>{{ __('eapplies.zone') }}</th>
-                <th>{{ __('eapplies.community') }}</th>
                 <th>{{ __('eapplies.name') }}</th>
                 <th>{{ __('eapplies.phone') }}</th>
                 <th>{{ __('eapplies.project') }}</th>
@@ -50,8 +48,6 @@
                 <td><input type="checkbox" id="ids" name="ids[{{ $i }}]" value="{{ $eapply->id }}" ></td>
                 <td>{{ $eapply->id }}</td>
                 <td>{{ mb_substr($eapply->reseller->name, 0, 4) }}</td>
-                <td>{{ ($eapply->community) ? $eapply->community->city.$eapply->community->zone : null }}</td>
-                <td>{{ ($eapply->community) ? $eapply->community->community : $eapply->cname }}</td>
                 <td>{{ $eapply->name }}</td>
                 <td>{{ $eapply->phone }}</td>
                 <td>{{ $eapply->project->name }}</td>

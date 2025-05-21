@@ -1,7 +1,7 @@
 <?php
     return [
-        'title'            =>  'AI智慧門鎖申請單',
-        'header'           =>  'AI智慧門鎖申請單',
+        'title'            =>  '門鎖申購單',
+        'header'           =>  '門鎖申購單',
         'id'               =>  '編號',
         'city'             =>  '縣市',
         'zone'             =>  '鄉鎮市區',

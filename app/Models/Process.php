@@ -12,6 +12,8 @@ class Process extends Model
     protected $connection = 'sales';
 
     protected $fillable = [
+        'case_name',
+        'prom_id',
         'apply_id',
         'amount_id',
         'name',
@@ -21,6 +23,11 @@ class Process extends Model
         'flow',
         'status',
         'memo',
+        'create_date',
+        'photo_date',
+        'shipping_date',
+        'booking_date',
+        'finish_date',
     ];
 
     public function eapply()

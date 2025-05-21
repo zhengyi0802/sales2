@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
          $schedule->command('checkout:imports')->dailyAt('8:10');
+         $schedult->command('gas:imports')->dailyAt('8:20');
     }
 
     /**

@@ -30,4 +30,11 @@
            'export'      => '已對帳/可轉單查詢',
            'exporting'   => '批量轉單',
            'selector'    => '選擇',
+           'invoice_button' => '開發票',
+           'finished'    => '列出已完成',
+           'reissue'     => '註銷重開',
+           'invalid'     => '作廢發票',
+           'editdelayissue' => '編輯延遲開立發票',
+           'triggerissue'   => '觸發開立發票',
+           'trigger'        => '觸發',
     ];

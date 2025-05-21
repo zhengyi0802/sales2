@@ -57,7 +57,7 @@ class EcpayDelayIssue extends Command
         $tsr = substr($apply->trade_no, 2);
         $array_data = $Invoice->buildIssueData($apply);
         $array_data = $Invoice->addDelayIssueData($array_data, $tsr, '1', '5');
-        $postData = $Invoice->Issue($array_data);
+        $postData = $Invoice->DelayIssue($array_data);
 
         $response=$Invoice->sendRequest($postData);
         if ($response['TransCode'] == 1) {

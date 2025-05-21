@@ -22,7 +22,11 @@
            'id_reseller' => '經銷加盟商',
            'sales_link'  => '訂購單分享鏈接',
            'sales_http'  => 'https://sales.mdo.tw/customers/create?sales_id=',
-           'apply_link'  => '門鎖申請書分享鏈接',
+           'apply_link'  => 'AI智慧門鎖申請分享鏈接',
            'apply_http'  => 'https://sales.mdo.tw/applies?reseller_id=',
+           'promotion1_link' => '驚天一夏專案申請書鏈接',
+           'promotion1_http' => 'https://sales.mdo.tw/promotion1?reseller_id=',
+           'promotion2_link' => '感恩母親節回饋鏈接',
+           'promotion2_http' => 'https://sales.mdo.tw/promotion2?reseller_id=',
     ];
 

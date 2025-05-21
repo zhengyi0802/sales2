@@ -9,6 +9,7 @@ return [
     'MerchantId'                  => env('ECPAY_INVOICE_MERCHANT_ID', ''),
     'HashKey'                     => env('ECPAY_INVOICE_HASH_KEY', ''),
     'HashIV'                      => env('ECPAY_INVOICE_HASH_IV', ''),
+    'ApiLog'                      => env('ECPAY_API_LOG', ''),
     'AllowancReturnURL'           => env('ECPAY_ALLOWANCE_RETURN_URL', ''),
     'GetGovInvoiceWordSetting'    => env('ECPAY_GET_GOV_INVOICE_WORD_SETTING', ''),  //查詢財政部配號結果
     'AddInvoiceWordSetting'       => env('ECPAY_ADD_INVOICE_WORD_SETTING', ''),      //字軌與配號設定

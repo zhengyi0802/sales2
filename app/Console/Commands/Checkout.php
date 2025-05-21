@@ -45,8 +45,9 @@ class Checkout extends Command
                           ->where('flow', 10)
                           ->where('flow1', '<', 14)
                           ->get();
+
         foreach($eapplies as $eapply) {
-          if (env('USE_GET')) {
+          if (config('gas.use_get')) {
               //$string = '?action=queryData&name='.$eapply->name.'&phone='.$eapply->phone;
               $amount = $eapply->amount;
               $amount_id = 1;
@@ -60,14 +61,14 @@ class Checkout extends Command
           $curl = curl_init();
 
           curl_setopt_array($curl, array(
-               CURLOPT_URL => (env('USE_GET')) ? env('EXPORT_URL').$string : env('CHECKOUT_URL'),
+               CURLOPT_URL => (config('gas.use_get')) ? config('gas.export_url').$string : config('gas.checkout_url'),
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_FOLLOWLOCATION => true,
                CURLOPT_ENCODING => "",
                CURLOPT_TIMEOUT => 30000,
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-               CURLOPT_CUSTOMREQUEST => env('USE_GET') ? "GET" : "POST",
-               CURLOPT_POSTFIELDS => env('USE_GET') ? null :$jdata,
+               CURLOPT_CUSTOMREQUEST => config('gas.use_get') ? "GET" : "POST",
+               CURLOPT_POSTFIELDS => config('gas.use_get') ? null :$jdata,
                CURLOPT_HTTPHEADER => array(
                    'Content-Type: application/json',
                    //'Content-Length: '.(env('USE_GET') ? 0 : $contentLength)
@@ -79,16 +80,21 @@ class Checkout extends Command
           curl_close($curl);
 
           $applies = json_decode($response, true);
-
-          if(!isset($applies['message'])) {
+          if(!isset($applies['回傳結果'])) {
               $amount_id = 1;
               foreach($applies as $apply) {
+                      $data['case_name'] = '門鎖申請書';
                       $data['apply_id'] = $apply['單號'] ?? 0;
                       $data['name']  = $apply['姓名'];
                       $data['phone'] = $apply['電話'];
                       $data['address'] = $apply['地址'];
                       $data['project'] = $apply['申請方案'];
                       $data['memo'] = $apply['備註'] ?? "";
+                      $data['create_date'] = $apply['進件日期'] ?? "";
+                      $date['photo_date'] = $apply['相片交付日期'] ?? "";
+                      $date['shipping_date'] = $apply['配送完成日期'] ?? "";
+                      $date['booking_date'] = $apply['預約安裝日期'] ?? "";
+                      $date['finish_date'] = $apply['安裝完成日期'] ?? "";
                       if ($apply['處理狀態'] == '已收單') {
                           $data['flow'] = 11;
                       } else if ($apply['處理狀態'] == '已取消') {
@@ -130,8 +136,10 @@ class Checkout extends Command
                       echo "apply_id :".$eapply->id." has changed. name=".$data['name']."&phone=".$data['phone']."&address=",$data['address'];
                       echo "\r\n";
               }
+              //var_dump($applies);
           } else {
-              var_dump($applies);
+              $eapply->flow = 9;
+              $eapply->save();
           }
         } // endforeach
     } // end of function

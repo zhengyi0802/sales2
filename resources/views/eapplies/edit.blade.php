@@ -12,19 +12,24 @@
             <p>{{ __('eapplies.success') }}</p>
         </div>
     @endif
-    @if ($message = Session::get('insert-error'))
-        <div class="alert alert-danger">
-            <p>{{ __('eapplies.phone-error') }}</p>
-        </div>
-    @endif
 @endsection
 
 @section('content')
-@if ($eapply->flow == 8)
+@if ($eapply->flow == 8 || $eapply->flow == 9)
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-right">
                     <a class="btn btn-success" href="/eapplies/export?id={{ $eapply->id }}">{{ __('eapplies.export_button') }}</a>
+                </div>
+            </div>
+        </div>
+@endif
+
+@if (Auth()->user()->role <= App\Enums\UserRole::Accounter )
+        <div class="row">
+            <div class="col-lg-12 margin-tb">
+                <div class="pull-right">
+                    <a class="btn btn-success" href="/issues/create?apply_id={{ $eapply->id }}">{{ __('tables.invoice_button') }}</a>
                 </div>
             </div>
         </div>
@@ -58,6 +63,9 @@
 
   <div class="content">
      <div class="block">
+     <p>{{ Session::get('error') }}</p>
+     </div>
+     <div class="block">
        <p class="title"><strong>{{ __('eapplies.reseller') }} :</strong></p>
        <p class="result">{{ $eapply->reseller->name ?? '' }}</p>
      </div>
@@ -80,8 +88,8 @@
      </div>
      <div class="block">
        <p class="title"><strong>{{ __('eapplies.bundles') }} :</strong></p>
-       <p class="result"><strong>{{ __('eapplies.shield').__('eapplies.amount') }} : {{ json_decode($eapply->bundles)->shield ?? "0"  }}</p>
-       <p class="result"><strong>{{ __('eapplies.battery').__('eapplies.amount') }} : {{ json_decode($eapply->bundles)->battery ?? "0"  }}</p>
+       <p class="result">{{ __('eapplies.shield').__('eapplies.amount') }} : {{ json_decode($eapply->bundles)->shield ?? "0"  }}</p>
+       <p class="result">{{ __('eapplies.battery').__('eapplies.amount') }} : {{ json_decode($eapply->bundles)->battery ?? "0"  }}</p>
      </div>
      <form id="eapply-form" action="{{ route('eapplies.update', $eapply->id) }}" method="POST">
          @method('PUT')
@@ -157,15 +165,15 @@
                 <option value="5" {{ ($eapply->flow == 5) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 5) }}</option>
                 <option value="6" {{ ($eapply->flow == 6) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 6) }}</option>
                 <option value="7" {{ ($eapply->flow == 7) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 7) }}</option>
-                <option value="8" {{ ($eapply->flow == 8) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 8) }}</op>
+                <option value="8" {{ ($eapply->flow == 8) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 8) }}</option>
                 @if ($eapply->remain == 0)
-                <option value="9" {{ ($eapply->flow == 9) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 9) }}</op>
+                <option value="9" {{ ($eapply->flow == 9) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 9) }}</option>
                 @endif
-                <option value="10" {{ ($eapply->flow == 10) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 10) }}</op>
-                <option value="11" {{ ($eapply->flow1 == 11) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 11) }}>
-                <option value="12" {{ ($eapply->flow1 == 12) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 12) }}>
-                <option value="13" {{ ($eapply->flow1 == 13) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 13) }}>
-                <option value="14" {{ ($eapply->flow1 == 14) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 14) }}>
+                <option value="10" {{ ($eapply->flow == 10) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 10) }}</option>
+                <option value="11" {{ ($eapply->flow1 == 11) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 11) }}</option>
+                <option value="12" {{ ($eapply->flow1 == 12) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 12) }}./option>
+                <option value="13" {{ ($eapply->flow1 == 13) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 13) }}</option>
+                <option value="14" {{ ($eapply->flow1 == 14) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 14) }}</option>
               </select>
            </p>
           </div>

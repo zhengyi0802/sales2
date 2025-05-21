@@ -87,6 +87,26 @@
            <p class="title"><strong>{{ __('processes.memo') }} :</strong></p>
            <p class="result"><textarea name="memo" class="col-md-12" >{{ $process->memo }}</textarea></p>
           </div>
+          <div class="block">
+            <p class="title"><strong>{{ __('processes.create_date') }} :</strong></p>
+            <p class="result">{{ $process->create_date }}</p>
+          </div>
+          <div class="block">
+            <p class="title"><strong>{{ __('processes.photo_date') }} :</strong></p>
+            <p class="result">{{ $process->photo_date }}</p>
+          </div>
+          <div class="block">
+            <p class="title"><strong>{{ __('processes.shipping_date') }} :</strong></p>
+            <p class="result">{{ $process->shipping_date }}</p>
+          </div>
+          <div class="block">
+            <p class="title"><strong>{{ __('processes.booking_date') }} :</strong></p>
+            <p class="result">{{ $process->booking_date }}</p>
+          </div>
+          <div class="block">
+            <p class="title"><strong>{{ __('processes.finish_date') }} :</strong></p>
+            <p class="result">{{ $process->finish_date }}</p>
+          </div>
           <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary" disabled>{{ __('tables.submit') }}</button>
           </div>

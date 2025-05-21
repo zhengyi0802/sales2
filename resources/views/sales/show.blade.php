@@ -67,6 +67,12 @@
         <x-adminlte-card title="{{ __('saleses.apply_link') }}" theme="info" icon="fas fa-lg">
                 {{ __('saleses.apply_http').$sales->id }}
         </x-adminlte>
+        <x-adminlte-card title="{{ __('saleses.promotion1_link') }}" theme="info" icon="fas fa-lg">
+                {{ __('saleses.promotion1_http').$sales->id }}
+        </x-adminlte>
+        <x-adminlte-card title="{{ __('saleses.promotion2_link') }}" theme="info" icon="fas fa-lg">
+                {{ __('saleses.promotion2_http').$sales->id }}
+        </x-adminlte>
      </div>
    </div>
 @endsection

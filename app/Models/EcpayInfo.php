@@ -27,6 +27,7 @@ class EcpayInfo extends Model
         'rtn_code',
         'rtn_msg',
         'apply_id',
+        'prom_id',
         'paid',
         'payment_date',
     ];
@@ -36,4 +37,8 @@ class EcpayInfo extends Model
         return $this->belongsTo(EApply::class, 'apply_id');
     }
 
+    public function promotion()
+    {
+        return $this->belongsTo(HpPromotion::class, 'prom_id');
+    }
 }

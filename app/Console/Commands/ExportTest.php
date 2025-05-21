@@ -53,7 +53,7 @@ class ExportTest extends Command
         var_dump(json_encode($arr));
 
         curl_setopt_array($curl, array(
-             CURLOPT_URL => env('CHECKOUT_URL'),
+             CURLOPT_URL => config('gas.checkout_url'),
              CURLOPT_RETURNTRANSFER => true,
              CURLOPT_FOLLOWLOCATION => true,
              CURLOPT_ENCODING => "",

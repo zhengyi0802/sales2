@@ -389,13 +389,16 @@ return [
             'url'  => 'eapplies',
             'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR' ],
         ],
-/*
         [
-            'text' => 'lockinstallers',
-            'url'  => 'lockinstallers',
+            'text' => 'promotion1',
+            'url'  => 'promotion1',
             'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR' ],
         ],
-*/
+        [
+            'text' => 'promotion2',
+            'url'  => 'promotion2',
+            'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR' ],
+        ],
         [
             'text' => 'processes',
             'url'  => 'processes',
@@ -411,12 +414,12 @@ return [
             'url'  => 'warranties',
             'can'  => ['CEO', 'operator', 'CSR'],
         ],
+/*
         [
             'text' => 'inventories',
             'url'  => 'inventories',
             'can'  => ['admin', 'stocker',],
         ],
-/*
         [
             'text' => 'tests',
             'url'  => 'tests',
@@ -441,12 +444,22 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
         ['header' => 'account_menu', 'can' => ['admin', 'manager', 'accounter'],],
-        ['header' => 'admin_menu', 'can' => 'admin',],
         [
-           'text' => 'ecpay_invoices_settings',
-           'url'  => '#',
-           'icon' => 'fas fa-fw fa-lock',
+           'text' => 'invoice_issues',
+           'url'  => 'invoices/issues',
+           'can'  => ['admin', 'accounter'],
         ],
+        [
+           'text' => 'invoice_allowances',
+           'url'  => 'invoices/allowances',
+           'can'  => ['admin', 'accounter'],
+        ],
+        [
+           'text' => 'invoice_settings',
+           'url'  => 'invoices/settings',
+           'can'  => ['adnin', 'accounter'],
+        ],
+        ['header' => 'admin_menu', 'can' => 'admin',],
     ],
 
     /*

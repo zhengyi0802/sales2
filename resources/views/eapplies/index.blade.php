@@ -24,10 +24,12 @@
         <div class="col-lg-12 margin-tb">
             <div class="pull-right">
                 <a class="btn btn-success" href="/eapplies?flow=9">{{ __('tables.export') }}</a>
+    @if (Auth()->user()->rolw <= App\Enums\UserRole::Accounter)
+                <a class="btn btn-primary" href="/eapplies?flow=14">{{ __('tables.finished') }}</a>
             </div>
         </div>
     </div>
-
+    @endif
     <div class="row col-md-12">
         @yield('messages')
     </div>

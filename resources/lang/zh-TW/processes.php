@@ -45,4 +45,9 @@
         'email'            =>  '電子郵件地址',
         'eapply_button'    =>  '門鎖申請單編輯',
         'amount_id'        =>  '門鎖編號',
+        'create_date'      =>  '進件日期',
+        'photo_date'       =>  '相片交付日期',
+        'shipping_date'    =>  '配送完成日期',
+        'booking_date'     =>  '預約安裝日期',
+        'finish_date'      =>  '安裝完成日期',
     ];

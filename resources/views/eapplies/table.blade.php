@@ -25,18 +25,18 @@ $config = [
   @foreach($eapplies as $eapply)
     <tr class="{{ $eapply->status ? null : "bg-gray"}}">
       <td>{{ $eapply->id }}</td>
-      <td>{{ $eapply->reseller->name }}</td>
-      <td>{{ $eapply->name }}</td>
+      <td>{{ isset($eapply->reseller) ? $eapply->reseller->name : null }}</td>
+      <td>{{ $eapply->name ?? ''}}</td>
       @if (auth()->user()->role == App\Enums\UserRole::ShareHolder)
            <td>{{ str_split($eapply->phone, 5)[0].'****' }}</td>
       @else
            <td>{{ $eapply->phone }}</td>
       @endif
-      <td>{{ $eapply->project->name }}</td>
+      <td>{{ isset($eapply->project) ? $eapply->project->name : null }}</td>
       <td>{{ ($eapply->payment == 11) ? __('eapplies.payment_third') : __('eapplies.payment_credit') }}</td>
-      <td>{{ $eapply->total }}</td>
-      <td>{{ $eapply->paid }}</td>
-      <td>{{ $eapply->remain }}</td>
+      <td>{{ __('currencies.NTD').$eapply->total.__('currencies.ntd_unit') }}</td>
+      <td>{{ __('currencies.NTD').$eapply->paid.__('currencies.ntd_unit') }}</td>
+      <td>{{ __('currencies.NTD').$eapply->remain.__('currencies.ntd_unit') }}</td>
       <td>{{ ($eapply->flow1 > 0) ? trans_choice('eapplies.flows', $eapply->flow1) : trans_choice('eapplies.flows', $eapply->flow) }} </td>
       <td>{{ $eapply->created_at ?? '' }}</td>
       <td><nobr>

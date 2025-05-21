@@ -23,10 +23,16 @@ class EcpayResult extends Model
         'rtn_msg',
         'simulate_paid',
         'apply_id',
+        'prom_id',
         'path',
     ];
 
     public function apply() {
         return $this->belongsTo(EApply::class, 'apply_id');
     }
+
+    public function promotion() {
+        return $this->belongsTo(HpPromotion::class, 'prom_id');
+    }
+
 }

@@ -5,7 +5,10 @@ namespace App\ECPay;
 use Illuminate\Support\Facades\Http;
 use App\ECPay\ECPayCrypt;
 use App\Models\EApply;
+use App\Models\HpPromotion;
+use App\Models\HpProduct;
 use App\Models\EcpayIssueData;
+use App\Collections\IssueCollection;
 
 class ECPayInvoice {
 
@@ -162,7 +165,7 @@ class ECPayInvoice {
         return $postData;
     }
 
-    public function InvoicePrint($invoice_no, $invoice_date)
+    public function InvoicePrint($invoice_no, $invoice_date, $print_style = '1', $showing_detail = '1')
     {
         $this->infos['apiUrl'] = $this->infos['apiUrl'].config('ecpay.InvoicePrint');
         $rqHeader = ['Timestamp' => time(), 'Revision' => '1.0.0'];
@@ -170,6 +173,8 @@ class ECPayInvoice {
                     'MerchantID'        => $this->infos['MerchantID'],
                     'InvoiceNo'         => $invoice_no,
                     'InvoiceDate'       => $invoice_date,
+                    'PrintStyle'        => $print_style,
+                    'IsShowingDetail'   => $showing_detail,
                 ];
         $data = json_encode($data);
         $data = $this->ecpayCrypt->encryptAES($data);
@@ -189,7 +194,44 @@ class ECPayInvoice {
         return $postData;
     }
 
-    public function buildIssueData(EApply $apply, $remark = '')
+    public function buildIssueDataP(HpPromotion $promotion, $array,  $remark = '')
+    {
+        $items[0] = [
+                    'ItemSeq'             => 1,
+                    'ItemName'            => ($promotion->proj_id == 1) ? '驚天一夏專案' : '感恩母親回饋季',
+                    'ItemCount'           => 1,
+                    'ItemWord'            => '套',
+                    'ItemPrice'           => $promotion->total,
+                    'ItemTaxType'         => '1',
+                    'ItemAmount'          => $promotion->total,
+                    'ItemRemark'          => '',
+                    ];
+        $data = [
+                    'MerchantID'          => $this->infos['MerchantID'],
+                    'RelateNumber'        => substr($promotion->trade_no, 2),
+                    'CustomerID'          => '',
+                    'CustomerIdentifier'  => $promotion->unified_number,
+                    'CustomerName'        => $promotion->name,
+                    'CustomerAddr'        => $promotion->address,
+                    'CustomerPhone'       => $promotion->phone,
+                    'CustomerEmail'       => $promotion->email,
+                    'ClearanceMark'       => 1,
+                    'Print'               => 1,
+                    'Donation'            => 0,
+                    'LoveCode'            => '',
+                    'CarrierType'         => '',
+                    'CarrierNum'          => '',
+                    'TaxType'             => 1,
+                    'SalesAmount'         => $promotion->total,
+                    'InvoiceRemark'       => $remark,
+                    'InvType'             => '07',
+                    'vat'                 => 1,
+                    'Items'               => $items,
+        ];
+        return $data;
+    }
+
+    public function buildIssueDataA(EApply $apply, $array, $remark = '')
     {
         $items[0] = [
                     'ItemSeq'             => 1,
@@ -258,10 +300,46 @@ class ECPayInvoice {
         return $array_data;
     }
 
+    public function buildIssueData($array)
+    {
+        $issueCollection = new IssueCollection();
+
+        $issueCollection->MerchantID = $this->infos['MerchantID'];
+        $issueCollection->RelateNumber = $array['RelateNumber'];
+        $issueCollection->CustomerName = $array['CustomerName'];
+        $issueCollection->CustomerAddr = $array['CustomerAddr'];
+        $issueCollection->CustomerPhone = $array['CustomerPhone'];
+        $issueCollection->CustomerIdentifier = $array['CustomerIdentifier'];
+        $issueCollection->CustomerEmail = $array['CustomerEmail'];
+        $issueCollection->SalesAmount = $array['SalesAmount'];
+        $issueCollection->InvoiceRemark = $array['InvoiceRemark'];
+        $issueCollection->Tsr = $array['Tsr'];
+        $issueCollection->DelayFlag = $array['DelayFlag'];
+        $issueCollection->DelayDay = $array['DelayDay'];
+        $issueCollection->NotifyURL = $array['NotifyURL'];
+        //$issueCollection->Items = $array['Items'];
+
+        return $issueCollection;
+    }
+
     public function DelayIssue($array_data)
     {
         $this->infos['apiUrl'] = $this->infos['apiUrl'].config('ecpay.DelayIssue');
         $rqHeader = ['Timestamp' => time(), 'Revision' => '1.0.0'];
+        $data = json_encode($array_data);
+        $data = $this->ecpayCrypt->encryptAES($data);
+        $postData = $this->generatePostData($rqHeader, $data);
+        $this->postData = $postData;
+        return $postData;
+    }
+
+    public function EditDelayIssue($array_data)
+    {
+        $this->infos['apiUrl'] = $this->infos['apiUrl'].config('ecpay.EditDelayIssue');
+        $rqHeader = ['Timestamp' => time(), 'Revision' => '1.0.0'];
+
+        $array_data['NotifyURL'] = config('ecpay.InvoiceNotifyURL');
+
         $data = json_encode($array_data);
         $data = $this->ecpayCrypt->encryptAES($data);
         $postData = $this->generatePostData($rqHeader, $data);
@@ -334,10 +412,25 @@ class ECPayInvoice {
         return $postData;
     }
 
-    public function Allowance($array_data)
+    public function Allowance(EcpayIssueData $issue, $amount, $allowance_notify = 'E', $reason = null)
     {
         $this->infos['apiUrl'] = $this->infos['apiUrl'].config('ecpay.Allowance');
         $rqHeader = ['Timestamp' => time(), 'Revision' => '1.0.0'];
+        if ($issue->apply_id > 0) {
+            $apply = EApply::find($issue->apply_id);
+        } else {
+            $promotion = HpPromotion::find($issue->prom_id);
+        }
+        $array_data = [
+                          'MerchantID'        => $this->infos['MerchantID'],
+                          'InvoiceNo'         => $issue->invoice_no,
+                          'InvoiceDate'       => $issue->invoice_date,
+                          'AllowanceNotify'   => $allowance_notify,
+                          'CustomerName'      => ($issue->apply_id > 0) ? $issue->apply->name : $issue->promotion->name,
+                          'NotifyMail'        => ($issue->apply_id > 0) ? $issue->apply->email : $issue->promotion->email,
+                          'NotifyPhone'       => ($issue->apply_id > 0) ? $issue->apply->phone : $issue->promotion->phone,
+                          'AllowanceAmount'   => $amount,
+                      ];
         $data = json_encode($array_data);
         $data = $this->ecpayCrypt->encryptAES($data);
         $postData = $this->generatePostData($rqHeader, $data);
@@ -345,10 +438,20 @@ class ECPayInvoice {
         return $postData;
     }
 
-    public function AllowanceByCollegiate($array_data)
+    public function AllowanceByCollegiate(EcpayIssueData $issue, $amount, $allowance_notify = 'E')
     {
         $this->infos['apiUrl'] = $this->infos['apiUrl'].config('ecpay.AllowanceByCollegiate');
         $rqHeader = ['Timestamp' => time(), 'Revision' => '1.0.0'];
+        $array_data = [
+                          'MerchantID'        => $this->infos['MerchantID'],
+                          'InvoiceNo'         => $issue->invoice_no,
+                          'InvoiceDate'       => $issue->invoice_date,
+                          'AllowanceNotify'   => $allowance_notify,
+                          'CustomerName'      => ($issue->apply_id > 0) ? $issue->apply->name : $issue->promotion->name,
+                          'NotifyMail'        => ($issue->apply_id > 0) ? $issue->apply->email : $issue->promotion->email,
+                          'NotifyPhone'       => ($issue->apply_id > 0) ? $issue->apply->phone : $issue->promotion->phone,
+                          'AllowanceAmount'   => $amount,
+                      ];
         $data = json_encode($array_data);
         $data = $this->ecpayCrypt->encryptAES($data);
         $postData = $this->generatePostData($rqHeader, $data);
@@ -373,7 +476,7 @@ class ECPayInvoice {
         return $postData;
     }
 
-    public function GetAllowanceInvalid($invoice_no, $allowan_no)
+    public function GetAllowanceInvalid($invoice_no, $allowance_no)
     {
         $this->infos['apiUrl'] = $this->infos['apiUrl'].config('ecpay.GetAllowanceInvalid');
         $rqHeader = ['Timestamp' => time(), 'Revision' => '1.0.0'];
@@ -389,7 +492,7 @@ class ECPayInvoice {
         return $postData;
     }
 
-    public function AllowanceInvalidByCollegiate($invoice_no, $allowance_no, $reason = '')
+    public function AllowanceInvalidByCollegiate($invoice_no, $allowance_no, $reason)
     {
         $this->infos['apiUrl'] = $this->infos['apiUrl'].config('ecpay.AllowanceInvalidByCollegiate');
         $rqHeader = ['Timestamp' => time(), 'Revision' => '1.0.0'];
@@ -398,6 +501,25 @@ class ECPayInvoice {
                           'InvoiceNo'   => $invoice_no,
                           'AllowanceNo' => $allowance_no,
                           'Reason'      => $reason,
+        ];
+        $data = json_encode($array_data);
+        $data = $this->ecpayCrypt->encryptAES($data);
+        $postData = $this->generatePostData($rqHeader, $data);
+        $this->postData = $postData;
+        return $postData;
+    }
+
+    public function GetIssueList($begin_date, $end_date, $number_per_page = 200, $showing_page = 2, $data_type = 1)
+    {
+        $this->infos['apiUrl'] = $this->infos['apiUrl'].config('ecpay.GetIssueList');
+        $rqHeader = ['Timestamp' => time(), 'Revision' => '1.0.0'];
+        $array_data = [
+                          'MerchantID'    => $this->infos['MerchantID'],
+                          'BeginDate'     => $begin_date,
+                          'EndDate'       => $end_date,
+                          'NumPerPage'    => $number_per_page,
+                          'ShowingPage'   => $showing_page,
+                          'DataType'      => $data_type,
         ];
         $data = json_encode($array_data);
         $data = $this->ecpayCrypt->encryptAES($data);
