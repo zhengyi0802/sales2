@@ -25,7 +25,8 @@
         </div>
 @endif
 
-@if (Auth()->user()->role <= App\Enums\UserRole::Accounter )
+@if ($eapply->ecpayInvoiceData == null)
+    @if ($eapply->flow == 14 || Auth()->user()->role <= App\Enums\UserRole::Accounter)
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-right">
@@ -33,6 +34,7 @@
                 </div>
             </div>
         </div>
+    @endif
 @endif
 
 <style>
@@ -171,7 +173,7 @@
                 @endif
                 <option value="10" {{ ($eapply->flow == 10) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 10) }}</option>
                 <option value="11" {{ ($eapply->flow1 == 11) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 11) }}</option>
-                <option value="12" {{ ($eapply->flow1 == 12) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 12) }}./option>
+                <option value="12" {{ ($eapply->flow1 == 12) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 12) }}</option>
                 <option value="13" {{ ($eapply->flow1 == 13) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 13) }}</option>
                 <option value="14" {{ ($eapply->flow1 == 14) ? "selected" : null }}>{{ trans_choice('eapplies.flows', 14) }}</option>
               </select>

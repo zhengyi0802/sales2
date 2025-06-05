@@ -14,24 +14,28 @@ class EcpayAllowanceData extends Model
 
     protected $fillable = [
         'issue_id',
+        'ecpay_return',
         'notify_method',
         'notify_mail',
         'notify_phone',
         'allowance_amount',
-        'allow_no',
+        'allowance_no',
         'invoice_no',
         'date',
         'temp_date',
         'temp_expire_date',
         'remain_allowance_amount',
+        'router',
         'rtn_code',
         'rtn_msg',
+        'invalid_flag',
+        'invalid_date',
         'log_id',
     ];
 
     public function issue()
     {
-        return $this->belongsTo(EcpayIssue::class, 'issue_id');
+        return $this->belongsTo(EcpayIssueData::class, 'issue_id');
     }
 
     public function log()

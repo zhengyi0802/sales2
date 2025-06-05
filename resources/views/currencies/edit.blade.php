@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', __('catagories.title'))
+@section('title', __('currencies.title'))
 
 @section('content_header')
-    <h1 class="m-0 text-dark">{{ __('catagories.header') }}</h1>
+    <h1 class="m-0 text-dark">{{ __('currencies.header') }}</h1>
 @stop
 
 @section('content')
@@ -40,19 +40,19 @@
           font-size : 12px;
        }
     </style>
-    <form id="currency-form" action="{{ route('catagories.update',$currency->id) }}" method="POST" enctype="multipart/form-data">
+    <form id="currency-form" action="{{ route('currencies.update',$currency->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
          <div class="row">
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
-                    <strong>{{ __('catagories.name') }} :</strong>
+                    <strong>{{ __('currencies.name') }} :</strong>
                     <input type="text" name="currency_name" value="{{ $currency->currency_name }}" class="form-control">
                 </div>
            </div>
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
-                    <strong>{{ __('catagories.rate') }} :</strong>
+                    <strong>{{ __('currencies.rate') }} :</strong>
                     <input type="number" step="0.01" name="currency_rate" value="{{ $currency->currency_rate }}" class="form-control">
                 </div>
               <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>

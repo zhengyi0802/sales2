@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Currency;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class CurrencyController extends Controller
 {
@@ -14,14 +15,25 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        $currencies = Currency::get();
-
+        try {
+              $currencies = Currency::get();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
         return view('currencies.index', compact('currencies'));
     }
 
     public function query()
     {
-        $currencies = Currency::select('id', 'currency_name as name', 'currency_rate as rate')->get()->toJson();
+        try {
+              $currencies = Currency::select('id', 'currency_name as name', 'currency_rate as rate')->get()->toJson();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return response($currencies, 200)->header('Content-Type', 'text/json');;
     }
@@ -45,7 +57,13 @@ class CurrencyController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        Currency::create($data);
+        try {
+              Currency::create($data);
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return redirect()->route('currencies.index');
     }
@@ -82,7 +100,13 @@ class CurrencyController extends Controller
     public function update(Request $request, Currency $currency)
     {
         $data = $request->all();
-        $currency->update($data);
+        try {
+              $currency->update($data);
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return redirect()->route('currencies.index');
     }
@@ -95,7 +119,13 @@ class CurrencyController extends Controller
      */
     public function destroy(Currency $currency)
     {
-        $currency->delete();
+        try {
+              $currency->delete();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return redirect()->route('currencies.index');
     }

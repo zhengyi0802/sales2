@@ -3,7 +3,7 @@
 @section('title', __('home.title'))
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Dashboard</h1>
+    <h1 class="m-0 text-dark">{{ __('home.dashboard') }}</h1>
 @stop
 <style>
    .num {

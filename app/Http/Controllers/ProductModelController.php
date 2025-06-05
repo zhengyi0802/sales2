@@ -9,6 +9,7 @@ use App\Models\Currency;
 use App\Models\User;
 use App\Enums\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class ProductModelController extends Controller
 {
@@ -20,11 +21,16 @@ class ProductModelController extends Controller
     public function index()
     {
         $user = auth()->user();
-
-        if ($user->role == UserRole::Administrator) {
-            $productModels = ProductModel::get();
-        } else {
-            $productModels = ProductModel::where('status', true)->get();
+        try {
+              if ($user->role == UserRole::Administrator) {
+                  $productModels = ProductModel::get();
+              } else {
+                  $productModels = ProductModel::where('status', true)->get();
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
 
         return view('productModels.index', compact('productModels'));
@@ -114,10 +120,16 @@ class ProductModelController extends Controller
      */
     public function edit(ProductModel $productModel)
     {
-        $catagories = Catagory::get();
-        $vendors = Vendor::get();
-        $accessories = ProductModel::where('is_accessories', true)->get();
-        $currencies = Currency::get();
+        try {
+              $catagories = Catagory::get();
+              $vendors = Vendor::get();
+              $accessories = ProductModel::where('is_accessories', true)->get();
+              $currencies = Currency::get();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return view('productModels.edit', compact('productModel'))
                ->with(compact('currencies'))
@@ -136,23 +148,29 @@ class ProductModelController extends Controller
     public function update(Request $request, ProductModel $productModel)
     {
         $creator = auth()->user();
-        $data = $request->all();
-        $data['briefs'] = json_encode($data['briefs']);
-        $data['specificatopms'] = json_encode($data['specifications']);
-        $data['created_by'] = $creator->id;
-        if ($data['accessories'] == null) {
-            $data['accessories'] = 0;
+        try {
+              $data = $request->all();
+              $data['briefs'] = json_encode($data['briefs']);
+              $data['specificatopms'] = json_encode($data['specifications']);
+              $data['created_by'] = $creator->id;
+              if ($data['accessories'] == null) {
+                  $data['accessories'] = 0;
+              }
+              if (!isset($data['is_accessories'])) {
+                  $data['is_accessories'] = false;
+              }
+              if (!isset($data['extra'])) {
+                  $data['extra'] = false;
+              }
+              if (!isset($data['status'])) {
+                  $data['status'] = false;
+              }
+              $productModel->update($data);
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
-        if (!isset($data['is_accessories'])) {
-            $data['is_accessories'] = false;
-        }
-        if (!isset($data['extra'])) {
-            $data['extra'] = false;
-        }
-        if (!isset($data['status'])) {
-            $data['status'] = false;
-        }
-        $productModel->update($data);
 
         return redirect()->route('productModels.index');
     }
@@ -165,8 +183,18 @@ class ProductModelController extends Controller
      */
     public function destroy(ProductModel $productModel)
     {
-        $productModel->status = false;
-        $productModel->save();
+        try {
+              if ($productModel->status) {
+                  $productModel->status = false;
+                  $productModel->save();
+              } else {
+                  $productModel->delete();
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return redirect()->route('productModels.index');
     }

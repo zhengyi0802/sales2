@@ -25,8 +25,13 @@ $config = [
     <tr>
       <td>{{ $ecpayResult->id }}</td>
       <td>{{ $ecpayResult->trade_no }}</td>
+      @if ($ecpayResult->apply == null && $ecpayResult->promotion == null)
+      <td></td>
+      <td></td>
+      @else
       <td>{{ $ecpayResult->apply->name ?? $ecpayResult->promotion->name }}</td>
       <td>{{ $ecpayResult->apply->phone ?? $ecpayResult->promotion->phone }}</td>
+      @endif
       <td>{{ $ecpayResult->trade_date }}</td>
       <td>{{ $ecpayResult->payment_date }}</td>
       <td>{{ $ecpayResult->payment_type }}</td>
@@ -41,7 +46,7 @@ $config = [
                   <x-adminlte-button theme="primary" title="{{ __('tables.edit') }}" icon="fa fa-lg fa-fw fa-pen"
                     onClick="window.location='{{ route('eapplies.edit', $ecpayResult->apply->id); }}'" >
                   </x-adminlte-button>
-              @elseif ($ecpayResult->promotion->proj_id == 1)
+              @elseif ($ecpayResult->promotion != null && $ecpayResult->promotion->proj_id == 1)
                   <x-adminlte-button theme="primary" title="{{ __('tables.edit') }}" icon="fa fa-lg fa-fw fa-pen"
                     onClick="window.location='{{ route('promotion1.edit', $ecpayResult->promotion->id); }}'" >
                   </x-adminlte-button>

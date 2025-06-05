@@ -35,4 +35,9 @@ class Process extends Model
         return $this->belongsTo(EApply::class, 'apply_id');
     }
 
+    public function promotion()
+    {
+        return $this->belongsTo(HpPromotion::class, 'prom_id');
+    }
+
 }

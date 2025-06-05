@@ -13,6 +13,7 @@ use App\Models\EOrderExtra;
 use App\Models\ProductModel;
 use App\Enums\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class CheckOrderController extends Controller
 {
@@ -24,15 +25,22 @@ class CheckOrderController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if ($user->role == UserRole::Sales) {
-            $customers = ECustomer::where('sales_id', $user->sales->id)->where('status', true)->get();
-        } else if ($user->role == UserRole::Reseller) {
-            $customers = ECustomer::where('sales_id', $user->sales->id)->where('status', true)->get();
-        } else if ($user->role == UserRole::Administrator) {
-            $customers = ECustomer::get();
-        } else {
-            $customers = ECustomer::where('status', true)->get();
+        try {
+              if ($user->role == UserRole::Sales) {
+                  $customers = ECustomer::where('sales_id', $user->sales->id)->where('status', true)->get();
+              } else if ($user->role == UserRole::Reseller) {
+                  $customers = ECustomer::where('sales_id', $user->sales->id)->where('status', true)->get();
+              } else if ($user->role == UserRole::Administrator) {
+                  $customers = ECustomer::get();
+              } else {
+                  $customers = ECustomer::where('status', true)->get();
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
+
         return view('checkOrders.index', compact('customers'));
     }
 
@@ -165,7 +173,13 @@ class CheckOrderController extends Controller
     public function update(Request $request, ECustomer $customer)
     {
         $data = $request->all();
-        $customer->update($data);
+        try {
+              $customer->update($data);
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return redirect()->route('checkOrders.index');
     }

@@ -122,11 +122,11 @@ class Checkout2 extends Command
                       'shipping_date'       => $prom['預計出貨日期'],
                       'finish_date'         => $prom['安裝完成日期'],
                   ];
-                  $promotion->flow1 = $flow;
+                  $epromotion->flow1 = $flow;
                   if ($flow == 14) {
-                      $promotion->flow = 14;
+                      $epromotion->flow = 14;
                   }
-                  $promotion->save();
+                  $epromotion->save();
                   $process = Process::where('prom_id',$id)->first();
                   if ($process == null) {
                       $process = Process::create($data);
@@ -136,8 +136,9 @@ class Checkout2 extends Command
               }
           } else {
             var_dump($proms);
+            $epromotion->flow = 8;
+            $epromotion->save();
           }
-
         } // endforeach
     } // end of function
 }

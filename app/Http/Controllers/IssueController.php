@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 use App\Models\EApply;
 use App\Models\HpProduct;
 use App\Models\HpPromotion;
@@ -15,13 +16,29 @@ class IssueController extends Controller
     {
         $req = $request->all();
 
-        if (isset($req['apply_id'])) {
-            $apply = EApply::find($req['apply_id']);
-        } else if (isset($req['prom_id'])) {
-            $promotion = HpPromotion::find($req['prom_id']);
-        } else {
-            $error = '無法找到訂單';
-            return redirect()->back()->with('error', $error);
+        try {
+              if (isset($req['apply_id'])) {
+                  $apply = EApply::find($req['apply_id']);
+              } else if (isset($req['prom_id'])) {
+                  $promotion = HpPromotion::find($req['prom_id']);
+              } else {
+                  $error = '無法找到訂單';
+                  return redirect()->back()->with('error', $error);
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
+        if (isset($apply)) {
+            if ($apply->trade_no == null) {
+                $apply->trade_no = 'HP'.date('Ymdhis').(string)($apply->id%100);
+                $apply->save();
+            }
+            if ($apply->trade_date == null) {
+                $apply->trade_date = date('Y/m/d h:i:s');
+                $apply->save();
+            }
         }
 
         $issueData = new IssueCollection();

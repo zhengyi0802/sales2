@@ -2,6 +2,7 @@
 
     return [
           'title'       => '業務訂單系統',
+          'dashboard'   => '儀表板',
           'unhandled'   => '未處理',
           'contacted'   => '已聯絡',
           'confirmed'   => '已預約',

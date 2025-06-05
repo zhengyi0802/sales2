@@ -51,4 +51,14 @@ class EcpayIssueData extends Model
     {
         return $this->belongsTo(EcpayApiLog::class, 'log_id');
     }
+
+    public function recordno()
+    {
+        if ($this->apply != null) {
+            return '門鎖申請書編號'.sprintf('%6d', $this->apply_id);
+        } else if ($this->promotion != null) {
+            return (($this->promotion->proj_id == 1) ? '驚天一夏專案' : '感恩孝親專案').sprintf('%06d', $this->prom_id);
+        }
+        return '找不到專案編號';
+    }
 }

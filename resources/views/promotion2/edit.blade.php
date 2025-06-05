@@ -20,7 +20,7 @@
 @endsection
 
 @section('content')
-@if ($promotion2->flow == 8)
+    @if ($promotion2->flow == 8 || $promotion2->flow == 9)
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-right">
@@ -28,9 +28,9 @@
                 </div>
             </div>
         </div>
-@endif
-
-@if (Auth()->user()->role <= App\Enums\UserRole::Accounter )
+    @endif
+@if ($promotion2->ecpayInvoiceData == null)
+    @if ($promotion2->flow == 14 || Auth()->user()->role <= App\Enums\UserRole::Accounter)
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-right">
@@ -38,6 +38,7 @@
                 </div>
             </div>
         </div>
+    @endif
 @endif
 
 <style>

@@ -10,6 +10,7 @@ use App\Models\OrderExtra;
 use App\Models\ProductModel;
 use App\Enums\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class CustomerController extends Controller
 {
@@ -21,15 +22,22 @@ class CustomerController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if ($user->role == UserRole::Sales) {
-            $customers = Customer::where('sales_id', $user->sales->id)->where('status', true)->get();
-        } else if ($user->role == UserRole::Reseller) {
-            $customers = Customer::where('sales_id', $user->sales->id)->where('status', true)->get();
-        } else if ($user->role == UserRole::Administrator) {
-            $customers = Customer::get();
-        } else {
-            $customers = Customer::where('status', true)->get();
+        try {
+              if ($user->role == UserRole::Sales) {
+                  $customers = Customer::where('sales_id', $user->sales->id)->where('status', true)->get();
+              } else if ($user->role == UserRole::Reseller) {
+                  $customers = Customer::where('sales_id', $user->sales->id)->where('status', true)->get();
+              } else if ($user->role == UserRole::Administrator) {
+                  $customers = Customer::get();
+              } else {
+                  $customers = Customer::where('status', true)->get();
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
+
         return view('customers.index', compact('customers'));
     }
 
@@ -41,16 +49,23 @@ class CustomerController extends Controller
     public function create()
     {
         $creator = auth()->user();
-        if ($creator->role == UserRole::Reseller) {
-            $sales = Sales::where('user_id', $creator->id)->get();
-            $projects = Project::where('salesing', true)->where('status', true)->get();
-            $productModels = ProductModel::where('catagory_id', 9)->where('status', true)->get();
-        } else {
-            $sales = Sales::where('status', true)->get();
-            $projects = Project::where('status', true)->get();
-            $productModels = ProductModel::where('status', true)->get();
+        try {
+              if ($creator->role == UserRole::Reseller) {
+                  $sales = Sales::where('user_id', $creator->id)->get();
+                  $projects = Project::where('salesing', true)->where('status', true)->get();
+                  $productModels = ProductModel::where('catagory_id', 9)->where('status', true)->get();
+              } else {
+                  $sales = Sales::where('status', true)->get();
+                  $projects = Project::where('status', true)->get();
+                  $productModels = ProductModel::where('status', true)->get();
+              }
+              $extras = ProductModel::where('extra', true)->where('status', true)->get();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
-        $extras = ProductModel::where('extra', true)->where('status', true)->get();
+
         return view('customers.create', compact('sales'))
                ->with(compact('projects'))
                ->with(compact('productModels'))
@@ -141,16 +156,22 @@ class CustomerController extends Controller
     public function edit(Customer $customer)
     {
         $creator = auth()->user();
-        if ($creator->role == UserRole::Reseller) {
-            $sales = Sales::where('user_id', $creator->id)->get();
-            $projects = Project::where('salesing', true)->where('status', true)->get();
-            $productModels = ProductModel::where('catagory_id', 9)->where('status', true)->get();
-        } else {
-            $sales = Sales::where('status', true)->get();
-            $projects = Project::where('status', true)->get();
-            $productModels = ProductModel::where('status', true)->get();
+        try {
+              if ($creator->role == UserRole::Reseller) {
+                  $sales = Sales::where('user_id', $creator->id)->get();
+                  $projects = Project::where('salesing', true)->where('status', true)->get();
+                  $productModels = ProductModel::where('catagory_id', 9)->where('status', true)->get();
+              } else {
+                  $sales = Sales::where('status', true)->get();
+                  $projects = Project::where('status', true)->get();
+                  $productModels = ProductModel::where('status', true)->get();
+              }
+              $extras = ProductModel::where('extra', true)->where('status', true)->get();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
-        $extras = ProductModel::where('extra', true)->where('status', true)->get();
 
         return view('customers.edit', compact('customer'))
                ->with(compact('sales'))
@@ -169,7 +190,13 @@ class CustomerController extends Controller
     public function update(Request $request, Customer $customer)
     {
         $data = $request->all();
-        $customer->update($data);
+        try {
+              $customer->update($data);
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return redirect()->route('customers.index');
     }
@@ -182,18 +209,25 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        $customer->status = false;
-        $customer->save();
-        $orders = $customer->orders;
-        foreach($orders as $order) {
-           $order->status = false;
-           $order->save();
-           $extras = $order->extras;
-           foreach($extras as $extra) {
-               $extra->status = false;
-               $extra->status = false;
-           }
+        try {
+              $customer->status = false;
+              $customer->save();
+              $orders = $customer->orders;
+              foreach($orders as $order) {
+                 $order->status = false;
+                 $order->save();
+                 $extras = $order->extras;
+                 foreach($extras as $extra) {
+                     $extra->status = false;
+                     $extra->status = false;
+                 }
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
+
         return redirect()->route('customers.index');
     }
 }

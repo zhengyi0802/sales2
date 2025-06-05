@@ -168,13 +168,47 @@
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12">
       @if ($issueInfo->details()->IIS_Customer_Email != null)
-        <x-adminlte-button theme="primary" title="{{ __('issues.InvoiceNotify') }}" icon="fa fa-lg fa-fw fa-eye"
+        <x-adminlte-button theme="primary" title="{{ __('issues.InvoiceNotify') }}" icon="fa fa-lg fa-fw fa-bell"
           onClick="window.location='{{ route('invoices.InvoiceNotify', ['invoice_no' => $issueInfo->invoice_no, 'email' => $issueInfo->details()->IIS_Customer_Email ])  }}'" >
         </x-adminlte-button>
       @endif
-        <x-adminlte-button theme="primary" title="{{ __('issues.InvoicePrint') }}" icon="fa fa-lg fa-fw fa-pen"
+        <x-adminlte-button theme="primary" title="{{ __('issues.InvoicePrint') }}" icon="fa fa-lg fa-fw fa-print"
           onClick="window.location='{{ route('invoices.InvoicePrint', ['invoice_no' => $issueInfo->invoice_no, 'invoice_date' => $issueInfo->invoice_date ])  }}'" >
         </x-adminlte-button>
+      </div>
+  </div>
+  <div class="raw">
+      <h2>{{ __('issues.allowance') }}</h2>
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <form name="allowanceForm" method="POST" action="{{ route('invoices.Allowance')  }}">
+            @csrf
+            <input type="hidden" name="id" value="{{ $issueInfo->id }}">
+            <input type="hidden" name="AllowanceNotify" value="E">
+            <div class="form col-md-12">
+                <strong>{{ __('issues.AllowanceType') }} :</strong>
+                <input type="radio" name="type" id="Allowance" value="1">
+                <label for="Allowance">{{ __('issues.Allowance') }}</label>
+                <input type="radio" name="type" id="AllowanceByCollegiate" value="2" checked>
+                <label for="AllowanceByCollegiate">{{ __('issues.AllowanceByCollegiate') }}</label>
+            </div>
+            <div class="form col-md-12">
+                <strong>{{ __('issues.NotifyMail') }} :</strong>
+                <input type="text" class="form-group col-md-6" name="NotifyMail" value="{{ $issueInfo->details()->IIS_Customer_Email }}">
+            </div>
+            <div class="form col-md-12">
+                <strong>{{ __('issues.AllowanceAmount') }} :</strong>
+                <input type="number" class="form-group col-md-6" name="AllowanceAmount" value="0">
+            </div>
+            <div class="form col-md-12">
+                <strong>{{ __('issues.AllowanceReason') }} :</strong>
+                <input type="text" class="form-group col-md-6" name="Reason" value="">
+            </div>
+            <div class="form col-md-12">
+            </div>
+            <div class="form col-md-12">
+                <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
+            </div>
+        </form>
       </div>
   </div>
 @endsection

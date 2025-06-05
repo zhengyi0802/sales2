@@ -387,17 +387,17 @@ return [
         [
             'text' => 'doorlocker_applies',
             'url'  => 'eapplies',
-            'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR' ],
+            'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR', 'accounter' ],
         ],
         [
             'text' => 'promotion1',
             'url'  => 'promotion1',
-            'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR' ],
+            'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR', 'accounter' ],
         ],
         [
             'text' => 'promotion2',
             'url'  => 'promotion2',
-            'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR' ],
+            'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR', 'accounter' ],
         ],
         [
             'text' => 'processes',
@@ -407,7 +407,7 @@ return [
         [
             'text' => 'ecpay',
             'url'  => 'ecpay',
-            'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR' ],
+            'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR', 'accounter' ],
         ],
         [
             'text' => 'warranties',
@@ -454,11 +454,13 @@ return [
            'url'  => 'invoices/allowances',
            'can'  => ['admin', 'accounter'],
         ],
+/*
         [
            'text' => 'invoice_settings',
            'url'  => 'invoices/settings',
-           'can'  => ['adnin', 'accounter'],
+           'can'  => ['adnin'],
         ],
+*/
         ['header' => 'admin_menu', 'can' => 'admin',],
     ],
 

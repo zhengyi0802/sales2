@@ -22,17 +22,17 @@ $config = [
       <td>{{ $delayissue->id }}</td>
       <td>{{ $delayissue->invoice_no }}</td>
       <td>{{ $delayissue->invoice_date }}</td>
-      <td>{{ ($delayissue->apply_id > 0) ? '門鎖申請'.sprintf('%06d', $delayissue->apply_id) : (($delayissue->promotion->proj_id == 1) ?'驚天一夏' : '感恩母親').sprintf('%06d', $delayissue->prom_id) }}</td>
+      <td>{{ $delayissue->recordno() }}</td>
       <td>{{ $delayissue->random_number }}</td>
       <td>{{ $delayissue->invalid_flag ? __('invoices.invalid') : __('invoices.valid') }}</td>
       <td>
-        <x-adminlte-button theme="primary" title="{{ __('tables.trigger') }}" icon="fa fa-lg fa-fw fa-switch"
+        <x-adminlte-button theme="secondary" title="{{ __('issues.TriggerIssue') }}" icon="fa fa-lg fa-fw fa-cog"
           onClick="window.location='{{ route('invoices.TriggerIssue', ['id' => $delayissue->id])  }}'" >
         </x-adminlte-button>
-        <x-adminlte-button theme="primary" title="{{ __('tables.edit') }}" icon="fa fa-lg fa-fw fa-pen"
+        <x-adminlte-button theme="primary" title="{{ __('issues.EditDelayIssue') }}" icon="fa fa-lg fa-fw fa-pen"
           onClick="window.location='{{ route('invoices.edit_issue', ['id' => $delayissue->id])  }}'" >
         </x-adminlte-button>
-        <x-adminlte-button theme="primary" title="{{ __('tables.delete') }}" icon="fa fa-lg fa-fw fa-trash"
+        <x-adminlte-button theme="danger" title="{{ __('issues.CancelDelayIssue') }}" icon="fa fa-lg fa-fw fa-trash"
           onClick="window.location='{{ route('invoices.CancelDelayIssue', ['id' => $delayissue->id])  }}'" >
         </x-adminlte-button>
       </td>

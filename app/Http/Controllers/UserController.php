@@ -7,6 +7,7 @@ use App\Rules\MatchOldPassword;
 use App\Models\User;
 use App\Enums\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class UserController extends Controller
 {
@@ -18,10 +19,16 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('role', '>', '0')
-                     ->where('role', '!=', '4')
-                     ->where('role', '!=', '7')
-                     ->get();
+        try {
+              $users = User::where('role', '>', '0')
+                           ->where('role', '!=', '4')
+                           ->where('role', '!=', '7')
+                           ->get();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return view('users.index', compact('users'));
     }
@@ -46,9 +53,15 @@ class UserController extends Controller
     {
         $creator = auth()->user();
         $data = $request->all();
-        $data['created_by'] = $creator->id;
-        $data['password'] = bcrypt($data['password']);
-        User::create($data);
+        try {
+              $data['created_by'] = $creator->id;
+              $data['password'] = bcrypt($data['password']);
+              User::create($data);
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return redirect()->route('users.index');
     }
@@ -85,12 +98,18 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $data = $request->all();
-        if ($data['password'] != null) {
-            $data['password'] = bcrypt($data['password']);
-        } else {
-            unset($data['password']);
+        try {
+              if ($data['password'] != null) {
+                  $data['password'] = bcrypt($data['password']);
+              } else {
+                  unset($data['password']);
+              }
+              $user->update($data);
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
-        $user->update($data);
 
         return redirect()->route('users.index');
     }
@@ -103,8 +122,14 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->status = false;
-        $user->save();
+        try {
+              $user->status = false;
+              $user->save();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return redirect()->route('users.index');
     }
@@ -125,8 +150,13 @@ class UserController extends Controller
             'new_password' => ['required'],
             'retry_password' => ['same:new_password'],
         ]);
-
-        User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+        try {
+              User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return redirect()->route('users.password');
     }
@@ -142,11 +172,17 @@ class UserController extends Controller
     {
         $editor = auth()->user();
         $data = $request->all();
-        $user->update($data);
-        if ($editor->role == App\Enums\UserRole::Sales ||
-            $editor->role == App\Enums\UserRole::Reseller) {
-            $sales = Sales::where('user_id', $user->id)->first();
-            $sales->update($data);
+        try {
+              $user->update($data);
+              if ($editor->role == App\Enums\UserRole::Sales ||
+                  $editor->role == App\Enums\UserRole::Reseller) {
+                  $sales = Sales::where('user_id', $user->id)->first();
+                  $sales->update($data);
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
 
         return redirect()->route('home');

@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Enums\UserRole;
 use App\Enums\MFlowStatus;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class MassOrderController extends Controller
 {
@@ -20,10 +21,16 @@ class MassOrderController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if ($user->role == UserRole::Sales || $user->role == UserRole::Reseller) {
-            $massOrders = MassOrder::where('created_by', $user->id)->get();
-        } else {
-            $massOrders = MassOrder::get();
+        try {
+              if ($user->role == UserRole::Sales || $user->role == UserRole::Reseller) {
+                  $massOrders = MassOrder::where('created_by', $user->id)->get();
+              } else {
+                  $massOrders = MassOrder::get();
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
 
         return view('massOrders.index', compact('massOrders'));
@@ -36,8 +43,14 @@ class MassOrderController extends Controller
      */
     public function create()
     {
-        $sales = Sales::where('status', true)->get();
-        $productModels = ProductModel::where('status', true)->get();
+        try {
+              $sales = Sales::where('status', true)->get();
+              $productModels = ProductModel::where('status', true)->get();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return view('massOrders.create', compact('productModels'))
                ->with(compact('sales'));
@@ -91,8 +104,13 @@ class MassOrderController extends Controller
             $id = $idinit;
         }
         $data['id'] = $id;
-
-        MassOrder::create($data);
+        try {
+              MassOrder::create($data);
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return redirect()->route('massOrders.index');
     }
@@ -116,7 +134,13 @@ class MassOrderController extends Controller
      */
     public function edit(MassOrder $massOrder)
     {
-        $productModels = ProductModel::where('status', true)->get();
+        try {
+              $productModels = ProductModel::where('status', true)->get();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return view('massOrders.edit', compact('massOrder'))
                ->with(compact('productModels'));
@@ -132,19 +156,25 @@ class MassOrderController extends Controller
     public function update(Request $request, MassOrder $massOrder)
     {
         $data = $request->all();
-        $products = $data['products'];
-        $price = 0;
-        for($i=0; $i<sizeof($products); $i++) {
-                $products[$i]["price"] = $products[$i]["amount"] * $products[$i]["single_price"];
-                $price += $products[$i]["price"];
+        try {
+              $products = $data['products'];
+              $price = 0;
+              for($i=0; $i<sizeof($products); $i++) {
+                      $products[$i]["price"] = $products[$i]["amount"] * $products[$i]["single_price"];
+                      $price += $products[$i]["price"];
+              }
+              $tax = $price * 0.05;
+              $total = $price * 1.05;
+              $data['products'] = json_encode($products);
+              $data['price'] = $price;
+              $data['tax'] = $tax;
+              $data['total'] = $total;
+              $massOrder->update($data);
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
-        $tax = $price * 0.05;
-        $total = $price * 1.05;
-        $data['products'] = json_encode($products);
-        $data['price'] = $price;
-        $data['tax'] = $tax;
-        $data['total'] = $total;
-        $massOrder->update($data);
 
         return redirect()->route('massOrders.index');
     }
@@ -157,8 +187,18 @@ class MassOrderController extends Controller
      */
     public function destroy(MassOrder $massOrder)
     {
-        $massOrder->status = false;
-        $massOrder->save();
+        try {
+              if ($massOrder->status) {
+                   $massOrder->status = false;
+                   $massOrder->save();
+              } else {
+                   $massOrder->delete();
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return redirect()->route('massOrders.index');
     }

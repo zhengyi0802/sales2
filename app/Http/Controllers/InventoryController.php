@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\ProductModel;
 use App\Enums\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class InventoryController extends Controller
 {
@@ -17,7 +18,14 @@ class InventoryController extends Controller
      */
     public function index()
     {
-        $products = ProductModel::where('status', true)->get();
+        try {
+              $products = ProductModel::where('status', true)->get();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
+
         $period = date('Ym');
         return view('inventories.index', compact('products'));
     }
@@ -30,8 +38,15 @@ class InventoryController extends Controller
         if ($productId == null) {
             $productId = 1;
         }
-        $inventories = Inventory::where('status', true)->where('product_id', $productId)->get();
-        $product = ProductModel::find($productId);
+        try {
+              $inventories = Inventory::where('status', true)->where('product_id', $productId)->get();
+              $product = ProductModel::find($productId);
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
+
         return view('inventories.table', compact('inventories'))
                ->with(compact('product'));
     }
@@ -44,8 +59,15 @@ class InventoryController extends Controller
     {
         $product_id = $request->input('product_id');
         $period = date('Ym');
-        $product = ProductModel::find($product_id);
-        $inventory = Inventory::where('product_id', $product_id)->where('serial', $period)->first();
+        try {
+              $product = ProductModel::find($product_id);
+              $inventory = Inventory::where('product_id', $product_id)->where('serial', $period)->first();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
+
         if ($inventory == null) {
             return view('inventories.create', compact('product'))->with(compact('period'));
         } else {
@@ -63,17 +85,24 @@ class InventoryController extends Controller
     {
         $data = $request->all();
         $creator = auth()->user();
-        $data['created_by'] = $creator->id;
-        $product_id = $data['product_id'];
-        $last = Inventory::where('product_id', $data['product_id'])->latest()->first();
-        if ($last == null) {
-            $last_amount = 0;
-        } else {
-            $last_amount = $last->stock;
+        try {
+              $data['created_by'] = $creator->id;
+              $product_id = $data['product_id'];
+              $last = Inventory::where('product_id', $data['product_id'])->latest()->first();
+              if ($last == null) {
+                  $last_amount = 0;
+              } else {
+                  $last_amount = $last->stock;
+              }
+              $data['start_amount'] = $last_amount;
+              $data['stock'] = $last_amount + $data['inbound'] - $data['outbound']-$data['defective'];
+              Inventory::create($data);
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
-        $data['start_amount'] = $last_amount;
-        $data['stock'] = $last_amount + $data['inbound'] - $data['outbound']-$data['defective'];
-        Inventory::create($data);
+
         return redirect()->route('inventories.table', ['product_id' => $product_id]);
     }
 
@@ -110,20 +139,26 @@ class InventoryController extends Controller
     {
         $creator = auth()->user();
         $data = $request->all();
-        $data['stock'] = $inventory->start_amount+$data['inbound']-$data['outbound']-$data['defective'];
-        $inventory->update($data);
-        $serial = $inventory->serial;
-        $stock = $data['stock'];
-        $product_id = $inventory->product_id;
-        $inventories = Inventory::where('product_id', $product_id)
-                                ->where('serial', '>', $serial)
-                                ->orderBy('serial', 'ASC')
-                                ->get();
-        foreach($inventories as $inven) {
-            $inven->start_amount = $stock;
-            $stock = $inven->start_amount + $inven->inbound - $inven->outbound - $inven->defective;
-            $inven->stock = $stock;
-            $inven->save();
+        try {
+              $data['stock'] = $inventory->start_amount+$data['inbound']-$data['outbound']-$data['defective'];
+              $inventory->update($data);
+              $serial = $inventory->serial;
+              $stock = $data['stock'];
+              $product_id = $inventory->product_id;
+              $inventories = Inventory::where('product_id', $product_id)
+                                      ->where('serial', '>', $serial)
+                                      ->orderBy('serial', 'ASC')
+                                      ->get();
+              foreach($inventories as $inven) {
+                  $inven->start_amount = $stock;
+                  $stock = $inven->start_amount + $inven->inbound - $inven->outbound - $inven->defective;
+                  $inven->stock = $stock;
+                  $inven->save();
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
 
         return redirect()->route('inventories.table', ['product_id' => $product_id]);
@@ -137,8 +172,15 @@ class InventoryController extends Controller
      */
     public function destroy(Inventory $inventory)
     {
-        $inventory->status = false;
-        $inventory->save();
+        try {
+              $inventory->status = false;
+              $inventory->save();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
+
         return redirect()->route('inventories.index');
     }
 }

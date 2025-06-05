@@ -237,7 +237,7 @@ Route::get('/invoices/TriggerIssue', [EcpayInvoiceController::class, 'TriggerIss
 Route::get('/invoices/CancelDelayIssue', [EcpayInvoiceController::class, 'CancelDelayIssue'])
      ->name('invoices.CancelDelayIssue');
 
-Route::get('/invoices/Allowance', [EcpayInvoiceController::class, 'Allowance'])
+Route::post('/invoices/Allowance', [EcpayInvoiceController::class, 'Allowance'])
      ->name('invoices.Allowance');
 
 Route::get('/invoices/AllowanceByCollegiate', [EcpayInvoiceController::class, 'AllowanceByCollegiate'])
@@ -284,3 +284,6 @@ Route::get('/invoices/edit_issue', [EcpayInvoiceController::class, 'editIssue'])
 
 Route::get('/issues/create', [IssueController::class, 'create'])
      ->name('issues.create');
+
+Route::get('/invoices/allowances', [EcpayInvoiceController::class, 'allowances'])
+     ->name('invoices.allowances');

@@ -11,6 +11,7 @@ return [
     'HashIV'                      => env('ECPAY_INVOICE_HASH_IV', ''),
     'ApiLog'                      => env('ECPAY_API_LOG', ''),
     'AllowancReturnURL'           => env('ECPAY_ALLOWANCE_RETURN_URL', ''),
+    'DelayIssueReturnURL'         => env('ECPAY_DELAYISSUE_RETURN_URL', ''),
     'GetGovInvoiceWordSetting'    => env('ECPAY_GET_GOV_INVOICE_WORD_SETTING', ''),  //查詢財政部配號結果
     'AddInvoiceWordSetting'       => env('ECPAY_ADD_INVOICE_WORD_SETTING', ''),      //字軌與配號設定
     'UpdateInvoiceWordStatus'     => env('ECPAY_UPDATE_INVOICE_WORD_STATUS', ''),    //設定字軌號碼狀態

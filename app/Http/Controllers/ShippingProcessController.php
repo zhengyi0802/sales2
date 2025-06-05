@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Enums\UserRole;
 use App\Enums\FlowStatus;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class ShippingProcessController extends Controller
 {
@@ -21,13 +22,20 @@ class ShippingProcessController extends Controller
     {
         $user = auth()->user();
 
-        if ($user->role == UserRole::Sales || $user->role == UserRole::Reseller) {
-            $orders = Order::select('id')->where('sales_id', $user->sales->id)->where('status', true)->get();
-            $orders_array = $orders->toArray();
-            $shippings = ShippingProcess::whereIn('order_id', $orders_array)->get();
-        } else {
-            $shippings = ShippingProcess::get();
+        try {
+              if ($user->role == UserRole::Sales || $user->role == UserRole::Reseller) {
+                  $orders = Order::select('id')->where('sales_id', $user->sales->id)->where('status', true)->get();
+                  $orders_array = $orders->toArray();
+                  $shippings = ShippingProcess::whereIn('order_id', $orders_array)->get();
+              } else {
+                  $shippings = ShippingProcess::get();
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
+
         return view('shippings.index', compact('shippings'));
     }
 
@@ -74,7 +82,14 @@ class ShippingProcessController extends Controller
      */
     public function edit(ShippingProcess $shipping)
     {
-        $installers = User::where('role', UserRole::Installer)->where('status', true)->get();
+        try {
+              $installers = User::where('role', UserRole::Installer)->where('status', true)->get();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
+
         return view('shippings.edit', compact('shipping'))->with(compact('installers'));
     }
 
@@ -89,25 +104,31 @@ class ShippingProcessController extends Controller
     {
         $user = auth()->user();
         $data = $request->all();
-        if ($user->role == UserRole::Installer) {
-            if ($data['flow'] == FlowStatus::Completion) {
-                $data['coompletion_time'] = date('Y-M-D h:m:s');
-                //$data['installer_id'] = $user->id;
-            }
-        }
-        $shipping->update($data);
-        $order = $shipping->order;
-        $order->flow = $data['flow'];
-        $order->save();
-        $extras = $shipping->order->extras->toArray();
-        for($i=0; $i<count($extras); $i++) {
-            $extra = $shipping->order->extras[$i];
-            if (isset($data['includes'][$i])) {
-                $extra->flow = FlowStatus::Shipping;
-            } else {
-                $extra->flow = FlowStatus::UnHandled;
-            }
-            $extra->save();
+        try {
+              if ($user->role == UserRole::Installer) {
+                  if ($data['flow'] == FlowStatus::Completion) {
+                      $data['coompletion_time'] = date('Y-M-D h:m:s');
+                      //$data['installer_id'] = $user->id;
+                  }
+              }
+              $shipping->update($data);
+              $order = $shipping->order;
+              $order->flow = $data['flow'];
+              $order->save();
+              $extras = $shipping->order->extras->toArray();
+              for($i=0; $i<count($extras); $i++) {
+                  $extra = $shipping->order->extras[$i];
+                  if (isset($data['includes'][$i])) {
+                      $extra->flow = FlowStatus::Shipping;
+                  } else {
+                      $extra->flow = FlowStatus::UnHandled;
+                  }
+                  $extra->save();
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
 
         return redirect()->route('shippings.index');
@@ -121,7 +142,13 @@ class ShippingProcessController extends Controller
      */
     public function destroy(ShippingProcess $shipping)
     {
-        $shipping->delete();
+        try {
+              $shipping->delete();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return redirect()->route('shippings.index');
     }

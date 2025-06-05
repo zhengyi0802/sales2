@@ -7,12 +7,19 @@ use App\Models\Warranty;
 use App\Models\Order;
 use App\Enums\FlowStatus;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class WarrantyController extends Controller
 {
     public function index()
     {
-        $warranties = Warranty::get();
+        try {
+              $warranties = Warranty::get();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return view('warranties.index', compact('warranties'));
     }
@@ -24,7 +31,6 @@ class WarrantyController extends Controller
 
     public function store(Request $request)
     {
-
         return redirect()->route('warranties.index');
     }
 
@@ -51,15 +57,21 @@ class WarrantyController extends Controller
     public function register(Request $request)
     {
         $data = $request->all();
-        $data['register_time'] = date('Y-m-d h:i:s');
-        $data['warranty_date'] = date('Y-m-d', strtotime('+2 years'));
-        $warranty = Warranty::where('order_id', $data['order_id'])->first();
-        if ($warranty == null) {
-            $warranty = Warranty::create($data);
+        try {
+              $data['register_time'] = date('Y-m-d h:i:s');
+              $data['warranty_date'] = date('Y-m-d', strtotime('+2 years'));
+              $warranty = Warranty::where('order_id', $data['order_id'])->first();
+              if ($warranty == null) {
+                  $warranty = Warranty::create($data);
+              }
+              $order = $warranty->order;
+              $order->flow = FlowStatus::Completion;
+              $order->save();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
-        $order = $warranty->order;
-        $order->flow = FlowStatus::Completion;
-        $order->save();
 
         return view('warranties.show', compact('warranty'));
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 use App\Models\HpProduct;
 use App\Models\HpPromotion;
 use App\Models\EcpayResult;
@@ -48,16 +49,23 @@ class Promotion2Controller extends Controller
 
     public function edit(HpPromotion $promotion2)
     {
-        $products = HpProduct::where('status', true)->get();
-        $results = EcpayResult::where('trade_no', $promotion2->trade_no)->first();
-        $gifts = array();
-        if ($promotion2->gifts != null) {
-            $gifts = json_decode($promotion2->gifts);
+        try {
+              $products = HpProduct::where('status', true)->get();
+              $results = EcpayResult::where('trade_no', $promotion2->trade_no)->first();
+              $gifts = array();
+              if ($promotion2->gifts != null) {
+                  $gifts = json_decode($promotion2->gifts);
+              }
+              $bundles = array();
+              if ($promotion2->bundles != null) {
+                  $bundles = json_decode($promotion2->bundles);
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
-        $bundles = array();
-        if ($promotion2->bundles != null) {
-            $bundles = json_decode($promotion2->bundles);
-        }
+
         return view('promotion2.edit', compact('promotion2'))
                ->with(compact('results'))
                ->with(compact('products'))
@@ -68,22 +76,28 @@ class Promotion2Controller extends Controller
     public function update(Request $request, HpPromotion $promotion2)
     {
         $data = $request->all();
-        if (isset($data['paid'])) {
-            $data['remain'] = $promotion2->total-$data['paid'];
-        } else {
-            $data['remain'] = 0;
+        try {
+              if (isset($data['paid'])) {
+                  $data['remain'] = $promotion2->total-$data['paid'];
+              } else {
+                  $data['remain'] = 0;
+              }
+              if (($data['remain'] == 0) && ($promotion2->paid > 0)) {
+                 if (isset($data['product_id']) && $data['product_id'] != $promotion2->product_id) {
+                     $product = HpProduct::find($data['product_id']);
+                     $price = $product->price;
+                     //$total = $price * $promotion->amount;
+                     $data['remain'] = $promotion2->total-$promotion2->paid;
+                     $promotion2->update($data);
+                     return redirect()->route('promotion2.edit', compact('promotion2'));
+                 }
+             }
+             $promotion2->update($data);
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
-        if (($data['remain'] == 0) && ($promotion2->paid > 0)) {
-           if (isset($data['product_id']) && $data['product_id'] != $promotion2->product_id) {
-               $product = HpProduct::find($data['product_id']);
-               $price = $product->price;
-               //$total = $price * $promotion->amount;
-               $data['remain'] = $promotion2->total-$promotion2->paid;
-               $promotion2->update($data);
-               return redirect()->route('promotion2.edit', compact('promotion2'));
-           }
-        }
-        $promotion2->update($data);
 
         return redirect()->route('promotion2.edit', compact('promotion2'));
     }
@@ -92,9 +106,18 @@ class Promotion2Controller extends Controller
     {
         $ids = $request->input('ids');
         if ($ids == null) {
-            return redirect()->route('eapplies.index');
+            return redirect()->route('promotion1.index');
         }
         foreach($ids as $id) {
+            $order_id = '92'.sprintf('%06d', $id);
+            $response = $this->gasImport($order_id);
+            $proms = json_decode($response, true);
+            if(!isset($proms['回傳結果'])) {
+                $promotion = HpPromotion::find($id);
+                $promotion->flow = 10;
+                $promotion->save();
+                continue;
+            }
             $promotion = HpPromotion::find($id);
             $bundles = $this->createBundles($promotion);
             $data = $this->createFormArray($promotion, $bundles);
@@ -114,6 +137,15 @@ class Promotion2Controller extends Controller
     {
         $id = $request->input('id');
 
+        $order_id = '92'.sprintf('%06d', $id);
+        $response = $this->gasImport($order_id);
+        $proms = json_decode($response, true);
+        if(!isset($proms['回傳結果'])) {
+            $promotion = HpPromotion::find($id);
+            $promotion->flow = 10;
+            $promotion->save();
+            return redirect()->back();;
+        }
         $promotion = HpPromotion::find($id);
         $bundles = $this->createBundles($promotion);
         $data = $this->createFormArray($promotion, $bundles);
@@ -130,12 +162,24 @@ class Promotion2Controller extends Controller
 
     public function destroy(HpPromotion $promotion2)
     {
-        if ($promotion2->status == false) {
-            $promotion2->delete();
-        } else {
-            $promotion2->status = false;
-            $promotion2->save();
+        try {
+              if ($promotion2->status == false) {
+                  if ($promotion2->EcpayInfo != null) {
+                      $promotion2->delete();
+                  }
+                  if ($promotion2->EcpayResult == null) {
+                      $promotion2->delete();
+                  }
+              } else {
+                  $promotion2->status = false;
+                  $promotion2->save();
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
+
         return redirect()->route('promotion2.index');
     }
 
@@ -221,7 +265,7 @@ class Promotion2Controller extends Controller
                      '地址'          => $promotion->address,
                      '進件單位'      => $promotion->reseller->name,
                      '備註說明'      => $promotion->memo,
-                     '商品名稱'      => 'Z5000W AI智慧門鎖',
+                     '商品名稱'      => '商品一批',
                      '訂購數量'      => $promotion->amount,
                      '訂購方案'      => $promotion->product->paytype,
                      '收款方式'      => ($promotion->payment == 2) ? '綠界多元支付' : '其他',
@@ -258,27 +302,52 @@ class Promotion2Controller extends Controller
     {
         $curl = curl_init();
         if ($stage == 1) {
-          $url = config('gas.export_project_url');
+            $url = config('gas.export_project_url');
         } else {
-          $url = config('gas.export_url');
+            $url = config('gas.export_url');
         }
         curl_setopt_array($curl, array(
-             CURLOPT_URL => $url,
-             CURLOPT_RETURNTRANSFER => true,
-             CURLOPT_ENCODING => "",
-             CURLOPT_TIMEOUT => 30000,
-             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-             CURLOPT_CUSTOMREQUEST => "POST",
-             CURLOPT_POSTFIELDS => json_encode($data),
-             CURLOPT_HTTPHEADER => array(
-                 'Content-Type: application/json',
-            ),
-       ));
+              CURLOPT_URL => $url,
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => "",
+              CURLOPT_TIMEOUT => 30000,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => "POST",
+              CURLOPT_POSTFIELDS => json_encode($data),
+              CURLOPT_HTTPHEADER => array(
+                  'Content-Type: application/json',
+             ),
+        ));
 
-       $response = curl_exec($curl);
-       $err = curl_error($curl);
-       curl_close($curl);
-       return $response;
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+        return $response;
     }
 
+    public function gasImport($orderid)
+    {
+        $curl = curl_init();
+
+        $url = config('gas.export_project_url').'?orderid='. $order_id;
+
+        curl_setopt_array($curl, array(
+               CURLOPT_URL => $url,
+               CURLOPT_RETURNTRANSFER => true,
+               CURLOPT_FOLLOWLOCATION => true,
+               CURLOPT_ENCODING => "",
+               CURLOPT_TIMEOUT => 30000,
+               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+               CURLOPT_CUSTOMREQUEST => "GET",
+               CURLOPT_POSTFIELDS => null,
+               CURLOPT_HTTPHEADER => array(
+                   'Content-Type: application/json',
+              ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+        return $response;
+    }
 }

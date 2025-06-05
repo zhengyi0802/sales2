@@ -8,6 +8,7 @@ use App\Models\EApply;
 use App\Models\HpPromotion;
 use App\Models\EcpayResult;
 use App\Models\EcpayAllowanceData;
+use App\Models\EcpayAllowanceInfo;
 use App\Models\EcpayApiLog;
 use App\Models\EcpayCompanyInfo;
 use App\Models\EcpayGovInvoiceWordSetting;
@@ -19,13 +20,14 @@ use App\Models\EcpayIssueInfo;
 use App\Models\EcpayLoveCode;
 use App\Models\EcpayInvalid;
 use App\Models\EcpayAllowanceInvalid;
-use App\Model\EcpayDelayIssueNotify;
+use App\Models\EcpayDelayIssueNotify;
+use App\Models\EcpayAllowanceNotify;
 use App\Collections\IssueCollection;
 
 class EcpayInvoiceController extends Controller
 {
     //
-    public $env = 'test';
+    public $env = 'production';
 
     public function settings(Request $request)
     {
@@ -36,6 +38,7 @@ class EcpayInvoiceController extends Controller
     {
         $issues = EcpayIssueData::where('delay_flag', false)->get();
         $delayissues = EcpayIssueData::where('delay_flag', true)->get();
+
         return view('invoices.issues', compact('issues'))->with(compact('delayissues'));
     }
 
@@ -46,6 +49,13 @@ class EcpayInvoiceController extends Controller
         $issueDetails = json_decode($issue->issue_data);
 
         return view('invoices.issues.edit', compact('issue'));
+    }
+
+    public function allowances()
+    {
+        $allowances = EcpayAllowanceData::where('router', 'Allowance')->get();
+        $allowancebycollegiates = EcpayAllowanceData::where('router', 'AllowanceByCollegiate')->get();
+        return view('invoices.allowances', compact('allowances'))->with(compact('allowancebycollegiates'));
     }
 
     public function GetGovInvoiceWordSetting(Request $request)
@@ -425,7 +435,7 @@ class EcpayInvoiceController extends Controller
         $issueData['Tsr'] = $req['Tsr'];
         $issueData['PayType'] = '2';
         $issueData['PayAct'] = 'ECPAY';
-        $issueData['NotifyURL'] = $req['NotifyURL'];
+        $issueData['NotifyURL'] = config('ecpay.DelayIssueReturnURL');
 
         //$array_data = $Invoice->addDelayIssueData($array_data, $tsr, '1', $delayDay);
 
@@ -627,26 +637,36 @@ class EcpayInvoiceController extends Controller
     public function Allowance(Request $request)
     {
         $req = $request->all();
+        if (isset($req['type']) && $req['type'] == 2) {
+            return $this->AllowanceByCollegiate($request);
+        }
         if (isset($req['id'])) {
-            $issue = EcpayIssueData::find($req['id']);
+            $issue = EcpayIssueInfo::find($req['id']);
         } else {
             $error = '發票資料不存在';
             return redirect()->back()->with('error', $error);
         }
-        if (isset($req['amount'])) {
-            $amount = $req['amount'];
+        if (isset($req['AllowanceAmount'])) {
+            $AllowanceAmount = $req['AllowanceAmount'];
         }
-        $notify = 'E';
-        if (isset($req['notify'])) {
-            $notify = $req['notify'];
+        $Notify = 'E';
+        if (isset($req['Notify'])) {
+            $Notify = $req['Notify'];
+        }
+        if (isset($req['NotifyMail'])) {
+            $NotifyMail = $req['NotifyMail'];
+        } else {
+            $error = '通知電子郵件地址不存在';
+            return redirect()->back()->with('error', $error);
         }
         $reason = '';
-        if (isset($req['reason'])) {
-            $reason = $req['reason'];
+        if (isset($req['Reason'])) {
+            $reason = $req['Reason'];
         }
+
         $Invoice = new ECPayInvoice($this->env);
 
-        $postData = $Invoice->Allowance($issue, $amount, $notify, $reason);
+        $postData = $Invoice->Allowance($issue, $AllowanceAmount, $Notify, $NotifyMail, $reason);
 
         $response=$Invoice->sendRequest($postData);
         if (config('ecpay.ApiLog')) {
@@ -662,20 +682,23 @@ class EcpayInvoiceController extends Controller
         if ($response['TransCode'] == 1) {
             if ($response['Data']->RtnCode == 1) {
                 $data = [
-                            'issue_id'                => $req['id'] ?? 0,
-                            'notify_method'           => $notify,
-                            'notify_mail'             => ($issue->apply_id > 0) ? $issue->apply->email : $issue->promotion->email,
-                            'notify_phone'            => ($issue->apply_id > 0) ? $issue->apply->phone : $issue->promotion->phone,
-                            'allowance_amount'        => $amount,
-                            'allowance_no'            => $response['Data']->IA_Allow_No,
-                            'invoice_no'              => $response['Data']->IA_Invoice_no,
-                            'remain_allowance_amount' => $response['Data']->IA_Remain_Allowance_Amt,
-                            'rtn_code'                => $response['Data']->RtnCode,
-                            'rtn_msg'                 => $response['Data']->RtnMsg,
-                            'log_id'                  => $log->id,
+                            'issue_id'                  => $req['id'] ?? 0,
+                            'ecpay_return'              => json_encode($response['Data']),
+                            'notify_method'             => $Notify,
+                            'notify_mail'               => $NotifyMail,
+                            'notify_phone'              => $issue->details()->IIS_Customer_Phone,
+                            'allowance_amount'          => $AllowanceAmount,
+                            'allowance_no'              => $response['Data']->IA_Allow_No,
+                            'invoice_no'                => $response['Data']->IA_Invoice_No,
+                            'date'                      => $response['Data']->IA_Date ?? '',
+                            'remain_allowance_amount'   => $response['Data']->IA_Remain_Allowance_Amt,
+                            'router'                    => 'Allowance',
+                            'rtn_code'                  => $response['Data']->RtnCode ?? '',
+                            'rtn_msg'                   => $response['Data']->RtnMsg ?? '',
+                            'log_id'                    => $log->id ?? 0,
                         ];
                 $allowance = EcpayAllowanceData::create($data);
-                return view('invoices.settings', compact('allowance'));
+                return redirect()->route('invoices.allowances');
             } else {
                 $error = $response['Data']->RtnMsg;
             }
@@ -689,23 +712,28 @@ class EcpayInvoiceController extends Controller
     {
         $req = $request->all();
         if (isset($req['id'])) {
-            $issue = EcpayIssueData::find($req['id']);
+            $issue = EcpayIssueInfo::find($req['id']);
         } else {
             $error = '發票資料不存在';
             return redirect()->back()->with('error', $error);
         }
-        if (isset($req['amount'])) {
-            $amount = $req['amount'];
+        if (isset($req['AllowanceAmount'])) {
+            $amount = $req['AllowanceAmount'];
+        }
+        if (isset($req['NotifyMail'])) {
+            $email = $req['NotifyMail'];
         }
         $notify = 'E';
-        if (isset($req['notify'])) {
-            $notify = $req['notify'];
+        if (isset($req['Notify'])) {
+            $notify = $req['Notify'];
         }
         $reason = '';
-
+        if (isset($req['Reason'])) {
+            $reason = $req['Reason'];
+        }
         $Invoice = new ECPayInvoice($this->env);
 
-        $postData = $Invoice->AllowanceByCollegiate($issue, $amount, $notify);
+        $postData = $Invoice->AllowanceByCollegiate($issue, $amount, $email, $notify);
 
         $response=$Invoice->sendRequest($postData);
         if (config('ecpay.ApiLog')) {
@@ -721,17 +749,25 @@ class EcpayInvoiceController extends Controller
         if ($response['TransCode'] == 1) {
             if ($response['Data']->RtnCode == 1) {
                 $data = [
+                            'issue_id'                  => $req['id'] ?? 0,
+                            'ecpay_return'              => json_encode($response['Data']),
+                            'notify_method'             => $notify,
+                            'notify_mail'               => $email,
+                            'notify_phone'              => $issue->details()->IIS_Customer_Phone,
+                            'allowance_amount'          => $amount,
                             'allowance_no'              => $response['Data']->IA_Allow_No,
                             'invoice_no'                => $response['Data']->IA_Invoice_No,
-                            'temp_date'                 => $response['Data']->IA_TempDate,
-                            'temp_expire_date'          => $response['Data']->IA_TempExpireDate,
+                            'temp_date'                 => $response['Data']->IA_TempDate ?? '',
+                            'date'                      => $response['Data']->IA_Date ?? '',
+                            'temp_expire_date'          => $response['Data']->IA_TempExpireDate ?? '',
                             'remain_allowance_amount'   => $response['Data']->IA_Remain_Allowance_Amt,
+                            'router'                    => 'AllowanceByCollegiate',
                             'rtn_code'                  => $response['Data']->RtnCode ?? '',
                             'rtn_msg'                   => $response['Data']->RtnMsg ?? '',
                             'log_id'                    => $log->id ?? 0,
                         ];
                 $allowanceData = EcpayAllowanceData::create($data);
-                return view('invoices.settings', compact('allowanceData'));
+                return redirect()->route('invoices.allowances');
             } else {
                 $error = $response['Data']->RtnMsg;
             }
@@ -815,7 +851,7 @@ class EcpayInvoiceController extends Controller
         if (isset($req['reason'])) {
             $reason = $req['reason'];
         } else {
-            $reason = '';
+            $reason = '因折讓金額填錯,作廢折讓';
         }
         $Invoice = new ECPayInvoice($this->env);
 
@@ -832,15 +868,13 @@ class EcpayInvoiceController extends Controller
                       ];
             $log = EcpayApiLog::create($result);
         }
-        if ($reIIS_Create_Datesponse['TransCode'] == 1) {
-            if ($response['Data'] == 1) {
-                $invoice_no1 = $response['Data']->IA_Invoice_No;
-                if (!isset($allowance)) {
-                    $allowance = EcpayAllowanceData::where('invoice_no', $invoice_no1)->first();
-                }
-                $allowance->status = false;
+        if ($response['TransCode'] == 1) {
+            if ($response['Data']->RtnCode == 1) {
+                $allowance->invalid_flag = true;
+                $allowance->invalid_date = date('Y/m/d h:i:s');
                 $allowance->save();
-                return view('invoices.settings', compact('allowance'));
+                $success = $response['Data']->RtnMsg;
+                return redirect()->route('invoices.allowances');
             } else {
                 $error = $response['Data']->RtnMsg;
             }
@@ -863,13 +897,13 @@ class EcpayInvoiceController extends Controller
         if (isset($req['reason'])) {
             $reason = $req['reason'];
         } else {
-            $error = '理由不存在';
-            return redirect()->back()->with('error', $error);
+            $reason = '因折讓金額有誤, 取消折讓單';
         }
         $Invoice = new ECPayInvoice($this->env);
 
-        $invoice_no = $allowance->issue->invoice_no;
+        $invoice_no = $allowance->invoice_no;
         $allowance_no = $allowance->allowance_no;
+
         $postData = $Invoice->AllowanceInvalidByCollegiate($invoice_no, $allowance_no, $reason);
 
         $response=$Invoice->sendRequest($postData);
@@ -885,10 +919,11 @@ class EcpayInvoiceController extends Controller
         }
         if ($response['TransCode'] == 1) {
             if ($response['Data']->RtnCode == 1) {
-                $allowance->invalid = true;
+                $allowance->invalid_flag = true;
+                $allowance->invalid_date = date('Y/m/d h:i:s');
                 $allowance->save();
-                $success = '已成功取消線上折讓';
-                return redirect()->back()->with('success', $success);
+                $success = $response['Data']->RtnMsg;
+                return redirect()->route('invoices.allowances')->with('success', $success);
             } else {
                 $error = $response['Data']->RtnMsg;
             }
@@ -904,6 +939,7 @@ class EcpayInvoiceController extends Controller
         if (isset($req['invoice_no'])) {
             $invoice_no = $req['invoice_no'];
         }
+        $void_reason="發票資料有誤, 註銷重開";
         if (isset($req['void_reason'])) {
             $void_reason = $req['void_reason'];
         }
@@ -940,7 +976,7 @@ class EcpayInvoiceController extends Controller
                 $data = [
                     'invoice_no'    => $response['Data']->InvoiceNo,
                     'invoice_date'  => $response['Data']->InvoiceDate,
-                    'random_number' => $respomse['Data']->RandomNumber,
+                    'random_number' => $response['Data']->RandomNumber,
                 ];
                 if(isset($apply)) {
                     $issueData = EcpayIssueData::where('apply_id', $apply->id)->first();
@@ -964,8 +1000,14 @@ class EcpayInvoiceController extends Controller
 
         if (isset($req['id'])) {
             $issue = EcpayIssueData::find($req['id']);
+            if($issue->invalid_flag) {
+               return $this->GetInvalid($request);
+            }
             $invoice_no   = $issue->invoice_no;
             $invoice_date = $issue->invoice_date;
+        } else {
+            $error = '無效的參數';
+            return redirect()->back()->with('error', $error);
         }
 
         $Invoice = new ECPayInvoice($this->env);
@@ -987,12 +1029,14 @@ class EcpayInvoiceController extends Controller
             if ($response['Data']->RtnCode == 1) {
                 $Data = $response['Data'];
                 $data = [
+                            'issue_id'       => $issue->id,
                             'invoice_no'     => $invoice_no,
                             'invoice_date'   => $invoice_date,
                             'ecpay_return'   => json_encode($Data),
                             'rtn_code'       => $response['Data']->RtnCode ?? '',
                             'rtn_msg'        => $response['Data']->RtnMsg ?? '',
                             'log_id'         => $log->id ?? 0,
+                            'router'         => 'GetIssue',
                         ];
                 $issueInfo = EcpayIssueInfo::create($data);
                 $success = $response['Data']->RtnMsg;
@@ -1010,16 +1054,14 @@ class EcpayInvoiceController extends Controller
     {
         $req = $request->all();
         if (isset($req['BeginDate'])) {
-            $BeginDate = $req['BeginDate'];
+            $BeginDate = date('Y/m/d', strtotime($req['BeginDate']));
         }
         if (isset($req['EndDate'])) {
-            $BeginDate = $req['EndDate'];
+            $EndDate = date('Y/m/d', strtotime($req['EndDate']));
         }
-        $NumPerPage = 200;
         if (isset($req['NumPerPage'])) {
             $NumPerPage = $req['NumPerPage'];
         }
-        $ShowingPage = 2;
         if (isset($req['ShowingPage'])) {
             $ShowingPage = $req['ShowingPage'];
         }
@@ -1031,9 +1073,9 @@ class EcpayInvoiceController extends Controller
 
         $Invoice = new ECPayInvoice($this->env);
 
-        $postData = $Invoice->GetIssueList($BeginDate, $EndDate, $NumPerPage, $ShpwingPage, $DataType);
+        $postData = $Invoice->GetIssueList($BeginDate, $EndDate, $NumPerPage, $ShowingPage, $DataType);
 
-        $response=$Invoice->sendRequest($postData);
+        $response = $Invoice->sendRequest($postData);
         if (config('ecpay.ApiLog')) {
             $logData = [
                        'name'       => 'GetIssueList',
@@ -1045,12 +1087,13 @@ class EcpayInvoiceController extends Controller
             $log = EcpayApiLog::create($logData);
         }
         if ($response['TransCode'] == 1) {
-            if ($response['Data']->RtnCode == 1) {
-                $data = $response['Data']->InvoiceData;
-                $totalCount = $response['Data']->TotalCount;
-                $ShowingPage = $response['Data']->ShowingPage;
-                $invoiceData = json_decode($data);
+            if ($response['Data']['RtnCode'] == 1) {
+                $invoiceData = $response['Data']['InvoiceData'];
+                $totalCount = $response['Data']['TotalCount'];
+                $ShowingPage = $response['Data']['ShowingPage'];
+/*
                 foreach($invoiceData as $invoicedata) {
+
                     $data2 = [
                                 'invoice_no'    => $invoicedata['IIS_Number'],
                                 'invoice_date'  => $invoicedata['IIS_Create_Date'],
@@ -1061,7 +1104,8 @@ class EcpayInvoiceController extends Controller
                              ];
                     EcpayIssueInfo::create($data2);
                 }
-                return view('invoices.settings', compact('invoiceData'));
+*/
+                return view('invoices.invoices', compact('invoiceData'));
             } else {
                 $error = $response['Data']->RtnMsg;
             }
@@ -1069,16 +1113,20 @@ class EcpayInvoiceController extends Controller
             $error = $response['TransMsg'];
         }
         return redirect()->back()->with('error', $error);
-
     }
 
     public function GetAllowanceList(Request $request)
     {
          $req = $request->all();
-
+         if (isset($req['id'])) {
+             $allowanceData = EcpayAllowanceData::find($req['id']);
+         } else {
+             $error = '折讓資料編號參數不存在';
+             return redirect()->back()->with('error', $error);
+         }
          $Invoice = new ECPayInvoice($this->env);
 
-         $postData = $Invoice->GetAllowanceList($relateNumber, $invoice_no, $invoice_date);
+         $postData = $Invoice->GetAllowanceList($allowanceData);
 
          $response=$Invoice->sendRequest($postData);
          if (config('ecpay.ApiLog')) {
@@ -1093,6 +1141,18 @@ class EcpayInvoiceController extends Controller
          }
          if ($response['TransCode'] == 1) {
             if ($response['Data']->RtnCode == 1) {
+                $data = [
+                    'ecpay_return'     => json_encode($response['Data']->AllowanceInfo),
+                    'allowance_id'     => $allowanceData->id ?? 0,
+                    'rtn_code'         => $response['Data']->RtnCode ?? 0,
+                    'rtn_msg'          => $response['Data']->RtnMsg ?? '',
+                    'log_id'           => $log->id ?? 0,
+                    'router'           => 'GetAllowanceList',
+                ];
+                EcpayAllowanceInfo::create($data);
+                $allowanceInfo = EcpayAllowanceInfo::where('log_id', $log->id)->first();
+                $success = $response['Data']->RtnMsg;
+                return view('invoices.allowances.show', compact('allowanceInfo'))->with('success', $success);
             } else {
                 $error = $response['Data']->RtnMsg;
             }
@@ -1106,9 +1166,15 @@ class EcpayInvoiceController extends Controller
     {
          $req = $request->all();
 
-         $relateNumber = $req['relate_number'];
-         $invoice_no = $req['invoice_no'];
-         $invoice_date = $req['invoice_date'];
+         if (isset($req['id'])) {
+             $issue = EcpayIssueData::find($req['id']);
+             $relateNumber = $issue->details()->RelateNumber;
+             $invoice_no = $issue->invoice_no;
+             $invoice_date = $issue->invoice_date;
+         } else {
+             $error = '無效的參數';
+             return redirect()->route('invoices.issues')->with('error', $error);
+         }
 
          $Invoice = new ECPayInvoice($this->env);
 
@@ -1128,20 +1194,18 @@ class EcpayInvoiceController extends Controller
          if ($response['TransCode'] == 1) {
              if ($response['Data']->RtnCode == 1) {
                  $data = [
-                             'II_Invoice_No'         => $response['Data']->II_Invoice_No,
-                             'II_Date'               => $response['Data']->II_Date,
-                             'II_Upload_Status'      => $response['Data']->II_Upload_Status,
-                             'II_Upload_Date'        => $response['Data']->II_Upload_Date,
-                             'Reason'                => $response['Data']->Reason,
-                             'II_Seller_Identifier'  => $response['Data']->II_Seller_Identifier,
-                             'II_Buyer_Identifier'   => $response['Data']->II_Buyer_Identifier,
-                             'ChannelPartner'        => $response['Data']->ChannelPartner,
+                             'issue_id'              => $issue->id,
+                             'invoice_no'            => $invoice_no,
+                             'invoice_date'          => $invoice_date,
+                             'ecpay_return'          => json_encode($response['Data']),
                              'RtnCode'               => $response['Data']->RtnCode,
                              'RtnMsg'                => $response['Data']->RtnMsg,
                              'log_id'                => $log->id ?? 0,
+                             'router'                => 'GetInvalid',
                  ];
-                 $invalid = EcpayInvalid::create($data);
-                 return view('invoices.settings', compact('invalid'));
+                 $invalid = EcpayIssueInfo::create($data);
+                 $success = $response['Data']->RtnMsg;
+                 return view('invoices.issues.show2', compact('invalid'))->with('success', $success);
              } else {
                  $errror = $response['Data']->RtnMsg;
              }
@@ -1189,6 +1253,17 @@ class EcpayInvoiceController extends Controller
                              'log_id'               => $log->id,
                  ];
                  $AloowanceInvalid = EcpayAllowanceInvalid::create($data);
+                 $data = [
+                             'issue_id'              => $issue->id,
+                             'invoice_no'            => $invoice_no,
+                             'invoice_date'          => $invoice_date,
+                             'ecpay_return'          => json_encode($response['Data']),
+                             'RtnCode'               => $response['Data']->RtnCode,
+                             'RtnMsg'                => $response['Data']->RtnMsg,
+                             'log_id'                => $log->id ?? 0,
+                             'router'                => 'GetInvalid',
+                 ];
+
                  return view('invoices.settings', compact('AllowanceInvalid'));
              } else {
                  $error = $response['Data']->RtnMsg;
@@ -1300,21 +1375,38 @@ class EcpayInvoiceController extends Controller
         return redirect()->back()->with('error', $error);
     }
 
+    public function dlcallback(Request $request)
+    {
+        $req = $requesy->all();
+        $data = [
+                    'inv_mer_id'    => $req['inv_mer_id'] ?? '',
+                    'od_sob'        => $req['od_sob'] ?? '',
+                    'tsr'           => $req['tsr'] ?? '',
+                    'invoicedate'   => $req['invoicedate'] ?? '',
+                    'invoicetime'   => $req['invoicetime'] ?? '',
+                    'invoicenumber' => $req['invoicenumber'] ?? '',
+                    'invoicecode'   => $req['invoicecode'] ?? '',
+                    'inv_error'     => $req['inv_error'] ?? '',
+        ];
+        EcpayDelayIssueNotify::create($data);
+        return '1|200OK';
+    }
+
     public function callback(Request $request)
     {
         $req = $request->all();
         $data = [
-                    'inv_mer_id'       => $req['inv_mer_id'] ?? '',       // 特店編號
-                    'od_sob'           => $req['od_sob'] ?? '',           // 商家自訂訂單編號
-                    'tsr'              => $req['tsr'] ?? '',              // 交易單號
-                    'invoicedate'      => $req['invoicedate'] ?? '',      // 發票日期
-                    'invoicetime'      => $req['invoicetime'] ?? '',      // 發票時間
-                    'invoicenumber'    => $req['invoicenumber'] ?? '',    // 發票號碼
-                    'invoicecode'      => $req['invoicecode'] ?? '',      // 發票檢查碼
-                    'inv_error'        => $req['inv_error'] ?? -1,        // 錯誤代碼
-                ];
-        EcpayDelayIssueNotify::create($data);
-        return 0;
+                    'RtnCode'                  => $req['RtnCode'] ?? '',
+                    'RtnMsg'                   => $req['RtnMsg'] ?? '',
+                    'IA_Allow_No'              => $req['IA_Allow_No'] ?? '',
+                    'IA_Invoice_No'            => $req['IA_Invoice_No'] ?? '',
+                    'IA_Date'                  => $req['IA_Date'] ?? '',
+                    'IIS_Remain_Allowance_Amt' => $req['IIS_Remain_Allowance_Amt'] ?? '',
+                    'CheckMacValue'            => $req['CheckMacValue'] ?? '',
+        ];
+        EcpayAllowanceNotify::create($data);
+
+        return '1|200OK';
     }
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 use App\Models\EApply;
 use App\Models\ECommunity;
 use App\Models\EProject;
@@ -13,7 +14,13 @@ class ProcessController extends Controller
 {
     public function index()
     {
-        $processes = Process::get();
+        try {
+              $processes = Process::get();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return view('processes.index', compact('processes'));
     }
@@ -36,16 +43,27 @@ class ProcessController extends Controller
     public function update(Request $request, Process $process)
     {
         $data = $request->all();
-
-        $process->update($data);
+        try {
+              $process->update($data);
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return redirect()->route('processes.index');
     }
 
     public function destroy(Process $process)
     {
-       $process->status = false;
-       $process->save();
+       try {
+             $process->status = false;
+             $process->save();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return redirect()->route('processes.index');
     }

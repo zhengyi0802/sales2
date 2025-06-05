@@ -11,16 +11,23 @@ use App\Models\Sales;
 use App\Models\ShippingProcess;
 use App\Enums\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class CsvController extends Controller
 {
     //
     public function index()
     {
-        $sales = Sales::where('status', true)->get();
-        $productModels = ProductModel::where('status', true)->get();
-        $extras = ProductModel::where('extra', true)->where('status', true)->get();
-        $projects = Project::where('status', true)->get();
+        try {
+              $sales = Sales::where('status', true)->get();
+              $productModels = ProductModel::where('status', true)->get();
+              $extras = ProductModel::where('extra', true)->where('status', true)->get();
+              $projects = Project::where('status', true)->get();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return view('csvs.index')
                ->with(compact('projects'))

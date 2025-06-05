@@ -1,6 +1,8 @@
 <?php
 
     return [
+        'header'                => '電子統一發票管理',
+        'title'                 => '電子統一發票管理',
         'MerchantID'            => '特店編號',
         'RelateNumber'          => '特店自訂編號',
         'ChannelPartner'        => '通路商編號',
@@ -89,4 +91,18 @@
         'QRCode_Right'          => '顯示電子發票BARCODE右邊用',
         'InvoicePrint'          => '發票列印',
         'InvoiceNotify'         => '發票通知',
+        'GetInvalid'            => '查詢作廢發票明細',
+        'EditDelayIssue'        => '編輯延遲開立發票',
+        'Invalid'               => '作廢發票',
+        'CancelDelayIssue'      => '取消延遲開立發票',
+        'TriggerIssue'          => '觸發開立發票',
+        'VoidWithReissue'       => '註銷重開',
+        'allowance'             => '折讓資訊',
+        'Allowance'             => '一般開立折讓(需配合紙本開立)',
+        'AllowanceAmount'       => '折讓單總金額',
+        'AllowanceReason'       => '折讓原因',
+        'NotifyMail'            => '通知電子信箱',
+        'NotifyPhone'           => '通知手機號碼',
+        'AllowanceByCollegiate' => '線上開立折讓（通知開立）',
+        'AllowanceType'         => '開立折讓方式',
     ];

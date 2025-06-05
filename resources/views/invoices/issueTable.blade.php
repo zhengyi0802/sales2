@@ -22,17 +22,17 @@ $config = [
       <td>{{ $issue->id }}</td>
       <td>{{ $issue->invoice_no }}</td>
       <td>{{ $issue->invoice_date }}</td>
-      <td>{{ ($issue->apply_id > 0) ? '門鎖申請'.sprintf('%06d', $issue->apply_id) : (($issue->promotion->proj_id == 1) ?'驚天一夏' : '感恩母親').sprintf('%06d', $issue->prom_id) }}</td>
+      <td>{{ $issue->recordno() }}</td>
       <td>{{ $issue->random_number }}</td>
       <td>{{ $issue->invalid_flag ? __('invoices.invalid') : __('invoices.valid') }}</td>
       <td>
-        <x-adminlte-button theme="primary" title="{{ __('tables.show') }}" icon="fa fa-lg fa-fw fa-eye"
+        <x-adminlte-button theme="secondary" title="{{ __('issues.GetIssue') }}" icon="fa fa-lg fa-fw fa-filter"
           onClick="window.location='{{ route('invoices.GetIssue', ['id' => $issue->id])  }}'" >
         </x-adminlte-button>
-        <x-adminlte-button theme="primary" title="{{ __('tables.edit') }}" icon="fa fa-lg fa-fw fa-pen"
+        <x-adminlte-button theme="primary" title="{{ __('issues.VoidWithReissue') }}" icon="fa fa-lg fa-fw fa-pen"
           onClick="window.location='{{ route('invoices.edit_issue', ['id' => $issue->id])  }}'" >
         </x-adminlte-button>
-        <x-adminlte-button theme="primary" title="{{ __('tables.delete') }}" icon="fa fa-lg fa-fw fa-trash"
+        <x-adminlte-button theme="danger" title="{{ __('issues.Invalid') }}" icon="fa fa-lg fa-fw fa-trash"
           onClick="window.location='{{ route('invoices.Invalid', ['id' => $issue->id])  }}'" >
         </x-adminlte-button>
       </td>

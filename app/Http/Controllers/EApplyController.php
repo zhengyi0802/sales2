@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 use App\Models\EApply;
 use App\Models\ECommunity;
 use App\Models\EProject;
@@ -52,15 +53,22 @@ class EApplyController extends Controller
 
     public function edit(EApply $eapply)
     {
-        $price = $eapply->project->price;
-        $total = $price * $eapply->amount;
-        $prepay = $eapply->project->prepaid * $eapply->amount;
-        $eprojects = EProject::where('status', true)->get();
-        $results = EcpayResult::where('trade_no', $eapply->trade_no)->first();
-        $gifts = array();
-        if ($eapply->gifts != null) {
-            $gifts = json_decode($eapply->gifts);
+        try {
+              $price = $eapply->project->price;
+              $total = $price * $eapply->amount;
+              $prepay = $eapply->project->prepaid * $eapply->amount;
+              $eprojects = EProject::where('status', true)->get();
+              $results = EcpayResult::where('trade_no', $eapply->trade_no)->first();
+              $gifts = array();
+              if ($eapply->gifts != null) {
+                  $gifts = json_decode($eapply->gifts);
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
+
         return view('eapplies.edit', compact('eapply'))
                ->with(compact('results'))
                ->with(compact('eprojects'))
@@ -72,27 +80,33 @@ class EApplyController extends Controller
     public function update(Request $request, EApply $eapply)
     {
         $data = $request->all();
-        $price = $eapply->project->price;
-        $total = $price * $eapply->amount;
-        if (isset($data['paid'])) {
-            $data['remain'] = $total-$data['paid'];
-            if ($data['remain'] < 0) {
-                $data['remain'] = 0;
-            }
-        } else {
-            $data['remain'] = 0;
-        }
-        if (($data['remain'] == 0) && ($eapply->paid > 0)) {
-           if (isset($data['project_id']) && $data['project_id'] != $eapply->project_id) {
-               $eproject = EProject::find($data['project_id']);
-               $price = $eproject->price;
+        try {
+               $price = $eapply->project->price;
                $total = $price * $eapply->amount;
-               $data['remain'] = $total-$eapply->paid;
+               if (isset($data['paid'])) {
+                   $data['remain'] = $total-$data['paid'];
+                   if ($data['remain'] < 0) {
+                       $data['remain'] = 0;
+                   }
+               } else {
+                   $data['remain'] = 0;
+               }
+               if (($data['remain'] == 0) && ($eapply->paid > 0)) {
+                   if (isset($data['project_id']) && $data['project_id'] != $eapply->project_id) {
+                        $eproject = EProject::find($data['project_id']);
+                        $price = $eproject->price;
+                        $total = $price * $eapply->amount;
+                        $data['remain'] = $total-$eapply->paid;
+                        $eapply->update($data);
+                        return redirect()->route('eapplies.edit', compact('eapply'));
+                   }
+               }
                $eapply->update($data);
-               return redirect()->route('eapplies.edit', compact('eapply'));
-           }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
-        $eapply->update($data);
 
         return redirect()->route('eapplies.edit', compact('eapply'));
     }
@@ -103,12 +117,11 @@ class EApplyController extends Controller
         if ($ids == null) {
             return redirect()->route('eapplies.index');
         }
-        $arrs = array();
         foreach($ids as $id) {
             $eapply = EApply::find($id);
-            $data = $this->transfer($eapply);
-            $err = $this->transfer($data);
-            if ($err) {
+            $data = $this->createFormArray($eapply);
+            $response = $this->transfer($data);
+            if ($response) {
                 $eapply->flow = 10;
                 $eapply->save();
             }
@@ -123,8 +136,8 @@ class EApplyController extends Controller
 
         $eapply = EApply::find($id);
         $data = $this->createFormArray($eapply);
-        $err = $this->transfer($data);
-        if ($err) {
+        $response = $this->transfer($data);
+        if ($response) {
             $eapply->flow = 10;
             $eapply->save();
         }
@@ -189,12 +202,24 @@ class EApplyController extends Controller
 
     public function destroy(EApply $eapply)
     {
-        if ($eapply->status == false) {
-            $eapply->delete();
-        } else {
-            $eapply->status = false;
-            $eapply->save();
+        try {
+              if ($eapply->status == false) {
+                  if ($eapply->EcpayInfo != null) {
+                      $eapply->EcpayInfo->delete();
+                  }
+                  if ($eapply->EcpayResult == null) {
+                      $eapply->delete();
+                  }
+              } else {
+                  $eapply->status = false;
+                  $eapply->save();
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
+
         return redirect()->route('eapplies.index');
     }
 

@@ -7,6 +7,7 @@ use App\Models\ProductModel;
 use App\Models\User;
 use App\Enums\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class ProjectController extends Controller
 {
@@ -18,11 +19,18 @@ class ProjectController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if ($user->role == UserRole::Administrator) {
-            $projects = Project::get();
-        } else {
-            $projects = Project::where('status', true)->get();
+        try {
+              if ($user->role == UserRole::Administrator) {
+                  $projects = Project::get();
+              } else {
+                  $projects = Project::where('status', true)->get();
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
+
         return view('projects.index', compact('projects'));
 
     }
@@ -34,7 +42,13 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $extras = ProductModel::where('extra', true)->where('status', true)->get();
+        try {
+              $extras = ProductModel::where('extra', true)->where('status', true)->get();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return view('projects.create')
                ->with(compact('extras'));
@@ -48,15 +62,21 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-       $creator = auth()->user();
-       $data = $request->all();
-       /*
-       $extras = implode(',', $data['extras']);
-       $data['extras'] = json_encode($extras);
-       */
-       $data['created_by'] = $creator->id;
-       $data['status'] = true;
-       Project::create($data);
+        $creator = auth()->user();
+        $data = $request->all();
+        /*
+        $extras = implode(',', $data['extras']);
+        $data['extras'] = json_encode($extras);
+        */
+        try {
+             $data['created_by'] = $creator->id;
+             $data['status'] = true;
+             Project::create($data);
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return redirect()->route('projects.index');
     }
@@ -80,7 +100,13 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        $extras = ProductModel::where('extra', true)->where('status', true)->get();
+        try {
+              $extras = ProductModel::where('extra', true)->where('status', true)->get();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return view('projects.edit', compact('project'))
                ->with(compact('extras'));
@@ -100,12 +126,18 @@ class ProjectController extends Controller
         $extras = implode(',', $data['extras']);
         $data['extras'] = json_encode($extras);
         */
-        $creator = auth()->user();
-        $data['created_by'] = $creator->id;
-        if (!isset($data['salesing'])) {
-            $data['salesing'] = false;
+        try {
+              $creator = auth()->user();
+              $data['created_by'] = $creator->id;
+              if (!isset($data['salesing'])) {
+                  $data['salesing'] = false;
+              }
+              $project->update($data);
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
-        $project->update($data);
 
         return redirect()->route('projects.index');
     }
@@ -118,8 +150,18 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        $project->status = false;
-        $project->save();
+        try {
+              if ($project->status) {
+                  $project->status = false;
+                  $project->save();
+              } else if (auth()->user()->role <= UserRole::Manager) {
+                  $project->delete();
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return redirect()->route('projects.index');
     }

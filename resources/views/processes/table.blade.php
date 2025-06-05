@@ -1,6 +1,7 @@
 @php
 $heads = [
     ['label' =>__('processes.id'), 'width' => 10],
+    __('processes.caseName'),
     __('processes.apply_id'),
     __('processes.amount_id'),
     __('processes.name'),
@@ -12,7 +13,7 @@ $heads = [
 ];
 $config = [
     'order' => [[0, 'desc']],
-    'columns' => [ null, null, null, null, null, null, null, null, ['orderable' => false]],
+    'columns' => [ null, null, null, null, null, null, null, null, null, ['orderable' => false]],
     'language' => [ 'url' => __('tables.language_url') ],
 ];
 @endphp
@@ -22,7 +23,8 @@ $config = [
   @foreach($processes as $process)
     <tr class="{{ $process->status ? null : "bg-gray"}}">
       <td>{{ $process->id }}</td>
-      <td>{{ $process->apply_id }}</td>
+      <td>{{ $process->case_name }}</td>
+      <td>{{ ($process->apply_id > 0) ? $process->apply_id : $process->prom_id }}</td>
       <td>{{ $process->amount_id }}</td>
       <td>{{ $process->name ?? '' }}</td>
       @if (auth()->user()->role == App\Enums\UserRole::ShareHolder)

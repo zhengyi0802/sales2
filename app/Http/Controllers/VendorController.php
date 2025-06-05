@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vendor;
 use Illuminate\Http\Request;
+use Illuminate\Database\QuertException;
 use App\Enums\UserRole;
 
 class VendorController extends Controller
@@ -18,10 +19,16 @@ class VendorController extends Controller
         //
         $user = auth()->user();
 
-        if ($user->role == UserRole::Administrator) {
-            $vendors = Vendor::get();
-        } else {
-            $vendors = Vendor::where('status', true)->get();
+        try {
+              if ($user->role == UserRole::Administrator) {
+                  $vendors = Vendor::get();
+              } else {
+                  $vendors = Vendor::where('status', true)->get();
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
 
         return view('vendors.index', compact('vendors'));
@@ -29,7 +36,13 @@ class VendorController extends Controller
 
     public function query()
     {
-        $vendors = Vendor::select('id', 'company', 'country')->where('status', true)->get();
+        try {
+              $vendors = Vendor::select('id', 'company', 'country')->where('status', true)->get();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return response($vendors, 200)->header('Content-Type', 'text/json');
     }
@@ -54,10 +67,16 @@ class VendorController extends Controller
     {
         $data = $request->all();
         $creator = auth()->user();
-        $data['created_by'] = $creator->id;
-        $vendor = Vendor::where('company', $data['company'])->first();
-        if ($vendor == null) {
-            Vendor::create($data);
+        try {
+              $data['created_by'] = $creator->id;
+              $vendor = Vendor::where('company', $data['company'])->first();
+              if ($vendor == null) {
+                  Vendor::create($data);
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
 
         return redirect()->route('vendors.index');
@@ -96,9 +115,15 @@ class VendorController extends Controller
     {
         $data = $request->all();
         $creator = auth()->user();
-        if ($creator->role <= UserRole::Manager) {
-            $data['created_by'] = $creator->id;
-            $vendor->update($data);
+        try {
+              if ($creator->role <= UserRole::Manager) {
+                  $data['created_by'] = $creator->id;
+                  $vendor->update($data);
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
 
         return redirect()->route('vendors.index');
@@ -112,8 +137,18 @@ class VendorController extends Controller
      */
     public function destroy(Vendor $vendor)
     {
-        $vendor->status = false;
-        $vendor->save();
+        try {
+              if ($vendor->status) {
+                  $vendor->status = false;
+                  $vendor->save();
+              } else if (auth()->user()->role <= UserRole::Manager) {
+                  $vendor->delete();
+              }
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
 
         return redirect()->route('vendors.index');
     }
