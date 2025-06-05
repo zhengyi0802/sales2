@@ -24,10 +24,10 @@ $config = [
 <x-adminlte-datatable id="promotion2-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" class="table-sm"
    striped hoverable bordered with-buttons>
   @foreach($promotions as $promotion2)
-    @if ($eapply->ecpayResult != null)
-    <tr class="{{ $eapply->status ? 'bg-green' : 'bg-gray' }}">
+    @if ($promotion2->ecpayResult != null)
+    <tr class="{{ $promotion2->status ? 'bg-green' : 'bg-gray' }}">
     @else
-    <tr class="{{ $eapply->status ? null : 'bg-gray' }}">
+    <tr class="{{ $promotion2->status ? null : 'bg-gray' }}">
     @endif
       <td>{{ $promotion2->id }}</td>
       <td>{{ $promotion2->reseller->name }}</td>
