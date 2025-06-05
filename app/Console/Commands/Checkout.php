@@ -98,7 +98,7 @@ class Checkout extends Command
                       if ($apply['處理狀態'] == '已收單') {
                           $data['flow'] = 11;
                       } else if ($apply['處理狀態'] == '已取消') {
-                          $data['flow'] = 7;
+                          $data['flow'] = 15;
                       } else if ($apply['處理狀態'] == '待安排') {
                           $data['flow'] = 12;
                       } else if ($apply['處理狀態'] == '已交付') {
@@ -106,7 +106,7 @@ class Checkout extends Command
                       } else if ($apply['處理狀態'] == '已完成') {
                           $data['flow'] = 14;
                       } else {
-                          dd($apply['處理狀態']);
+                          $data['flow'] = 10;
                       }
 
                       if (true) {

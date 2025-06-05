@@ -100,7 +100,7 @@ class Checkout2 extends Command
                   if ($prom['處理狀態'] == '已收單') {
                       $flow = 11;
                   } else if ($prom['處理狀態'] == '已取消') {
-                      $flow = 7;
+                      $flow = 15;
                   } else if ($prom['處理狀態'] == '待安排') {
                       $flow = 12;
                   } else if ($prom['處理狀態'] == '已交付') {

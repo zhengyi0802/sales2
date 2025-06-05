@@ -329,7 +329,7 @@ class Promotion2Controller extends Controller
     {
         $curl = curl_init();
 
-        $url = config('gas.export_project_url').'?orderid='. $order_id;
+        $url = config('gas.export_project_url').'?orderid='. $orderid;
 
         curl_setopt_array($curl, array(
                CURLOPT_URL => $url,
