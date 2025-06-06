@@ -114,6 +114,16 @@
                 </div>
            </div>
            @endif
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('saleses.upper') }}  : *({{ __('saleses.creator') }} : {{ $sales->creator->name }} )</strong>
+                    <select id="upper_id" name="upper_id" >
+                      @foreach ($uppers as $upper)
+                          <option value="{{ $upper->id }}" {{ ($sales->upper_id == $upper->id) ? "selected" : null }} >{{ $upper->name }}</option>
+                      @endforeach
+                    </select>
+                </div>
+           </div>
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
                   <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>

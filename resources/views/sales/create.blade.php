@@ -104,6 +104,17 @@
                 <label for="reseller">{{ __('tables.yes') }}</label>
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group col-md-4">
+                <strong>{{ __('saleses.upper') }}  :</strong>
+                <select id="upper_id" name="upper_id" >
+                      <option value="0" >--------</option>
+                  @foreach ($uppers as $upper)
+                      <option value="{{ $upper->id }}">{{ $upper->name }}</option>
+                  @endforeach
+                </select>
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
         </div>

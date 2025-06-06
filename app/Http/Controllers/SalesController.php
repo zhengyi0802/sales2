@@ -41,7 +41,14 @@ class SalesController extends Controller
      */
     public function create()
     {
-        return view('sales.create');
+        $uppers = User::where('role', UserRole::Reseller)
+                      ->orWhere('role', UserRole::Sales)
+                      ->orWhere('id', 104)
+                      ->orWhere('id', 110)
+                      ->where('status', true)
+                      ->get();
+
+        return view('sales.create', compact('uppers'));
     }
 
     /**
@@ -107,7 +114,13 @@ class SalesController extends Controller
      */
     public function edit(Sales $sales)
     {
-        return view('sales.edit', compact('sales'));
+        $uppers = User::where('role', UserRole::Reseller)
+                      ->orWhere('role', UserRole::Sales)
+                      ->orWhere('id', 104)
+                      ->orWhere('id', 110)
+                      ->where('status', true)
+                      ->get();
+        return view('sales.edit', compact('sales'))->with(compact('uppers'));
     }
 
     /**

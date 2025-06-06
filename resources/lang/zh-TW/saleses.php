@@ -28,5 +28,6 @@
            'promotion1_http' => 'https://sales.mdo.tw/promotion1?reseller_id=',
            'promotion2_link' => '感恩母親節回饋鏈接',
            'promotion2_http' => 'https://sales.mdo.tw/promotion2?reseller_id=',
+           'upper'           => '業務上級',
     ];
 

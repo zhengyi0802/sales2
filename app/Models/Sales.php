@@ -21,6 +21,7 @@ class Sales extends Model
         'address',
         'status',
         'user_id',
+        'upper_id',
         'created_by',
     ];
 
@@ -30,6 +31,10 @@ class Sales extends Model
 
     function user() {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    function upper() {
+        return $this->belongsTo(User::class, 'upper_id');
     }
 
 }

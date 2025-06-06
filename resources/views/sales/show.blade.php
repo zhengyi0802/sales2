@@ -73,6 +73,9 @@
         <x-adminlte-card title="{{ __('saleses.promotion2_link') }}" theme="info" icon="fas fa-lg">
                 {{ __('saleses.promotion2_http').$sales->id }}
         </x-adminlte>
+        <x-adminlte-card title="{{ __('saleses.creator') }}" theme="info" icon="fas fa-lg">
+                {{ $sales->creator->name }}
+        </x-adminlte>
      </div>
    </div>
 @endsection
