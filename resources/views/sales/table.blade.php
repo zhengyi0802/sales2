@@ -5,12 +5,13 @@ $heads = [
     __('saleses.company'),
     __('saleses.phone'),
     __('saleses.identity'),
+    __('saleses.upper'),
     __('saleses.creator'),
     ['label' => __('tables.action'), 'no-export' => true, 'width' => 10],
 ];
 $config = [
     'order' => [[0, 'desc']],
-    'columns' => [null, null, null, null, null, null, ['orderable' => false]],
+    'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
     'language' => [ 'url' => __('tables.language_url') ],
 ];
 @endphp
@@ -23,7 +24,8 @@ $config = [
       <td>{{ $sales->company }}</td>
       <td>{{ str_split($sales->phone, 5)[0]."****" }}</td>
       <td>{{ ($sales->user->role == App\Enums\UserRole::Sales) ? __('saleses.id_sales') : __('saleses.id_reseller') }}
-      <td>{{ $sales->creator->name }}</td>
+      <td>{{ $sales->upper->name ?? '' }}</td>
+      <td>{{ $sales->creator->name ?? '' }}</td>
       <td><nobr>
           <form name="sales-delete-form" action="{{ route('sales.destroy', $sales->id); }}" method="POST">
             @csrf
