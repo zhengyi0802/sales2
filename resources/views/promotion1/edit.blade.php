@@ -214,5 +214,11 @@
               <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
           </div>
      </form>
+     @if ($promotion1->flow >= 10) {
+         <div class="block">
+            <p><strong>{{ __('eapplies.gastable') }}</strong></p>
+            @include('promotion1.table2')
+         </div>
+     @endif
   </div>
 @endsection

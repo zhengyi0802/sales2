@@ -39,9 +39,18 @@
       margin-left : 30px;
   }
 </style>
+  @if ($process->apply_id > 0)
   <div class="card col-md-2">
       <a class="btn btn-success" href="{{ route('eapplies.edit', $process->eapply->id) }}">{{ __('processes.eapply_button') }}</a>
   </div>
+  @elseif($process->prom_id > 0 && $process->promotion->proj_id == 1)
+  <div class="card col-md-2">
+      <a class="btn btn-success" href="{{ route('promotion1.edit', $process->prom_id) }}">{{ __('processes.promotion1_button') }}</a>
+  </div>
+  @elseif($process->prom_id > 0 && $process->promotion->proj_id == 2)
+      <a class="btn btn-success" href="{{ route('promotion2.edit', $process->prom_id) }}">{{ __('processes.promotion2_button') }}</a>
+  @else
+  @endif
 
   <div class="content">
      <form id="process-form" action="{{ route('processes.update', $process->id) }}" method="POST">

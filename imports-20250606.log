@@ -1,0 +1,1969 @@
+GET 參數 ?orderid=91000004
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(1) "4"
+  ["create_date"]=>
+  string(24) "2025-05-04T16:00:00.000Z"
+  ["name"]=>
+  string(9) "黃培峰"
+  ["phone"]=>
+  string(10) "0913888236"
+  ["address"]=>
+  string(42) "高雄市鳳山區文豐路89號4樓之五"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(9) "業務用"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000020
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(2) "20"
+  ["create_date"]=>
+  string(24) "2025-05-05T16:00:00.000Z"
+  ["name"]=>
+  string(24) "唯統科技有限公司"
+  ["phone"]=>
+  string(10) "0913833396"
+  ["address"]=>
+  string(32) "高雄市前鎮區明道路63號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(79) "業務配套
+5/5Email: service@wetom.com.tw   綠界編號: HP2025050609174720"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000021
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(2) "21"
+  ["create_date"]=>
+  string(24) "2025-05-05T16:00:00.000Z"
+  ["name"]=>
+  string(9) "曾玉娟"
+  ["phone"]=>
+  string(10) "0931559053"
+  ["address"]=>
+  string(39) "高雄市新興區復興一路78號7樓"
+  ["reseller"]=>
+  string(9) "黃江龍"
+  ["memo"]=>
+  string(126) "要先付6000元訂金
+5/9未接(S)
+5/14去電未接
+5/15 10:14未接
+黃江龍提供綠界訂單編號 HP2025050706233544"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000022
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(2) "22"
+  ["create_date"]=>
+  string(24) "2025-05-05T16:00:00.000Z"
+  ["name"]=>
+  string(9) "許瑀潔"
+  ["phone"]=>
+  string(10) "0982395316"
+  ["address"]=>
+  string(33) "台南市永康區龍國街405號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(51) "鎖送到台南市永康區龍國街405號許瑀潔"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000029
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(2) "29"
+  ["create_date"]=>
+  string(24) "2025-05-05T16:00:00.000Z"
+  ["name"]=>
+  string(34) "侯明昌-唯統科技有限公司"
+  ["phone"]=>
+  string(10) "0989983088"
+  ["address"]=>
+  string(33) "高雄市左營區重立路495號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(24) "驚天一夏業務套組"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(2) "29"
+  ["create_date"]=>
+  string(24) "2025-05-05T16:00:00.000Z"
+  ["name"]=>
+  string(34) "侯明昌-唯統科技有限公司"
+  ["phone"]=>
+  string(10) "0989983088"
+  ["address"]=>
+  string(33) "高雄市左營區重立路495號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(24) "驚天一夏業務套組"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(15)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(2) "29"
+  ["create_date"]=>
+  string(24) "2025-05-05T16:00:00.000Z"
+  ["name"]=>
+  string(34) "侯明昌-唯統科技有限公司"
+  ["phone"]=>
+  string(10) "0989983088"
+  ["address"]=>
+  string(33) "高雄市左營區重立路495號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(24) "驚天一夏業務套組"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(15)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000045
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(2) "45"
+  ["create_date"]=>
+  string(24) "2025-05-06T16:00:00.000Z"
+  ["name"]=>
+  string(9) "周培基"
+  ["phone"]=>
+  string(10) "0932223845"
+  ["address"]=>
+  string(45) "新北市板橋區民生路二段232號8樓-6"
+  ["reseller"]=>
+  string(9) "黃江龍"
+  ["memo"]=>
+  string(0) ""
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000046
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(2) "46"
+  ["create_date"]=>
+  string(24) "2025-05-06T16:00:00.000Z"
+  ["name"]=>
+  string(9) "曾玉娟"
+  ["phone"]=>
+  string(10) "0931559053"
+  ["address"]=>
+  string(39) "高雄市新興區復興一路78號7樓"
+  ["reseller"]=>
+  string(9) "黃江龍"
+  ["memo"]=>
+  string(16) "已匯款6000元"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000049
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(2) "49"
+  ["create_date"]=>
+  string(24) "2025-05-06T16:00:00.000Z"
+  ["name"]=>
+  string(9) "高敏裕"
+  ["phone"]=>
+  string(10) "0923119909"
+  ["address"]=>
+  string(33) "台中市北區大義街二十號"
+  ["reseller"]=>
+  string(9) "黃江龍"
+  ["memo"]=>
+  string(0) ""
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000050
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(2) "50"
+  ["create_date"]=>
+  string(24) "2025-05-07T16:00:00.000Z"
+  ["name"]=>
+  string(9) "張雅惠"
+  ["phone"]=>
+  string(10) "0905803589"
+  ["address"]=>
+  string(35) "新竹市東區東新路136號14樓"
+  ["reseller"]=>
+  string(6) "四哥"
+  ["memo"]=>
+  string(86) "好禮七選二：電動折疊腳踏車2台
+售價：21250元
+5/9聯繫 貨到付款"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000055
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(2) "55"
+  ["create_date"]=>
+  string(24) "2025-05-07T16:00:00.000Z"
+  ["name"]=>
+  string(30) "馨富國際貿易有限公司"
+  ["phone"]=>
+  string(10) "0985245999"
+  ["address"]=>
+  string(33) "高雄市左營區榮德街237號"
+  ["reseller"]=>
+  string(9) "黃江龍"
+  ["memo"]=>
+  string(39) "5/12待出貨
+綠界HP2025050808221855"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000060
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(2) "60"
+  ["create_date"]=>
+  string(24) "2025-05-09T16:00:00.000Z"
+  ["name"]=>
+  string(9) "柯惠娟"
+  ["phone"]=>
+  string(10) "0938663939"
+  ["address"]=>
+  string(40) "台南市新營區南昌街39號4樓之7"
+  ["reseller"]=>
+  string(36) "禾昌國際事業股份有限公司"
+  ["memo"]=>
+  string(41) "出貨時請通知,因無管理員,謝謝"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000079
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(2) "79"
+  ["create_date"]=>
+  string(24) "2025-05-12T16:00:00.000Z"
+  ["name"]=>
+  string(9) "吳青蓉"
+  ["phone"]=>
+  string(10) "0925350738"
+  ["address"]=>
+  string(41) "新竹縣湖口鄉成功路513巷9號2樓"
+  ["reseller"]=>
+  string(9) "林明山"
+  ["memo"]=>
+  string(71) "1.已收訂金6000元,5/12自取循環扇及電動腳踏車
+5/14錢收"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000080
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(2) "80"
+  ["create_date"]=>
+  string(24) "2025-05-12T16:00:00.000Z"
+  ["name"]=>
+  string(9) "林明山"
+  ["phone"]=>
+  string(10) "0925350738"
+  ["address"]=>
+  string(41) "新竹縣湖口鄉成功路513巷9號2樓"
+  ["reseller"]=>
+  string(9) "林明山"
+  ["memo"]=>
+  string(82) "1.已收現訂金6000元,5/12 自取循環扇
+5/14去電詢問，帳款交給誰?"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000081
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(2) "81"
+  ["create_date"]=>
+  string(24) "2025-05-12T16:00:00.000Z"
+  ["name"]=>
+  string(52) "詹煌勝/佳昇工程管理顧問股份有限公司"
+  ["phone"]=>
+  string(10) "0988396456"
+  ["address"]=>
+  string(50) "新竹縣竹北市光明六路東一段280號13樓"
+  ["reseller"]=>
+  string(9) "涂麗蘭"
+  ["memo"]=>
+  string(82) "七選二，要兩台電動折疊腳踏車
+共兩筆訂單已先匯款30000元整"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000090
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(2) "90"
+  ["create_date"]=>
+  string(24) "2025-05-13T16:00:00.000Z"
+  ["name"]=>
+  string(9) "殷烽展"
+  ["phone"]=>
+  string(10) "0906769331"
+  ["address"]=>
+  string(41) "高雄市左營區左營大路361巷14號"
+  ["reseller"]=>
+  string(9) "殷烽展"
+  ["memo"]=>
+  string(74) "5/14跟客戶聯繫，在今天5/14安裝完成，全額請跟楊紳士收"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000091
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(2) "91"
+  ["create_date"]=>
+  string(24) "2025-05-13T16:00:00.000Z"
+  ["name"]=>
+  string(9) "楊智傑"
+  ["phone"]=>
+  string(10) "0931288921"
+  ["address"]=>
+  string(35) "新竹縣寶山鄉寶新一街21號"
+  ["reseller"]=>
+  string(15) "禾昌電銷部"
+  ["memo"]=>
+  string(62) "5/15 HP2025051408393091    6000元       Arslan.Yang@gmail.com"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000094
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(2) "94"
+  ["create_date"]=>
+  string(24) "2025-05-14T16:00:00.000Z"
+  ["name"]=>
+  string(9) "張慧美"
+  ["phone"]=>
+  string(10) "0929067981"
+  ["address"]=>
+  string(35) "高雄市林園區王公路593-2號"
+  ["reseller"]=>
+  string(15) "高雄旗艦店"
+  ["memo"]=>
+  string(29) "HP2025051510412894 付款6000"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000122
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "122"
+  ["create_date"]=>
+  string(24) "2025-05-17T16:00:00.000Z"
+  ["name"]=>
+  string(9) "劉碧芳"
+  ["phone"]=>
+  string(10) "0933990670"
+  ["address"]=>
+  string(37) "新北市淡水區沙崙路355號3樓"
+  ["reseller"]=>
+  string(36) "禾昌國際事業股份有限公司"
+  ["memo"]=>
+  string(0) ""
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000127
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "127"
+  ["create_date"]=>
+  string(24) "2025-05-19T16:00:00.000Z"
+  ["name"]=>
+  string(9) "周培基"
+  ["phone"]=>
+  string(10) "0932223845"
+  ["address"]=>
+  string(45) "新北市板橋區民生路二段232號8樓-6"
+  ["reseller"]=>
+  string(9) "黃江龍"
+  ["memo"]=>
+  string(91) "5/7付訂金 6000元，末五碼:00051
+5/19付款 16250元 合計 22250元 末五碼:49266"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000129
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "129"
+  ["create_date"]=>
+  string(24) "2025-05-19T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳姿伊"
+  ["phone"]=>
+  string(10) "0931667226"
+  ["address"]=>
+  string(40) "高雄市楠梓區寶溪北街25巷13號"
+  ["reseller"]=>
+  string(9) "殷烽展"
+  ["memo"]=>
+  string(147) "5/22是訂單126升級，已匯款6000元
+5/20末五碼:6304，先安裝門鎖後裝冷氣
+請先安裝門鎖，安裝時收款。請協助告知"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "129"
+  ["create_date"]=>
+  string(24) "2025-05-19T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳姿伊"
+  ["phone"]=>
+  string(10) "0931667226"
+  ["address"]=>
+  string(40) "高雄市楠梓區寶溪北街25巷13號"
+  ["reseller"]=>
+  string(9) "殷烽展"
+  ["memo"]=>
+  string(147) "5/22是訂單126升級，已匯款6000元
+5/20末五碼:6304，先安裝門鎖後裝冷氣
+請先安裝門鎖，安裝時收款。請協助告知"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(15)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "129"
+  ["create_date"]=>
+  string(24) "2025-05-19T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳姿伊"
+  ["phone"]=>
+  string(10) "0931667226"
+  ["address"]=>
+  string(40) "高雄市楠梓區寶溪北街25巷13號"
+  ["reseller"]=>
+  string(9) "殷烽展"
+  ["memo"]=>
+  string(147) "5/22是訂單126升級，已匯款6000元
+5/20末五碼:6304，先安裝門鎖後裝冷氣
+請先安裝門鎖，安裝時收款。請協助告知"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(15)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "129"
+  ["create_date"]=>
+  string(24) "2025-05-19T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳姿伊"
+  ["phone"]=>
+  string(10) "0931667226"
+  ["address"]=>
+  string(40) "高雄市楠梓區寶溪北街25巷13號"
+  ["reseller"]=>
+  string(9) "殷烽展"
+  ["memo"]=>
+  string(147) "5/22是訂單126升級，已匯款6000元
+5/20末五碼:6304，先安裝門鎖後裝冷氣
+請先安裝門鎖，安裝時收款。請協助告知"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(15)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000132
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "132"
+  ["create_date"]=>
+  string(24) "2025-05-20T16:00:00.000Z"
+  ["name"]=>
+  string(9) "鄭益瑲"
+  ["phone"]=>
+  string(10) "0913837800"
+  ["address"]=>
+  string(56) "台南市永康區信義二街81號（對面組合屋）"
+  ["reseller"]=>
+  string(15) "禾昌電銷部"
+  ["memo"]=>
+  string(115) "1.門鎖安裝地址：屏東縣九如鄉忠孝街196號
+2.贈品是腳踏車兩台
+3.贈品跟電扇都寄台南"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "132"
+  ["create_date"]=>
+  string(24) "2025-05-20T16:00:00.000Z"
+  ["name"]=>
+  string(9) "鄭益瑲"
+  ["phone"]=>
+  string(10) "0913837800"
+  ["address"]=>
+  string(56) "台南市永康區信義二街81號（對面組合屋）"
+  ["reseller"]=>
+  string(15) "禾昌電銷部"
+  ["memo"]=>
+  string(115) "1.門鎖安裝地址：屏東縣九如鄉忠孝街196號
+2.贈品是腳踏車兩台
+3.贈品跟電扇都寄台南"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(15)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000136
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "136"
+  ["create_date"]=>
+  string(24) "2025-05-25T16:00:00.000Z"
+  ["name"]=>
+  string(9) "吳俊德"
+  ["phone"]=>
+  string(10) "0917987077"
+  ["address"]=>
+  string(38) "新北市 新莊區建中街103號8樓"
+  ["reseller"]=>
+  string(36) "禾昌國際事業股份有限公司"
+  ["memo"]=>
+  string(58) "4/11門鎖安裝完成，看到驚天一夏方案想升級"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000137
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "137"
+  ["create_date"]=>
+  string(24) "2025-05-25T16:00:00.000Z"
+  ["name"]=>
+  string(9) "郭逸嫻"
+  ["phone"]=>
+  string(10) "0988550944"
+  ["address"]=>
+  string(44) "新北市永和區秀朗路二段235號14樓"
+  ["reseller"]=>
+  string(15) "禾昌電銷部"
+  ["memo"]=>
+  string(0) ""
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "137"
+  ["create_date"]=>
+  string(24) "2025-05-25T16:00:00.000Z"
+  ["name"]=>
+  string(9) "郭逸嫻"
+  ["phone"]=>
+  string(10) "0988550944"
+  ["address"]=>
+  string(44) "新北市永和區秀朗路二段235號14樓"
+  ["reseller"]=>
+  string(15) "禾昌電銷部"
+  ["memo"]=>
+  string(55) "5/27 AI風扇黑貓貨運寄出
+綠界2505261215177285"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000139
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "139"
+  ["create_date"]=>
+  string(24) "2025-05-26T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳怡蘭"
+  ["phone"]=>
+  string(10) "0924151966"
+  ["address"]=>
+  string(38) "高雄市左營區華夏路1710號7樓"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(57) "高雄活動當天已刷卡，門鎖與冷氣分開地址"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000141
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "141"
+  ["create_date"]=>
+  string(24) "2025-05-26T16:00:00.000Z"
+  ["name"]=>
+  string(9) "許家豪"
+  ["phone"]=>
+  string(10) "0989840923"
+  ["address"]=>
+  string(46) "高雄市楠梓區海建路235巷31號4樓之2"
+  ["reseller"]=>
+  string(36) "禾昌國際事業股份有限公司"
+  ["memo"]=>
+  string(49) "5/25號已經開立發票，當天全額刷卡。"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000142
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "142"
+  ["create_date"]=>
+  string(24) "2025-05-26T16:00:00.000Z"
+  ["name"]=>
+  string(9) "周素月"
+  ["phone"]=>
+  string(10) "0907706188"
+  ["address"]=>
+  string(32) "高雄市鳳山區瑞昌街11號"
+  ["reseller"]=>
+  string(36) "禾昌國際事業股份有限公司"
+  ["memo"]=>
+  string(96) "5/25高雄旗艦店已經開立發票。刷卡完畢
+MORRIS承諾多贈送超摩刀，直髮器"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000145
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "145"
+  ["create_date"]=>
+  string(24) "2025-05-26T16:00:00.000Z"
+  ["name"]=>
+  string(9) "許家豪"
+  ["phone"]=>
+  string(10) "0989840923"
+  ["address"]=>
+  string(46) "高雄市楠梓區海專路235巷31號4樓之2"
+  ["reseller"]=>
+  string(36) "禾昌國際事業股份有限公司"
+  ["memo"]=>
+  string(64) "另一好禮 電動摺疊腳踏車
+5/25高雄開幕現場刷卡"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000146
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "146"
+  ["create_date"]=>
+  string(24) "2025-05-26T16:00:00.000Z"
+  ["name"]=>
+  string(9) "郭晁榮"
+  ["phone"]=>
+  string(10) "0925203707"
+  ["address"]=>
+  string(47) "屏東縣屏東市廣興里廣興199號6樓之1"
+  ["reseller"]=>
+  string(15) "高雄旗艦店"
+  ["memo"]=>
+  string(0) ""
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000147
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "147"
+  ["create_date"]=>
+  string(24) "2025-05-26T16:00:00.000Z"
+  ["name"]=>
+  string(9) "張陽俊"
+  ["phone"]=>
+  string(10) "0986770686"
+  ["address"]=>
+  string(39) "高雄市阿蓮區玄中路710巷125號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(267) "客戶05/20已匯款3組驚天一夏，19750元×3組＝59250元(SUMMER)
+客人總共下三單驚天一夏專案，專案價是19750元，但後來客戶表示要升級5.0KW的冷氣，故需每一單需要再補5000元差價。
+差價5000尚未匯款進來(SUMMER)"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000148
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "148"
+  ["create_date"]=>
+  string(24) "2025-05-26T16:00:00.000Z"
+  ["name"]=>
+  string(9) "張陽俊"
+  ["phone"]=>
+  string(10) "0986770686"
+  ["address"]=>
+  string(39) "高雄市阿蓮區玄中路710巷125號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(407) "客戶05/20已匯款3組驚天一夏，19750元×3組＝59250元(SUMMER)
+客人總共下三單驚天一夏專案，專案價是19750元，但後來客戶表示要升級5.0KW的冷氣，故需每一單需要再補5000元差價。
+張陽俊會補 5400*3 = 16,200 元，用匯款的方式入帳其中一隻鎖先寄給他，他要送朋友，另外兩隻先寄放在公司，等他要裝的時候再通知我"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000149
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "149"
+  ["create_date"]=>
+  string(24) "2025-05-26T16:00:00.000Z"
+  ["name"]=>
+  string(9) "張陽俊"
+  ["phone"]=>
+  string(10) "0986770686"
+  ["address"]=>
+  string(39) "高雄市阿蓮區玄中路710巷125號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(267) "客戶05/20已匯款3組驚天一夏，19750元×3組＝59250元(SUMMER)
+客人總共下三單驚天一夏專案，專案價是19750元，但後來客戶表示要升級5.0KW的冷氣，故需每一單需要再補5000元差價。
+差價5000尚未匯款進來(SUMMER)"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=92000150
+array(12) {
+  ["case_name"]=>
+  string(27) "感恩母親回饋季專案"
+  ["prom_id"]=>
+  string(3) "150"
+  ["create_date"]=>
+  string(24) "2025-05-26T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳淑珍"
+  ["phone"]=>
+  string(10) "0932728794"
+  ["address"]=>
+  string(42) "高雄市三民區明哲路33號5樓之五"
+  ["reseller"]=>
+  string(15) "高雄旗艦店"
+  ["memo"]=>
+  string(105) "84800元已全額支付給高雄門市楊珅士，再與安哥確認 對帳
+5/27循環電風扇已自取"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000151
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "151"
+  ["create_date"]=>
+  string(24) "2025-05-27T16:00:00.000Z"
+  ["name"]=>
+  string(9) "王達宸"
+  ["phone"]=>
+  string(10) "0982339475"
+  ["address"]=>
+  string(43) "高雄市楠梓區壽民路228號9樓之二"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(168) "客戶05/24已匯款59250元，共三套驚天一夏，一套業務套組，一個是腳踏車，一個是嬰兒手推車行李箱
+請聯絡客戶寄貨安裝事宜！"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "151"
+  ["create_date"]=>
+  string(24) "2025-05-27T16:00:00.000Z"
+  ["name"]=>
+  string(9) "王達宸"
+  ["phone"]=>
+  string(10) "0982339475"
+  ["address"]=>
+  string(43) "高雄市楠梓區壽民路228號9樓之二"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(168) "客戶05/24已匯款59250元，共三套驚天一夏，一套業務套組，一個是腳踏車，一個是嬰兒手推車行李箱
+請聯絡客戶寄貨安裝事宜！"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(15)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000152
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "152"
+  ["create_date"]=>
+  string(24) "2025-05-27T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳惟益"
+  ["phone"]=>
+  string(10) "0988689501"
+  ["address"]=>
+  string(33) "高雄市三民區建工路228號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(105) "陳惟益，驚天一夏冷氣3.2kw，送電動腳踏車，一組22500元，共四組90000元，已付款"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000153
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "153"
+  ["create_date"]=>
+  string(24) "2025-05-27T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳惟益"
+  ["phone"]=>
+  string(10) "0988689501"
+  ["address"]=>
+  string(33) "高雄市三民區建工路228號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(116) "陳惟益，驚天一夏冷氣3.2kw，送電動腳踏車，一組22500元，共四組90000元，已付款(第二單)"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000154
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "154"
+  ["create_date"]=>
+  string(24) "2025-05-27T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳惟益"
+  ["phone"]=>
+  string(10) "0988689501"
+  ["address"]=>
+  string(33) "高雄市三民區建工路228號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(116) "陳惟益，驚天一夏冷氣3.2kw，送電動腳踏車，一組22500元，共四組90000元，已付款(第三單)"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000155
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "155"
+  ["create_date"]=>
+  string(24) "2025-05-27T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳惟益"
+  ["phone"]=>
+  string(10) "0988689501"
+  ["address"]=>
+  string(33) "高雄市三民區建工路228號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(116) "陳惟益，驚天一夏冷氣3.2kw，送電動腳踏車，一組22500元，共四組90000元，已付款(第四單)"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000156
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "156"
+  ["create_date"]=>
+  string(24) "2025-05-27T16:00:00.000Z"
+  ["name"]=>
+  string(9) "洪健勝"
+  ["phone"]=>
+  string(10) "0980040710"
+  ["address"]=>
+  string(33) "高雄市前鎮區佛南街166號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(74) "冷氣要送到：高雄市大寮區濃公路165號。貨款19750元已付"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000157
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "157"
+  ["create_date"]=>
+  string(24) "2025-05-27T16:00:00.000Z"
+  ["name"]=>
+  string(9) "王達宸"
+  ["phone"]=>
+  string(10) "0982339475"
+  ["address"]=>
+  string(41) "高雄市楠梓區壽民路228號9樓之2"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(116) "王達宸已付59250元，一組業務套組，一組電動腳踏車，一組嬰兒手推行李箱 (這是第二單)"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000158
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "158"
+  ["create_date"]=>
+  string(24) "2025-05-27T16:00:00.000Z"
+  ["name"]=>
+  string(9) "王達宸"
+  ["phone"]=>
+  string(10) "0982339475"
+  ["address"]=>
+  string(41) "高雄市楠梓區壽民路228號9樓之2"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(116) "王達宸已付59250元，一組業務套組，一組電動腳踏車，一組嬰兒手推行李箱 (這是第三單)"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "158"
+  ["create_date"]=>
+  string(24) "2025-05-27T16:00:00.000Z"
+  ["name"]=>
+  string(9) "王達宸"
+  ["phone"]=>
+  string(10) "0982339475"
+  ["address"]=>
+  string(41) "高雄市楠梓區壽民路228號9樓之2"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(116) "王達宸已付59250元，一組業務套組，一組電動腳踏車，一組嬰兒手推行李箱 (這是第三單)"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000162
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "162"
+  ["create_date"]=>
+  string(24) "2025-05-30T16:00:00.000Z"
+  ["name"]=>
+  string(9) "蘇祺媛"
+  ["phone"]=>
+  string(10) "0916396396"
+  ["address"]=>
+  string(42) "台南市永康區大橋一街53-1號8樓7"
+  ["reseller"]=>
+  string(15) "高雄旗艦店"
+  ["memo"]=>
+  string(0) ""
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "162"
+  ["create_date"]=>
+  string(24) "2025-05-30T16:00:00.000Z"
+  ["name"]=>
+  string(9) "蘇祺媛"
+  ["phone"]=>
+  string(10) "0916396396"
+  ["address"]=>
+  string(42) "台南市永康區大橋一街53-1號8樓7"
+  ["reseller"]=>
+  string(15) "高雄旗艦店"
+  ["memo"]=>
+  string(0) ""
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(15)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000166
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "166"
+  ["create_date"]=>
+  string(24) "2025-06-02T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳信宏"
+  ["phone"]=>
+  string(10) "0902257911"
+  ["address"]=>
+  string(33) "高雄市苓雅區五權街137號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(383) "陳信宏總共訂16組驚天一夏方案，其中6組大鎖要展示架，還有另外6組小鎖也要展示架，有展示架的大鎖/小鎖以及所有贈品，都寄到高雄市苓雅區五權街137號。經銷當初銷售金額22500元
+
+剩下的10大鎖、14小鎖原裝盒，皆寄送到高雄市三民區九如一路188號（創輝煌衛浴）
+(備註：3.2KW1、電腳1)"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000167
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "167"
+  ["create_date"]=>
+  string(24) "2025-06-02T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳信宏"
+  ["phone"]=>
+  string(10) "0902257911"
+  ["address"]=>
+  string(33) "高雄市苓雅區五權街137號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(78) "備註：3.2KW2、電腳2、大鎖展示架2
+經銷當初銷售金額22500元"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000168
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "168"
+  ["create_date"]=>
+  string(24) "2025-06-02T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳信宏"
+  ["phone"]=>
+  string(10) "0902257911"
+  ["address"]=>
+  string(33) "高雄市苓雅區五權街137號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(69) "3.2KW3、電腳3、大鎖展示架3
+經銷當初銷售金額22500元"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000169
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "169"
+  ["create_date"]=>
+  string(24) "2025-06-02T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳信宏"
+  ["phone"]=>
+  string(10) "0902257911"
+  ["address"]=>
+  string(33) "高雄市苓雅區五權街137號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(69) "3.2KW4、電腳4、大鎖展示架4
+經銷當初銷售金額22500元"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000170
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "170"
+  ["create_date"]=>
+  string(24) "2025-06-02T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳信宏"
+  ["phone"]=>
+  string(10) "0902257911"
+  ["address"]=>
+  string(33) "高雄市苓雅區五權街137號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(69) "3.2KW5、電腳5、大鎖展示架5
+經銷當初銷售金額22500元"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000171
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "171"
+  ["create_date"]=>
+  string(24) "2025-06-02T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳信宏"
+  ["phone"]=>
+  string(10) "0902257911"
+  ["address"]=>
+  string(33) "高雄市苓雅區五權街137號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(69) "3.2KW6、電腳6、大鎖展示架6
+經銷當初銷售金額22500元"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000172
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "172"
+  ["create_date"]=>
+  string(24) "2025-06-02T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳信宏"
+  ["phone"]=>
+  string(10) "0902257911"
+  ["address"]=>
+  string(36) "高雄市三民區九如一路188號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(152) "3.2KW7、電腳7(寄到高雄市苓雅區五權街137號)、大鎖原裝1 (寄到高雄市三民區九如一路188號)
+經銷當初銷售金額22500元"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000173
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "173"
+  ["create_date"]=>
+  string(24) "2025-06-02T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳信宏"
+  ["phone"]=>
+  string(10) "0902257911"
+  ["address"]=>
+  string(36) "高雄市三民區九如一路188號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(151) "3.2KW8、電腳8(寄到高雄市苓雅區五權街137號)、大鎖原裝2(寄到高雄市三民區九如一路188號)
+經銷當初銷售金額22500元"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000174
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "174"
+  ["create_date"]=>
+  string(24) "2025-06-02T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳信宏"
+  ["phone"]=>
+  string(10) "0902257911"
+  ["address"]=>
+  string(36) "高雄市三民區九如一路188號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(152) "5.0KW1、電腳9(寄到高雄市苓雅區五權街137號)、大鎖原裝3 (寄到高雄市三民區九如一路188號)
+經銷當初銷售金額25150元"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000175
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "175"
+  ["create_date"]=>
+  string(24) "2025-06-02T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳信宏"
+  ["phone"]=>
+  string(10) "0902257911"
+  ["address"]=>
+  string(36) "高雄市三民區九如一路188號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(153) "5.0KW2、電腳10(寄到高雄市苓雅區五權街137號)、大鎖原裝4 (寄到高雄市三民區九如一路188號)
+經銷當初銷售金額25150元"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000176
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "176"
+  ["create_date"]=>
+  string(24) "2025-06-02T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳信宏"
+  ["phone"]=>
+  string(10) "0902257911"
+  ["address"]=>
+  string(36) "高雄市三民區九如一路188號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(155) "5.0KW3、嬰兒車1(寄到高雄市苓雅區五權街137號)、大鎖原裝5 (寄到高雄市三民區九如一路188號)
+經銷當初銷售金額25150元"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000177
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "177"
+  ["create_date"]=>
+  string(24) "2025-06-02T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳信宏"
+  ["phone"]=>
+  string(10) "0902257911"
+  ["address"]=>
+  string(36) "高雄市三民區九如一路188號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(155) "5.0KW4、嬰兒車2(寄到高雄市苓雅區五權街137號)、大鎖原裝6 (寄到高雄市三民區九如一路188號)
+經銷當初銷售金額25150元"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000178
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "178"
+  ["create_date"]=>
+  string(24) "2025-06-02T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳信宏"
+  ["phone"]=>
+  string(10) "0902257911"
+  ["address"]=>
+  string(36) "高雄市三民區九如一路188號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(155) "5.0KW5、足按摩1(寄到高雄市苓雅區五權街137號)、大鎖原裝7 (寄到高雄市三民區九如一路188號)
+經銷當初銷售金額25150元"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000179
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "179"
+  ["create_date"]=>
+  string(24) "2025-06-02T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳信宏"
+  ["phone"]=>
+  string(10) "0902257911"
+  ["address"]=>
+  string(36) "高雄市三民區九如一路188號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(155) "5.0KW6、足按摩2(寄到高雄市苓雅區五權街137號)、大鎖原裝8 (寄到高雄市三民區九如一路188號)
+經銷當初銷售金額25150元"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000180
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "180"
+  ["create_date"]=>
+  string(24) "2025-06-02T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳信宏"
+  ["phone"]=>
+  string(10) "0902257911"
+  ["address"]=>
+  string(36) "高雄市三民區九如一路188號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(155) "5.0KW7、平衡車1(寄到高雄市苓雅區五權街137號)、大鎖原裝9 (寄到高雄市三民區九如一路188號)
+經銷當初銷售金額25150元"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000181
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "181"
+  ["create_date"]=>
+  string(24) "2025-06-02T16:00:00.000Z"
+  ["name"]=>
+  string(9) "陳信宏"
+  ["phone"]=>
+  string(10) "0902257911"
+  ["address"]=>
+  string(36) "高雄市三民區九如一路188號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(156) "5.0KW8、平衡車2(寄到高雄市苓雅區五權街137號)、大鎖原裝10 (寄到高雄市三民區九如一路188號)
+經銷當初銷售金額25150元"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000182
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "182"
+  ["create_date"]=>
+  string(24) "2025-06-03T16:00:00.000Z"
+  ["name"]=>
+  string(9) "方先生"
+  ["phone"]=>
+  string(10) "0905803589"
+  ["address"]=>
+  string(37) "新竹市成功路192巷62弄1之8號"
+  ["reseller"]=>
+  string(6) "四哥"
+  ["memo"]=>
+  string(60) "6/4與四嫂聯繫，先安裝門鎖，安裝後再刷卡。"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000183
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "183"
+  ["create_date"]=>
+  string(24) "2025-06-03T16:00:00.000Z"
+  ["name"]=>
+  string(9) "楊先生"
+  ["phone"]=>
+  string(10) "0905803589"
+  ["address"]=>
+  string(30) "新竹市南勢六街9巷17號"
+  ["reseller"]=>
+  string(6) "四哥"
+  ["memo"]=>
+  string(60) "6/4與四嫂聯繫，先安裝門鎖，安裝後再刷卡。"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000184
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "184"
+  ["create_date"]=>
+  string(24) "2025-06-03T16:00:00.000Z"
+  ["name"]=>
+  string(9) "黎俊和"
+  ["phone"]=>
+  string(10) "0905803589"
+  ["address"]=>
+  string(47) "新竹縣新埔鎮關埔路內立段492巷86號"
+  ["reseller"]=>
+  string(6) "四哥"
+  ["memo"]=>
+  string(60) "6/4與四嫂聯繫，先安裝門鎖，安裝後再刷卡。"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}
+GET 參數 ?orderid=91000185
+array(12) {
+  ["case_name"]=>
+  string(18) "驚天一夏專案"
+  ["prom_id"]=>
+  string(3) "185"
+  ["create_date"]=>
+  string(24) "2025-06-03T16:00:00.000Z"
+  ["name"]=>
+  string(12) "侯黃麗美"
+  ["phone"]=>
+  string(10) "0989983088"
+  ["address"]=>
+  string(33) "高雄市左營區重立路495號"
+  ["reseller"]=>
+  string(9) "侯明昌"
+  ["memo"]=>
+  string(220) "業務套組
+電動折疊腳踏車
+嬰兒手推車行李箱
+黑科技雷達生命體徵檢測系統
+超魔刀
+D牌同型款直髮器
+電動足療按摩器
+電動平衡車
+好康平台已經付款25052423333355762"
+  ["project"]=>
+  string(12) "商品一批"
+  ["flow"]=>
+  int(10)
+  ["shipping_date"]=>
+  string(0) ""
+  ["finish_date"]=>
+  string(0) ""
+}

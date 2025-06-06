@@ -20,7 +20,7 @@ $config = [
   @foreach($promotion1->processes as $process)
     <tr class="{{ $process->status ? null : "bg-gray"}}">
       <td>{{ $process->id }}</td>
-      <td>{{ $process->apply_id }}</td>
+      <td>{{ $process->prom_id }}</td>
       <td>{{ $process->project }}</td>
       <td>{{ ($process->flow1 > 0) ? trans_choice('processes.flows', $process->flow1) : trans_choice('processes.flows', $process->flow) }} </td>
       <td>{{ $process->created_at ?? '' }}</td>

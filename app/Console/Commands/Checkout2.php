@@ -107,6 +107,8 @@ class Checkout2 extends Command
                       $flow = 13;
                   } else if ($prom['處理狀態'] == '已完成') {
                       $flow = 14;
+                  } else {
+                      $flow = 10;
                   }
                   $data = [
                       'case_name'           => $case_name,
@@ -122,12 +124,15 @@ class Checkout2 extends Command
                       'shipping_date'       => $prom['預計出貨日期'],
                       'finish_date'         => $prom['安裝完成日期'],
                   ];
-                  $epromotion->flow1 = $flow;
+                  if ($flow != 15) {
+                      $epromotion->flow1 = $flow;
+                  }
                   if ($flow == 14) {
                       $epromotion->flow = 14;
                   }
                   $epromotion->save();
-                  $process = Process::where('prom_id',$id)->first();
+                  $process = Process::where('prom_id', $id)->first();
+                  var_dump($data);
                   if ($process == null) {
                       $process = Process::create($data);
                   } else {

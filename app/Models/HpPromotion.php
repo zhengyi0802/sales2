@@ -70,4 +70,9 @@ class HpPromotion extends Model
         return $this->hasOne(EcpayIssueData::class, 'apply_id');
     }
 
+    public function processes()
+    {
+        return $this->hasMany(Process::class, 'prom_id');
+    }
+
 }

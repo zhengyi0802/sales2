@@ -128,7 +128,7 @@ class Checkout extends Command
                           $process = Process::create($data);
                           $amount_id++;
                       }
-                      if ($data['flow'] != 7) {
+                      if ($data['flow'] != 15) {
                           $eapply->flow1 = $data['flow'];
                       }
                       if ($data['flow'] == 14) {

@@ -46,6 +46,8 @@
         'line_id'          =>  'Line ID',
         'email'            =>  '電子郵件地址',
         'eapply_button'    =>  '門鎖申請單編輯',
+        'promotion1_button' => '驚天一夏申購單編輯',
+        'promotion2_button' => '感恩孝親申請單編輯',
         'amount_id'        =>  '門鎖編號',
         'create_date'      =>  '進件日期',
         'photo_date'       =>  '相片交付日期',
