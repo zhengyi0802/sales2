@@ -25,6 +25,8 @@ $config = [
   @foreach($eapplies as $eapply)
     @if ($eapply->ecpayResult != null)
     <tr class="{{ $eapply->status ? 'bg-green' : 'bg-gray' }}">
+    @elseif ($eapply->ecpayInfo != null)
+    <tr class="{{ $eapply->status ? 'bg-yellow' : 'bg-gray' }}">
     @else
     <tr class="{{ $eapply->status ? null : 'bg-gray' }}">
     @endif

@@ -26,6 +26,8 @@ $config = [
   @foreach($promotions as $promotion1)
     @if ($promotion1->ecpayResult != null)
     <tr class="{{ $promotion1->status ? 'bg-green' : 'bg-gray' }}">
+    @elseif ($promotion1->ecpayInfo != null)
+    <tr class="{{ $promotion1->status ? 'bg-yellow' : 'bg-gray' }}">
     @else
     <tr class="{{ $promotion1->status ? null : 'bg-gray' }}">
     @endif
