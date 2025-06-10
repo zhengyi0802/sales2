@@ -24,13 +24,21 @@
             </div>
         </div>
 @endif
-
+@if ($eapply->flow >= 10)
+        <div class="row">
+            <div class="col-lg-12 margin-tb">
+                <div class="pull-right">
+                    <a class="btn btn-primary" href="/eapplies/import?id={{ $eapply->id }}">{{ __('tables.import') }}</a>
+                </div>
+            </div>
+        </div>
+@endif
 @if ($eapply->ecpayInvoiceData == null)
     @if ($eapply->flow == 14 || Auth()->user()->role <= App\Enums\UserRole::Accounter)
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-right">
-                    <a class="btn btn-success" href="/issues/create?apply_id={{ $eapply->id }}">{{ __('tables.invoice_button') }}</a>
+                    <a class="btn btn-info" href="/issues/create?apply_id={{ $eapply->id }}">{{ __('tables.invoice_button') }}</a>
                 </div>
             </div>
         </div>
@@ -231,6 +239,15 @@
            <p class="title"><strong>{{ __('eapplies.memo') }} :</strong></p>
            <p class="result"><textarea name="memo" class="col-md-12" >{{ $eapply->memo }}</textarea></p>
           </div>
+          @if (auth()->user()->role == App\Enums\UserRole::Administrator)
+          <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('eapplies.status') }} :</strong>
+                    <input type="checkbox" name="status" value="1" {{ $eapply->status ? "checked" : null }}>
+                    <label for="status">{{ __('tables.enabled') }}</label>
+                </div>
+          </div>
+          @endif
           <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
           </div>

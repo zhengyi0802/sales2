@@ -173,6 +173,8 @@ Route::get('/currencies/query', [App\Http\Controllers\CurrencyController::class,
 
 Route::resource('/currencies', CurrencyController::class)->middleware('auth');
 
+Route::get('/eapplies/import', [EApplyController::class, 'import'])->name('eapplies.import');
+
 Route::get('/eapplies/export', [EApplyController::class, 'export'])->name('eapplies.export');
 
 Route::any('/eapplies/exports', [EApplyController::class, 'exports'])->name('eapplies.exports');
@@ -189,11 +191,15 @@ Route::resource('/processes', ProcessController::class)->middleware('auth');
 
 Route::resource('/ecpay', EcpayController::class)->middleware('auth');
 
+Route::get('/promotion1/import', [Promotion1Controller::class, 'import'])->name('promotion1.import');
+
 Route::get('/promotion1/export', [Promotion1Controller::class, 'export'])->name('promotion1.export');
 
 Route::any('/promotion1/exports', [Promotion1Controller::class, 'exports'])->name('promotion1.exports');
 
 Route::resource('/promotion1', Promotion1Controller::class)->middleware('auth');
+
+Route::get('/promotion2/import', [Promotion2Controller::class, 'import'])->name('promotion2.import');
 
 Route::get('/promotion2/export', [Promotion2Controller::class, 'export'])->name('promotion2.export');
 

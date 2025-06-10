@@ -24,5 +24,6 @@
         @yield('messages')
     </div>
     @include('processes.table')
-
+    <h2>{{ __('gasexports.title') }}</h2>
+    @include('processes.table2')
 @endsection

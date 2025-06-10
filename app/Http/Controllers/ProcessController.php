@@ -8,6 +8,7 @@ use App\Models\EApply;
 use App\Models\ECommunity;
 use App\Models\EProject;
 use App\Models\Process;
+use App\Models\GasExport;
 use App\Enums\UserRole;
 
 class ProcessController extends Controller
@@ -16,13 +17,14 @@ class ProcessController extends Controller
     {
         try {
               $processes = Process::get();
+              $gasexports = GasExport::get();
         } catch (QueryException $e) {
               return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
         } catch (Exception $e) {
               return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
 
-        return view('processes.index', compact('processes'));
+        return view('processes.index', compact('processes'))->with(compact('gasexports'));
     }
 
     public function create()

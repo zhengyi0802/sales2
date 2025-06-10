@@ -37,4 +37,8 @@
            'editdelayissue' => '編輯延遲開立發票',
            'triggerissue'   => '觸發開立發票',
            'trigger'        => '觸發',
+           'table-bgcolor'  => '表格背景顏色',
+           'bg-green'       => '刷卡已成功',
+           'bg-yellow'      => '已提供ATM/代碼/條碼訊息給客戶',
+           'import'         => '從GAS匯入',
     ];

@@ -16,21 +16,25 @@ class CatagoryController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
+        if (true) {
+            $user = auth()->user();
 
-        try {
-              if ($user->role == UserRole::Administrator) {
-                  $catagories = Catagory::get();
-              } else {
-                  $catagories = Catagory::where('status', true)->get();
-              }
-        } catch (QueryException $e) {
-              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
-        } catch (Exception $e) {
-              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
-        }
+            try {
+                  if ($user->role == UserRole::Administrator) {
+                      $catagories = Catagory::get();
+                  } else {
+                      $catagories = Catagory::where('status', true)->get();
+                  }
+            } catch (QueryException $e) {
+                  return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+            } catch (Exception $e) {
+                  return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+            }
 
-        return view('catagories.index', compact('catagories'));
+            return view('catagories.index', compact('catagories'));
+       } else {
+            return view('catagories.index2');
+       }
     }
 
     public function query()

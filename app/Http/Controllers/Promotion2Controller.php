@@ -7,6 +7,8 @@ use Illuminate\Database\QueryException;
 use App\Models\HpProduct;
 use App\Models\HpPromotion;
 use App\Models\EcpayResult;
+use App\Models\GasExport;
+use App\Models\Process;
 use App\Enums\UserRole;
 
 class Promotion2Controller extends Controller
@@ -106,7 +108,7 @@ class Promotion2Controller extends Controller
     {
         $ids = $request->input('ids');
         if ($ids == null) {
-            return redirect()->route('promotion1.index');
+            return redirect()->route('promotion2.index');
         }
         foreach($ids as $id) {
             $order_id = '92'.sprintf('%06d', $id);
@@ -127,6 +129,21 @@ class Promotion2Controller extends Controller
                 $promotion->save();
                 $data = $this->createFormArray2($promotion);
                 $response = $this->transfer(2, $data);
+                try {
+                    $export = GasExport::where('prom_id')->orderBy('id', 'DESC')->first();
+                    $export_data = [
+                          'ids'          => json_encode($ids),
+                          'prom_id'      => $id,
+                          'proj_id'      => 2,
+                          'path'         => 'exports@Promotion2Controller',
+                          'ecount'       => (isset($export)) ? ($export->ecount)+1 : 1,
+                          'created_by'   => auth()->user()->id,
+                    ];
+                    GasExport::create($export_data);
+                } catch(QueryException $e) {
+                    $error = 'GASExport資料鰾發生錯誤：'. $e->getMessage();
+                    return redirect()->route('promotion2.index')->with('error', $error);
+                }
             }
         }
 
@@ -155,6 +172,22 @@ class Promotion2Controller extends Controller
             $promotion->save();
             $data = $this->createFormArray2($promotion);
             $response = $this->transfer(2, $data);
+            try {
+                $export = GasExport::where('prom_id')->orderBy('id', 'DESC')->first();
+                $ids = [ '0' => $id ];
+                $export_data = [
+                          'ids'          => json_encode($ids),
+                          'prom_id'      => $id,
+                          'proj_id'      => 2,
+                          'path'         => 'export@Promotion2Controller',
+                          'ecount'       => ($export->ecount)+1 ?? 1,
+                          'created_by'   => auth()->user()->id,
+                ];
+                GasExport::create($export_data);
+            } catch(QueryException $e) {
+                $error = 'GASExport資料鰾發生錯誤：'. $e->getMessage();
+                return redirect()->route('promotion2.index')->with('error', $error);
+            }
         }
 
        return redirect()->route('promotion2.index');
@@ -323,6 +356,76 @@ class Promotion2Controller extends Controller
         $err = curl_error($curl);
         curl_close($curl);
         return $response;
+    }
+
+    public function import(Request $request)
+    {
+        $req = $request->all();
+        if (isset($req['id'])) {
+            $id= $req['id'];
+            $orderid = '92'.sprintf('%06d', $id);
+            $response = $this->gasImport($orderid);
+            $proms = json_decode($response, true);
+            if(!isset($proms['回傳結果'])) {
+                foreach($proms as $prom) {
+                    $id1 = $prom['訂單編號'];
+                    $str = substr($id1, 0, 2);
+                    $promotion = HpPromotion::find($id);
+                    $case_name = '';
+                    if ($str == '91') {
+                        $case_name = '驚天一夏專案';
+                    } else if ($str == '92') {
+                        $case_name = '感恩母親回饋季專案';
+                    }
+                    $flow = 10;
+                    if ($prom['處理狀態'] == '已收單') {
+                        $flow = 11;
+                    } else if ($prom['處理狀態'] == '已取消') {
+                        $flow = 15;
+                    } else if ($prom['處理狀態'] == '待安排') {
+                        $flow = 12;
+                    } else if ($prom['處理狀態'] == '已交付') {
+                        $flow = 13;
+                    } else if ($prom['處理狀態'] == '已完成') {
+                        $flow = 14;
+                    } else {
+                        $flow = 10;
+                    }
+                    $data = [
+                      'case_name'           => $case_name,
+                      'prom_id'             => $id,
+                      'create_date'         => $prom['訂購日期'],
+                      'name'                => $prom['姓名'],
+                      'phone'               => $prom['電話'],
+                      'address'             => $prom['地址'],
+                      'reseller'            => $prom['進件單位'],
+                      'memo'                => $prom['備註'],
+                      'project'             => $prom['商品名稱'],
+                      'flow'                => $flow,
+                      'shipping_date'       => $prom['預計出貨日期'],
+                      'finish_date'         => $prom['安裝完成日期'],
+                    ];
+                    if ($flow != 15) {
+                        $promotion->flow1 = $flow;
+                    }
+                    if ($flow == 14) {
+                        $promotion->flow = 14;
+                    }
+                    $promotion->save();
+                    $process = Process::where('prom_id', $id)->first();
+                    if ($process == null) {
+                        $process = Process::create($data);
+                    } else {
+                        $process->update($data);
+                    }
+                }
+            } else {
+                $promotion = HpPromotion::find($id);
+                $promotion->flow = 9;
+                $promotion->save();
+            }
+        }
+        return redirect()->route('promotion2.index');
     }
 
     public function gasImport($orderid)

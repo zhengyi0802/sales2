@@ -20,21 +20,30 @@
 @endsection
 
 @section('content')
-    @if ($promotion2->flow == 8 || $promotion2->flow == 9)
+@if ($promotion2->flow == 8 || $promotion2->flow == 9)
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-right">
-                    <a class="btn btn-success" href="/promotion2/export?id={{ $promotion2->id }}">{{ __('promotion2.export_button') }}</a>
+                    <a class="btn btn-success" href="/promotion2/export?id={{ $promotion2->id }}">{{ __('promotion1.export_button') }}</a>
                 </div>
             </div>
         </div>
-    @endif
+@endif
+@if ($promotion2->flow >= 10)
+        <div class="row">
+            <div class="col-lg-12 margin-tb">
+                <div class="pull-right">
+                    <a class="btn btn-primary" href="/promotion2/import?id={{ $promotion2->id }}">{{ __('tables.import') }}</a>
+                </div>
+            </div>
+        </div>
+@endif
 @if ($promotion2->ecpayInvoiceData == null)
     @if ($promotion2->flow == 14 || Auth()->user()->role <= App\Enums\UserRole::Accounter)
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-right">
-                    <a class="btn btn-success" href="/issues/create?prom_id={{ $promotion2->id }}">{{ __('tables.invoice_button') }}</a>
+                    <a class="btn btn-info" href="/issues/create?prom_id={{ $promotion2->id }}">{{ __('tables.invoice_button') }}</a>
                 </div>
             </div>
         </div>
@@ -224,13 +233,22 @@
            <p class="title"><strong>{{ __('promotion2.memo') }} :</strong></p>
            <p class="result"><textarea name="memo" class="col-md-12" >{{ $promotion2->memo }}</textarea></p>
           </div>
+          @if (auth()->user()->role == App\Enums\UserRole::Administrator)
+          <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('promotion2.status') }} :</strong>
+                    <input type="checkbox" name="status" value="1" {{ $promotion2->status ? "checked" : null }}>
+                    <label for="status">{{ __('tables.enabled') }}</label>
+                </div>
+          </div>
+          @endif
           <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
           </div>
      </form>
      @if ($promotion2->flow >= 10) {
          <div class="block">
-            <p><strong>{{ __('promotion2.gastable') }}</strong></p>
+            <p><strong>{{ __('eapplies.gastable') }}</strong></p>
             @include('promotion2.table2')
          </div>
      @endif

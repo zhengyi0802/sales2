@@ -8,6 +8,8 @@ use App\Models\EApply;
 use App\Models\ECommunity;
 use App\Models\EProject;
 use App\Models\EcpayResult;
+use App\Models\GasExport;
+use App\Models\Process;
 use App\Enums\UserRole;
 
 class EApplyController extends Controller
@@ -124,6 +126,20 @@ class EApplyController extends Controller
             if ($response) {
                 $eapply->flow = 10;
                 $eapply->save();
+                try {
+                    $export = GasExport::where('apply_id')->orderBy('id', 'DESC')->first();
+                    $export_data = [
+                          'ids'          => json_encode($ids),
+                          'apply_id'     => $id,
+                          'path'         => 'exports@EApplyController',
+                          'ecount'       => (isset($export)) ? ($export->ecount)+1 : 1,
+                          'created_by'   => auth()->user()->id,
+                    ];
+                    GasExport::create($export_data);
+                } catch(QueryException $e) {
+                    $error = 'GASExport資料鰾發生錯誤：'. $e->getMessage();
+                    return redirect()->route('eapplies.index')->with('error', $error);
+                }
             }
         }
 
@@ -140,6 +156,21 @@ class EApplyController extends Controller
         if ($response) {
             $eapply->flow = 10;
             $eapply->save();
+            try {
+                $export = GasExport::where('apply_id')->orderBy('id', 'DESC')->first();
+                $ids = [ '0' => $id ];
+                $export_data = [
+                          'ids'          => json_encode($ids),
+                          'apply_id'     => $id,
+                          'path'         => 'export@EApplyController',
+                          'ecount'       => (isset($export)) ?($export->ecount)+1 : 1,
+                          'created_by'   => auth()->user()->id,
+                ];
+                GasExport::create($export_data);
+            } catch(QueryException $e) {
+                $error = 'GASExport資料鰾發生錯誤：'. $e->getMessage();
+                return redirect()->route('eapplies.index')->with('error', $error);
+            }
         }
 
         return redirect()->route('eapplies.index');
@@ -165,7 +196,7 @@ class EApplyController extends Controller
                     '支付方式'     => (($eapply->payment == 1) ? '銀行轉帳' : '多元支付'),
                     '方案選擇'     => ( $eapply->project->name ),
                     '備註說明'     => $eapply->memo.$bundles,
-                    '建立日期'     => now()->format('Y/m/d H:i:s'),
+                    '建立日期'     => date('Y/m/d H:i:s'),
                     '進件單位'     => $eapply->reseller->name,
              );
              array_push($data, $arr);
@@ -195,10 +226,10 @@ class EApplyController extends Controller
        if(!$response) {
            $err = curl_error($curl);
        }
+
        curl_close($curl);
        return $response;
     }
-
 
     public function destroy(EApply $eapply)
     {
@@ -221,6 +252,105 @@ class EApplyController extends Controller
         }
 
         return redirect()->route('eapplies.index');
+    }
+
+    public function import(Request $request)
+    {
+        $req = $request->all();
+        if (isset($req['id'])) {
+            $orderid= $req['id'];
+            $eapply = EApply::find($orderid);
+            $response = $this->gasImport($orderid);
+            $applies = json_decode($response, true);
+            if(!isset($proms['回傳結果'])) {
+              $amount_id = 1;
+              foreach($applies as $apply) {
+                      $data['case_name'] = '門鎖申請書';
+                      $data['apply_id'] = $apply['單號'] ?? 0;
+                      $data['name']  = $apply['姓名'];
+                      $data['phone'] = $apply['電話'];
+                      $data['address'] = $apply['地址'];
+                      $data['project'] = $apply['申請方案'];
+                      $data['memo'] = $apply['備註'] ?? "";
+                      $data['create_date'] = $apply['進件日期'] ?? "";
+                      $date['photo_date'] = $apply['相片交付日期'] ?? "";
+                      $date['shipping_date'] = $apply['配送完成日期'] ?? "";
+                      $date['booking_date'] = $apply['預約安裝日期'] ?? "";
+                      $date['finish_date'] = $apply['安裝完成日期'] ?? "";
+                      if ($apply['處理狀態'] == '已收單') {
+                          $data['flow'] = 11;
+                      } else if ($apply['處理狀態'] == '已取消') {
+                          $data['flow'] = 15;
+                      } else if ($apply['處理狀態'] == '待安排') {
+                          $data['flow'] = 12;
+                      } else if ($apply['處理狀態'] == '已交付') {
+                          $data['flow'] = 13;
+                      } else if ($apply['處理狀態'] == '已完成') {
+                          $data['flow'] = 14;
+                      } else {
+                          $data['flow'] = 10;
+                      }
+
+                      if (true) {
+                          $pprocess = Process::where('apply_id', $eapply->id)
+                                             ->where('amount_id', $amount_id)
+                                             ->first();
+                          if ($pprocess == null) {
+                              $data['amount_id'] = $amount_id;
+                              $process = Process::create($data);
+                          } else {
+                              if( $pprocess->flow != $data['flow'] ) {
+                                  $pprocess->update($data);
+                                  $process = $pprocess;
+                              }
+                          }
+                          $amount_id++;
+                      } else {
+                          $data['amount_id'] = $amount_id;
+                          $process = Process::create($data);
+                          $amount_id++;
+                      }
+                      if ($data['flow'] != 15) {
+                          $eapply->flow1 = $data['flow'];
+                      }
+                      if ($data['flow'] == 14) {
+                          $eapply->flow = 14;
+                      }
+                      $eapply->save();
+              }
+            } else {
+              $eapply->flow = 9;
+              $eapply->save();
+            }
+        }
+        return redirect()->route('eapplies.index');
+    }
+
+    public function gasImport($orderid)
+    {
+        $curl = curl_init();
+
+        $string = '?orderid='. $orderid;
+
+          curl_setopt_array($curl, array(
+               CURLOPT_URL => (config('gas.use_get')) ? config('gas.export_url').$string : config('gas.checkout_url'),
+               CURLOPT_RETURNTRANSFER => true,
+               CURLOPT_FOLLOWLOCATION => true,
+               CURLOPT_ENCODING => "",
+               CURLOPT_TIMEOUT => 30000,
+               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+               CURLOPT_CUSTOMREQUEST => config('gas.use_get') ? "GET" : "POST",
+               CURLOPT_POSTFIELDS => config('gas.use_get') ? null :$jdata,
+               CURLOPT_HTTPHEADER => array(
+                   'Content-Type: application/json',
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+
+        return $response;
     }
 
 }

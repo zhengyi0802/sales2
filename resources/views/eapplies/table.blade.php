@@ -1,6 +1,7 @@
 @php
 $heads = [
     ['label' =>__('eapplies.id'), 'width' => 10],
+    __('eapplies.trade_no'),
     __('eapplies.reseller'),
     __('eapplies.name'),
     __('eapplies.phone'),
@@ -15,11 +16,15 @@ $heads = [
 ];
 $config = [
     'order' => [[0, 'desc']],
-    'columns' => [null, null, null, null, null, null, null, null, null, null, null, ['orderable' => false]],
+    'columns' => [null, null, null, null, null, null, null, null, null, null, null, null, ['orderable' => false]],
     'language' => [ 'url' => __('tables.language_url') ],
 ];
 @endphp
-
+<div class="row">
+    <div class="col-md-4">{{ __('tables.table-bgcolor') }}</div>
+    <div class="col-md-4" style="background-color:green;color:white;">{{ __('tables.bg-green') }}</div>
+    <div class="col-md-4" style="background-color:yellow">{{ __('tables.bg-yellow') }}</div>
+</div>
 <x-adminlte-datatable id="eapply-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" class="table-sm"
    striped hoverable bordered with-buttons>
   @foreach($eapplies as $eapply)
@@ -31,6 +36,7 @@ $config = [
     <tr class="{{ $eapply->status ? null : 'bg-gray' }}">
     @endif
       <td>{{ $eapply->id }}</td>
+      <td>{{ $eapply->trade_no }}</td>
       <td>{{ isset($eapply->reseller) ? $eapply->reseller->name : null }}</td>
       <td>{{ $eapply->name ?? ''}}</td>
       @if (auth()->user()->role == App\Enums\UserRole::ShareHolder)

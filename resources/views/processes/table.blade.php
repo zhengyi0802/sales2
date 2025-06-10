@@ -34,7 +34,7 @@ $config = [
       @endif
       <td>{{ $process->project }}</td>
       <td>{{ ($process->flow1 > 0) ? trans_choice('processes.flows', $process->flow1) : trans_choice('processes.flows', $process->flow) }} </td>
-      <td>{{ $process->created_at ?? '' }}</td>
+      <td>{{ date('Y/m/d h:i:s', strtotime($process->create_date)) ?? '' }}</td>
       <td><nobr>
           <form name="process-delete-form" action="{{ route('processes.destroy', $process->id); }}" method="POST">
             @csrf

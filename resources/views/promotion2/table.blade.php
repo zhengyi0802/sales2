@@ -1,6 +1,7 @@
 @php
 $heads = [
     ['label' =>__('promotion2.id'), 'width' => 10],
+    __('promotion2.trade_no'),
     __('promotion2.reseller'),
     __('promotion2.name'),
     __('promotion2.phone'),
@@ -16,10 +17,15 @@ $heads = [
 ];
 $config = [
     'order' => [[0, 'desc']],
-    'columns' => [null, null, null, null, null, null, null, null, null, null, null, null, ['orderable' => false]],
+    'columns' => [null, null, null, null, null, null, null, null, null, null, null, null, null, ['orderable' => false]],
     'language' => [ 'url' => __('tables.language_url') ],
 ];
 @endphp
+<div class="row">
+    <div class="col-md-4">{{ __('tables.table-bgcolor') }}</div>
+    <div class="col-md-4" style="background-color:green;color:white;">{{ __('tables.bg-green') }}</div>
+    <div class="col-md-4" style="background-color:yellow">{{ __('tables.bg-yellow') }}</div>
+</div>
 
 <x-adminlte-datatable id="promotion2-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" class="table-sm"
    striped hoverable bordered with-buttons>
@@ -32,6 +38,7 @@ $config = [
     <tr class="{{ $promotion2->status ? null : 'bg-gray' }}">
     @endif
       <td>{{ $promotion2->id }}</td>
+      <td>{{ $promotion2->trade_no }}</td>
       <td>{{ $promotion2->reseller->name }}</td>
       <td>{{ $promotion2->name }}</td>
       @if (auth()->user()->role == App\Enums\UserRole::ShareHolder)
