@@ -68,6 +68,6 @@ class EApply extends Model
     }
 
     public function ecpayInvoiceData() {
-        return $this->hasOne(EcpayIssueData::class, 'apply_id');
+        return $this->hasMany(EcpayIssueData::class, 'apply_id');
     }
 }

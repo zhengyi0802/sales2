@@ -38,8 +38,7 @@
             </div>
         </div>
 @endif
-@if ($promotion1->ecpayInvoiceData == null)
-    @if ($promotion1->flow == 14 || Auth()->user()->role <= App\Enums\UserRole::Accounter)
+@if ($promotion1->flow == 14)
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-right">
@@ -47,7 +46,6 @@
                 </div>
             </div>
         </div>
-    @endif
 @endif
 
 <style>
@@ -236,6 +234,12 @@
          <div class="block">
             <p><strong>{{ __('eapplies.gastable') }}</strong></p>
             @include('promotion1.table2')
+         </div>
+     @endif
+     @if ($promotion1->ecpayInvoiceData != null)
+         <div class="block">
+            <p><strong>{{ __('promotion1.issuetable') }}</strong></p>
+            @include('promotion1.issueTable')
          </div>
      @endif
   </div>

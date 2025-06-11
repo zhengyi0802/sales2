@@ -58,4 +58,5 @@
         'gifts'            =>  '豪禮贈品',
         'confirm'          =>  '已對帳確認',
         'status'           =>  '狀態',
+        'issuetable'       =>  '發票表列',
     ];

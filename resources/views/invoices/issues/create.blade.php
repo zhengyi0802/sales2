@@ -50,7 +50,8 @@
         </div>
         <div class="form-group col-md-12">
             <strong>{{ __('issues.SalesAmount') }} :</strong>
-            <input type="number" name="SalesAmount" value="{{ $issueData->SalesAmount }}">
+            <input type="hidden" name="SalesAmount" value="{{ $issueData->SalesAmount }}" disabled>
+            <input type="number" value="{{ $issueData->SalesAmount }}" disabled>
         </div>
         <div class="form-group col-md-12">
             <strong>{{ __('issues.TaxType') }} :</strong>

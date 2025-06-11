@@ -67,7 +67,7 @@ class HpPromotion extends Model
     }
 
     public function ecpayInvoiceData() {
-        return $this->hasOne(EcpayIssueData::class, 'apply_id');
+        return $this->hasMany(EcpayIssueData::class, 'prom_id');
     }
 
     public function processes()
