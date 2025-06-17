@@ -50,8 +50,7 @@
         </div>
         <div class="form-group col-md-12">
             <strong>{{ __('issues.SalesAmount') }} :</strong>
-            <input type="hidden" name="SalesAmount" value="{{ $issueData->SalesAmount }}" disabled>
-            <input type="number" value="{{ $issueData->SalesAmount }}" disabled>
+            <input type="number" id="SalesAmount" name="SalesAmount" value="{{ $issueData->SalesAmount }}" readonly>
         </div>
         <div class="form-group col-md-12">
             <strong>{{ __('issues.TaxType') }} :</strong>
@@ -85,7 +84,8 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
-         </div>
-     </form>
-  </div>
+        </div>
+      </div>
+    </div>
+  </form>
 @endsection

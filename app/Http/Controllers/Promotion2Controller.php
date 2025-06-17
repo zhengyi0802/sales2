@@ -190,7 +190,7 @@ class Promotion2Controller extends Controller
             }
         }
 
-       return redirect()->route('promotion2.index');
+        return redirect()->route('promotion2.index');
     }
 
     public function destroy(HpPromotion $promotion2)
