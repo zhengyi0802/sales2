@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\NhpProduct;
 use App\Models\ProductModel;
+use App\Models\Sales;
 use App\Models\User;
 use App\Enums\UserRole;
 use Illuminate\Http\Request;
@@ -43,7 +45,8 @@ class ProjectController extends Controller
     public function create()
     {
         try {
-              $extras = ProductModel::where('extra', true)->where('status', true)->get();
+              $products = ProductModel::where('status', true)->get();
+              $resellers = Sales::where('status', true)->get();
         } catch (QueryException $e) {
               return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
         } catch (Exception $e) {
@@ -51,7 +54,8 @@ class ProjectController extends Controller
         }
 
         return view('projects.create')
-               ->with(compact('extras'));
+               ->with(compact('resellers'))
+               ->with(compact('products'));
     }
 
     /**
@@ -63,19 +67,36 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $creator = auth()->user();
-        $data = $request->all();
-        /*
-        $extras = implode(',', $data['extras']);
-        $data['extras'] = json_encode($extras);
-        */
+        $req = $request->all();
+        dd($req);
+
         try {
-             $data['created_by'] = $creator->id;
-             $data['status'] = true;
-             Project::create($data);
+             $req['created_by'] = $creator->id;
+             $req['status'] = true;
+             $project = Project::create($req);
         } catch (QueryException $e) {
               return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
         } catch (Exception $e) {
               return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
+
+        foreach($req['products'] as $product)
+        {
+            $data = [
+                        'prject_id'  => $project->id ?? 0,
+                        'product_id' => $product->pid ?? 0,
+                        'price'      => $product->price ?? 0,
+                        'saleses'    => json_encode($req['resellers']) ?? null,
+                        'status'     => true,
+                        'created_by' => $creator->id ?? 1,
+            ];
+            try {
+                $nproduct = NhpProduct::create($data);
+            } catch(QueryException $e) {
+                return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+            } catch(Exception $e) {
+                return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+            }
         }
 
         return redirect()->route('projects.index');
@@ -101,7 +122,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         try {
-              $extras = ProductModel::where('extra', true)->where('status', true)->get();
+              $resellers = Sales::where('status', true)->get();
+              $products = ProductModel::where('status', true)->get();
         } catch (QueryException $e) {
               return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
         } catch (Exception $e) {
@@ -109,7 +131,8 @@ class ProjectController extends Controller
         }
 
         return view('projects.edit', compact('project'))
-               ->with(compact('extras'));
+               ->with(compact('resellers'))
+               ->with(compact('products'));
     }
 
     /**
@@ -154,7 +177,17 @@ class ProjectController extends Controller
               if ($project->status) {
                   $project->status = false;
                   $project->save();
-              } else if (auth()->user()->role <= UserRole::Manager) {
+                  $nproducts = NhpProduct::where('project_id', $project_id)-get();
+                  foreach($nproducts as $nproduct) {
+                      $nproduct->status = false;
+                      $nproduct->save();
+                  }
+                } else if (auth()->user()->role <= UserRole::Manager) {
+                  $project_id = $project->id;
+                  $nproducts = NhpProduct::where('project_id', $project_id)-get();
+                  foreach($nproducts as $nproduct) {
+                      $nproduct->delete();
+                  }
                   $project->delete();
               }
         } catch (QueryException $e) {

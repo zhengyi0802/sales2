@@ -33,4 +33,5 @@ class Project extends Model
         $products = ProductModel::whereIn('id', $arr)->get();
         return $products;
     }
+
 }

@@ -11,5 +11,10 @@
            'salesing'    => '申請書可顯示',
            'status'      => '狀態',
            'creator'     => '建立者',
+           'reseller'    => '經銷代理商',
+           'products'    => '產品表列',
+           'product'     => '產品',
+           'price'       => '單價價格(NTD)',
+           'action'      => '動作',
     ];
 

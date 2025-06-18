@@ -58,12 +58,72 @@
                 <input type="checkbox" name="salesing" value="1" {{ ($project->salesing) ? "checked" : null }}>
                 <label for="salesing">{{ __('tables.enabled') }}</label>
             </div>
+            <div class="form-group col-md-6">
+                <strong>{{ __('projects.reseller') }} :(複選*)</strong>
+                <select id="resellers" name="resellers" row="10" multiple="multiple">
+                    @foreach($resellers as $reseller)
+                        <option value="{{ $reseller->id }}">{{ $reseller->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="raw card-group">
+          <p><strong>{{ __('projects.products') }}</strong></p>
+          <table class="table table-bordered" id="productsTable" width="100%">
+            <tr>
+                 <td>{{ __('projects.product') }}</td>
+                 <td>{{ __('projects.price') }}</td>
+                 <td>{{ __('projects.action') }}</td>
+            </tr>
+                <tr>
+                    <td><input type="text" name="products[0]['product']"  id="product[0]" class="form-control" />
+                        <x-adminlte-button label="{{ __('projects.product') }}" data-toggle="modal" data-target="#productsModal"
+                          class="bg-primary" data-whatever="0" />
+                    </td>
+                    <td><input type="number" name="products[0]['price']" class="form-control" value="0" /></td>
+                    <td><button type="button" name="add" id="productAdd" class="btn btn-outline-primary">{{ __('tables.new') }}</butto>
+                </tr>
+          </table>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
         </div>
     </div>
 </form>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+    $('#productsModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var id = button.data('whatever'); // Extract info from data-* attributes
+        $('#productItem').val(id + 1);
+    })
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+    var i = 0;
+    $("#productAdd").click(function () {
+        ++i;
+        var str = '<tr><td><input type="text" name="products[' + i + '][\'product\']" id="product[' + i + ']" class="form-control" />';
+            str += '<button type="button" class="btn btn-default bg-primary" data-toggle="modal" data-target="#productsModal" data-whatever="' + i + '">>
+            str += '<td><input type="number" name="products[' + i + '][\'price\']" class="form-control" value="0" /></td>';
+            str += '<td><button type="button" class="btn btn-outline-danger removeItem">刪除</button></td></tr>';
+        $("#productsTable").append(str);
+    });
+    $(document).on('click', '.removeItem', function () {
+        $(this).parents('tr').remove();
+    });
+
+    $('#product_id').change(function() {
+        d = document.getElementById("product_id").value;
+        val = document.getElementById('productItem').value;
+        item = val-1;
+        var target = 'product[' + item + ']';
+        document.getElementById(target).value = d;
+    });
+</script>
 
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>

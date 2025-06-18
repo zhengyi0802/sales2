@@ -247,9 +247,18 @@ class Promotion2Controller extends Controller
                           '數量'     => 1,
                           '單價'     => 0,
             ];
+            if ( $promotion->paytype_id < 3) {
+                $bundles[2] = [
+                          '商品名稱' => '智能語音循環涼風扇',
+                          '數量'     => 1,
+                          '單價'     => 0,
+                ];
+                $i = 3;
+            } else {
+                $i = 2;
+            }
             break;
         }
-        $i = 2;
         $pbs = json_decode($promotion->bundles);
         $dc3500 = $dc5000 = $dc6300 = 0;
         foreach($pbs as $bundle) {
