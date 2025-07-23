@@ -132,9 +132,9 @@
             }
           </script>
           <div class="block">
-           <p class="title"><strong>{{ __('promotion1.flow') }} :</strong>{{ __('promotion1.no_remain') }}</p>
+           <p class="title"><strong>{{ __('promotion1.flow') }} : {{ $promotion1->flow }} </strong>{{ __('promotion1.no_remain') }}</p>
            <p class="result">
-              <select id="flow" name="flow" onchange="checkflow(this)" {{ ($promotion1->flow < 10) ? null : "disabled" }}>
+              <select id="flow" name="flow" onchange="checkflow(this)" {{ ($promotion1->flow <= 10) ? null : "disabled" }}>
                 <option value="1" {{ ($promotion1->flow == 1) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 1) }}</option>
                 <option value="2" {{ ($promotion1->flow == 2) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 2) }}</option>
                 <option value="3" {{ ($promotion1->flow == 3) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 3) }}</option>
@@ -142,15 +142,15 @@
                 <option value="5" {{ ($promotion1->flow == 5) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 5) }}</option>
                 <option value="6" {{ ($promotion1->flow == 6) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 6) }}</option>
                 <option value="7" {{ ($promotion1->flow == 7) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 7) }}</option>
-                <option value="8" {{ ($promotion1->flow == 8) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 8) }}</op>
-                @if ($promotion1->remain == 0)
-                <option value="9" {{ ($promotion1->flow == 9) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 9) }}</op>
+                <option value="8" {{ ($promotion1->flow == 8) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 8) }}</option>
+                @if ($promotion1->paid > 0)
+                <option value="9" {{ ($promotion1->flow == 9) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 9) }}</option>
+                <option value="10" {{ ($promotion1->flow == 10) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 10) }}</option>
+                <option value="11" {{ ($promotion1->flow1 == 11) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 11) }}</option>
+                <option value="12" {{ ($promotion1->flow1 == 12) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 12) }}</option>
+                <option value="13" {{ ($promotion1->flow1 == 13) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 13) }}</option>
+                <option value="14" {{ ($promotion1->flow1 == 14) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 14) }}</option>
                 @endif
-                <option value="10" {{ ($promotion1->flow == 10) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 10) }}</op>
-                <option value="11" {{ ($promotion1->flow1 == 11) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 11) }}>
-                <option value="12" {{ ($promotion1->flow1 == 12) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 12) }}>
-                <option value="13" {{ ($promotion1->flow1 == 13) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 13) }}>
-                <option value="14" {{ ($promotion1->flow1 == 14) ? "selected" : null }}>{{ trans_choice('promotion1.flows', 14) }}>
               </select>
            </p>
           </div>

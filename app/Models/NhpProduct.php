@@ -14,7 +14,7 @@ class NhpProduct extends Model
     protected $fillable = [
         'project_id',
         'product_id',
-        'prices',
+        'price',
         'saleses',
         'status',
         'created_by',
@@ -27,7 +27,7 @@ class NhpProduct extends Model
 
     public function product()
     {
-        return $this->belongsTo(Product::class, 'product_id');
+        return $this->belongsTo(ProductModel::class, 'product_id');
     }
 
     public function resellers()
@@ -41,4 +41,3 @@ class NhpProduct extends Model
     }
 
 }
-

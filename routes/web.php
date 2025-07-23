@@ -22,9 +22,11 @@ use App\Http\Controllers\ProcessController;
 use App\Http\Controllers\EcpayController;
 use App\Http\Controllers\Promotion1Controller;
 use App\Http\Controllers\Promotion2Controller;
+use App\Http\Controllers\Promotion3Controller;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\EcpayInvoiceController;
 use App\Http\Controllers\IssueController;
+use App\Http\Controllers\NewOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -207,6 +209,14 @@ Route::any('/promotion2/exports', [Promotion2Controller::class, 'exports'])->nam
 
 Route::resource('/promotion2', Promotion2Controller::class)->middleware('auth');
 
+Route::get('/promotion3/import', [Promotion3Controller::class, 'import'])->name('promotion3.import');
+
+Route::get('/promotion3/export', [Promotion3Controller::class, 'export'])->name('promotion3.export');
+
+Route::any('/promotion3/exports', [Promotion3Controller::class, 'exports'])->name('promotion3.exports');
+
+Route::resource('/promotion3', Promotion3Controller::class)->middleware('auth');
+
 Route::get('/invoices/settings', [EcpayInvoiceController::class, 'settings'])
      ->name('invoices.settings');
 
@@ -293,3 +303,6 @@ Route::get('/issues/create', [IssueController::class, 'create'])
 
 Route::get('/invoices/allowances', [EcpayInvoiceController::class, 'allowances'])
      ->name('invoices.allowances');
+
+Route::resource('/newOrders', NewOrderController::class)->middleware('auth');
+

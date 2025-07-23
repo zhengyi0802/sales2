@@ -11,7 +11,7 @@ use App\Models\GasExport;
 use App\Models\Process;
 use App\Enums\UserRole;
 
-class Promotion1Controller extends Controller
+class Promotion3Controller extends Controller
 {
     //
     public function index(Request $request)
@@ -20,96 +20,95 @@ class Promotion1Controller extends Controller
         $user = auth()->user();
         if ($user->role == UserRole::Reseller || $user->role == UserRole::Sales) {
             if ($flow && ($flow == 8 || $flow == 9)) {
-                $promotions = HpPromotion::where('proj_id', 1)->where('reseller_id', $user->sales->id)->where('flow', 8)->orWhere('flow', 9)->where('status', true)->get();
-                return view('promotion1.index2', compact('promotions'));
+                $promotions = HpPromotion::where('proj_id', 3)->where('reseller_id', $user->sales->id)->where('flow', 8)->orWhere('flow', 9)->where('status', true)->get();
+                return view('promotion3.index2', compact('promotions'));
             } else {
-                $promotions = HpPromotion::where('proj_id', 1)->where('reseller_id', $user->sales->id)->where('status', true)->get();
-                return view('promotion1.index', compact('promotions'));
+                $promotions = HpPromotion::where('proj_id', 3)->where('reseller_id', $user->sales->id)->where('status', true)->get();
+                return view('promotion3.index', compact('promotions'));
             }
         } else {
             if ($flow && $flow == 14) {
-                $promotions = HpPromotion::where('proj_id', 1)->where('flow', 14)->where('status', true)->get();
-                return view('promotion1.index', compact('promotions'));
+                $promotions = HpPromotion::where('proj_id', 3)->where('flow', 14)->where('status', true)->get();
+                return view('promotion3.index', compact('promotions'));
             } else if ($flow && ($flow == 8 || $flow == 9)) {
-                $promotions = HpPromotion::where('proj_id', 1)->where('flow', 8)->where('status', true)->orWhere('flow', 9)->get();
-                return view('promotion1.index2', compact('promotions'));
+                $promotions = HpPromotion::where('proj_id', 3)->where('flow', 8)->where('status', true)->orWhere('flow', 9)->get();
+                return view('promotion3.index2', compact('promotions'));
             } else {
                 if ( $user->role <= UserRole::Manager ) {
-                    $promotions = HpPromotion::where('proj_id', 1)->get();
+                    $promotions = HpPromotion::where('proj_id', 3)->get();
                 } else {
-                    $promotions = HpPromotion::where('proj_id', 1)->where('status', true)->get();
+                    $promotions = HpPromotion::where('proj_id', 3)->where('status', true)->get();
                 }
-                return view('promotion1.index', compact('promotions'));
+                return view('promotion3.index', compact('promotions'));
             }
         }
     }
 
-    public function show(HpPromotion $promotion1)
+    public function show(HpPromotion $promotion3)
     {
-        return view('promotion1.show', compact('promotion1'));
+        return view('promotion3.show', compact('promotion3'));
     }
 
-    public function edit(HpPromotion $promotion1)
+    public function edit(HpPromotion $promotion3)
     {
         try {
-              $products = HpProduct::where('proj_id', 1)->where('status', true)->get();
-              $results = EcpayResult::where('trade_no', $promotion1->trade_no)->first();
+              $products = HpProduct::where('status', true)->get();
+              $results = EcpayResult::where('trade_no', $promotion3->trade_no)->first();
               $gifts = array();
-              if ($promotion1->gifts != null) {
-                  $gifts = json_decode($promotion1->gifts);
-              }
         } catch (QueryException $e) {
               return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
         } catch (Exception $e) {
               return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
 
-        return view('promotion1.edit', compact('promotion1'))
+        return view('promotion3.edit', compact('promotion3'))
                ->with(compact('results'))
-               ->with(compact('products'))
-               ->with('gifts', $gifts);
+               ->with(compact('products'));
     }
 
-    public function update(Request $request, HpPromotion $promotion1)
+    public function update(Request $request, HpPromotion $promotion3)
     {
         $data = $request->all();
         try {
               if (isset($data['paid'])) {
-                  $data['remain'] = $promotion1->total-$data['paid'];
+                  $data['remain'] = $promotion3->total-$data['paid'];
               } else {
                   $data['remain'] = 0;
               }
-              if (($data['remain'] == 0) && ($promotion1->paid > 0)) {
-                 if (isset($data['product_id']) && $data['product_id'] != $promotion1->product_id) {
+              if (($data['remain'] == 0) && ($promotion3->paid > 0)) {
+                 if (isset($data['product_id']) && $data['product_id'] != $promotion3->product_id) {
                      $product = HpProduct::find($data['product_id']);
                      $price = $product->price;
                      //$total = $price * $promotion->amount;
-                     $data['remain'] = $promotion1->total-$promotion1->paid;
-                     $promotion1->update($data);
-                     return redirect()->route('promotion1.edit', compact('promotion1'));
+                     $data['remain'] = $promotion3->total-$promotion3->paid;
+                     $promotion3->update($data);
+                     return redirect()->route('promotion3.edit', compact('promotion3'));
                  }
-              }
-              $promotion1->update($data);
+             }
+             $promotion3->update($data);
         } catch (QueryException $e) {
               return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
         } catch (Exception $e) {
               return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
 
-        return redirect()->route('promotion1.edit', compact('promotion1'));
+        return redirect()->route('promotion3.edit', compact('promotion3'));
     }
 
     public function exports(Request $request)
     {
         $ids = $request->input('ids');
         if ($ids == null) {
-            return redirect()->route('promotion1.index');
+            return redirect()->route('promotion3.index');
         }
         foreach($ids as $id) {
-            $order_id = '91'.sprintf('%06d', $id);
+            $order_id = '92'.sprintf('%06d', $id);
             $response = $this->gasImport($order_id);
             $proms = json_decode($response, true);
             if(!isset($proms['回傳結果'])) {
+                $promotion = HpPromotion::find($id);
+                $promotion->flow = 10;
+                $promotion->save();
                 continue;
             }
             $promotion = HpPromotion::find($id);
@@ -126,33 +125,35 @@ class Promotion1Controller extends Controller
                     $export_data = [
                           'ids'          => json_encode($ids),
                           'prom_id'      => $id,
-                          'proj_id'      => 1,
-                          'path'         => 'exports@Promotion1Controller',
+                          'proj_id'      => 2,
+                          'path'         => 'exports@promotion3Controller',
                           'ecount'       => (isset($export)) ? ($export->ecount)+1 : 1,
                           'created_by'   => auth()->user()->id,
                     ];
                     GasExport::create($export_data);
                 } catch(QueryException $e) {
                     $error = 'GASExport資料鰾發生錯誤：'. $e->getMessage();
-                    return redirect()->route('promotion1.index')->with('error', $error);
+                    return redirect()->route('promotion3.index')->with('error', $error);
                 }
             }
         }
 
-       return redirect()->route('promotion1.index');
+       return redirect()->route('promotion3.index');
     }
 
     public function export(Request $request)
     {
         $id = $request->input('id');
 
-        $order_id = '91'.sprintf('%06d', $id);
+        $order_id = '92'.sprintf('%06d', $id);
         $response = $this->gasImport($order_id);
         $proms = json_decode($response, true);
         if(!isset($proms['回傳結果'])) {
-            return redirect()->route('promotion1.index');
+            $promotion = HpPromotion::find($id);
+            $promotion->flow = 10;
+            $promotion->save();
+            return redirect()->back();;
         }
-
         $promotion = HpPromotion::find($id);
         $bundles = $this->createBundles($promotion);
         $data = $this->createFormArray($promotion, $bundles);
@@ -168,34 +169,34 @@ class Promotion1Controller extends Controller
                 $export_data = [
                           'ids'          => json_encode($ids),
                           'prom_id'      => $id,
-                          'proj_id'      => 1,
-                          'path'         => 'export@Promotion1Controller',
-                          'ecount'       => isset($export) ? ($export->ecount)+1 : 1,
+                          'proj_id'      => 2,
+                          'path'         => 'export@promotion3Controller',
+                          'ecount'       => ($export->ecount)+1 ?? 1,
                           'created_by'   => auth()->user()->id,
                 ];
                 GasExport::create($export_data);
             } catch(QueryException $e) {
                 $error = 'GASExport資料鰾發生錯誤：'. $e->getMessage();
-                return redirect()->route('promotion1.index')->with('error', $error);
+                return redirect()->route('promotion3.index')->with('error', $error);
             }
         }
 
-        return redirect()->route('promotion1.index');
+        return redirect()->route('promotion3.index');
     }
 
-    public function destroy(HpPromotion $promotion1)
+    public function destroy(HpPromotion $promotion3)
     {
         try {
-              if ($promotion1->status == false) {
-                  if ($promotion1->EcpayInfo != null) {
-                      $promotion1->EcpayInfo->delete();
+              if ($promotion3->status == false) {
+                  if ($promotion3->EcpayInfo != null) {
+                      $promotion3->delete();
                   }
-                  if ($promotion1->EcpayResult == null) {
-                      $promotion1->delete();
+                  if ($promotion3->EcpayResult == null) {
+                      $promotion3->delete();
                   }
               } else {
-                  $promotion1->status = false;
-                  $promotion1->save();
+                  $promotion3->status = false;
+                  $promotion3->save();
               }
         } catch (QueryException $e) {
               return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
@@ -203,31 +204,18 @@ class Promotion1Controller extends Controller
               return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
 
-        return redirect()->route('promotion1.index');
+        return redirect()->route('promotion3.index');
     }
 
     private function createBundles(HpPromotion $promotion)
     {
         $bundles[0] = [
-                          '商品名稱' => 'Z5000W備用電池',
+                          '商品名稱' => 'Z5000W智慧門鎖',
                           '數量'     => 1,
                           '單價'     => 0,
         ];
-        $bundles[1] = [
-                          '商品名稱' => '智能語音循環涼風扇',
-                          '數量'     => 1,
-                          '單價'     => 0,
-        ];
-        $i = 2;
-        if ($promotion->product->type != null) {
-            $bundles[2] = [
-                          '商品名稱' => $promotion->product->type,
-                          '數量'     => 1,
-                          '單價'     => 0,
-            ];
-            $i = 3;
-        }
-        $gifts = json_decode($promotion->gifts);
+        $i = 1;
+        $gifts = json_decode($promotion->gifts) ?? array();
         foreach($gifts as $gift) {
             switch($gift) {
                 case 'gift1' : $name = '電動折疊腳踏車';
@@ -245,25 +233,65 @@ class Promotion1Controller extends Controller
                 case 'gift7' : $name = '電動平衡車';
                                break;
             }
-            $bundles[$i] = [
+            $bundles[1] = [
                           '商品名稱' => $name,
                           '數量'     => 1,
                           '單價'     => 0,
             ];
-            if ($i == 3){
-                break;
+            if ( $promotion->paytype_id < 3) {
+                $bundles[2] = [
+                          '商品名稱' => '智能語音循環涼風扇',
+                          '數量'     => 1,
+                          '單價'     => 0,
+                ];
+                $i = 3;
             } else {
-                $i++;
+                $i = 2;
             }
+            break;
+        }
+        $pbs = json_decode($promotion->bundles);
+        $dc3500 = $dc5000 = $dc6300 = 0;
+        foreach($pbs as $bundle) {
+            if ($bundle == 'DC3500') {
+                $dc3500++;
+            } else if ($bundle == 'DC5000') {
+                $dc5000++;
+            } else if ($bundle == 'DC6300') {
+                $dc6300++;
+            }
+        }
+        if ($dc3500 > 0) {
+            $bundles[$i] = [
+                          '商品名稱' => 'DC3500 3.5KW變頻冷暖空調',
+                          '數量'     => $dc3500,
+                          '單價'     => 0,
+            ];
+            $i++;
+        }
+        if ($dc5000 > 0) {
+            $bundles[$i] = [
+                          '商品名稱' => 'DC5000 5.0KW變頻冷暖空調',
+                          '數量'     => $dc5000,
+                          '單價'     => 0,
+            ];
+            $i++;
+        }
+        if ($dc6300 > 0) {
+            $bundles[$i] = [
+                          '商品名稱' => 'DC6300 6.3KW變頻冷暖空調',
+                          '數量'     => $dc6300,
+                          '單價'     => 0,
+            ];
+            $i++;
         }
         return $bundles;
     }
 
     private function createFormArray(HpPromotion $promotion, $bundles)
     {
-        $id = '91'.sprintf('%06d', $promotion->id);
-
-        $data = array(
+        $id = '92'.sprintf('%06d', $promotion->id);
+        $arrs = array(
                      '訂購日期'      => date('Y/m/d', strtotime($promotion->created_at)),
                      '姓名'          => $promotion->name,
                      '電話'          => $promotion->phone,
@@ -275,30 +303,31 @@ class Promotion1Controller extends Controller
                      '訂購方案'      => $promotion->product->paytype,
                      '收款方式'      => ($promotion->payment == 2) ? '綠界多元支付' : '其他',
                      '訂單編號'      => $id,
-                     '建立人員'      => auth()->user()->name,
-                     '建立日期'      => date('Y/m/d h:i:s'),
+                     '建立人員'      => null,
+                     '建立日期'      => date('Y/m/d h:i:s', strtotime($promotion->created_at)),
                      '附加商品'      => $bundles,
-         );
-
-         return $data;
+                 );
+        return $arrs;
     }
 
     private function createFormArray2(HpPromotion $promotion)
     {
-        $id = '91'.sprintf('%06d', $promotion->id);
-        $bundles = '(清涼一夏專案贈送備用電池數量為 1 個)';
-        $data = array(
+        $id = '92'.sprintf('%06d', $promotion->id);
+        $data = array();
+        $bundles = null;
+        $arr = array(
                     '單號'         => $id,
                     '社區'         => null,
                     '姓名'         => $promotion->name,
                     '電話'         => $promotion->phone,
                     '地址'         => $promotion->address,
                     '支付方式'     => '多元支付',
-                    '方案選擇'     => '家用型Z5000W加備用電池1個',
-                    '備註說明'     => $promotion->product->paytype.'(備註：'.$promotion->memo.')',
-                    '建立日期'     => date('Y/m/d h:i:s'),
+                    '方案選擇'     => '家用型Z5000W',
+                    '備註說明'     => $promotion->product->paytype.'(備註：',$promotion->memo.')',
+                    '建立日期'     => now()->format('Y/m/d H:i:s'),
                     '進件單位'     => $promotion->reseller->name,
         );
+        array_push($data, $arr);
         return $data;
     }
 
@@ -311,23 +340,22 @@ class Promotion1Controller extends Controller
             $url = config('gas.export_url');
         }
         curl_setopt_array($curl, array(
-             CURLOPT_URL => $url,
-             CURLOPT_RETURNTRANSFER => true,
-             CURLOPT_ENCODING => "",
-             CURLOPT_TIMEOUT => 30000,
-             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-             CURLOPT_CUSTOMREQUEST => "POST",
-             CURLOPT_POSTFIELDS => json_encode($data),
-             CURLOPT_HTTPHEADER => array(
-                 'Content-Type: application/json',
-            ),
-       ));
+              CURLOPT_URL => $url,
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => "",
+              CURLOPT_TIMEOUT => 30000,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => "POST",
+              CURLOPT_POSTFIELDS => json_encode($data),
+              CURLOPT_HTTPHEADER => array(
+                  'Content-Type: application/json',
+             ),
+        ));
 
-       $response = curl_exec($curl);
-       $err = curl_error($curl);
-       curl_close($curl);
-
-       return $response;
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+        return $response;
     }
 
     public function import(Request $request)
@@ -335,7 +363,7 @@ class Promotion1Controller extends Controller
         $req = $request->all();
         if (isset($req['id'])) {
             $id= $req['id'];
-            $orderid = '91'.sprintf('%06d', $id);
+            $orderid = '92'.sprintf('%06d', $id);
             $response = $this->gasImport($orderid);
             $proms = json_decode($response, true);
             if(!isset($proms['回傳結果'])) {
@@ -397,7 +425,7 @@ class Promotion1Controller extends Controller
                 $promotion->save();
             }
         }
-        return redirect()->route('promotion1.index');
+        return redirect()->route('promotion3.index');
     }
 
     public function gasImport($orderid)
@@ -425,5 +453,4 @@ class Promotion1Controller extends Controller
         curl_close($curl);
         return $response;
     }
-
 }

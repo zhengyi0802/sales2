@@ -1,17 +1,17 @@
 @php
 $heads = [
-    ['label' =>__('eapplies.id'), 'width' => 10],
-    __('eapplies.trade_no'),
-    __('eapplies.reseller'),
-    __('eapplies.name'),
-    __('eapplies.phone'),
-    __('eapplies.project'),
-    __('eapplies.payment'),
-    __('eapplies.total'),
-    __('eapplies.paid'),
-    __('eapplies.remain'),
-    __('eapplies.flow'),
-    __('eapplies.created_at'),
+    ['label' =>__('newOrders.id'), 'width' => 10],
+    __('newOrders.trade_no'),
+    __('newOrders.reseller'),
+    __('newOrders.name'),
+    __('newOrders.phone'),
+    __('newOrders.project'),
+    __('newOrders.payment'),
+    __('newOrders.total'),
+    __('newOrders.paid'),
+    __('newOrders.remain'),
+    __('newOrders.flow'),
+    __('newOrders.created_at'),
     ['label' => __('tables.action'), 'no-export' => true, 'width' => 10],
 ];
 $config = [
@@ -27,7 +27,7 @@ $config = [
 </div>
 <x-adminlte-datatable id="eapply-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" class="table-sm"
    striped hoverable bordered with-buttons>
-  @foreach($eapplies as $eapply)
+  @foreach($newOrders as $eapply)
     @if ($eapply->ecpayResult != null)
     <tr class="{{ ($eapply->ecpayResult->rtn_code == 1) ? 'bg-green' : 'bg-light' }}">
     @elseif ($eapply->ecpayInfo != null)
@@ -45,24 +45,22 @@ $config = [
            <td>{{ $eapply->phone }}</td>
       @endif
       <td>{{ isset($eapply->project) ? $eapply->project->name : null }}</td>
-      <td>{{ ($eapply->payment == 11) ? __('eapplies.payment_third') : __('eapplies.payment_credit') }}</td>
+      <td>{{ ($eapply->payment == 11) ? __('newOrders.payment_third') : __('newOrders.payment_credit') }}</td>
       <td>{{ __('currencies.NTD').$eapply->total.__('currencies.ntd_unit') }}</td>
       <td>{{ __('currencies.NTD').$eapply->paid.__('currencies.ntd_unit') }}</td>
       <td>{{ __('currencies.NTD').$eapply->remain.__('currencies.ntd_unit') }}</td>
-      <td>{{ ($eapply->flow1 > 0) ? trans_choice('eapplies.flows', $eapply->flow1) : trans_choice('eapplies.flows', $eapply->flow) }} </td>
+      <td>{{ ($eapply->flow1 > 0) ? trans_choice('newOrders.flows', $eapply->flow1) : trans_choice('newOrders.flows', $eapply->flow) }} </td>
       <td>{{ $eapply->created_at ?? '' }}</td>
       <td><nobr>
-          <form name="eapply-delete-form" action="{{ route('eapplies.destroy', $eapply->id); }}" method="POST">
+          <form name="eapply-delete-form" action="{{ route('newOrders.destroy', $eapply->id); }}" method="POST">
             @csrf
             @method('DELETE')
               <x-adminlte-button theme="primary" title="{{ __('tables.edit') }}" icon="fa fa-lg fa-fw fa-pen"
-                onClick="window.location='{{ route('eapplies.edit', $eapply->id); }}'" >
+                onClick="window.location='{{ route('newOrders.edit', $eapply->id); }}'" >
               </x-adminlte-button>
-              @if ($eapply->flow < 10)
               <x-adminlte-button theme="danger" title="{{ __('tables.delete') }}" icon="fa fa-lg fa-fw fa-trash"
                 type="submit" onclick="return confirm('{{ __('tables.confirm_delete') }}');">
               </x-adminlte-button>
-              @endif
             </form>
       </nobr></td>
     </tr>

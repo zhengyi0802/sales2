@@ -411,8 +411,8 @@ class Promotion2Controller extends Controller
                       'memo'                => $prom['備註'],
                       'project'             => $prom['商品名稱'],
                       'flow'                => $flow,
-                      'shipping_date'       => $prom['預計出貨日期'],
-                      'finish_date'         => $prom['安裝完成日期'],
+                      'shipping_date'       => $prom['預計出貨日期'] ?? null,
+                      'finish_date'         => $prom['安裝完成日期'] ?? null,
                     ];
                     if ($flow != 15) {
                         $promotion->flow1 = $flow;

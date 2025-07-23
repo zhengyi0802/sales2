@@ -21,6 +21,7 @@ $config = [
     'language' => [ 'url' => __('tables.language_url') ],
 ];
 @endphp
+
 <div class="row">
     <div class="col-md-4">{{ __('tables.table-bgcolor') }}</div>
     <div class="col-md-4" style="background-color:green;color:white;">{{ __('tables.bg-green') }}</div>
@@ -71,13 +72,13 @@ $config = [
       <td>{{ __('currencies.NTD').$promotion1->total.__('currencies.ntd_unit') }}</td>
       <td>{{ __('currencies.NTD').$promotion1->paid.__('currencies.ntd_unit') }}</td>
       <td>{{ __('currencies.NTD').$promotion1->remain.__('currencies.ntd_unit') }}</td>
-@else
-  @if ($promotion1->prepay_total > 0)
+@elseif($promotion1->paytype_id == 6)
       <td>{{ __('currencies.NTD').$promotion1->prepay_total.__('currencies.ntd_unit') }}</td>
-  @else
-      <td>------</td>
-  @endif
-      <td>{{ $promotion1->staging.__('promotion1.staging_unit') }}</td>
+      <td>{{ __('currencies.NTD').$promotion1->paid }}</td>
+      <td>{{ __('currencies.NTD').$promotion1->remain.__('currencies.ntd_unit') }}</td>
+@elseif($promotion1->paytype_id == 5 || $promotion1->paytype_id == 8)
+      <td>{{ __('currencies.NTD').$promotion1->prepay_total.__('currencies.ntd_unit') }}</td>
+      <td>{{ $promotion1->staging.__('promotion1.staging') }}</td>
       <td>{{ __('currencies.NTD').$promotion1->stage_price.__('currencies.ntd_unit') }}</td>
 @endif
       <td>{{ ($promotion1->flow1 > 0) ? trans_choice('promotion1.flows', $promotion1->flow1) : trans_choice('promotion1.flows', $promotion1->flow) }} </td>
@@ -89,11 +90,9 @@ $config = [
               <x-adminlte-button theme="primary" title="{{ __('tables.edit') }}" icon="fa fa-lg fa-fw fa-pen"
                 onClick="window.location='{{ route('promotion1.edit', $promotion1->id); }}'" >
               </x-adminlte-button>
-              @if ($promotion1->flow < 10)
               <x-adminlte-button theme="danger" title="{{ __('tables.delete') }}" icon="fa fa-lg fa-fw fa-trash"
                 type="submit" onclick="return confirm('{{ __('tables.confirm_delete') }}');">
               </x-adminlte-button>
-              @endif
             </form>
       </nobr></td>
     </tr>

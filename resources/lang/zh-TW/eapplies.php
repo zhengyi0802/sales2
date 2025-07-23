@@ -23,8 +23,9 @@
         'payment'          =>  '支付方式',
         'payment_cash'     =>  '現金',
         'payment_tt'       =>  '轉帳',
-        'payment_credit'   =>  '信用卡',
+        'payment_credit'   =>  '綠界支付',
         'payment_third'    =>  '第三方網站',
+        'payment_unset'    =>  '未指定',
         'memo'             =>  '備註',
         'total'            =>  '應付總額(總計)',
         'prepay'           =>  '應付訂金金額',
@@ -59,4 +60,5 @@
         'gift7'            =>  '電動平衡車',
         'status'           =>  '狀態',
         'issuetable'       =>  '發票表列',
+        'hoplus'           =>  '禾昌國際事業股份有限公司',
     ];

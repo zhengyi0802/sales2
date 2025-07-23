@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
+use App\Models\Sales;
 use App\Models\EApply;
 use App\Models\ECommunity;
 use App\Models\EProject;
@@ -46,6 +47,54 @@ class EApplyController extends Controller
             }
         }
 
+    }
+
+    public function create()
+    {
+        $creator = auth()->user();
+        if ($creator->sales != null) {
+            $reseller = $creator->sales;
+        } else {
+            $reseller = null;
+        }
+        $dprojects = EProject::where('status', true)->get();
+        $resellers = Sales::get();
+
+        return view('eapplies.create', compact('dprojects'))
+               ->with(compact('resellers'))
+               ->with(compact('reseller'));
+    }
+
+    public function store(Request $request)
+    {
+        $req = $request->all();
+        $creator = auth()->user();
+        $project = EProject::find($req['project_id']);
+        $req['total'] = $project->price;
+        $req['remain'] = $project->price;
+        $req['prepay_total'] = 0;
+        $req['paid'] = 0;
+        $req['payment'] = 0;
+
+        try {
+            $eapply = EApply::create($req);
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
+
+        $eapply->trade_no = 'HP'.date('Ymdhis').(string)($eapply->id%100);
+        $eapply->trade_date = date('Y/m/d h:i:s');
+        try {
+            $eapply->save();
+        } catch (QueryException $e) {
+              return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+        } catch (Exception $e) {
+              return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
+
+        return redirect()->route('eapplies.index');
     }
 
     public function show(EApply $eapply)
@@ -202,6 +251,7 @@ class EApplyController extends Controller
              array_push($data, $arr);
              $bundles = null;
         }
+
         return $data;
     }
 
@@ -262,7 +312,7 @@ class EApplyController extends Controller
             $eapply = EApply::find($orderid);
             $response = $this->gasImport($orderid);
             $applies = json_decode($response, true);
-            if(!isset($proms['回傳結果'])) {
+            if(!isset($applies['回傳結果'])) {
               $amount_id = 1;
               foreach($applies as $apply) {
                       $data['case_name'] = '門鎖申請書';

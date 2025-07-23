@@ -17,7 +17,7 @@
         'payment_detail'   =>  '支付資料',
         'payment_cash'     =>  '現金',
         'payment_tt'       =>  '銀行匯款',
-        'payment_credit'   =>  '信用卡',
+        'payment_credit'   =>  '綠界支付',
         'memo'             =>  '備註',
         'total'            =>  '應付總額',
         'prepay_total'     =>  '訂金總額(本次應付)',

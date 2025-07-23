@@ -31,7 +31,7 @@ $config = [
    striped hoverable bordered with-buttons>
   @foreach($promotions as $promotion2)
     @if ($promotion2->ecpayResult != null)
-    <tr class="{{ $promotion2->status ? 'bg-green' : 'bg-gray' }}">
+    <tr class="{{ ($promotion2->ecpayResult->rtn_code == 1) ? 'bg-green' : 'bg-light' }}">
     @elseif ($promotion2->ecpayInfo != null)
     <tr class="{{ $promotion2->status ? 'bg-yellow' : 'bg-gray' }}">
     @else
@@ -72,8 +72,8 @@ $config = [
       <td>{{ __('currencies.NTD').$promotion2->paid.__('currencies.ntd_unit') }}</td>
       <td>{{ __('currencies.NTD').$promotion2->remain.__('currencies.ntd_unit') }}</td>
 @else
-  @if ($promotion2->prepay_total > 0)
-      <td>{{ __('currencies.NTD').$promotion2->prepay_total.__('currencies.ntd_unit') }}</td>
+  @if ($promotion2->total > 0)
+      <td>{{ __('currencies.NTD').$promotion2->total.__('currencies.ntd_unit') }}</td>
   @else
       <td>------</td>
   @endif
@@ -89,9 +89,11 @@ $config = [
               <x-adminlte-button theme="primary" title="{{ __('tables.edit') }}" icon="fa fa-lg fa-fw fa-pen"
                 onClick="window.location='{{ route('promotion2.edit', $promotion2->id); }}'" >
               </x-adminlte-button>
+              @if ($promotion2->flow < 10)
               <x-adminlte-button theme="danger" title="{{ __('tables.delete') }}" icon="fa fa-lg fa-fw fa-trash"
                 type="submit" onclick="return confirm('{{ __('tables.confirm_delete') }}');">
               </x-adminlte-button>
+              @endif
             </form>
       </nobr></td>
     </tr>

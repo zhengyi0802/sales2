@@ -124,6 +124,7 @@ class ProjectController extends Controller
         try {
               $resellers = Sales::where('status', true)->get();
               $products = ProductModel::where('status', true)->get();
+              $nprojects = NhpProduct::where('project_id', $project->id)->where('status', true)->get();
         } catch (QueryException $e) {
               return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
         } catch (Exception $e) {
@@ -132,6 +133,7 @@ class ProjectController extends Controller
 
         return view('projects.edit', compact('project'))
                ->with(compact('resellers'))
+               ->with(compact('nprojects'))
                ->with(compact('products'));
     }
 

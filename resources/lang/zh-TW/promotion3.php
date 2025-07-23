@@ -1,8 +1,8 @@
 <?php
     return [
-        'title'            =>  '感恩\孝親節回饋季',
+        'title'            =>  '吉時良配專案',
         'search_title'     =>  '申請單查詢系統',
-        'header'           =>  '感恩孝親節回饋季',
+        'header'           =>  '吉時良配專案',
         'reseller'         =>  '進件單位',
         'id'               =>  '編號',
         'product'          =>  '套裝選擇',

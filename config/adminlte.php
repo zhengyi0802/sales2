@@ -326,8 +326,7 @@ return [
         ],
 
         // Sidebar items:
-        ['header' => 'manager_settings',
-         'can'    => 'manager', ],
+        ['header' => 'manager_settings' ],
         [
             'text' => 'currencies',
             'url'  => 'currencies',
@@ -356,7 +355,7 @@ return [
         [
             'text' => 'sales',
             'url'  => 'sales',
-            'can'  => ['CEO', 'manager',],
+            'can'  => ['CEO', 'manager', 'operator',],
         ],
         ['header' => 'business_settings'],
         [
@@ -397,6 +396,11 @@ return [
         [
             'text' => 'promotion2',
             'url'  => 'promotion2',
+            'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR', 'accounter' ],
+        ],
+        [
+            'text' => 'promotion3',
+            'url'  => 'promotion3',
             'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR', 'accounter' ],
         ],
         [
@@ -443,16 +447,16 @@ return [
             'url'  => 'profiles',
             'icon' => 'fas fa-fw fa-lock',
         ],
-        ['header' => 'account_menu', 'can' => ['admin', 'manager', 'accounter'],],
+        ['header' => 'account_menu'],
         [
            'text' => 'invoice_issues',
            'url'  => 'invoices/issues',
-           'can'  => ['admin', 'accounter'],
+           'can'  => ['admin', 'accounter', 'operator'],
         ],
         [
            'text' => 'invoice_allowances',
            'url'  => 'invoices/allowances',
-           'can'  => ['admin', 'accounter'],
+           'can'  => ['admin', 'accounter', 'operator'],
         ],
 /*
         [
