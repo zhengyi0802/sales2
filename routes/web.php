@@ -23,6 +23,7 @@ use App\Http\Controllers\EcpayController;
 use App\Http\Controllers\Promotion1Controller;
 use App\Http\Controllers\Promotion2Controller;
 use App\Http\Controllers\Promotion3Controller;
+use App\Http\Controllers\Promotion4Controller;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\EcpayInvoiceController;
 use App\Http\Controllers\IssueController;
@@ -216,6 +217,16 @@ Route::get('/promotion3/export', [Promotion3Controller::class, 'export'])->name(
 Route::any('/promotion3/exports', [Promotion3Controller::class, 'exports'])->name('promotion3.exports');
 
 Route::resource('/promotion3', Promotion3Controller::class)->middleware('auth');
+
+Route::resource('/promotion2', Promotion2Controller::class)->middleware('auth');
+
+Route::get('/promotion4/import', [Promotion4Controller::class, 'import'])->name('promotion4.import');
+
+Route::get('/promotion4/export', [Promotion4Controller::class, 'export'])->name('promotion4.export');
+
+Route::any('/promotion4/exports', [Promotion4Controller::class, 'exports'])->name('promotion4.exports');
+
+Route::resource('/promotion4', Promotion4Controller::class)->middleware('auth');
 
 Route::get('/invoices/settings', [EcpayInvoiceController::class, 'settings'])
      ->name('invoices.settings');

@@ -404,6 +404,11 @@ return [
             'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR', 'accounter' ],
         ],
         [
+            'text' => 'promotion4',
+            'url'  => 'promotion4',
+            'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR', 'accounter' ],
+        ],
+        [
             'text' => 'processes',
             'url'  => 'processes',
             'can'  => ['manager'],

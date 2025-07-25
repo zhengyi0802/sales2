@@ -40,6 +40,7 @@ return [
     'promotion1'                    => '驚天一夏專案管理',
     'promotion2'                    => '感恩孝親回饋專案',
     'promotion3'                    => '吉時良配專案',
+    'promotion4'                    => '奢華享樂輕鬆付專案',
     'processes'                     => 'GAS匯入資料處理',
     'ecpay'                         => '綠界交易紀錄',
     'invoice_settings'              => '電子發票設置',
