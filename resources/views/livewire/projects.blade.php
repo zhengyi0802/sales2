@@ -1,7 +1,5 @@
-    <select id="project_id" name="project_name">
-        <option value="" selected>-----------</option>
-        @foreach($projects as $project)
-            <option value="{{ $project->id }}">{{ $project->name }}</option>
-        @endforeach
-    </select>
-
+           <x-adminlte-select name="project_id" label="{{ __('newOrders.project') }}" fgroup-class="col-md-6" >
+               @foreach($projects as $project)
+                   <option value="{{ $project->id }}" >{{ $project->name }}</option>
+               @endforeach
+           </x-adminlte-select>

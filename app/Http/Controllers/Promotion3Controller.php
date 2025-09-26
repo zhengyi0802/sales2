@@ -127,7 +127,7 @@ class Promotion3Controller extends Controller
                           'prom_id'      => $id,
                           'proj_id'      => 3,
                           'path'         => 'exports@promotion3Controller',
-                          'ecount'       => (isset($export)) ? ($export->ecount)+1 : 1,
+                          'ecount'       => 1,
                           'created_by'   => auth()->user()->id,
                     ];
                     GasExport::create($export_data);
@@ -171,7 +171,7 @@ class Promotion3Controller extends Controller
                           'prom_id'      => $id,
                           'proj_id'      => 3,
                           'path'         => 'export@promotion3Controller',
-                          'ecount'       => ($export->ecount)+1 ?? 1,
+                          'ecount'       => 1,
                           'created_by'   => auth()->user()->id,
                 ];
                 GasExport::create($export_data);

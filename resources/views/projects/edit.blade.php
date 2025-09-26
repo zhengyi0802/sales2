@@ -40,6 +40,7 @@
       font-size : 12px;
    }
 </style>
+@include('projects.products')
 <form id="project-form" action="{{ route('projects.update', $project->id) }}" method="POST" enctype="multipart/form-data">
     @method('PUT')
     @csrf
@@ -70,19 +71,32 @@
         <div class="raw card-group">
           <p><strong>{{ __('projects.products') }}</strong></p>
           <table class="table table-bordered" id="productsTable" width="100%">
-            <tr>
+                <tr>
                  <td>{{ __('projects.product') }}</td>
                  <td>{{ __('projects.price') }}</td>
                  <td>{{ __('projects.action') }}</td>
-            </tr>
+                </tr>
+@php
+  $i = 0;
+@endphp
+            @foreach($nproducts as $nproduct)
                 <tr>
-                    <td><input type="text" name="products[0]['product']"  id="product[0]" class="form-control" />
+                    <td><input type="text" name="products[{{ $i }}]['product']"  id="product[{{ $i }}]" value="{{ $nproduct->name }}" class="form-control" />
+                        <input type="number" name="products[{{ $i }}]['pid']" id="pid[{{ $i }}]" value="{{ $nproduct->product_id }}" hidden>
                         <x-adminlte-button label="{{ __('projects.product') }}" data-toggle="modal" data-target="#productsModal"
                           class="bg-primary" data-whatever="0" />
                     </td>
-                    <td><input type="number" name="products[0]['price']" class="form-control" value="0" /></td>
-                    <td><button type="button" name="add" id="productAdd" class="btn btn-outline-primary">{{ __('tables.new') }}</butto>
+                    <td><input type="number" name="products[0]['price']" class="form-control" value="{{ $nproduct->price }}" /></td>
+@if ($i == 0)
+                    <td><button type="button" name="add" id="productAdd" class="btn btn-outline-primary">{{ __('tables.new') }}</button>
+@else
+                    <td><button type="button" class="btn btn-outline-danger removeItem">刪除</button></td>
+@endif
                 </tr>
+@php
+  $i++;
+@endphp
+            @endforeach
           </table>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
@@ -94,6 +108,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
+    var i = {{ count($nproducts) }};
     $('#productsModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Button that triggered the modal
         var id = button.data('whatever'); // Extract info from data-* attributes
@@ -103,11 +118,11 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
-    var i = 0;
     $("#productAdd").click(function () {
         ++i;
         var str = '<tr><td><input type="text" name="products[' + i + '][\'product\']" id="product[' + i + ']" class="form-control" />';
-            str += '<button type="button" class="btn btn-default bg-primary" data-toggle="modal" data-target="#productsModal" data-whatever="' + i + '">>
+            str += '<input type="number" name="products[' + i + '][\'pid\']" id="pid[' + i + ']" hidden>';
+            str += '<button type="button" class="btn btn-default bg-primary" data-toggle="modal" data-target="#productsModal" data-whatever="' + i + '">產品</button></td>';
             str += '<td><input type="number" name="products[' + i + '][\'price\']" class="form-control" value="0" /></td>';
             str += '<td><button type="button" class="btn btn-outline-danger removeItem">刪除</button></td></tr>';
         $("#productsTable").append(str);
@@ -117,11 +132,16 @@
     });
 
     $('#product_id').change(function() {
-        d = document.getElementById("product_id").value;
-        val = document.getElementById('productItem').value;
+        let selectElement = document.getElementById('product_id');
+        let selectedOption = selectElement.options[selectElement.selectedIndex];
+        let name  = selectedOption.getAttribute('data-name');
+        let pidvalue = selectedOption.getAttribute('data-pid');
+        val  = document.getElementById('productItem').value;
         item = val-1;
-        var target = 'product[' + item + ']';
-        document.getElementById(target).value = d;
+        product = 'product[' + item + ']';
+        pid = 'pid[' + item + ']';
+        document.getElementById(pid).value = pidvalue;
+        document.getElementById(product).value = name;
     });
 </script>
 

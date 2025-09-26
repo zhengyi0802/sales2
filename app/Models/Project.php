@@ -34,4 +34,8 @@ class Project extends Model
         return $products;
     }
 
+    function products() {
+        return $this->hasMany(NhpProduct::class, 'project_id');
+    }
+
 }

@@ -24,6 +24,10 @@ use App\Http\Controllers\Promotion1Controller;
 use App\Http\Controllers\Promotion2Controller;
 use App\Http\Controllers\Promotion3Controller;
 use App\Http\Controllers\Promotion4Controller;
+use App\Http\Controllers\Promotion5Controller;
+use App\Http\Controllers\Promotion6Controller;
+use App\Http\Controllers\Promotion7Controller;
+use App\Http\Controllers\Promotion8Controller;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\EcpayInvoiceController;
 use App\Http\Controllers\IssueController;
@@ -228,6 +232,38 @@ Route::any('/promotion4/exports', [Promotion4Controller::class, 'exports'])->nam
 
 Route::resource('/promotion4', Promotion4Controller::class)->middleware('auth');
 
+Route::get('/promotion5/import', [Promotion5Controller::class, 'import'])->name('promotion5.import');
+
+Route::get('/promotion5/export', [Promotion5Controller::class, 'export'])->name('promotion5.export');
+
+Route::any('/promotion5/exports', [Promotion5Controller::class, 'exports'])->name('promotion5.exports');
+
+Route::resource('/promotion5', Promotion5Controller::class)->middleware('auth');
+
+Route::get('/promotion6/import', [Promotion6Controller::class, 'import'])->name('promotion6.import');
+
+Route::get('/promotion6/export', [Promotion6Controller::class, 'export'])->name('promotion6.export');
+
+Route::any('/promotion6/exports', [Promotion6Controller::class, 'exports'])->name('promotion6.exports');
+
+Route::resource('/promotion6', Promotion6Controller::class)->middleware('auth');
+
+Route::get('/promotion7/import', [Promotion7Controller::class, 'import'])->name('promotion7.import');
+
+Route::get('/promotion7/export', [Promotion7Controller::class, 'export'])->name('promotion7.export');
+
+Route::any('/promotion7/exports', [Promotion7Controller::class, 'exports'])->name('promotion7.exports');
+
+Route::resource('/promotion7', Promotion7Controller::class)->middleware('auth');
+
+Route::get('/promotion8/import', [Promotion8Controller::class, 'import'])->name('promotion8.import');
+
+Route::get('/promotion8/export', [Promotion8Controller::class, 'export'])->name('promotion8.export');
+
+Route::any('/promotion8/exports', [Promotion8Controller::class, 'exports'])->name('promotion8.exports');
+
+Route::resource('/promotion8', Promotion8Controller::class)->middleware('auth');
+
 Route::get('/invoices/settings', [EcpayInvoiceController::class, 'settings'])
      ->name('invoices.settings');
 
@@ -315,5 +351,5 @@ Route::get('/issues/create', [IssueController::class, 'create'])
 Route::get('/invoices/allowances', [EcpayInvoiceController::class, 'allowances'])
      ->name('invoices.allowances');
 
-Route::resource('/newOrders', NewOrderController::class)->middleware('auth');
+Route::resource('/neworders', NewOrderController::class)->middleware('auth');
 

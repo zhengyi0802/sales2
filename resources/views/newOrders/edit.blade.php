@@ -6,262 +6,128 @@
     <h1 class="m-0 text-dark">{{ __('newOrders.header') }}</h1>
 @stop
 
-@section('messages')
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ __('newOrders.success') }}</p>
-        </div>
-    @endif
-@endsection
-
 @section('content')
-@if ($eapply->flow == 8 || $eapply->flow == 9)
-        <div class="row">
-            <div class="col-lg-12 margin-tb">
-                <div class="pull-right">
-                    <a class="btn btn-success" href="/newOrders/export?id={{ $eapply->id }}">{{ __('newOrders.export_button') }}</a>
-                </div>
-            </div>
+<div class="row">
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-left">
+            <h1>{{ __('tables.edit') }}</h1>
         </div>
-@endif
-@if ($eapply->flow >= 10)
-        <div class="row">
-            <div class="col-lg-12 margin-tb">
-                <div class="pull-right">
-                    <a class="btn btn-primary" href="/newOrders/import?id={{ $eapply->id }}">{{ __('tables.import') }}</a>
-                </div>
-            </div>
-        </div>
-@endif
-@if ($eapply->flow == 14)
-        <div class="row">
-            <div class="col-lg-12 margin-tb">
-                <div class="pull-right">
-                    <a class="btn btn-info" href="/issues/create?apply_id={{ $eapply->id }}">{{ __('tables.invoice_button') }}</a>
-                </div>
-            </div>
-        </div>
-@endif
+        @include('layouts.back')
+    </div>
+</div>
 
-<style>
-  div.content {
-      width            : 100%;
-  }
-  div.block {
-      border           : 1px solid blue;
-      border-radius    : 10px;
-      margin-top       : 4px;
-      margin-bottom    : 4px;
-      background-color : white;
-  }
-  div.block1 {
-      border           : 1px solid blue;
-      border-radius    : 10px;
-      margin-top       : 4px;
-      margin-bottom    : 4px;
-      background-color : yellow;
-  }
-  p.title {
-      margin-left : 10px;
-  }
-  p.result {
-      margin-left : 30px;
-  }
-</style>
-
-  <div class="content">
-     <div class="block">
-     <p>{{ Session::get('error') }}</p>
-     </div>
-     <div class="block">
-       <p class="title"><strong>{{ __('newOrders.reseller') }} :</strong></p>
-       <p class="result">{{ $eapply->reseller->name ?? '' }}</p>
-     </div>
-@if (false)
-     <div class="block">
-       <p class="title"><strong>{{ __('newOrders.zone1') }} :</strong></p>
-       <p class="result">{{ ($eapply->community) ? $eapply->community->city.$eapply->community->zone : null }}</p>
-     </div>
-     <div class="block">
-       <p class="title"><strong>{{ __('newOrders.community') }} :</strong></p>
-       <p class="result">{{ ($eapply->community) ? $eapply->community->community : null }}</p>
-     </div>
-     <div class="block">
-       <p class="title"><strong>{{ __('newOrders.persion') }} :</strong></p>
-       <p class="result">{{ ($eapply->persion == 1) ? __('newOrders.persion_chair') : __('newOrders.persion_common') }}</p>
-     </div>
-@endif
-     <div class="block">
-       <p class="title"><strong>{{ __('newOrders.doorlock').__('newOrders.amount') }} :</strong> : {{ $eapply->amount }}</p>
-     </div>
-     <div class="block">
-       <p class="title"><strong>{{ __('newOrders.bundles') }} :</strong></p>
-       <p class="result">{{ __('newOrders.shield').__('newOrders.amount') }} : {{ json_decode($eapply->bundles)->shield ?? "0"  }}</p>
-       <p class="result">{{ __('newOrders.battery').__('newOrders.amount') }} : {{ json_decode($eapply->bundles)->battery ?? "0"  }}</p>
-     </div>
-     <form id="eapply-form" action="{{ route('newOrders.update', $eapply->id) }}" method="POST">
-         @method('PUT')
-         @csrf
-         <div class="block">
-            <p class="title"><strong>{{ __('newOrders.name') }} :</strong></p>
-            <p class="result">{{ $eapply->name }}</p>
-         </div>
-         <div class="block">
-            <p class="title"><strong>{{ __('newOrders.line_id') }} :</strong></p>
-            <p class="result">{{ $eapply->line_id }}</p>
-         </div>
-         <div class="block">
-            <p class="title"><strong>{{ __('newOrders.email') }} :</strong></p>
-            <p class="result">{{ $eapply->email }}</p>
-         </div>
-         <div class="block">
-            <p class="title"><strong>{{ __('newOrders.phone') }} :</strong></p>
-            <p class="result">{{ $eapply->phone }}</p>
-         </div>
-          <div class="block">
-            <p class="title"><strong>{{ __('newOrders.address') }} :</strong></p>
-            <p class="result">{{ $eapply->address }}</p>
-          </div>
-          <div class="block">
-            <p class="title"><strong>{{ __('newOrders.placement') }} :</strong></p>
-            <p class="result">{{ $eapply->placement }}</p>
-          </div>
-          <div class="block">
-            <p class="title"><strong>{{ __('newOrders.project') }} :</strong></p>
-            <p class="result">{{ __('newOrders.project_origin') }} : {{ $eapply->project->name }}</p>
-              <p class="result">{{ __('newOrders.project_change') }} :
-               <select id="project_id" name="project_id" onchange="checkProject(this)">
-                 @foreach($eprojects as $eproject)
-                     <option value="{{ $eproject->id }}" {{ ($eapply->project->id == $eproject->id) ? "selected" : null }} >{{ $eproject->name }}</option>
-                 @endforeach
-               </select>
-              </p>
-          </div>
-          <div class="block">
-            <p class="title"><strong>{{ __('newOrders.title_gifts') }} :</strong></p>
-            @foreach ($gifts as $gift)
-              @if ($gift == 'gift1')
-                  <p class="result">{{ __('newOrders.gift1') }}</p>
-              @elseif ($gift == 'gift2')
-                  <p class="result">{{ __('newOrders.gift2') }}</p>
-              @elseif ($gift == 'gift3')
-                  <p class="result">{{ __('newOrders.gift3') }}</p>
-              @elseif ($gift == 'gift4')
-                  <p class="result">{{ __('newOrders.gift4') }}</p>
-              @elseif ($gift == 'gift5')
-                  <p class="result">{{ __('newOrders.gift5') }}</p>
-              @elseif ($gift == 'gift6')
-                  <p class="result">{{ __('newOrders.gift6') }}</p>
-              @elseif ($gift == 'gift7')
-                  <p class="result">{{ __('newOrders.gift7') }}</p>
-              @endif
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
             @endforeach
-          </div>
-          <script>
-            function checkProject(event) {
-                var paid = document.getElementById('paid').value;
-            }
-          </script>
-          <div class="block">
-           <p class="title"><strong>{{ __('newOrders.flow') }} :</strong>{{ __('newOrders.no_remain') }}</p>
-           <p class="result">
-              <select id="flow" name="flow" onchange="checkflow(this)" {{ ($eapply->flow < 10) ? null : "disabled" }}>
-                <option value="1" {{ ($eapply->flow == 1) ? "selected" : null }}>{{ trans_choice('newOrders.flows', 1) }}</option>
-                <option value="2" {{ ($eapply->flow == 2) ? "selected" : null }}>{{ trans_choice('newOrders.flows', 2) }}</option>
-                <option value="3" {{ ($eapply->flow == 3) ? "selected" : null }}>{{ trans_choice('newOrders.flows', 3) }}</option>
-                <option value="4" {{ ($eapply->flow == 4) ? "selected" : null }}>{{ trans_choice('newOrders.flows', 4) }}</option>
-                <option value="5" {{ ($eapply->flow == 5) ? "selected" : null }}>{{ trans_choice('newOrders.flows', 5) }}</option>
-                <option value="6" {{ ($eapply->flow == 6) ? "selected" : null }}>{{ trans_choice('newOrders.flows', 6) }}</option>
-                <option value="7" {{ ($eapply->flow == 7) ? "selected" : null }}>{{ trans_choice('newOrders.flows', 7) }}</option>
-                <option value="8" {{ ($eapply->flow == 8) ? "selected" : null }}>{{ trans_choice('newOrders.flows', 8) }}</option>
-                @if ($eapply->remain == 0)
-                <option value="9" {{ ($eapply->flow == 9) ? "selected" : null }}>{{ trans_choice('newOrders.flows', 9) }}</option>
-                @endif
-                <option value="10" {{ ($eapply->flow == 10) ? "selected" : null }}>{{ trans_choice('newOrders.flows', 10) }}</option>
-                <option value="11" {{ ($eapply->flow1 == 11) ? "selected" : null }}>{{ trans_choice('newOrders.flows', 11) }}</option>
-                <option value="12" {{ ($eapply->flow1 == 12) ? "selected" : null }}>{{ trans_choice('newOrders.flows', 12) }}</option>
-                <option value="13" {{ ($eapply->flow1 == 13) ? "selected" : null }}>{{ trans_choice('newOrders.flows', 13) }}</option>
-                <option value="14" {{ ($eapply->flow1 == 14) ? "selected" : null }}>{{ trans_choice('newOrders.flows', 14) }}</option>
-              </select>
-           </p>
-          </div>
-          <script>
-           function checkflow(event) {
-               var total = document.getElementById('total').innerText;
-               if(event.value == 8) {
-                  if ( {{ $eapply->project->prepaid }} > 0 ) {
-                       var prepay = document.getElementById('prepay').innerText;
-                       document.getElementById('paid').value = prepay;
-                       document.getElementById('remain').value = total-prepay;
-                  } else {
-                       document.getElementById('paid').value = total;
-                       document.getElementById('remain').value = 0;
-                  }
-               }
+        </ul>
+    </div>
+@endif
+<style>
+   .error {
+      color       : red;
+      margin-left : 5px;
+      font-size   : 12px;
+   }
+   label.error {
+      display     : inline;
+   }
+   span.must {
+      color     : red;
+      font-size : 12px;
+   }
+</style>
+<form id="newOrder-form" action="{{ route('newOrders.update', $newOrder->id) }}" method="POST">
+    @method('PUT')
+    @csrf
+        <div class="raw card-group">
+           <x-adminlte-input name="cname" label="{{ __('newOrders.cname') }}" fgroup-class="col-md-6" value="{{ $newOrder->cname }}" />
+           <x-adminlte-input type="date" name="order_date" label="{{ __('newOrders.order_date') }}" fgroup-class="col-md-6"
+              value="{{ $newOrder->order_date }}"/>
+        </div>
+        <div class="raw card-group">
+           <x-adminlte-input name="phone" label="{{ __('newOrders.phone') }}" fgroup-class="col-md-6"
+              value="{{ $newOrder->phone }}" disabled />
+           <x-adminlte-input name="cid" label="{{ __('newOrders.cid') }}" fgroup-class="col-md-6" value="{{ $newOrder->cid }}" />
+        </div>
+        <div class="raw card-group">
+           <x-adminlte-input name="email" label="{{ __('newOrders.email') }}" fgroup-class="col-md-6"
+              value="{{ $newOrder->email }}" />
+           <x-adminlte-input name="line_id" label="{{ __('newOrders.line_id') }}" fgroup-class="col-md-6"
+              value="{{ $newOrder->line_id }}" />
+        </div>
+        <div class="raw card-group">
+           <x-adminlte-input name="address" label="{{ __('newOrders.address') }}" fgroup-class="col-md-12"
+              value="{{ $newOrder->address }}" />
+        </div>
+        <div class="raw card-group">
+           <x-adminlte-input name="invoice" label="{{ __('newOrders.invoice') }}" fgroup-class="col-md-6"
+              value="{{ $newOrder->invoice }}" />
+           <x-adminlte-select name="flow" label="{{ __('newOrders.flow') }}" fgroup-class="col-md-6" >
+              <option value="1" {{ ($newOrder->flow == 1) ? "selected" : null }}>{{ trans_choice('newOrders.flows', 1) }}</option>
+              <option value="2" {{ ($newOrder->flow == 2) ? "selected" : null }}>{{ trans_choice('newOrders.flows', 2) }}</option>
+              <option value="3" {{ ($newOrder->flow == 3) ? "selected" : null }}>{{ trans_choice('newOrders.flows', 3) }}</option>
+              <option value="4" {{ ($newOrder->flow == 4) ? "selected" : null }}>{{ trans_choice('newOrders.flows', 4) }}</option>
+           </x-adminlte-select>
+        </div>
+        <div class="raw card-group">
+           <x-adminlte-input type="date" name="outbound_date" label="{{ __('newOrders.outbound_date') }}" fgroup-class="col-md-6"
+              value="{{ $newOrder->outbound_date }}" />
+           <x-adminlte-input type="date" name="arrived_date" label="{{ __('newOrders.arrived_date') }}" fgroup-class="col-md-6"
+              value="{{ $newOrder->arrived_date }}" />
+        </div>
+        <div class="raw card-group">
+          <p><strong>{{ __('newOrders.orderitems') }}</strong></p>
+          @include('newOrders.edit.items')
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
+        </div>
+</form>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#newOrder-form').validate({
+           onkeyup: function(element, event) {
+               var value = this.elementValue(element).replace(/^\s+/g, "");
+               $(element).val(value);
+           },
+           rules: {
+               cname: {
+                  required: true
+               },
+               order_date: {
+                  required: true
+               },
+               phone: {
+                  required: true
+               },
+               address: {
+                  required: true
+               },
+           },
+           messages: {
+               cname: {
+                  required: '訂購單位必填'
+               },
+               order_date: {
+                  required: '訂購日期必填'
+               },
+               phone: {
+                  required: '電話必填'
+               },
+               address: {
+                  required: '送貨地址必填'
+               },
+           },
+           submitHandler: function(form) {
+                form.submit();
            }
-           function confirm(event) {
-               var total = document.getElementById('total').innerText;
-               document.getElementById('paid').value = total;
-               document.getElementById('remain').value = 0;
-           }
-          </script>
-          <div class="block">
-              <p class="title"><strong>{{ __('newOrders.payment') }} :</strong></p>
-              <p class="result">{{ ($eapply->payment == 11) ? __('newOrders.payment_third') : __('newOrders.payment_credit') }}</p>
-              <p class="result">{{ __('newOrders.total') }} : NTD <span id="total">{{ ($eapply->total > 0) ? $eapply->total : $total }}</span></p>
-              @if ($eapply->flow < 9)
-                 @if ($eapply->project->prepaid > 0)
-                    <p class="result">{{ __('newOrders.prepay') }} : NTD <span id="prepay">{{ ($eapply->prepay_total) ? $eapply->prepay_total : $prepay }}</span></p>
-                 @endif
-                 <p class="result">{{ __('newOrders.paid') }} : NTD <input type="number" id="paid" name="paid" value="{{ $eapply->paid }}" ></p>
-                 <p class="result">{{ __('newOrders.remain') }} : NTD <input type="number"  id="remain" name="remain" value="{{ $eapply->remain }}" ></p>
-              @else
-                 <p class="result">{{ __('newOrders.paid') }} : NTD {{ $eapply->paid }}</p>
-                 <p class="result">{{ __('newOrders.remain') }} : NTD {{ $eapply->remain }}</p>
-              @endif
-              @if (isset($results) && ($results->rtn_code == '1'))
-                 <div class="block1">
-                     <p class="title"><button onclick="confirm(this)">{{ __('newOrders.confirm') }}</button>
-                     <p class="title"><strong>{{ __('ecpay.payment_type') }} :</strong></p>
-                     <p class="result">{{ $results->payment_type ?? '' }}</p>
-                     <p class="title"><strong>{{ __('ecpay.payment_date') }} :</strong></p>
-                     <p class="result">{{ $results->payment_date ?? '' }}</p>
-                     <p class="title"><strong>{{ __('ecpay.trade_amount') }} :</strong></p>
-                     <p class="result">{{ 'NTD '.($results->trade_amount ?? '') }}</p>
-                     <p class="title"><strong>{{ __('ecpay.rtn_msg') }} :</strong></p>
-                     <p class="result">{{ $results->rtn_msg ?? ''}}</p>
-                 </div>
-              @endif
-          </div>
-          <div class="block">
-           <p class="title"><strong>{{ __('newOrders.memo') }} :</strong></p>
-           <p class="result"><textarea name="memo" class="col-md-12" >{{ $eapply->memo }}</textarea></p>
-          </div>
-          @if (auth()->user()->role == App\Enums\UserRole::Administrator)
-          <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group col-md-4">
-                    <strong>{{ __('newOrders.status') }} :</strong>
-                    <input type="checkbox" name="status" value="1" {{ $eapply->status ? "checked" : null }}>
-                    <label for="status">{{ __('tables.enabled') }}</label>
-                </div>
-          </div>
-          @endif
-          <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-              <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
-          </div>
-     </form>
-     @if ($eapply->flow >= 10) {
-         <div class="block">
-            <p><strong>{{ __('newOrders.gastable') }}</strong></p>
-            @include('newOrders.table2')
-         </div>
-     @endif
-
-     @if (count($eapply->ecpayInvoiceData) > 0)
-         <div class="block">
-            <p><strong>{{ __('newOrders.issuetable') }}</strong></p>
-            @include('newOrders.issueTable')
-         </div>
-     @endif
-  </div>
+        });
+    });
+</script>
+@section('plugins.jqueryValidation', true)
 @endsection

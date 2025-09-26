@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductModel;
+use App\Models\Project;
 use App\Models\NewOrder;
 use App\Models\NhpProduct;
 use App\Models\Sales;
@@ -45,16 +46,16 @@ class NewOrderController extends Controller
     public function create()
     {
         try {
-              $sales = Sales::where('status', true)->get();
-              $productModels = ProductModel::where('status', true)->get();
+              //$sales = Sales::where('status', true)->get();
+              //$projects = Project::where('status', true)->get();
+              //$productModels = ProductModel::where('status', true)->get();
         } catch (QueryException $e) {
               return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
         } catch (Exception $e) {
               return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
         }
 
-        return view('newOrders.create', compact('productModels'))
-               ->with(compact('sales'));
+        return view('newOrders.create');
     }
 
     /**

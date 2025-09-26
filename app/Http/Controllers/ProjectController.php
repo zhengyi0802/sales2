@@ -68,8 +68,6 @@ class ProjectController extends Controller
     {
         $creator = auth()->user();
         $req = $request->all();
-        dd($req);
-
         try {
              $req['created_by'] = $creator->id;
              $req['status'] = true;
@@ -83,9 +81,10 @@ class ProjectController extends Controller
         foreach($req['products'] as $product)
         {
             $data = [
-                        'prject_id'  => $project->id ?? 0,
-                        'product_id' => $product->pid ?? 0,
-                        'price'      => $product->price ?? 0,
+                        'project_id'  => $project->id,
+                        'product_id' => $product["'pid'"],
+                        'name'       => $product["'product'"],
+                        'price'      => $product["'price'"],
                         'saleses'    => json_encode($req['resellers']) ?? null,
                         'status'     => true,
                         'created_by' => $creator->id ?? 1,
@@ -124,7 +123,7 @@ class ProjectController extends Controller
         try {
               $resellers = Sales::where('status', true)->get();
               $products = ProductModel::where('status', true)->get();
-              $nprojects = NhpProduct::where('project_id', $project->id)->where('status', true)->get();
+              $nproducts = NhpProduct::where('project_id', $project->id)->where('status', true)->get();
         } catch (QueryException $e) {
               return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
         } catch (Exception $e) {
@@ -133,7 +132,7 @@ class ProjectController extends Controller
 
         return view('projects.edit', compact('project'))
                ->with(compact('resellers'))
-               ->with(compact('nprojects'))
+               ->with(compact('nproducts'))
                ->with(compact('products'));
     }
 
@@ -146,22 +145,42 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        $data = $request->all();
+        $req = $request->all();
         /*
         $extras = implode(',', $data['extras']);
         $data['extras'] = json_encode($extras);
         */
         try {
               $creator = auth()->user();
-              $data['created_by'] = $creator->id;
-              if (!isset($data['salesing'])) {
-                  $data['salesing'] = false;
+              $req['created_by'] = $creator->id;
+              if (!isset($req['salesing'])) {
+                  $req['salesing'] = false;
               }
-              $project->update($data);
+              $project->update($req);
         } catch (QueryException $e) {
               return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
         } catch (Exception $e) {
               return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+        }
+
+        foreach($req['products'] as $product)
+        {
+            $data = [
+                        'project_id'  => $project->id,
+                        'product_id' => $product["'pid'"],
+                        'name'       => $product["'product'"],
+                        'price'      => $product["'price'"],
+                        'saleses'    => json_encode($req['resellers']) ?? null,
+                        'status'     => true,
+                        'created_by' => $creator->id ?? 1,
+            ];
+            try {
+                $nproduct = NhpProduct::create($data);
+            } catch(QueryException $e) {
+                return response()->json(['error' => '資料庫錯誤：' . $e->getMessage()], 500);
+            } catch(Exception $e) {
+                return response()->json(['error' => '程式錯誤：' . $e->getMessage()], 500);
+            }
         }
 
         return redirect()->route('projects.index');
@@ -179,14 +198,14 @@ class ProjectController extends Controller
               if ($project->status) {
                   $project->status = false;
                   $project->save();
-                  $nproducts = NhpProduct::where('project_id', $project_id)-get();
+                  $nproducts = NhpProduct::where('project_id', $project_id)->get();
                   foreach($nproducts as $nproduct) {
                       $nproduct->status = false;
                       $nproduct->save();
                   }
                 } else if (auth()->user()->role <= UserRole::Manager) {
                   $project_id = $project->id;
-                  $nproducts = NhpProduct::where('project_id', $project_id)-get();
+                  $nproducts = NhpProduct::where('project_id', $project_id)->get();
                   foreach($nproducts as $nproduct) {
                       $nproduct->delete();
                   }
@@ -201,3 +220,4 @@ class ProjectController extends Controller
         return redirect()->route('projects.index');
     }
 }
+

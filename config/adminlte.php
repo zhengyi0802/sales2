@@ -355,12 +355,17 @@ return [
         [
             'text' => 'sales',
             'url'  => 'sales',
-            'can'  => ['CEO', 'manager', 'operator',],
+            'can'  => ['CEO', 'manager', 'operator', 'sales006'],
         ],
         ['header' => 'business_settings'],
         [
             'text' => 'massorders',
             'url'  => 'massOrders',
+            'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR'],
+        ],
+        [
+            'text' => 'neworders',
+            'url'  => 'neworders',
             'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR'],
         ],
         [
@@ -409,6 +414,26 @@ return [
             'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR', 'accounter' ],
         ],
         [
+            'text' => 'promotion5',
+            'url'  => 'promotion5',
+            'can'  => ['CEO', 'manager', 'operator', 'CSR', 'accounter', 'sales122', 'sales005'],
+        ],
+        [
+            'text' => 'promotion6',
+            'url'  => 'promotion6',
+            'can'  => ['CEO', 'manager', 'operator', 'CSR', 'accounter', 'sales122', 'sales005' ],
+        ],
+        [
+            'text' => 'promotion7',
+            'url'  => 'promotion7',
+            //'can'  => ['CEO', 'manager', 'operator', 'CSR', 'accounter', 'sales122', 'sales005'],
+        ],
+        [
+            'text' => 'promotion8',
+            'url'  => 'promotion8',
+            //'can'  => ['CEO', 'manager', 'operator', 'CSR', 'accounter', 'sales122', 'sales005'],
+        ],
+        [
             'text' => 'processes',
             'url'  => 'processes',
             'can'  => ['manager'],
@@ -416,7 +441,7 @@ return [
         [
             'text' => 'ecpay',
             'url'  => 'ecpay',
-            'can'  => ['CEO', 'manager', 'sales', 'operator', 'reseller', 'CSR', 'accounter' ],
+            'can'  => ['CEO', 'manager', 'operator', 'CSR', 'accounter' ],
         ],
         [
             'text' => 'warranties',
@@ -735,5 +760,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];

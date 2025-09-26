@@ -64,7 +64,7 @@ class SalesController extends Controller
         try {
               $user = User::where('account', $data['account'])->first();
               if ($user != null) {
-                  return redirect()->back();
+                  return back()->withErrors('帳號或電話已重複')->withInput();
               } else {
                   $data1['name'] = $data['name'];
                   $data1['account'] = $data['account'];

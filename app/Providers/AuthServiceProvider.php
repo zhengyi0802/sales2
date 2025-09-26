@@ -47,6 +47,19 @@ class AuthServiceProvider extends ServiceProvider
             }
         );
 
+        Gate::define('sales122', function ($user) {
+            return $user->sales->id === 122; // or any other condition
+        });
+
+        Gate::define('sales006', function ($user) {
+            return $user->sales->id === 6; // or any other condition
+        });
+
+        Gate::define('sales005', function ($user) {
+            return $user->sales->id === 5; // or any other condition
+        });
+
+
         foreach (self::$permissions as $action => $roles) {
             Gate::define(
                 $action,

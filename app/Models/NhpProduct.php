@@ -10,10 +10,12 @@ class NhpProduct extends Model
     use HasFactory;
 
     protected $connection = 'sales2';
+    protected $table = 'nhp_products';
 
     protected $fillable = [
         'project_id',
         'product_id',
+        'name',
         'price',
         'saleses',
         'status',

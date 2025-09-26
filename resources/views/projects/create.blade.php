@@ -109,6 +109,7 @@
     $("#productAdd").click(function () {
         ++i;
         var str = '<tr><td><input type="text" name="products[' + i + '][\'product\']" id="product[' + i + ']" class="form-control" />';
+            str += '<input type="number" name="products[' + i + '][\'pid\']" id="pid[' + i + ']" hidden>';
             str += '<button type="button" class="btn btn-default bg-primary" data-toggle="modal" data-target="#productsModal" data-whatever="' + i + '">產品</button></td>';
             str += '<td><input type="number" name="products[' + i + '][\'price\']" class="form-control" value="0" /></td>';
             str += '<td><button type="button" class="btn btn-outline-danger removeItem">刪除</button></td></tr>';
